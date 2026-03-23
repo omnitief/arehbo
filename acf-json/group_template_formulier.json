@@ -1,0 +1,129 @@
+{
+    "key": "group_template_formulier",
+    "title": "Formulier \u2013 Page content",
+    "fields": [
+        {
+            "key": "field_form_background",
+            "label": "Background",
+            "name": "formulier_background",
+            "type": "button_group",
+            "instructions": "Background colour of the page.",
+            "required": 0,
+            "choices": {
+                "light": "Light",
+                "dark": "Dark"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0
+        },
+        {
+            "key": "field_form_title",
+            "label": "Title",
+            "name": "formulier_title",
+            "type": "text",
+            "instructions": "Main heading on the left side of the page.",
+            "required": 0
+        },
+        {
+            "key": "field_form_description",
+            "label": "Description",
+            "name": "formulier_description",
+            "type": "wysiwyg",
+            "instructions": "Body text below the title. Rich text formatting is allowed.",
+            "required": 0,
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_form_buttons",
+            "label": "Buttons",
+            "name": "formulier_buttons",
+            "type": "repeater",
+            "instructions": "Add up to 2 buttons. A button is only shown when both text and link are filled in.",
+            "required": 0,
+            "min": 0,
+            "max": 2,
+            "layout": "table",
+            "button_label": "Add button",
+            "sub_fields": [
+                {
+                    "key": "field_form_btn_text",
+                    "label": "Text",
+                    "name": "btn_text",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_form_btn_link",
+                    "label": "Link",
+                    "name": "btn_link",
+                    "type": "link",
+                    "required": 1,
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_form_btn_style",
+                    "label": "Style",
+                    "name": "btn_style",
+                    "type": "button_group",
+                    "required": 0,
+                    "choices": {
+                        "primary": "Primary (orange)",
+                        "outline": "Outline"
+                    },
+                    "default_value": "primary",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_form_image",
+            "label": "Image",
+            "name": "formulier_image",
+            "type": "image",
+            "instructions": "Image displayed at the bottom of the left column (border-radius 30px applied automatically).",
+            "required": 0,
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_form_form_id",
+            "label": "Form",
+            "name": "formulier_form_id",
+            "type": "select",
+            "instructions": "Select the Gravity Forms form to display. Forms are loaded automatically from Gravity Forms.",
+            "required": 0,
+            "choices": [],
+            "default_value": "",
+            "allow_null": 1,
+            "null_choice_text": "Select a form\u2026",
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/page-formulier.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1741392000
+}

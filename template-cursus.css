@@ -1,0 +1,370 @@
+.cursus-page__inner {
+    padding-top: calc(var(--header-bottom, 130px) + 45px);
+    padding-bottom: 0;
+}
+
+@media (max-width: 990px) {
+    .cursus-page__inner {
+        padding-top: calc(var(--header-bottom, 80px) + 20px);
+    }
+}
+
+.cursus-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cursus-breadcrumbs__link,
+.cursus-breadcrumbs__sep {
+    font-family: var(--font-base);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.cursus-breadcrumbs__link:hover {
+    opacity: 0.75;
+}
+
+.cursus-breadcrumbs__current {
+    font-family: var(--font-base);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+.cursus-divider {
+    margin: 40px 0 0;
+    border: none;
+    border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
+    opacity: 1;
+}
+
+.cursus-hero-bg {
+    padding-bottom: 1px;
+}
+
+.cursus-hero-bg--light-blue {
+    background: var(--bg-light);
+}
+
+.cursus-hero-bg--dark-blue {
+    background: var(--color-primary);
+}
+
+.cursus-hero-bg--dark-blue .cursus-breadcrumbs__link,
+.cursus-hero-bg--dark-blue .cursus-breadcrumbs__sep,
+.cursus-hero-bg--dark-blue .cursus-breadcrumbs__current {
+    color: var(--color-white);
+}
+
+.cursus-hero-bg--dark-blue .cursus-divider {
+    border-top-color: rgba(var(--color-white-rgb), 0.2);
+}
+
+.cursus-hero-bg--dark-blue .cursus-hero__title,
+.cursus-hero-bg--dark-blue .cursus-hero__description {
+    color: var(--color-white);
+}
+
+.cursus-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    margin-top: 100px;
+    padding-bottom: 0;
+}
+
+.cursus-hero__text {
+    flex: 0 1 800px;
+    min-width: 0;
+}
+
+.cursus-hero__title {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 60px;
+    line-height: 70px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--color-primary);
+}
+
+.cursus-hero__description {
+    margin: 40px 0 0;
+    max-width: 635px;
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 32px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+}
+
+.cursus-hero__description ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cursus-hero__description ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cursus-hero__description ul li::before {
+    content: '';
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius-small);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'%3E%3Cpath fill='%23ffffff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cursus-hero__text .btn {
+    margin-top: 55px;
+}
+
+.cursus-hero__image-wrap {
+    flex-shrink: 0;
+}
+
+.cursus-hero__image {
+    display: block;
+    width: 635px;
+    height: 357px;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+@media (max-width: 1500px) {
+    .cursus-hero__image {
+        width: 480px;
+        height: 270px;
+    }
+
+    .cursus-hero__title {
+        font-size: 50px;
+        line-height: 60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .cursus-hero {
+        gap: 40px;
+    }
+
+    .cursus-hero__image {
+        width: 380px;
+        height: 214px;
+    }
+
+    .cursus-hero__title {
+        font-size: 42px;
+        line-height: 52px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cursus-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 48px;
+        margin-top: 60px;
+    }
+
+    .cursus-hero__text {
+        flex: none;
+        width: 100%;
+    }
+
+    .cursus-hero__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 635 / 357;
+    }
+
+    .cursus-hero__image-wrap {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cursus-hero {
+        margin-top: 40px;
+    }
+
+    .cursus-breadcrumbs {
+        gap: 8px;
+    }
+
+    .cursus-breadcrumbs__link,
+    .cursus-breadcrumbs__sep,
+    .cursus-breadcrumbs__current {
+        font-size: 15px;
+        line-height: 24px;
+    }
+
+    .cursus-divider {
+        margin-top: 24px;
+    }
+
+    .cursus-hero__title {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    .cursus-hero__description {
+        margin-top: 24px;
+        font-size: 17px;
+        line-height: 28px;
+    }
+}
+
+.cursus-cards {
+    padding-top: 80px;
+}
+
+.cursus-cards--light-blue {
+    background: var(--bg-light);
+}
+
+.cursus-cards--dark-blue {
+    background: var(--color-primary);
+}
+
+.cursus-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.20);
+    border-radius: 70px;
+    padding: 45px 45px 45px 85px;
+}
+
+.cursus-cards--dark .cursus-card {
+    border-color: rgba(var(--color-white-rgb), 0.2);
+}
+
+.cursus-card__left {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.cursus-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+}
+
+.cursus-card__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cursus-card__meta-label {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 0.65;
+}
+
+.cursus-card__meta-value {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+.cursus-cards--dark .cursus-card__meta-label,
+.cursus-cards--dark .cursus-card__meta-value {
+    color: var(--color-white);
+}
+
+.cursus-card__right {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+}
+
+@media (max-width: 1200px) {
+    .cursus-card {
+        gap: 30px;
+        padding: 35px 40px;
+    }
+
+    .cursus-card__meta {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cursus-card {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 40px;
+        padding: 35px;
+    }
+
+    .cursus-card__right {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .cursus-cards {
+        padding-top: 48px;
+    }
+
+    .cursus-card {
+        border-radius: 30px;
+        padding: 28px 24px;
+    }
+
+    .cursus-card__meta {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cursus-card__meta-label,
+    .cursus-card__meta-value {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .cursus-card__right {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

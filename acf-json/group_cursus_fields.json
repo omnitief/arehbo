@@ -1,0 +1,79 @@
+{
+    "key": "group_cursus_fields",
+    "title": "Cursus details",
+    "fields": [
+        {
+            "key": "field_cursus_kosten",
+            "label": "Kosten",
+            "name": "kosten",
+            "type": "text",
+            "instructions": "Bijv. €413,- p.p.",
+            "default_value": "",
+            "placeholder": "€413,- p.p."
+        },
+        {
+            "key": "field_cursus_locatie",
+            "label": "Locatie",
+            "name": "locatie",
+            "type": "text",
+            "instructions": "Bijv. Utrecht",
+            "default_value": "",
+            "placeholder": "Utrecht"
+        },
+        {
+            "key": "field_cursus_duur",
+            "label": "Duur",
+            "name": "duur",
+            "type": "text",
+            "instructions": "Bijv. 2 dagen",
+            "default_value": "",
+            "placeholder": "2 dagen"
+        },
+        {
+            "key": "field_cursus_inschrijven_url",
+            "label": "Inschrijven URL",
+            "name": "inschrijven_url",
+            "type": "url",
+            "instructions": "Link voor de knop 'Direct inschrijven'.",
+            "default_value": "",
+            "placeholder": "https://"
+        },
+        {
+            "key": "field_cursus_eigen_locatie_label",
+            "label": "Op eigen locatie – knoptekst",
+            "name": "eigen_locatie_label",
+            "type": "text",
+            "instructions": "Tekst voor de tweede knop.",
+            "default_value": "OP EIGEN LOCATIE",
+            "placeholder": "OP EIGEN LOCATIE"
+        },
+        {
+            "key": "field_cursus_eigen_locatie_link",
+            "label": "Op eigen locatie – link",
+            "name": "eigen_locatie_link",
+            "type": "link",
+            "instructions": "Waar de tweede knop naartoe linkt.",
+            "required": 0,
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "cursussen"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1773700000
+}

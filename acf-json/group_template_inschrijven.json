@@ -1,0 +1,71 @@
+{
+    "key": "group_template_inschrijven",
+    "title": "Inschrijven \u2013 Hero",
+    "fields": [
+        {
+            "key": "field_inschr_background",
+            "label": "Background",
+            "name": "inschr_background",
+            "type": "button_group",
+            "instructions": "Background colour for the hero section.",
+            "required": 0,
+            "choices": {
+                "light-blue": "Light Blue",
+                "dark-blue": "Dark Blue"
+            },
+            "default_value": "light-blue",
+            "return_format": "value",
+            "allow_null": 0
+        },
+        {
+            "key": "field_inschr_title",
+            "label": "Title",
+            "name": "inschr_title",
+            "type": "text",
+            "instructions": "Main heading in the hero section.",
+            "required": 0
+        },
+        {
+            "key": "field_inschr_description",
+            "label": "Description",
+            "name": "inschr_description",
+            "type": "wysiwyg",
+            "instructions": "Body text below the title.",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_inschr_image",
+            "label": "Image",
+            "name": "inschr_image",
+            "type": "image",
+            "instructions": "Hero image (recommended 635 \u00d7 357 px).",
+            "required": 0,
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/page-inschrijven.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1742515200
+}

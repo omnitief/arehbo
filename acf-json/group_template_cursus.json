@@ -1,0 +1,84 @@
+{
+    "key": "group_template_cursus",
+    "title": "Cursus – Hero",
+    "fields": [
+        {
+            "key": "field_cursus_background",
+            "label": "Background",
+            "name": "cursus_background",
+            "type": "button_group",
+            "instructions": "Background colour for the hero section.",
+            "required": 0,
+            "choices": {
+                "light-blue": "Light Blue",
+                "dark-blue": "Dark Blue"
+            },
+            "default_value": "light-blue",
+            "return_format": "value",
+            "allow_null": 0
+        },
+        {
+            "key": "field_cursus_hero_title",
+            "label": "Title",
+            "name": "cursus_title",
+            "type": "text",
+            "instructions": "Main heading in the hero section.",
+            "required": 0
+        },
+        {
+            "key": "field_cursus_hero_description",
+            "label": "Description",
+            "name": "cursus_description",
+            "type": "wysiwyg",
+            "instructions": "Body text below the title.",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_cursus_hero_image",
+            "label": "Image",
+            "name": "cursus_image",
+            "type": "image",
+            "instructions": "Hero image (recommended 635 × 357 px).",
+            "required": 0,
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_cursus_selected_cursussen",
+            "label": "Cursussen",
+            "name": "cursussen",
+            "type": "relationship",
+            "instructions": "Selecteer de cursussen die op deze pagina worden getoond.",
+            "required": 0,
+            "post_type": ["cursussen"],
+            "filters": ["search"],
+            "return_format": "object",
+            "min": 0,
+            "max": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/page-cursus.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1773700001
+}

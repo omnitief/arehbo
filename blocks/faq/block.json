@@ -1,0 +1,20 @@
+{
+  "name": "acf/faq",
+  "title": "FAQ",
+  "description": "Heading with numbered accordion FAQ items.",
+  "category": "layout",
+  "icon": "editor-help",
+  "keywords": ["faq", "accordion", "questions", "answers"],
+  "style": "file:./style.css",
+  "viewScript": "file:./faq.js",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "faq.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

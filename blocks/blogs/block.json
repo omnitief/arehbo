@@ -1,0 +1,19 @@
+{
+  "name": "acf/blogs",
+  "title": "Blogs",
+  "description": "2-column grid showcasing 2 selected blog posts with image, title, excerpt and CTA.",
+  "category": "layout",
+  "icon": "admin-post",
+  "keywords": ["blogs", "posts", "news", "articles", "grid"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "blogs.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

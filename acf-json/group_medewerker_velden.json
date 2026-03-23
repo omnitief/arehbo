@@ -1,0 +1,35 @@
+{
+    "key": "group_medewerker_velden",
+    "title": "Medewerker",
+    "fields": [
+        {
+            "key": "field_medewerker_functie",
+            "label": "Functie",
+            "name": "functie",
+            "type": "text",
+            "instructions": "De functietitel van de medewerker, bijv. \u2018Trainer\u2019 of \u2018Directeur\u2019.",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "Bijv. Trainer, Coach, Directeur\u2026"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "medewerkers"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1741305600
+}

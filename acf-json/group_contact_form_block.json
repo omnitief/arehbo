@@ -1,0 +1,162 @@
+{
+    "key": "group_contact_form_block",
+    "title": "Block \u2013 Contact Form",
+    "fields": [
+        {
+            "key": "field_cf_tab_settings",
+            "label": "Settings",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_cf_id",
+            "label": "ID",
+            "name": "id",
+            "type": "text",
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_cf_background",
+            "label": "Background",
+            "name": "cf_background",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "light": "Light Blue",
+                "dark": "Dark Blue"
+            },
+            "default_value": "dark",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_cf_space",
+            "label": "Space",
+            "name": "space",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_cf_space_top",
+                    "label": "Top",
+                    "name": "top",
+                    "type": "select",
+                    "choices": {
+                        "none": "none",
+                        "small": "small",
+                        "medium": "medium",
+                        "large": "large"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "parent_repeater": ""
+                },
+                {
+                    "key": "field_cf_space_bottom",
+                    "label": "Bottom",
+                    "name": "bottom",
+                    "type": "select",
+                    "choices": {
+                        "none": "none",
+                        "small": "small",
+                        "medium": "medium",
+                        "large": "large"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "parent_repeater": ""
+                }
+            ]
+        },
+        {
+            "key": "field_cf_tab_content",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_cf_title",
+            "label": "Title",
+            "name": "cf_title",
+            "type": "text",
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_cf_description",
+            "label": "Description",
+            "name": "cf_description",
+            "type": "wysiwyg",
+            "default_value": "",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_cf_author",
+            "label": "Author",
+            "name": "cf_author",
+            "type": "post_object",
+            "instructions": "Select the team member to show in the author box.",
+            "required": 0,
+            "post_type": ["medewerkers"],
+            "taxonomy": "",
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        },
+        {
+            "key": "field_cf_form_id",
+            "label": "Form",
+            "name": "cf_form_id",
+            "type": "select",
+            "instructions": "Select the Gravity Form to display on the right.",
+            "required": 0,
+            "choices": [],
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/contact-form"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1774137600
+}

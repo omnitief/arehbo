@@ -1,0 +1,20 @@
+{
+  "name": "acf/reviews",
+  "title": "Reviews",
+  "description": "Google reviews section with title, rating widget, a button, and a Swiper slider of review cards.",
+  "category": "layout",
+  "icon": "star-filled",
+  "keywords": ["reviews", "google", "testimonials", "slider"],
+  "style": "file:./style.css",
+  "script": "file:./reviews.js",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "reviews.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

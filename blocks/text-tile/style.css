@@ -1,0 +1,11 @@
+.text-tile__description {
+    color: var(--color-primary);
+}
+
+.text-tile__description * {
+    color: inherit;
+}
+
+.text-tile__cta {
+    margin-top: 50px;
+}

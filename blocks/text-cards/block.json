@@ -1,0 +1,19 @@
+{
+  "name": "acf/text-cards",
+  "title": "Text + Cards",
+  "description": "Left column with title, description and button. Right column with up to 3 comparison cards.",
+  "category": "layout",
+  "icon": "grid-view",
+  "keywords": ["text", "cards", "comparison", "rijen"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "text-cards.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

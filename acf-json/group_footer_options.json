@@ -1,0 +1,311 @@
+{
+    "key": "group_footer_options",
+    "title": "Footer",
+    "fields": [
+
+        {
+            "key": "field_footer_tab_marquee",
+            "label": "Marquee",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_marquee_text",
+            "label": "Marquee tekst",
+            "name": "footer_marquee_text",
+            "type": "text",
+            "instructions": "Decoratieve tekst die horizontaal scrollt boven de footer.",
+            "default_value": "AREHBO",
+            "placeholder": "AREHBO"
+        },
+        {
+            "key": "field_footer_marquee_bg",
+            "label": "Achtergrond marquee",
+            "name": "footer_marquee_bg",
+            "type": "button_group",
+            "instructions": "Achtergrondkleur van de marquee sectie.",
+            "choices": {
+                "light": "Lichtblauw",
+                "dark": "Donkerblauw"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0
+        },
+
+        {
+            "key": "field_footer_tab_logo",
+            "label": "Logo",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_logo",
+            "label": "Logo",
+            "name": "footer_logo",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "medium",
+            "instructions": "Upload het footer logo (bij voorkeur SVG of PNG met transparante achtergrond)."
+        },
+
+        {
+            "key": "field_footer_tab_contact",
+            "label": "Contact & Socials",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_contact_title",
+            "label": "Contact titel",
+            "name": "footer_contact_title",
+            "type": "text",
+            "default_value": "",
+            "placeholder": "Contact"
+        },
+        {
+            "key": "field_footer_contact_address",
+            "label": "Adres",
+            "name": "footer_contact_address",
+            "type": "wysiwyg",
+            "instructions": "Gebruik links voor onderdelen van het adres (bijv. postcode → Google Maps).",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_footer_contact_phone",
+            "label": "Telefoon",
+            "name": "footer_contact_phone",
+            "type": "text",
+            "placeholder": "+31 (0)20 123 4567"
+        },
+        {
+            "key": "field_footer_contact_email",
+            "label": "E-mail",
+            "name": "footer_contact_email",
+            "type": "email",
+            "placeholder": "info@arehbo.nl"
+        },
+        {
+            "key": "field_footer_social_title",
+            "label": "Socials titel",
+            "name": "footer_social_title",
+            "type": "text",
+            "default_value": "",
+            "placeholder": "Volg ons"
+        },
+        {
+            "key": "field_footer_social_links",
+            "label": "Sociale media links",
+            "name": "footer_social_links",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Link toevoegen",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_footer_social_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text",
+                    "placeholder": "LinkedIn",
+                    "parent_repeater": "field_footer_social_links"
+                },
+                {
+                    "key": "field_footer_social_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "url",
+                    "placeholder": "https://linkedin.com/company/...",
+                    "parent_repeater": "field_footer_social_links"
+                }
+            ]
+        },
+
+        {
+            "key": "field_footer_tab_nav",
+            "label": "Navigatie",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_nav_title",
+            "label": "Navigatie titel",
+            "name": "footer_nav_title",
+            "type": "text",
+            "default_value": "",
+            "placeholder": "Navigatie"
+        },
+        {
+            "key": "field_footer_nav_links",
+            "label": "Navigatie links",
+            "name": "footer_nav_links",
+            "type": "repeater",
+            "instructions": "",
+            "layout": "table",
+            "button_label": "Link toevoegen",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_footer_nav_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "Selecteer een pagina of voer een externe URL in.",
+                    "return_format": "array",
+                    "parent_repeater": "field_footer_nav_links"
+                }
+            ]
+        },
+
+        {
+            "key": "field_footer_tab_partners",
+            "label": "Partner Logos",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_partner_logos",
+            "label": "Partner logos",
+            "name": "footer_partner_logos",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Logo toevoegen",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_footer_partner_logo",
+                    "label": "Logo",
+                    "name": "logo",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_footer_partner_logos"
+                },
+                {
+                    "key": "field_footer_partner_link",
+                    "label": "Link URL",
+                    "name": "link_url",
+                    "type": "url",
+                    "instructions": "Optioneel — maakt het logo klikbaar.",
+                    "parent_repeater": "field_footer_partner_logos"
+                }
+            ]
+        },
+
+        {
+            "key": "field_footer_tab_bottom",
+            "label": "Onderste links & Copyright",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_bottom_links",
+            "label": "Site links",
+            "name": "footer_bottom_links",
+            "type": "repeater",
+            "instructions": "Horizontale links onderaan de footer, gescheiden door een koppelteken.",
+            "layout": "table",
+            "button_label": "Link toevoegen",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_footer_bottom_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "return_format": "array",
+                    "parent_repeater": "field_footer_bottom_links"
+                }
+            ]
+        },
+        {
+            "key": "field_footer_copyright_text",
+            "label": "Copyright tekst",
+            "name": "footer_copyright_text",
+            "type": "text",
+            "default_value": "© 2025 AREHBO. Alle rechten voorbehouden.",
+            "placeholder": "© 2025 AREHBO."
+        },
+        {
+            "key": "field_footer_copyright_links_left",
+            "label": "Copyright links (links)",
+            "name": "footer_copyright_links_left",
+            "type": "repeater",
+            "instructions": "Links die naast de copyright tekst verschijnen.",
+            "layout": "table",
+            "button_label": "Link toevoegen",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_footer_copyright_link_left_item",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "return_format": "array",
+                    "parent_repeater": "field_footer_copyright_links_left"
+                }
+            ]
+        },
+        {
+            "key": "field_footer_copyright_links_right",
+            "label": "Copyright links (rechts)",
+            "name": "footer_copyright_links_right",
+            "type": "repeater",
+            "instructions": "Links die aan de rechterkant van de copyright balk verschijnen.",
+            "layout": "table",
+            "button_label": "Link toevoegen",
+            "min": 0,
+            "max": 0,
+            "sub_fields": [
+                {
+                    "key": "field_footer_copyright_link_right_item",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "return_format": "array",
+                    "parent_repeater": "field_footer_copyright_links_right"
+                }
+            ]
+        }
+
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "footer-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1741305600
+}

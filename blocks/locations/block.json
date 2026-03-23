@@ -1,0 +1,19 @@
+{
+  "name": "acf/locations",
+  "title": "Locations",
+  "description": "Netherlands map with location pins and left-side text content.",
+  "category": "layout",
+  "icon": "location-alt",
+  "keywords": ["locations", "map", "pins", "netherlands", "offices"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "locations.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

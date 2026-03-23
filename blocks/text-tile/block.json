@@ -1,0 +1,19 @@
+{
+  "name": "acf/text-tile",
+  "title": "Text Tile",
+  "description": "Rich text content with an optional CTA button.",
+  "category": "layout",
+  "icon": "editor-alignleft",
+  "keywords": ["text", "tile", "content", "richtext"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "text-tile.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

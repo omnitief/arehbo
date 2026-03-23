@@ -1,0 +1,75 @@
+{
+    "key": "group_template_inschrijven_form",
+    "title": "Inschrijven \u2013 Form",
+    "fields": [
+        {
+            "key": "field_inschr_form_background",
+            "label": "Background",
+            "name": "inschr_form_background",
+            "type": "button_group",
+            "instructions": "Background colour for the page.",
+            "required": 0,
+            "choices": {
+                "light-blue": "Light Blue",
+                "dark-blue": "Dark Blue"
+            },
+            "default_value": "light-blue",
+            "return_format": "value",
+            "allow_null": 0
+        },
+        {
+            "key": "field_inschr_form_title",
+            "label": "Title",
+            "name": "inschr_form_title",
+            "type": "text",
+            "instructions": "Heading above the form.",
+            "required": 0
+        },
+        {
+            "key": "field_inschr_form_description",
+            "label": "Description",
+            "name": "inschr_form_description",
+            "type": "wysiwyg",
+            "instructions": "Body text below the title.",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_inschr_form_id",
+            "label": "Form",
+            "name": "inschr_form_id",
+            "type": "select",
+            "instructions": "Select the Gravity Forms form to display. Forms are loaded automatically from Gravity Forms.",
+            "required": 0,
+            "choices": [],
+            "default_value": "",
+            "allow_null": 1,
+            "null_choice_text": "Select a form\u2026",
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/page-inschrijven-form.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1742515200
+}

@@ -1,0 +1,19 @@
+{
+  "name": "acf/pricing-packages",
+  "title": "Pricing Packages",
+  "description": "Up to 3 pricing tiers with features list and CTA button.",
+  "category": "layout",
+  "icon": "products",
+  "keywords": ["pricing", "packages", "plans", "tiers", "price"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "pricing-packages.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

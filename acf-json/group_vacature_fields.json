@@ -1,0 +1,43 @@
+{
+    "key": "group_vacature_fields",
+    "title": "Vacature details",
+    "fields": [
+        {
+            "key": "field_vacature_uren",
+            "label": "Uren",
+            "name": "uren",
+            "type": "text",
+            "instructions": "Bijv. 28-32 uur",
+            "default_value": "",
+            "placeholder": "28-32 uur"
+        },
+        {
+            "key": "field_vacature_locatie",
+            "label": "Locatie",
+            "name": "locatie",
+            "type": "text",
+            "instructions": "Bijv. Ede",
+            "default_value": "",
+            "placeholder": "Ede"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "vacatures"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1741305600
+}

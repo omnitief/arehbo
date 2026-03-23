@@ -1,0 +1,20 @@
+{
+  "name": "acf/slider",
+  "title": "Slider",
+  "description": "Photo slider or process slider layout, both with navigation arrows and progress bar.",
+  "category": "layout",
+  "icon": "images-alt2",
+  "keywords": ["slider", "photo", "process", "swiper", "carousel"],
+  "style": "file:./style.css",
+  "viewScript": "file:./slider.js",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "slider.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

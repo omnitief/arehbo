@@ -1,0 +1,20 @@
+{
+  "name": "acf/page-tiles",
+  "title": "Page Tiles",
+  "description": "Grid or slider layout of image + title + button cards.",
+  "category": "layout",
+  "icon": "grid-view",
+  "keywords": ["tiles", "cards", "grid", "slider", "pagina", "tegels"],
+  "style": "file:./style.css",
+  "viewScript": "file:./page-tiles.js",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "page-tiles.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

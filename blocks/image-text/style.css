@@ -1,0 +1,27 @@
+.image-text__grid {
+    display: grid;
+    grid-template-columns: 1.36fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.image-text--reverse .image-text__media {
+    order: 2;
+}
+
+.image-text--reverse .image-text__content {
+    order: 1;
+}
+
+.image-text__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 635 / 467;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.image-text__content .btn {
+    width: auto;
+    padding: 14px 40px;
+}

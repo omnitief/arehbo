@@ -1,0 +1,70 @@
+{
+    "key": "group_blog_auteur",
+    "title": "Blog \u2013 Settings",
+    "fields": [
+        {
+            "key": "field_blog_tab_settings",
+            "label": "Settings",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blog_background",
+            "label": "Background",
+            "name": "background",
+            "type": "button_group",
+            "instructions": "Background colour of the content area below the hero.",
+            "required": 0,
+            "choices": {
+                "light": "Light Blue",
+                "dark": "Dark Blue"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0
+        },
+        {
+            "key": "field_blog_tab_auteur",
+            "label": "Author",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blog_auteur_keuze",
+            "label": "Written by",
+            "name": "blog_author",
+            "type": "post_object",
+            "instructions": "Select the team member who wrote this post.",
+            "required": 0,
+            "post_type": ["medewerkers"],
+            "taxonomy": "",
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1741305600
+}

@@ -1,0 +1,19 @@
+{
+  "name": "acf/marquee",
+  "title": "Marquee",
+  "description": "Title with a divider line and scrolling logo strip below.",
+  "category": "layout",
+  "icon": "slides",
+  "keywords": ["marquee", "logos", "scroll", "ticker"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "marquee.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

@@ -1,0 +1,19 @@
+{
+  "name": "acf/cta",
+  "title": "CTA",
+  "description": "Call-to-action block with image on the left and title, description, buttons on the right.",
+  "category": "layout",
+  "icon": "megaphone",
+  "keywords": ["cta", "call to action", "button", "image"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "cta.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

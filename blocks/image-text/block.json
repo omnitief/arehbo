@@ -1,0 +1,19 @@
+{
+  "name": "acf/image-text",
+  "title": "Image + Text",
+  "description": "Two-column block with image on one side and text content on the other.",
+  "category": "layout",
+  "icon": "align-pull-left",
+  "keywords": ["image", "text", "two column", "split", "media"],
+  "style": "file:./style.css",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "image-text.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}
