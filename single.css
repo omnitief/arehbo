@@ -110,7 +110,7 @@ body:has(.single-hero) .site-header {
     font-family: var(--font-sans);
     font-size: 60px;
     line-height: 70px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0;
     color: var(--color-white);
     max-width: 1040px;

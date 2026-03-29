@@ -104,7 +104,7 @@
     font-family: var(--font-sans);
     font-size: 18px;
     line-height: 28px;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0;
     color: var(--color-primary);
     text-transform: uppercase;
@@ -701,7 +701,7 @@ a.mobile-nav__link:hover {
     font-family: var(--font-sans);
     font-size: 15px;
     line-height: 27px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--color-primary);
     padding: 0;
 }

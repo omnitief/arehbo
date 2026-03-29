@@ -45,8 +45,8 @@ if (function_exists('acf_add_options_page')) {
 
 function arehbo_enqueue_styles() {
     wp_enqueue_style(
-        'ibm-plex-sans',
-        'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap',
+        'blinker',
+        'https://fonts.googleapis.com/css2?family=Blinker:wght@400;600;700&display=swap',
         [],
         null
     );
@@ -61,7 +61,7 @@ function arehbo_enqueue_styles() {
     wp_enqueue_style(
         'arehbo-theme',
         get_stylesheet_uri(),
-        ['ibm-plex-sans', 'swiper'],
+        ['blinker', 'swiper'],
         wp_get_theme()->get('Version')
     );
 

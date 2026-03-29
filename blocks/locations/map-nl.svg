@@ -73,7 +73,7 @@
     <g id="Group_2815" data-name="Group 2815" transform="translate(-13 -63)">
       <g id="Group_2814" data-name="Group 2814" transform="translate(-4 9)">
         <rect id="Rectangle_129" data-name="Rectangle 129" width="174" height="33" rx="16.5" transform="translate(1465 4074)" fill="#ed6d05"/>
-        <text id="Onze_hoofdlocatie_in_Ede" data-name="Onze hoofdlocatie in Ede" transform="translate(1480 4095)" fill="#fff" font-size="13" font-family="IBMPlexSans, IBM Plex Sans"><tspan x="0" y="0">Onze hoofdlocatie in Ede</tspan></text>
+        <text id="Onze_hoofdlocatie_in_Ede" data-name="Onze hoofdlocatie in Ede" transform="translate(1480 4095)" fill="#fff" font-size="13" font-family="Blinker, sans-serif"><tspan x="0" y="0">Onze hoofdlocatie in Ede</tspan></text>
       </g>
       <path id="Polygon_1" data-name="Polygon 1" d="M6.264,3.039a2,2,0,0,1,3.473,0l4.554,7.969A2,2,0,0,1,12.554,14H3.446A2,2,0,0,1,1.71,11.008Z" transform="translate(1444.787 4079.101) rotate(-45)" fill="#ed6d05"/>
     </g>
