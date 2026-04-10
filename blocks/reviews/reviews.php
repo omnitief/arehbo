@@ -79,7 +79,8 @@ $arrow_right = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
                                             </div>
 
                                             <?php if ($text) : ?>
-                                                <p class="reviews-block__card-text">"<?= nl2br(esc_html($text)); ?>" <button class="reviews-block__read-more" data-modal="<?= esc_attr($modal_id); ?>" aria-expanded="false">Meer lezen</button></p>
+                                                <p class="reviews-block__card-text">"<?= nl2br(esc_html($text)); ?>"</p>
+                                                <button class="reviews-block__read-more" data-modal="<?= esc_attr($modal_id); ?>" aria-expanded="false" hidden>Meer lezen</button>
                                             <?php endif; ?>
 
                                             <div class="reviews-block__card-reviewer">

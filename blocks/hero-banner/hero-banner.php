@@ -10,6 +10,7 @@ $scroll    = get_field('scroll_target');
 $bg_url    = $bg_id    ? wp_get_attachment_image_url($bg_id, 'full') : '';
 $video_url = $video_id ? wp_get_attachment_url($video_id)            : '';
 $cards     = array_slice($cards, 0, 3);
+$is_next_section_scroll = ($scroll === 'next-section');
 
 ?>
 
@@ -48,14 +49,14 @@ $cards     = array_slice($cards, 0, 3);
                                 <?php if ($link_target === '_blank') echo 'target="_blank" rel="noopener noreferrer"'; ?>
                             >
                                 <span class="hb-card__title"><?= esc_html($card_title); ?></span>
-                                <span class="hb-card__bottom">
-                                    <span class="hb-card__view">Bekijk</span>
-                                    <span class="hb-card__arrow" aria-hidden="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-                                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <div class="tile-card__btn-wrap">
+                                    <span class="tile-card__btn-label" aria-hidden="true">BEKIJKEN</span>
+                                    <span class="tile-card__btn" aria-hidden="true">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
                                     </span>
-                                </span>
+                                </div>
                             </a>
                         <?php endforeach; ?>
                     </div>
@@ -66,7 +67,10 @@ $cards     = array_slice($cards, 0, 3);
                         <div class="hb-scroll">
                             <span class="hb-scroll__label">Scroll verder</span>
                             <a class="hb-scroll__btn"
-                                href="#<?= esc_attr(ltrim($scroll, '#')); ?>"
+                                href="<?= $is_next_section_scroll ? '#' : '#' . esc_attr(ltrim($scroll, '#')); ?>"
+                                <?php if ($is_next_section_scroll) : ?>
+                                    data-scroll-target="next-section"
+                                <?php endif; ?>
                                 aria-label="Scroll verder naar inhoud"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">

@@ -45,10 +45,6 @@ body.page-template-templates-page-standard-php .site-header {
 /* ── Title ─────────────────────────────────── */
 
 .page-hero__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 60px;
-    line-height: 70px;
     font-weight: 400;
     color: var(--bg-light);
     max-width: 900px;
@@ -103,7 +99,7 @@ body.page-template-templates-page-standard-php .site-header {
 
 .ph-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 28px;
     font-weight: 700;
     color: var(--color-accent);
@@ -189,11 +185,6 @@ body.page-template-templates-page-standard-php .site-header {
 /* ── Responsive: tablet ────────────────────── */
 
 @media (max-width: 1200px) {
-    .page-hero__title {
-        font-size: 50px;
-        line-height: 60px;
-    }
-
     .ph-card {
         max-width: none;
     }
@@ -204,10 +195,6 @@ body.page-template-templates-page-standard-php .site-header {
         gap: 24px;
     }
 
-    .ph-card__title {
-        font-size: 22px;
-        line-height: 30px;
-    }
 }
 
 /* ── Responsive: mobile ────────────────────── */
@@ -250,7 +237,7 @@ body.page-template-templates-page-standard-php .site-header {
     }
 
     .ph-card__title {
-        font-size: 18px;
+        font-size: 19px;
         line-height: 26px;
     }
 

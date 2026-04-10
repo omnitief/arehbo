@@ -64,7 +64,6 @@
 .archive-hero__desc {
     margin: 20px 0 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     color: var(--color-primary);
@@ -94,7 +93,7 @@
     padding: 0 12px;
     border-radius: 10px;
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--color-primary);
     text-decoration: none;
@@ -128,7 +127,6 @@
 
 .archive-empty {
     font-family: var(--font-sans);
-    font-size: 19px;
     color: var(--color-primary);
     opacity: 0.5;
     text-align: center;
@@ -165,6 +163,6 @@
     .archive-breadcrumbs__link,
     .archive-breadcrumbs__sep,
     .archive-breadcrumbs__current {
-        font-size: 15px;
+        font-size: 19px;
     }
 }

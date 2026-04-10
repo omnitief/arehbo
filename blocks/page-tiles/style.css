@@ -2,31 +2,21 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    max-width: 635px;
+    width: 100%;
 }
 
 .page-tiles__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 50px;
-    line-height: 60px;
-    font-weight: 600;
     max-width: 408px;
 }
 
 .page-tiles__description {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: normal;
     max-width: 635px;
 }
-@media (max-width: 768px) {
-.page-tiles__description {
-font-size: 15px;
-}
-}
-
 .page-tiles--grid .page-tiles__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -65,11 +55,6 @@ font-size: 15px;
 }
 
 .tile-card__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 42px;
-    font-weight: 600;
     color: var(--color-primary);
     transition: color 0.3s ease;
 }
@@ -85,7 +70,7 @@ font-size: 15px;
 
 .tile-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 28px;
     font-weight: bold;
     color: var(--color-accent);
@@ -170,11 +155,6 @@ font-size: 15px;
 }
 
 .tile-slide__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 42px;
-    font-weight: 600;
     color: var(--color-white)!important;
 }
 
@@ -195,22 +175,11 @@ a.tile-slide__overlay {
         grid-column: span 2;
     }
 
-    .page-tiles__title {
-        font-size: 38px;
-        line-height: 48px;
-    }
 }
 
 @media (max-width: 990px) {
     .tile-slide {
         min-height: 326px;
-    }
-
-    .tile-slide__title {
-        font-family: var(--font-sans);
-        font-size: 23px;
-        line-height: 32px;
-        font-weight: 600;
     }
 
     .tile-slide__overlay {
@@ -249,11 +218,6 @@ a.tile-slide__overlay {
     }
     .page-tiles__header {
         padding-bottom: 36px;
-    }
-
-    .page-tiles__title {
-        font-size: 30px;
-        line-height: 40px;
     }
 
     .page-tiles__swiper-wrap {

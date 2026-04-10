@@ -13,6 +13,11 @@
     align-items: start;
 }
 
+.contact-form-block__left {
+    max-width: 635px;
+    width: 100%;
+}
+
 .contact-form-block__title {
     font-family: var(--font-sans);
     font-size: 32px;
@@ -32,7 +37,6 @@
 .contact-form-block__description {
     margin-top: 30px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
 }
 
@@ -96,7 +100,7 @@
     align-items: center;
     gap: 32px;
     margin-top: 70px;
-    border-radius: 61px;
+    border-radius: 60px;
     padding: 25px;
     max-width: 500px;
     height: 120px;
@@ -126,7 +130,7 @@
 
 .contact-form-block__author-label {
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     letter-spacing: 0;
@@ -183,11 +187,6 @@
     .contact-form-block__title {
         font-size: 26px;
         line-height: 36px;
-    }
-
-    .contact-form-block__description {
-        font-size: 17px;
-        line-height: 28px;
     }
 
     .contact-form-block__author {

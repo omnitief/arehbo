@@ -2,7 +2,14 @@
 
 <?php
 $queried       = get_queried_object();
-$archive_title = isset($queried->name) ? $queried->name : __('Blogs', 'arehbo-theme');
+$archive_title = __('Blogs', 'arehbo-theme');
+
+if (isset($queried->labels->name) && $queried->labels->name) {
+    $archive_title = $queried->labels->name;
+} elseif (isset($queried->name) && $queried->name) {
+    $archive_title = $queried->name;
+}
+
 $archive_desc  = isset($queried->description) ? $queried->description : '';
 
 $arrow_white = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';

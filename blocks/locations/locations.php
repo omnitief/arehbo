@@ -26,7 +26,7 @@ $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
 
 <section <?= $full_id; ?> class="locations-block">
     <div class="<?= esc_attr($space); ?>">
-        <div class="locations-block__layout">
+        <div class="locations-block__layout container">
 
             <div class="locations-block__left">
 

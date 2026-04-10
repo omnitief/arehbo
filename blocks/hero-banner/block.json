@@ -6,6 +6,7 @@
   "icon": "cover-image",
   "keywords": ["hero", "banner", "header", "cover"],
   "style": "file:./style.css",
+  "viewScript": "file:./view.js",
   "acf": {
     "mode": "edit",
     "renderTemplate": "hero-banner.php"

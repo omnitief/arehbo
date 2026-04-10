@@ -229,10 +229,10 @@ function arehbo_register_post_types() {
             'search_items'  => 'Cursussen zoeken',
         ],
         'public'       => true,
-        'has_archive'  => true,
+        'has_archive'  => false,
         'show_in_rest' => true,
         'supports'     => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'rewrite'      => ['slug' => 'cursussen'],
+        'rewrite'      => ['slug' => 'cursussen', 'with_front' => false],
         'menu_icon'    => 'dashicons-welcome-learn-more',
     ]);
 
@@ -246,10 +246,10 @@ function arehbo_register_post_types() {
             'search_items'  => 'Diensten zoeken',
         ],
         'public'       => true,
-        'has_archive'  => true,
+        'has_archive'  => false,
         'show_in_rest' => true,
         'supports'     => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'rewrite'      => ['slug' => 'diensten'],
+        'rewrite'      => ['slug' => 'diensten', 'with_front' => false],
         'menu_icon'    => 'dashicons-hammer',
     ]);
 
@@ -263,10 +263,10 @@ function arehbo_register_post_types() {
             'search_items'  => 'Vacatures zoeken',
         ],
         'public'       => true,
-        'has_archive'  => true,
+        'has_archive'  => false,
         'show_in_rest' => true,
         'supports'     => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'rewrite'      => ['slug' => 'vacatures'],
+        'rewrite'      => ['slug' => 'vacatures', 'with_front' => false],
         'menu_icon'    => 'dashicons-businessperson',
     ]);
 
@@ -279,12 +279,15 @@ function arehbo_register_post_types() {
             'view_item'     => 'Medewerker bekijken',
             'search_items'  => 'Medewerkers zoeken',
         ],
-        'public'            => true,
+        'public'            => false,
         'has_archive'       => false,
+        'publicly_queryable'=> false,
+        'exclude_from_search' => true,
         'show_in_rest'      => true,
+        'show_ui'           => true,
         'show_in_nav_menus' => false,
         'supports'          => ['title', 'thumbnail'],
-        'rewrite'           => ['slug' => 'medewerkers'],
+        'rewrite'           => false,
         'menu_icon'         => 'dashicons-groups',
     ]);
 }

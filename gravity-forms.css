@@ -94,8 +94,9 @@
     border-radius: 32px !important;
     height: 60px !important;
     font-family: var(--font-sans) !important;
-    font-size: 18px !important;
+    font-size: 19px !important;
     font-weight: 600 !important;
+    text-transform: uppercase !important;
     color: var(--color-white) !important;
     cursor: pointer !important;
     transition: background-color 0.2s ease !important;

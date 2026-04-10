@@ -128,7 +128,7 @@ body:has(.single-hero) .site-header {
     display: flex;
     align-items: center;
     border: 1px solid rgba(var(--color-primary-rgb), 0.25);
-    border-radius: 61px;
+    border-radius: 60px;
     padding: 25px 100px 25px 25px;
 }
 
@@ -154,7 +154,7 @@ body:has(.single-hero) .site-header {
 
 .single-author__label {
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     letter-spacing: 0;
@@ -187,7 +187,7 @@ body:has(.single-hero) .site-header {
 
 .single-author__meta-label {
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     color: var(--color-primary);
@@ -221,7 +221,7 @@ body:has(.single-hero) .site-header {
 .single-entry h3 { font-size: 28px; line-height: 38px; font-weight: 600; }
 .single-entry h4 { font-size: 22px; line-height: 32px; font-weight: 600; }
 .single-entry h5 { font-size: 19px; line-height: 30px; font-weight: 600; }
-.single-entry h6 { font-size: 17px; line-height: 28px; font-weight: 600; }
+.single-entry h6 { font-size: 19px; line-height: 28px; font-weight: 600; }
 
 .single-entry p {
     font-family: var(--font-sans);
@@ -328,7 +328,7 @@ body:has(.single-hero) .site-header {
 
 .single-entry figcaption {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 19px;
     line-height: 24px;
     color: var(--color-primary);
     opacity: 0.6;
@@ -395,12 +395,12 @@ body:has(.single-hero) .site-header {
     .single-hero__crumb-link,
     .single-hero__crumb-sep,
     .single-hero__crumb-current {
-        font-size: 15px;
+        font-size: 19px;
         line-height: 24px;
     }
 
     .single-hero__back {
-        font-size: 16px;
+        font-size: 19px;
     }
 
     .single-hero__sep {
@@ -443,12 +443,12 @@ body:has(.single-hero) .site-header {
     .single-entry p,
     .single-entry ul,
     .single-entry ol {
-        font-size: 17px;
+        font-size: 19px;
         line-height: 28px;
     }
 
     .single-entry blockquote {
-        font-size: 18px;
+        font-size: 19px;
         line-height: 30px;
     }
 }

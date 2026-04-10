@@ -4,20 +4,10 @@
 }
 
 .slider-block--photo .slider-block__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 40px;
-    line-height: 50px;
-    font-weight: 600;
     color: var(--color-white);
 }
 
 .slider-block--process .slider-block__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 50px;
-    line-height: 60px;
-    font-weight: 600;
     color: var(--color-white);
 }
 
@@ -87,18 +77,12 @@
 }
 
 .process-card__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 28px;
-    line-height: 44px;
-    font-weight: 600;
     color: var(--color-primary);
 }
 
 .process-card__description {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     color: var(--color-primary);
@@ -150,11 +134,6 @@
     .process-card__date {
         font-size: 36px;
         line-height: 48px;
-    }
-
-    .process-card__title {
-        font-size: 22px;
-        line-height: 32px;
     }
 
     .process-card__text {

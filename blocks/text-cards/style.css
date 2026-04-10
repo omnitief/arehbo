@@ -14,10 +14,6 @@
 }
 
 .text-cards-block__title {
-    font-family: var(--font-sans);
-    font-size: 50px;
-    line-height: 60px;
-    font-weight: 600;
     letter-spacing: 0;
     margin: 0;
 }
@@ -33,7 +29,6 @@
 .text-cards-block__description {
     margin-top: 40px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     letter-spacing: 0;
     margin-bottom: 0;
@@ -106,10 +101,6 @@
 }
 
 .text-cards-block__card-title {
-    font-family: var(--font-sans);
-    font-size: 24px;
-    line-height: 34px;
-    font-weight: 600;
     letter-spacing: 0;
     margin: 0;
 }
@@ -125,7 +116,6 @@
 .text-cards-block__card-description {
     margin-top: 30px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     margin-bottom: 0;
 }
@@ -144,10 +134,6 @@
         gap: 60px;
     }
 
-    .text-cards-block__title {
-        font-size: 40px;
-        line-height: 50px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -156,15 +142,8 @@
         gap: 48px;
     }
 
-    .text-cards-block__title {
-        font-size: 32px;
-        line-height: 42px;
-    }
-
     .text-cards-block__description {
         margin-top: 24px;
-        font-size: 17px;
-        line-height: 28px;
     }
 
     .text-cards-block__btn-wrap {
@@ -179,8 +158,4 @@
         padding: 28px 24px;
     }
 
-    .text-cards-block__card-description {
-        font-size: 17px;
-        line-height: 28px;
-    }
 }

@@ -116,7 +116,6 @@
 .inschr-form-hero__description {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     color: var(--color-primary);
@@ -154,7 +153,7 @@
 
 .inschr-form-card__empty {
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 19px;
     color: var(--color-primary);
     opacity: 0.5;
 }
@@ -307,7 +306,7 @@
     .inschr-form-breadcrumbs__link,
     .inschr-form-breadcrumbs__sep,
     .inschr-form-breadcrumbs__current {
-        font-size: 15px;
+        font-size: 19px;
         line-height: 24px;
     }
 
@@ -323,11 +322,6 @@
     .inschr-form-hero__title {
         font-size: 32px;
         line-height: 42px;
-    }
-
-    .inschr-form-hero__description {
-        font-size: 17px;
-        line-height: 28px;
     }
 
     .inschr-form-card {

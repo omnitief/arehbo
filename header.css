@@ -1,6 +1,6 @@
 .site-header {
     position: fixed;
-    top: 50px;
+    top: var(--site-header-offset);
     left: 0;
     right: 0;
     z-index: 100;
@@ -53,10 +53,10 @@
 
 .site-header__inner {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     padding-inline: 40px;
-    padding-block: 14px 40px;
+    padding-block: 10px;
     gap: 24px;
     flex-wrap: wrap;
 }
@@ -74,7 +74,7 @@
 .site-header__logo img {
     display: block;
     height: auto;
-    width: auto;
+    width: 220px;
 }
 
 .site-nav {
@@ -103,7 +103,7 @@
     min-height: 63px;
     padding: 8px 0;
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 28px;
     font-weight: 400;
     letter-spacing: 0;
@@ -176,7 +176,7 @@
 
 .site-nav__dropdown-link {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 400;
     color: var(--color-primary);
     text-decoration: none;
@@ -260,7 +260,7 @@
 
 .header-phone__number {
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--color-primary);
 }
@@ -269,7 +269,7 @@
     width: auto;
     min-height: 63px;
     padding: 12px 24px;
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .hamburger {
@@ -338,6 +338,29 @@
     padding-block: 30px 32px;
 }
 
+@media (max-width: 1500px) {
+    .site-header__logo img {
+        width: 200px;
+    }
+
+    .hamburger {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header-phone__btn {
+        width: 48px;
+        height: 48px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .site-header__logo img {
+        width: 180px;
+    }
+}
+
 .mobile-nav__list {
     list-style: none;
     margin: 0;
@@ -359,7 +382,7 @@
     display: block;
     padding: 20px 0;
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--color-primary);
     text-decoration: none;
@@ -428,7 +451,7 @@ a.mobile-nav__link:hover {
     display: block;
     padding: 10px 16px;
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 400;
     color: var(--color-primary);
     text-decoration: none;
@@ -523,7 +546,7 @@ a.mobile-nav__link:hover {
 
 .mega-menu__col-title {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 28px;
     font-weight: 600;
     letter-spacing: 0;
@@ -542,7 +565,7 @@ a.mobile-nav__link:hover {
 
 .mega-menu__link {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 35px;
     font-weight: 400;
     letter-spacing: 0;
@@ -561,7 +584,7 @@ a.mobile-nav__link:hover {
     gap: 10px;
     margin-top: 15px;
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 30px;
     font-weight: 600;
     letter-spacing: 0;
@@ -701,7 +724,7 @@ a.mobile-nav__link:hover {
     border: none;
     cursor: pointer;
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 19px;
     line-height: 27px;
     font-weight: 400;
     color: var(--color-primary);
@@ -744,7 +767,7 @@ a.mobile-nav__link:hover {
 
 .mobile-mega__col-title {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 19px;
     line-height: 24px;
     font-weight: 600;
     color: var(--color-primary);
@@ -773,7 +796,7 @@ a.mobile-nav__link:hover {
     display: block;
     padding: 14px 0 10px;
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 28px;
     font-weight: 400;
     color: var(--color-primary);
@@ -794,7 +817,7 @@ a.mobile-nav__link:hover {
     gap: 8px;
     padding: 14px 0 10px;
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 30px;
     font-weight: 600;
     color: var(--color-accent);
@@ -844,21 +867,21 @@ a.mobile-nav__link:hover {
 
 
 @media (max-width: 990px) {
+    :root {
+        --site-header-offset: 20px;
+    }
+
     .site-header {
         padding: 0 16px;
+    }
 
-        top: 20px;
-    }
-    .site-header__logo {
-        padding-bottom: 13px;
-    }
     .site-header__bar {
         border-radius: 40px;
     }
 
     .site-header__inner {
         padding: 0 20px;
-        padding-block: 2px 15px;
+        padding-block: 12px;
         min-height: 64px;
     }
 

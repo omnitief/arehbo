@@ -35,35 +35,34 @@ body:has(.hero-banner--hero) .site-header {
     position: relative;
     z-index: 2;
     flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 260px;
-    padding-bottom: 80px;
+    justify-content: center;
+    padding-top: calc(var(--header-bottom) + var(--space-3));
+    padding-bottom: 70px;
 }
 
 .hb-hero__title {
-    margin: 0;
-    font-family: var(--font-sans);
-    font-size: 60px;
-    line-height: 70px;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--bg-light);
     max-width: 900px;
 }
 
 .hb-hero__cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 40px;
+    width: 100%;
     margin-top: auto;
-    padding-top: 60px;
+    padding-top: 70px;
 }
 
 .hb-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1;
-    max-width: 500px;
+    width: 100%;
     min-height: 200px;
     background: rgba(var(--color-white-rgb), 0.08);
     border: 1px solid rgba(var(--color-white-rgb), 0.2);
@@ -89,40 +88,49 @@ body:has(.hero-banner--hero) .site-header {
     color: var(--color-white);
 }
 
-.hb-card__bottom {
+.hb-card .tile-card__btn-wrap {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    margin-top: auto;
 }
 
-.hb-card__view {
+.hb-card .tile-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--color-white);
+    font-size: 19px;
+    line-height: 28px;
+    font-weight: 700;
+    color: var(--color-accent);
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    margin-right: 0;
+    transition: max-width 0.35s ease, opacity 0.25s ease 0.05s, margin-right 0.35s ease;
 }
 
-.hb-card:hover .hb-card__view {
+.hb-card:hover .tile-card__btn-label {
+    max-width: 120px;
     opacity: 1;
+    margin-right: 12px;
 }
 
-.hb-card__arrow {
-    flex-shrink: 0;
+.hb-card .tile-card__btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 45px;
     height: 45px;
-    border-radius: 23px;
+    min-width: 45px;
+    border-radius: 50%;
     background: var(--color-accent);
     color: var(--color-white);
-    transition: background-color 0.2s ease;
+    text-decoration: none;
+    transition: transform 0.35s ease;
 }
 
-.hb-card:hover .hb-card__arrow {
-    background: var(--color-accent-dark);
+.hb-card:hover .tile-card__btn {
+    transform: translateX(6px);
 }
 
 .hb-scroll-row {
@@ -165,13 +173,8 @@ body:has(.hero-banner--hero) .site-header {
 }
 
 @media (max-width: 1200px) {
-    .hb-hero__title {
-        font-size: 50px;
-        line-height: 60px;
-    }
-
-    .hb-card {
-        max-width: none;
+    .hb-hero__cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -180,40 +183,35 @@ body:has(.hero-banner--hero) .site-header {
         gap: 24px;
     }
 
-    .hb-card__title {
-        font-size: 22px;
-        line-height: 30px;
-    }
 }
 
 @media (max-width: 768px) {
     .hb-hero__inner {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-
-    .hb-hero__title {
-        font-size: 36px;
-        line-height: 46px;
+        padding-top: calc(var(--header-bottom) + var(--space-3));
+        padding-bottom: 40px;
     }
 
     .hb-hero__cards {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 16px;
     }
 
     .hb-card {
-        max-width: none;
         min-height: auto;
         padding: 20px;
     }
 
-    .hb-card__view {
+    .hb-scroll__btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .hb-card .tile-card__btn-label {
         display: none;
     }
 
     .hb-card__title {
-        font-size: 18px;
+        font-size: 19px;
         line-height: 26px;
     }
 

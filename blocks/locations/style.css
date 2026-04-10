@@ -8,16 +8,15 @@
     display: flex;
     align-items: stretch;
     min-height: clamp(700px, 70vw, 1338px);
-    padding: 0 0 0 var(--space-container);
-    max-width: 1920px;
-    margin: 0 auto;
 }
 
 .locations-block__left {
-    flex: 0 0 520px;
+    flex: 0 0 635px;
     display: flex;
     flex-direction: column;
-    padding: 80px 80px 80px 0;
+    max-width: 635px;
+    width: 100%;
+    padding: 80px 0 var(--space-3) 0;
     position: relative;
     z-index: 2;
 }
@@ -36,7 +35,6 @@
 .locations-block__description {
     margin-top: 30px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     letter-spacing: 0;
@@ -145,15 +143,15 @@
 
 @media (max-width: 1500px) {
     .locations-block__left {
-        flex: 0 0 420px;
-        padding: 60px 60px 60px 0;
+        flex: 0 0 635px;
+        padding: 60px 0 60px 0;
     }
 }
 
 @media (max-width: 1200px) {
     .locations-block__left {
-        flex: 0 0 340px;
-        padding: 50px 50px 50px 0;
+        flex: 0 0 520px;
+        padding: 50px 0 50px 0;
     }
 
     .locations-block__title {
@@ -170,6 +168,7 @@
 
     .locations-block__left {
         flex: none;
+        max-width: none;
         width: 100%;
         padding: 60px 0 40px;
     }
@@ -245,7 +244,5 @@
 
     .locations-block__description {
         margin-top: 20px;
-        font-size: 17px;
-        line-height: 28px;
     }
 }

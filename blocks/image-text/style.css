@@ -33,11 +33,6 @@
     margin-top: 55px;
 }
 
-.image-text__content .btn {
-    width: auto;
-    padding: 14px 40px;
-}
-
 @media (max-width: 1600px) {
     .image-text__grid,
     .image-text--reverse .image-text__grid {

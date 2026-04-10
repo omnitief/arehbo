@@ -97,7 +97,6 @@
 .formulier-description {
     margin-top: 30px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     letter-spacing: 0;
@@ -198,7 +197,7 @@
     border: none !important;
     border-radius: 32px !important;
     font-family: var(--font-sans) !important;
-    font-size: 16px !important;
+    font-size: 19px !important;
     font-weight: 600 !important;
     color: var(--color-white) !important;
     cursor: pointer;
@@ -232,7 +231,7 @@
 
 .formulier-form-card__empty {
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 19px;
     color: var(--color-primary);
     opacity: 0.5;
 }
@@ -294,7 +293,7 @@
     .formulier-breadcrumbs__link,
     .formulier-breadcrumbs__sep,
     .formulier-breadcrumbs__current {
-        font-size: 15px;
+        font-size: 19px;
         line-height: 24px;
     }
 
@@ -313,7 +312,7 @@
 
     .formulier-description {
         margin-top: 20px;
-        font-size: 17px;
+        font-size: 19px;
         line-height: 28px;
     }
 

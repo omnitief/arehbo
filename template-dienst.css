@@ -115,7 +115,6 @@
 .dienst-hero__description {
     margin: 40px 0 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     letter-spacing: 0;
@@ -232,7 +231,7 @@
     .dienst-breadcrumbs__link,
     .dienst-breadcrumbs__sep,
     .dienst-breadcrumbs__current {
-        font-size: 15px;
+        font-size: 19px;
         line-height: 24px;
     }
 
@@ -251,8 +250,6 @@
 
     .dienst-hero__description {
         margin-top: 24px;
-        font-size: 17px;
-        line-height: 28px;
     }
 
     .dienst-btn {
@@ -303,7 +300,7 @@
 
 .rekentool__title {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--color-primary);
 }
@@ -360,7 +357,7 @@
 
 .rekentool__count {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--color-primary);
     min-width: 24px;
@@ -373,7 +370,7 @@
 
 .rekentool__product {
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 400;
     color: var(--color-primary);
     opacity: 0.7;
