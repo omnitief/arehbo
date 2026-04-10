@@ -12,7 +12,7 @@
     align-items: center;
     gap: 80px;
     width: max-content;
-    animation: footer-marquee-scroll 60s linear infinite;
+    will-change: transform;
 }
 
 .footer-marquee__item {
@@ -27,10 +27,6 @@
     flex-shrink: 0;
 }
 
-@keyframes footer-marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
 
 .colorbar {
     height: 20px;

@@ -90,8 +90,8 @@
                 },
                 {
                     "key": "field_69a3623a29343",
-                    "label": "Block",
-                    "name": "block",
+                    "label": "Bottom",
+                    "name": "bottom",
                     "aria-label": "",
                     "type": "select",
                     "instructions": "",

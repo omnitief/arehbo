@@ -27,10 +27,10 @@ Version: 1.0
     --card-bg:     rgba(var(--color-white-rgb), 0.05);
     --card-border: rgba(var(--color-white-rgb), 0.10);
 
-    --space-1: 20px;
-    --space-2: 40px;
-    --space-3: 60px;
-    --space-4: 100px;
+    --space-1: 40px;
+    --space-2: 80px;
+    --space-3: 150px;
+    --space-4: 200px;
 
     --radius-pill:  70px;
     --radius-small: 5px;
@@ -44,7 +44,13 @@ Version: 1.0
 }
 
 @media (max-width: 1199px) {
-    :root { --space-container: 20px; }
+    :root {
+        --space-container: 20px;
+        --space-1: 20px;
+        --space-2: 40px;
+        --space-3: 80px;
+        --space-4: 100px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -138,7 +144,7 @@ body {
     border: 1px solid transparent;
     border-radius: 32px;
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
