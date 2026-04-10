@@ -1,5 +1,6 @@
 .slider-block {
     background: var(--color-primary);
+    overflow: hidden;
 }
 
 .slider-block--photo .slider-block__title {
@@ -24,18 +25,17 @@
     margin-top: 70px;
 }
 
-.slider--process .swiper {
+.slider--process .swiper,
+.slider--photo .swiper {
     overflow: visible;
 }
 
 .slider--process .swiper-slide {
-    width: 560px;
+    width: 75%;
 }
 
-@media (max-width: 768px) {
-    .slider--process .swiper-slide {
-        width: auto;
-    }
+.slider--photo .swiper-slide {
+    width: 66.67%;
 }
 
 .slider-photo__image {
@@ -52,18 +52,23 @@
     overflow: hidden;
 }
 
+.process-card__media {
+    padding: 20px 20px 0;
+}
+
 .process-card__image {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    border-radius: 12px;
 }
 
 .process-card__body {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    padding: 35px 35px 35px 25px;
+    gap: 30px;
+    padding: 35px;
 }
 
 .process-card__date {
@@ -78,7 +83,7 @@
 .process-card__text {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 .process-card__title {
@@ -97,4 +102,62 @@
     line-height: 32px;
     font-weight: 400;
     color: var(--color-primary);
+}
+
+.slider-block .slider-nav__progress {
+    background: rgba(var(--color-white-rgb), 0.25);
+}
+
+.slider-block .swiper-pagination-progressbar-fill {
+    background: var(--color-white);
+}
+
+.slider-block .slider-nav__btn {
+    border-color: rgba(var(--color-white-rgb), 0.3);
+    color: var(--color-white);
+}
+
+.slider-block .slider-nav__btn:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+@media (max-width: 990px) {
+    .slider--process .swiper-slide {
+        width: 85%;
+    }
+
+    .slider--photo .swiper-slide {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider--process .swiper-slide,
+    .slider--photo .swiper-slide {
+        width: 90%;
+    }
+
+    .process-card__media {
+        padding: 15px 15px 0;
+    }
+
+    .process-card__body {
+        padding: 25px;
+        gap: 20px;
+    }
+
+    .process-card__date {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .process-card__title {
+        font-size: 22px;
+        line-height: 32px;
+    }
+
+    .process-card__text {
+        gap: 16px;
+    }
 }

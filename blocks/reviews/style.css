@@ -91,7 +91,7 @@
 }
 
 .reviews-block--light .reviews-block__card {
-    background: var(--color-white);
+    background: var(--bg-surface);
     border: 1px solid rgba(var(--color-primary-rgb), 0.13);
 }
 
@@ -228,7 +228,7 @@
 }
 
 .reviews-block--dark .swiper-pagination-progressbar-fill {
-    background-color: var(--color-accent);
+    background-color: var(--color-white);
 }
 
 .reviews-block--light .slider-nav__btn {

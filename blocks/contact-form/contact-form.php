@@ -18,7 +18,7 @@ if ($author_raw instanceof WP_Post) {
 }
 
 $author_name    = $author_post ? get_the_title($author_post) : '';
-$author_img_id  = ($author_post && $author_post->ID) ? get_post_thumbnail_id($author_post->ID) : 0;
+$author_img_id  = $author_post ? (get_field('foto', $author_post->ID) ?: get_post_thumbnail_id($author_post->ID)) : 0;
 $author_img_url = $author_img_id ? wp_get_attachment_image_url($author_img_id, [62, 62]) : '';
 $author_img_alt = $author_img_id
     ? (get_post_meta($author_img_id, '_wp_attachment_image_alt', true) ?: $author_name)
