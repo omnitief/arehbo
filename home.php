@@ -80,7 +80,7 @@ $arrow_white = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
 
                             <div class="blog-card__body">
 
-                                <h2 class="blog-card__title"><?= esc_html($post_title); ?></h2>
+                                <h3 class="blog-card__title"><?= esc_html($post_title); ?></h3>
 
                                 <?php if ($post_excerpt) : ?>
                                     <p class="blog-card__excerpt"><?= esc_html($post_excerpt); ?></p>

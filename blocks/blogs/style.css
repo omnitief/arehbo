@@ -68,7 +68,6 @@
     margin: 0 0 20px;
     letter-spacing: 0;
     color: var(--color-primary);
-    min-height: 84px;
 }
 
 .blog-card__excerpt {

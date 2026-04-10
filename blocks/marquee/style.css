@@ -30,6 +30,12 @@
     animation: marquee-scroll 25s linear infinite;
 }
 
+@media (min-width: 901px) {
+    .marquee-block__track {
+        gap: 150px;
+    }
+}
+
 .marquee-block__logo {
     height: 48px;
     width: auto;
