@@ -16,12 +16,12 @@ $title_clean = trim(preg_replace('/<\/?p[^>]*>/', '', $title));
 <section <?= $full_id; ?> class="marquee-block">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
-            <?php if ($title_clean) : ?>
-                <h2 class="marquee-block__title"><?= wp_kses_post($title_clean); ?></h2>
-            <?php endif; ?>
 
-            <hr class="marquee-block__divider">
-        </div>
+        <?php if ($title_clean) : ?>
+            <h2 class="marquee-block__title"><?= wp_kses_post($title_clean); ?></h2>
+        <?php endif; ?>
+
+        <hr class="marquee-block__divider">
 
         <?php if (!empty($logos)) : ?>
             <div class="marquee-block__logos">
@@ -36,18 +36,18 @@ $title_clean = trim(preg_replace('/<\/?p[^>]*>/', '', $title));
                         <img class="marquee-block__logo" src="<?= esc_url($logo_url); ?>" alt="<?= esc_attr($logo_alt); ?>" loading="lazy">
                     <?php endforeach; ?>
 
-                    <?php for ($copy = 0; $copy < 2; $copy++) : ?>
-                        <?php foreach ($logos as $item) :
-                            $logo_id = $item['logo'] ?? null;
-                            if (!$logo_id) continue;
-                            $logo_url = wp_get_attachment_image_url($logo_id, 'full');
-                        ?>
-                            <img class="marquee-block__logo" src="<?= esc_url($logo_url); ?>" alt="" aria-hidden="true" loading="lazy">
-                        <?php endforeach; ?>
-                    <?php endfor; ?>
+                    <?php foreach ($logos as $item) :
+                        $logo_id = $item['logo'] ?? null;
+                        if (!$logo_id) continue;
+                        $logo_url = wp_get_attachment_image_url($logo_id, 'full');
+                    ?>
+                        <img class="marquee-block__logo" src="<?= esc_url($logo_url); ?>" alt="" aria-hidden="true" loading="lazy">
+                    <?php endforeach; ?>
 
                 </div>
             </div>
         <?php endif; ?>
+
+        </div>
     </div>
 </section>

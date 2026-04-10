@@ -7,7 +7,7 @@
 .locations-block__layout {
     display: flex;
     align-items: stretch;
-    min-height: clamp(700px, 70vw, 1338px);
+    min-height: 700px;
     padding: 0 0 0 var(--space-container);
     max-width: 1920px;
     margin: 0 auto;
@@ -54,46 +54,26 @@
 .locations-block__btn-wrap {
     margin-top: auto;
     padding-top: 55px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.locations-block__btn-wrap .btn--outline {
-    border-color: rgba(var(--color-white-rgb), 0.3);
-    color: var(--color-white);
-}
-
-.locations-block__btn-wrap .btn--outline:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-}
-
-.locations-block__btn-wrap .btn--outline .btn__icon {
-    background: rgba(var(--color-white-rgb), 0.15);
-}
-
-.locations-block__btn-wrap .btn--outline .btn__icon svg path {
-    stroke: var(--color-white);
 }
 
 .locations-block__right {
     flex: 1;
-    position: static;
+    position: relative;
 }
 
 .locations-block__map-wrap {
     position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: clamp(500px, 63vw, 1210px);
+    inset: 0;
+    overflow: hidden;
 }
 
 .locations-block__map-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
     display: block;
-    width: 100%;
-    height: auto;
 }
 
 .locations-pin {
@@ -108,11 +88,6 @@
 
 .locations-pin__icon {
     display: block;
-    width: 24px;
-    height: 24px;
-    padding: 4px;
-    background: var(--color-white);
-    border-radius: 50%;
     transition: transform 0.2s ease;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
@@ -180,38 +155,36 @@
     }
 
     .locations-block__right {
-        width: calc(100% + var(--space-container) * 2);
+        width: calc(100% + var(--space-container));
         margin-left: calc(-1 * var(--space-container));
         height: auto;
     }
 
     .locations-block__map-wrap {
         position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-        width: 100%;
+        inset: auto;
     }
 
     .locations-block__map-img {
-        position: relative;
+        position: static;
         width: 100%;
         height: auto;
+        object-fit: unset;
     }
 }
 
 .locations-block__description ul {
     list-style: none;
     padding-left: 0;
-    margin: 40px 0 0;
+    margin: 0;
 }
 
 .locations-block__description ul li {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    gap: 10px;
     padding-left: 0;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .locations-block__description ul li:last-child {

@@ -2,12 +2,8 @@
 
 $space       = get_spacing_class(get_field('space'));
 $full_id     = get_full_id(get_field('id'));
-$background  = get_field('background') ?: 'light';
 $description = get_field('description');
 $button      = get_field('button');
-
-$bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
-$bg_class = $bg_map[$background] ?? 'bg-light';
 
 if (empty($description) && empty($button)) {
     return;
@@ -15,7 +11,7 @@ if (empty($description) && empty($button)) {
 
 ?>
 
-<section <?= $full_id; ?> class="text-tile <?= esc_attr($bg_class); ?>">
+<section <?= $full_id; ?> class="text-tile">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
 

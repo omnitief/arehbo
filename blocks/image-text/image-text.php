@@ -2,21 +2,17 @@
 
 $space       = get_spacing_class(get_field('space'));
 $full_id     = get_full_id(get_field('id'));
-$background  = get_field('background') ?: 'light';
 $reverse     = get_field('reverse');
 $image_id    = get_field('image');
 $title       = get_field('title');
 $description = get_field('description');
 $button      = get_field('button');
 
-$bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
-$bg_class = $bg_map[$background] ?? 'bg-light';
-
 if (empty($image_id) && empty($title)) {
     return;
 }
 
-$section_class = 'image-text ' . $bg_class;
+$section_class = 'image-text';
 if ($reverse) {
     $section_class .= ' image-text--reverse';
 }
@@ -45,10 +41,9 @@ $image_url   = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
 
             <div class="image-text__content">
                 <?php get_template_part('components/text-content', '', [
-                    'title'          => $title,
-                    'description'    => $description,
-                    'button'         => $button,
-                    'button_variant' => 'accent',
+                    'title'       => $title,
+                    'description' => $description,
+                    'button'      => $button,
                 ]); ?>
             </div>
 

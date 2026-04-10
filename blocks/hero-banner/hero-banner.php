@@ -48,13 +48,10 @@ $cards     = array_slice($cards, 0, 3);
                                 <?php if ($link_target === '_blank') echo 'target="_blank" rel="noopener noreferrer"'; ?>
                             >
                                 <span class="hb-card__title"><?= esc_html($card_title); ?></span>
-                                <span class="hb-card__bottom">
-                                    <span class="hb-card__view">Bekijk</span>
-                                    <span class="hb-card__arrow" aria-hidden="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-                                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </span>
+                                <span class="hb-card__arrow" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
+                                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </span>
                             </a>
                         <?php endforeach; ?>

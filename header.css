@@ -100,7 +100,6 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    min-height: 63px;
     padding: 8px 0;
     font-family: var(--font-sans);
     font-size: 18px;
@@ -202,8 +201,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 63px;
-    height: 63px;
+    width: 44px;
+    height: 44px;
     border: 1px solid rgba(var(--color-primary-rgb), 0.2);
     border-radius: 50%;
     color: var(--color-primary);
@@ -267,9 +266,8 @@
 
 .site-header__cta {
     width: auto;
-    min-height: 63px;
     padding: 12px 24px;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .hamburger {

@@ -48,16 +48,17 @@ if (empty($title)) {
 
                 <?php if (!empty($buttons)) : ?>
                     <div class="cta__buttons">
-                        <?php foreach ($buttons as $i => $btn) :
-                            $label = $btn['label'] ?? '';
-                            $url   = $btn['url']   ?? '';
+                        <?php foreach ($buttons as $btn) :
+                            $label   = $btn['label']   ?? '';
+                            $url     = $btn['url']     ?? '';
+                            $variant = $btn['variant'] ?? 'default';
 
                             if (empty($label) || empty($url)) continue;
                         ?>
                             <?php get_template_part('components/button', '', [
                                 'label'   => $label,
                                 'url'     => $url,
-                                'variant' => $i === 0 ? 'accent' : 'outline',
+                                'variant' => $variant,
                             ]); ?>
                         <?php endforeach; ?>
                     </div>

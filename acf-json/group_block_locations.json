@@ -88,46 +88,21 @@
             "delay": 0
         },
         {
-            "key": "field_loc_buttons",
-            "label": "Buttons",
-            "name": "loc_buttons",
-            "type": "repeater",
-            "instructions": "Add one or more buttons.",
-            "required": 0,
-            "layout": "block",
-            "button_label": "Add button",
-            "min": 0,
-            "max": 3,
-            "sub_fields": [
-                {
-                    "key": "field_loc_btn_label",
-                    "label": "Label",
-                    "name": "label",
-                    "type": "text",
-                    "required": 1,
-                    "placeholder": "View all locations"
-                },
-                {
-                    "key": "field_loc_btn_link",
-                    "label": "Link",
-                    "name": "link",
-                    "type": "link",
-                    "required": 1,
-                    "return_format": "array"
-                },
-                {
-                    "key": "field_loc_btn_variant",
-                    "label": "Variant",
-                    "name": "variant",
-                    "type": "button_group",
-                    "choices": {
-                        "accent": "Accent",
-                        "outline": "Outline"
-                    },
-                    "default_value": "accent",
-                    "return_format": "value"
-                }
-            ]
+            "key": "field_loc_button_text",
+            "label": "Button label",
+            "name": "loc_button_text",
+            "type": "text",
+            "instructions": "Leave empty to hide the button.",
+            "default_value": "",
+            "placeholder": "View all locations"
+        },
+        {
+            "key": "field_loc_button_link",
+            "label": "Button link",
+            "name": "loc_button_link",
+            "type": "link",
+            "instructions": "URL the button points to.",
+            "return_format": "array"
         },
         {
             "key": "field_loc_tab_pins",

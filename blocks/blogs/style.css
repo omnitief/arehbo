@@ -37,7 +37,7 @@
 
 .blog-card__image {
     width: 100%;
-    aspect-ratio: 565 / 400;
+    height: 400px;
     object-fit: cover;
     border-radius: 30px;
     display: block;
@@ -150,6 +150,10 @@
 
 
 @media (max-width: 1440px) {
+    .blog-card__image {
+        height: 340px;
+    }
+
     .blog-card__title {
         font-size: 28px;
         line-height: 38px;
@@ -158,6 +162,10 @@
 }
 
 @media (max-width: 1024px) {
+    .blog-card__image {
+        height: 280px;
+    }
+
     .blogs__title {
         font-size: 38px;
         line-height: 50px;
@@ -188,6 +196,10 @@
         font-size: 30px;
         line-height: 40px;
         margin-bottom: 40px;
+    }
+
+    .blog-card__image {
+        height: 240px;
     }
 
     .blogs__footer {
