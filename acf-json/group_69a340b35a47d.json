@@ -122,6 +122,29 @@
             ]
         },
         {
+            "key": "field_texttile_background",
+            "label": "Background",
+            "name": "background",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark Blue",
+                "light": "Light Blue"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69a343e88041f",
             "label": "Content",
             "name": "",

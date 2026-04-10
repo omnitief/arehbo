@@ -3,14 +3,23 @@
 $space    = get_spacing_class(get_field('space'));
 $full_id  = get_full_id(get_field('id'));
 
-$title    = get_field('loc_title');
-$desc     = get_field('loc_description');
-$btn_text = get_field('loc_button_text');
-$btn_link = get_field('loc_button_link') ?: [];
+$title   = get_field('loc_title');
+$desc    = get_field('loc_description');
+$buttons = get_field('loc_buttons') ?: [];
 
-$btn_url    = $btn_link['url']    ?? '';
-$btn_target = $btn_link['target'] ?? '_self';
+if (empty($buttons)) {
+    $old_text = get_field('loc_button_text');
+    $old_link = get_field('loc_button_link') ?: [];
+    if ($old_text && !empty($old_link['url'])) {
+        $buttons = [[
+            'label'   => $old_text,
+            'link'    => $old_link,
+            'variant' => 'accent',
+        ]];
+    }
+}
 
+$pins    = get_field('loc_pins') ?: [];
 $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
 
 ?>
@@ -31,15 +40,20 @@ $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
                     </div>
                 <?php endif; ?>
 
-                <?php if ($btn_text && $btn_url) : ?>
+                <?php if (!empty($buttons)) : ?>
                     <div class="locations-block__btn-wrap">
-                        <?php get_template_part('components/button', '', [
-                            'label'   => $btn_text,
-                            'url'     => $btn_url,
-                            'target'  => $btn_target,
-                            'variant' => 'accent',
-                            'icon'    => true,
-                        ]); ?>
+                        <?php foreach ($buttons as $btn) :
+                            $link = $btn['link'] ?? [];
+                            if (empty($btn['label']) || empty($link['url'])) continue;
+                        ?>
+                            <?php get_template_part('components/button', '', [
+                                'label'   => $btn['label'],
+                                'url'     => $link['url'],
+                                'target'  => $link['target'] ?? '_self',
+                                'variant' => $btn['variant'] ?? 'accent',
+                                'icon'    => true,
+                            ]); ?>
+                        <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
 
@@ -48,6 +62,21 @@ $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
             <div class="locations-block__right" aria-hidden="true">
                 <div class="locations-block__map-wrap">
                     <img src="<?= esc_url($map_url); ?>" alt="" aria-hidden="true" class="locations-block__map-img">
+                    <?php foreach ($pins as $pin) :
+                        $name = $pin['pin_name'] ?? '';
+                        $x    = floatval($pin['pin_x'] ?? 50);
+                        $y    = floatval($pin['pin_y'] ?? 50);
+                    ?>
+                        <span class="locations-pin" style="left:<?= esc_attr($x); ?>%;top:<?= esc_attr($y); ?>%;">
+                            <svg class="locations-pin__icon" xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36" fill="none">
+                                <path d="M14 0C6.268 0 0 6.268 0 14c0 9.8 14 22 14 22s14-12.2 14-22C28 6.268 21.732 0 14 0z" fill="#013674" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+                                <circle cx="14" cy="13" r="5" fill="white"/>
+                            </svg>
+                            <?php if ($name) : ?>
+                                <span class="locations-pin__label"><?= esc_html($name); ?></span>
+                            <?php endif; ?>
+                        </span>
+                    <?php endforeach; ?>
                 </div>
             </div>
 

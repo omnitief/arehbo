@@ -32,11 +32,7 @@ $copyright_links_right = get_field('footer_copyright_links_right', 'option') ?: 
     </div>
 </div>
 
-<div class="footer-colorbar" aria-hidden="true">
-    <div class="footer-colorbar__col footer-colorbar__col--green"></div>
-    <div class="footer-colorbar__col footer-colorbar__col--red"></div>
-    <div class="footer-colorbar__col footer-colorbar__col--yellow"></div>
-</div>
+<?php get_template_part('components/colorbar'); ?>
 
 <footer class="site-footer">
     <div class="container">
@@ -237,19 +233,31 @@ $copyright_links_right = get_field('footer_copyright_links_right', 'option') ?: 
 
 <script>
 (function () {
+    /* ── Bottom-nav toggle ── */
     var toggle = document.querySelector('.footer-bottom-nav__toggle');
-    if (!toggle) return;
-    var inner = document.querySelector('.footer-bottom-nav__inner');
-    toggle.addEventListener('click', function () {
-        var expanded = this.getAttribute('aria-expanded') === 'true';
-        if (expanded) {
-            inner.style.maxHeight = '0';
-            this.setAttribute('aria-expanded', 'false');
-        } else {
-            inner.style.maxHeight = inner.scrollHeight + 'px';
-            this.setAttribute('aria-expanded', 'true');
-        }
-    });
+    if (toggle) {
+        var inner = document.querySelector('.footer-bottom-nav__inner');
+        toggle.addEventListener('click', function () {
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            if (expanded) {
+                inner.style.maxHeight = '0';
+                this.setAttribute('aria-expanded', 'false');
+            } else {
+                inner.style.maxHeight = inner.scrollHeight + 'px';
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+
+    /* ── Scroll-driven marquee ── */
+    var track = document.querySelector('.footer-marquee__track');
+    if (track) {
+        var speed = 0.5;
+        window.addEventListener('scroll', function () {
+            var px = window.pageYOffset * speed;
+            track.style.transform = 'translateX(-' + (px % (track.scrollWidth / 2)) + 'px)';
+        }, { passive: true });
+    }
 }());
 </script>
 

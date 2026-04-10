@@ -55,13 +55,13 @@
 .contact-form-block__description ul {
     list-style: none;
     padding-left: 0;
-    margin: 0 0 16px;
+    margin: 40px 0 16px;
 }
 
 .contact-form-block__description ul li {
     position: relative;
     padding-left: 36px;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 }
 
 .contact-form-block__description ul li::before {
@@ -98,6 +98,8 @@
     margin-top: 70px;
     border-radius: 61px;
     padding: 25px;
+    max-width: 500px;
+    height: 120px;
 }
 
 .contact-form-block--dark .contact-form-block__author {

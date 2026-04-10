@@ -1,4 +1,6 @@
 .cta {
+    max-width: 1310px;
+    margin-inline: auto;
     background: var(--color-primary);
     border-radius: var(--radius-pill);
     overflow: hidden;
@@ -28,7 +30,7 @@
     position: absolute;
     top: 25px;
     left: 25px;
-    background: #000;
+    background: rgba(var(--color-primary-rgb), 0.8);
     border: 1px solid rgba(var(--color-white-rgb), 0.15);
     border-radius: 10px;
     backdrop-filter: blur(20px);
@@ -44,9 +46,8 @@
 .cta__content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    text-align: center;
 }
 
 .cta__text {
@@ -82,4 +83,38 @@
 .cta__buttons .btn {
     width: auto;
     padding: 14px 40px;
+}
+
+.cta__buttons .btn--outline {
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.cta__buttons .btn--outline:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.cta__buttons .btn--outline .btn__icon {
+    background: var(--color-accent);
+}
+
+.cta__buttons .btn--outline .btn__icon svg path {
+    stroke: var(--color-white);
+}
+
+.cta__buttons .btn--outline:hover .btn__icon svg path {
+    stroke: var(--color-accent);
+}
+
+@media (max-width: 990px) {
+    .cta__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 30px;
+    }
+
+    .cta {
+        border-radius: 30px;
+    }
 }
