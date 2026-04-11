@@ -13,13 +13,15 @@
     padding: 30px;
     border-radius: 30px;
     background: rgba(var(--color-white-rgb), 0.08);
+    border: 1px solid rgba(var(--color-white-rgb), 0.10);
     cursor: pointer;
     transition: background-color 0.3s ease;
     overflow: hidden;
 }
 
 .bg-light .archive-card {
-    background: #f4fafa;
+    background: var(--bg-surface);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.13);
 }
 
 .archive-card:hover {
@@ -155,7 +157,7 @@
 
 .content-archive__swiper-wrap {
     margin-top: 70px!important;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .content-archive__swiper-wrap .swiper {

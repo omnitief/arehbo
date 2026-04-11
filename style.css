@@ -498,7 +498,9 @@ h6 {
 }
 
 .slider-nav__progress {
-    flex: 1;
+    flex: 1 1 570px;
+    width: 100%;
+    max-width: 570px;
     height: 4px;
     background: rgba(var(--color-white-rgb), 0.25);
     border-radius: 2px;
