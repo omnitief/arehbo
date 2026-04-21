@@ -119,7 +119,7 @@ function arehbo_enqueue_styles() {
         );
     }
 
-    if (is_page_template('templates/page-dienst.php')) {
+    if (is_page_template('templates/page-dienst.php') || is_singular('diensten')) {
         wp_enqueue_style(
             'arehbo-template-dienst',
             get_template_directory_uri() . '/template-dienst.css',
@@ -317,7 +317,7 @@ add_action('init', 'arehbo_register_taxonomies');
 
 
 add_action('wp_enqueue_scripts', function () {
-    if (is_page_template('templates/page-dienst.php')) {
+    if (is_page_template('templates/page-dienst.php') || is_singular('diensten')) {
         wp_enqueue_style(
             'acf-block-usp-list',
             get_template_directory_uri() . '/blocks/usp-list/style.css',

@@ -269,6 +269,13 @@
                 "operator": "==",
                 "value": "templates/page-dienst.php"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "diensten"
+            }
         ]
     ],
     "menu_order": 0,
