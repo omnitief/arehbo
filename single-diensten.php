@@ -12,18 +12,9 @@ while (have_posts()) : the_post();
     $btn_text      = get_field('dienst_button_text');
     $btn_link      = get_field('dienst_button_link') ?: [];
     $img_id        = get_field('dienst_image');
-    $bottom_widget          = get_field('dienst_bottom_widget')       ?: 'usp_list';
-    $product_name           = get_field('dienst_product_name')         ?: '';
-    $rekentool_tiers        = get_field('rekentool_tiers')             ?: [];
-    $rekentool_btn_raw      = get_field('rekentool_button_link')       ?: [];
-    $rekentool_btn_label    = get_field('rekentool_button_label')      ?: '';
-    $rekentool_btn_variant  = get_field('rekentool_button_variant')    ?: 'accent';
-    $rekentool_btn_url      = $rekentool_btn_raw['url']    ?? '';
-    $rekentool_btn_target   = $rekentool_btn_raw['target'] ?? '_self';
 
     $hero_variant = $background === 'dark-blue' ? 'dark' : 'light';
-
-    $bg_class = ' dienst-hero-bg--' . esc_attr($background);
+    $bg_class     = ' dienst-hero-bg--' . esc_attr($background);
 
     $btn_url    = $btn_link['url']    ?? '#';
     $btn_target = $btn_link['target'] ?? '_self';
@@ -93,24 +84,6 @@ while (have_posts()) : the_post();
 
     </div><!-- .dienst-page__inner -->
     </div><!-- .dienst-hero-bg -->
-
-    <?php if ($bottom_widget === 'rekentool') : ?>
-        <?php get_template_part('components/rekentool', '', [
-            'product_name'   => $product_name,
-            'background'     => $hero_variant,
-            'tiers'          => $rekentool_tiers,
-            'button_label'   => $rekentool_btn_label,
-            'button_url'     => $rekentool_btn_url,
-            'button_target'  => $rekentool_btn_target,
-            'button_variant' => $rekentool_btn_variant,
-        ]); ?>
-    <?php else : ?>
-        <?php get_template_part('blocks/usp-list/usp-list', '', [
-            'background' => $hero_variant,
-        ]); ?>
-    <?php endif; ?>
-
-    <?php get_template_part('components/colorbar'); ?>
 
     <?php if (has_blocks(get_the_content())) : ?>
         <div id="page-content" class="page-content">

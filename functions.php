@@ -119,10 +119,28 @@ function arehbo_enqueue_styles() {
         );
     }
 
-    if (is_page_template('templates/page-dienst.php') || is_singular('diensten')) {
+    if (is_singular('diensten')) {
         wp_enqueue_style(
             'arehbo-template-dienst',
             get_template_directory_uri() . '/template-dienst.css',
+            ['arehbo-theme'],
+            wp_get_theme()->get('Version')
+        );
+    }
+
+    if (is_singular('cursussen')) {
+        wp_enqueue_style(
+            'arehbo-template-cursus',
+            get_template_directory_uri() . '/template-cursus.css',
+            ['arehbo-theme'],
+            wp_get_theme()->get('Version')
+        );
+    }
+
+    if (is_singular('vacatures')) {
+        wp_enqueue_style(
+            'arehbo-single',
+            get_template_directory_uri() . '/single.css',
             ['arehbo-theme'],
             wp_get_theme()->get('Version')
         );
@@ -141,15 +159,6 @@ function arehbo_enqueue_styles() {
         wp_enqueue_style(
             'arehbo-template-inschrijven-form',
             get_template_directory_uri() . '/template-inschrijven-form.css',
-            ['arehbo-theme'],
-            wp_get_theme()->get('Version')
-        );
-    }
-
-    if (is_page_template('templates/page-cursus.php')) {
-        wp_enqueue_style(
-            'arehbo-template-cursus',
-            get_template_directory_uri() . '/template-cursus.css',
             ['arehbo-theme'],
             wp_get_theme()->get('Version')
         );
@@ -296,10 +305,10 @@ add_action('init', 'arehbo_register_post_types');
 
 
 function arehbo_register_taxonomies() {
-    register_taxonomy('categorie', ['cursussen', 'diensten', 'vacatures'], [
+    register_taxonomy('cursus_categorie', ['cursussen'], [
         'labels' => [
-            'name'              => 'Categorieën',
-            'singular_name'     => 'Categorie',
+            'name'              => 'Cursus categorieën',
+            'singular_name'     => 'Cursus categorie',
             'search_items'      => 'Categorieën zoeken',
             'all_items'         => 'Alle categorieën',
             'edit_item'         => 'Categorie bewerken',
@@ -309,15 +318,40 @@ function arehbo_register_taxonomies() {
         'hierarchical' => true,
         'public'       => true,
         'show_in_rest' => true,
-        'rewrite'      => ['slug' => 'categorie'],
+        'rewrite'      => ['slug' => 'cursus-categorie'],
+    ]);
+
+    register_taxonomy('dienst_categorie', ['diensten'], [
+        'labels' => [
+            'name'              => 'Dienst categorieën',
+            'singular_name'     => 'Dienst categorie',
+            'search_items'      => 'Categorieën zoeken',
+            'all_items'         => 'Alle categorieën',
+            'edit_item'         => 'Categorie bewerken',
+            'add_new_item'      => 'Nieuwe categorie toevoegen',
+            'new_item_name'     => 'Naam nieuwe categorie',
+        ],
+        'hierarchical' => true,
+        'public'       => true,
+        'show_in_rest' => true,
+        'rewrite'      => ['slug' => 'dienst-categorie'],
     ]);
 }
 
 add_action('init', 'arehbo_register_taxonomies');
 
 
+function arehbo_taxonomy_for_post_type($post_type) {
+    $map = [
+        'cursussen' => 'cursus_categorie',
+        'diensten'  => 'dienst_categorie',
+    ];
+    return $map[$post_type] ?? '';
+}
+
+
 add_action('wp_enqueue_scripts', function () {
-    if (is_page_template('templates/page-dienst.php') || is_singular('diensten')) {
+    if (is_singular('diensten')) {
         wp_enqueue_style(
             'acf-block-usp-list',
             get_template_directory_uri() . '/blocks/usp-list/style.css',

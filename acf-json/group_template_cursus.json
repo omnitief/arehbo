@@ -22,7 +22,7 @@
             "label": "Title",
             "name": "cursus_title",
             "type": "text",
-            "instructions": "Main heading in the hero section.",
+            "instructions": "Optional override for the hero title (defaults to the post title).",
             "required": 0
         },
         {
@@ -42,32 +42,19 @@
             "label": "Image",
             "name": "cursus_image",
             "type": "image",
-            "instructions": "Hero image (recommended 635 × 357 px).",
+            "instructions": "Hero image (recommended 635 × 357 px). Falls back to the featured image if empty.",
             "required": 0,
             "return_format": "id",
             "preview_size": "medium",
             "library": "all"
-        },
-        {
-            "key": "field_cursus_selected_cursussen",
-            "label": "Cursussen",
-            "name": "cursussen",
-            "type": "relationship",
-            "instructions": "Selecteer de cursussen die op deze pagina worden getoond.",
-            "required": 0,
-            "post_type": ["cursussen"],
-            "filters": ["search"],
-            "return_format": "object",
-            "min": 0,
-            "max": 1
         }
     ],
     "location": [
         [
             {
-                "param": "page_template",
+                "param": "post_type",
                 "operator": "==",
-                "value": "templates/page-cursus.php"
+                "value": "cursussen"
             }
         ]
     ],
@@ -80,5 +67,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1773700001
+    "modified": 1761696101
 }

@@ -108,15 +108,36 @@
             "ui": 1
         },
         {
-            "key": "field_carchive_term",
+            "key": "field_carchive_term_cursussen",
             "label": "Select category",
-            "name": "term",
+            "name": "term_cursussen",
             "type": "taxonomy",
             "instructions": "Visible when display mode is By category",
             "conditional_logic": [
-                [{ "field": "field_carchive_display_mode", "operator": "==", "value": "category" }]
+                [
+                    { "field": "field_carchive_display_mode", "operator": "==", "value": "category" },
+                    { "field": "field_carchive_post_type",    "operator": "==", "value": "cursussen" }
+                ]
             ],
-            "taxonomy": "categorie",
+            "taxonomy": "cursus_categorie",
+            "field_type": "select",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1
+        },
+        {
+            "key": "field_carchive_term_diensten",
+            "label": "Select category",
+            "name": "term_diensten",
+            "type": "taxonomy",
+            "instructions": "Visible when display mode is By category",
+            "conditional_logic": [
+                [
+                    { "field": "field_carchive_display_mode", "operator": "==", "value": "category" },
+                    { "field": "field_carchive_post_type",    "operator": "==", "value": "diensten" }
+                ]
+            ],
+            "taxonomy": "dienst_categorie",
             "field_type": "select",
             "return_format": "object",
             "multiple": 0,
