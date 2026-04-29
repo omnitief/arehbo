@@ -93,7 +93,7 @@
 }
 
 .slider-block .swiper-pagination-progressbar-fill {
-    background: var(--color-white);
+    background: var(--color-accent);
 }
 
 .slider-block .slider-nav__btn {

@@ -514,5 +514,5 @@ h6 {
 }
 
 .bg-dark .slider-nav__progress .swiper-pagination-progressbar-fill {
-    background: var(--color-white);
+    background: var(--color-accent);
 }
