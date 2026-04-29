@@ -55,7 +55,7 @@
             "label": "Background",
             "name": "background",
             "type": "button_group",
-            "choices": { "dark": "Dark Blue", "light": "Light Blue" },
+            "choices": { "dark": "Dark Blue", "light": "Light Blue", "white": "White" },
             "default_value": "light",
             "return_format": "value",
             "allow_null": 0

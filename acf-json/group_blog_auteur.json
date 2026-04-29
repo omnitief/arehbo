@@ -19,7 +19,8 @@
             "required": 0,
             "choices": {
                 "light": "Light Blue",
-                "dark": "Dark Blue"
+                "dark": "Dark Blue",
+                "white": "White"
             },
             "default_value": "light",
             "return_format": "value",

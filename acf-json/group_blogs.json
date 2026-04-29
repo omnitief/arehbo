@@ -67,7 +67,8 @@
             "type": "button_group",
             "choices": {
                 "dark": "Dark Blue",
-                "light": "Light Blue"
+                "light": "Light Blue",
+                "white": "White"
             },
             "default_value": "light",
             "return_format": "value",
