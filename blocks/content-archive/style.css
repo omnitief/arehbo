@@ -328,34 +328,32 @@
 }
 
 .archive-page-number {
-    font-family: var(--font-sans);
-    font-size: 19px;
-    line-height: 28px;
-    font-weight: 600;
-    color: var(--color-white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    text-align: center;
+    font: normal normal normal 19px/32px "IBM Plex Sans";
+    letter-spacing: 0px;
+    color: #004081;
+    opacity: 1;
     background: transparent;
-    border: none;
+    border: 1px solid rgba(0, 64, 129, 0.2);
+    border-radius: 50%;
     cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.bg-light .archive-page-number {
-    color: var(--color-primary);
+    padding: 0;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .archive-page-number:hover {
-    background: rgba(var(--color-white-rgb), 0.15);
-}
-
-.bg-light .archive-page-number:hover {
-    background: rgba(var(--color-primary-rgb), 0.1);
+    border-color: #004081;
 }
 
 .archive-page-number.is-active {
-    background: var(--color-accent);
-    color: var(--color-white);
+    border: 1px solid #004081;
+    color: #004081;
 }
 
 .archive-page-ellipsis {
