@@ -7,9 +7,11 @@ $layout       = get_field('layout')        ?: 'slider';
 $post_type    = get_field('post_type')     ?: 'cursussen';
 $display_mode = get_field('display_mode')  ?: 'latest';
 $manual_posts = get_field('posts')         ?: [];
-$term         = get_field('term');
 $show_filters = get_field('show_filters');
 $title        = get_field('title');
+
+$taxonomy = arehbo_taxonomy_for_post_type($post_type);
+$term     = $taxonomy ? get_field('term_' . $post_type) : null;
 
 $bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
 $bg_class = $bg_map[$background] ?? 'bg-light';
@@ -27,10 +29,10 @@ if ($display_mode === 'manual' && !empty($manual_posts)) {
     $query_args['post__in'] = $ids;
     $query_args['orderby']  = 'post__in';
 
-} elseif ($display_mode === 'category' && !empty($term)) {
+} elseif ($display_mode === 'category' && !empty($term) && $taxonomy) {
     $term_id = is_object($term) ? $term->term_id : (int) $term;
     $query_args['tax_query'] = [[
-        'taxonomy' => 'categorie',
+        'taxonomy' => $taxonomy,
         'field'    => 'term_id',
         'terms'    => $term_id,
     ]];
@@ -48,9 +50,9 @@ if (empty($posts)) {
 }
 
 $terms_map = [];
-if ($layout === 'grid' && $show_filters) {
+if ($layout === 'grid' && $show_filters && $taxonomy) {
     foreach ($posts as $post) {
-        $post_terms = get_the_terms($post->ID, 'categorie');
+        $post_terms = get_the_terms($post->ID, $taxonomy);
         if ($post_terms && ! is_wp_error($post_terms)) {
             foreach ($post_terms as $t) {
                 $terms_map[$t->slug] = $t->name;
@@ -79,10 +81,13 @@ function build_archive_card($post, $post_type, $btn_label, $arrow_right, $terms_
 
     $data_terms = '';
     if ($terms_map_active) {
-        $post_terms = get_the_terms($post_id, 'categorie');
-        if ($post_terms && ! is_wp_error($post_terms)) {
-            $slugs      = array_map(fn($t) => $t->slug, $post_terms);
-            $data_terms = 'data-terms="' . esc_attr(implode(',', $slugs)) . '"';
+        $taxonomy = arehbo_taxonomy_for_post_type($post_type);
+        if ($taxonomy) {
+            $post_terms = get_the_terms($post_id, $taxonomy);
+            if ($post_terms && ! is_wp_error($post_terms)) {
+                $slugs      = array_map(fn($t) => $t->slug, $post_terms);
+                $data_terms = 'data-terms="' . esc_attr(implode(',', $slugs)) . '"';
+            }
         }
     }
 

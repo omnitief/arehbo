@@ -1,73 +1,223 @@
-<?php get_header(); ?>
+<?php
+
+get_header();
+
+while (have_posts()) : the_post();
+
+    global $wpdb;
+
+    $page_title  = get_the_title();
+    $background  = get_field('cursus_background') ?: 'light-blue';
+    $hero_title  = get_field('cursus_title') ?: $page_title;
+    $description = get_field('cursus_description');
+    $img_id      = get_field('cursus_image');
+
+    $kosten      = get_field('kosten');
+    $locatie     = get_field('locatie');
+    $duur        = get_field('duur');
+    $inschrijven = get_field('inschrijven_url');
+    $el_label    = get_field('eigen_locatie_label') ?: 'OP EIGEN LOCATIE';
+    $el_link     = get_field('eigen_locatie_link') ?: [];
+    $el_url      = $el_link['url']    ?? '#';
+    $el_target   = $el_link['target'] ?? '_self';
+
+    $course_id = get_field('id_visual_systems');
+
+    $appointments = [];
+
+    if ($course_id) {
+        $appointments = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT appointment_id, start_date, end_date, room, location, places_left
+                FROM {$wpdb->prefix}custom_visualsystems_appointments
+                WHERE course_id = %s
+                AND parent_id = 0
+                ORDER BY start_date ASC",
+                $course_id
+            ),
+            ARRAY_A
+        );
+    }
+
+    $bg_class = ' cursus-hero-bg--' . esc_attr($background);
+
+    if (!$img_id) {
+        $img_id = get_post_thumbnail_id();
+    }
+
+    $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
+    $img_alt = $img_id ? (get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: $page_title) : '';
+
+?>
+
+<main id="main-content" class="cursus-page">
+
+    <div class="cursus-hero-bg<?= $bg_class; ?>">
+        <div class="cursus-page__inner container">
+
+            <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
+                <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
+                <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
+            </nav>
+
+            <hr class="cursus-divider">
+
+            <div class="cursus-hero">
+
+                <div class="cursus-hero__text">
+
+                    <?php if ($hero_title) : ?>
+                        <h1 class="cursus-hero__title"><?= esc_html($hero_title); ?></h1>
+                    <?php endif; ?>
+
+                    <?php if ($description) : ?>
+                        <div class="cursus-hero__description"><?= wp_kses_post($description); ?></div>
+                    <?php endif; ?>
+
+                </div>
+
+                <?php if ($img_url) : ?>
+                    <div class="cursus-hero__image-wrap">
+                        <img
+                            class="cursus-hero__image"
+                            src="<?= esc_url($img_url); ?>"
+                            alt="<?= esc_attr($img_alt); ?>"
+                            width="635"
+                            height="357"
+                            loading="eager"
+                        >
+                    </div>
+                <?php endif; ?>
+
+            </div><!-- .cursus-hero -->
+
+        </div><!-- .cursus-page__inner -->
+    </div><!-- .cursus-hero-bg -->
+
+    <?php if ($kosten || $locatie || $duur || $inschrijven) : ?>
+        <div class="cursus-cards cursus-cards--<?= esc_attr($background); ?><?= $background === 'dark-blue' ? ' cursus-cards--dark' : ''; ?>">
+            <div class="container">
+
+                <article class="cursus-card">
+
+                    <div class="cursus-card__left">
+                        <div class="cursus-card__meta">
+                            <?php if ($kosten) : ?>
+                                <div class="cursus-card__meta-item">
+                                    <span class="cursus-card__meta-label">Kosten (excl. BTW):</span>
+                                    <span class="cursus-card__meta-value"><?= esc_html($kosten); ?></span>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($locatie) : ?>
+                                <div class="cursus-card__meta-item">
+                                    <span class="cursus-card__meta-label">Locatie:</span>
+                                    <span class="cursus-card__meta-value"><?= esc_html($locatie); ?></span>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($duur) : ?>
+                                <div class="cursus-card__meta-item">
+                                    <span class="cursus-card__meta-label">Duur:</span>
+                                    <span class="cursus-card__meta-value"><?= esc_html($duur); ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="cursus-card__right">
+                        <?php if ($inschrijven) : ?>
+                            <?php get_template_part('components/button', '', [
+                                'label'   => 'DIRECT INSCHRIJVEN',
+                                'url'     => $inschrijven,
+                                'target'  => '_blank',
+                                'variant' => 'accent',
+                                'icon'    => true,
+                            ]); ?>
+                        <?php endif; ?>
+
+                        <?php if ($el_url && $el_url !== '#') : ?>
+                            <?php get_template_part('components/button', '', [
+                                'label'   => $el_label,
+                                'url'     => $el_url,
+                                'target'  => $el_target,
+                                'variant' => 'outline',
+                                'icon'    => false,
+                            ]); ?>
+                        <?php endif; ?>
+                    </div>
+
+                </article>
+
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($appointments) : ?>
+        <div class="cursus-appointments">
+            <div class="container">
+
+                <table class="cursus-appointments__table">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Tijd</th>
+                            <th>Dag</th>
+                            <th>Locatie</th>
+                            <th>Vrije plaatsen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($appointments as $appointment) : ?>
+
+                            <?php
+                            $sibling_dates = $wpdb->get_results(
+                                $wpdb->prepare(
+                                    "SELECT start_date
+                                    FROM {$wpdb->prefix}custom_visualsystems_appointments
+                                    WHERE parent_id = %d
+                                    ORDER BY start_date ASC",
+                                    $appointment['appointment_id']
+                                ),
+                                ARRAY_A
+                            );
+
+                            $dates = date_i18n('d-m-Y', $appointment['start_date']);
+
+                            foreach ($sibling_dates as $sibling_date) {
+                                $dates .= ' en ' . date_i18n('d-m-Y', $sibling_date['start_date']);
+                            }
+
+                            $appointment_location = $appointment['room'] !== '' ? $appointment['room'] : $appointment['location'];
+                            $places_left = $appointment['places_left'] > 0 ? $appointment['places_left'] : 0;
+                            ?>
+
+                            <tr>
+                                <td><?= esc_html($dates); ?></td>
+                                <td><?= esc_html(date_i18n('H:i', $appointment['start_date']) . ' - ' . date_i18n('H:i', $appointment['end_date'])); ?></td>
+                                <td><?= esc_html(date_i18n('l', $appointment['start_date'])); ?></td>
+                                <td><?= esc_html($appointment_location); ?></td>
+                                <td><?= esc_html($places_left); ?></td>
+                            </tr>
+
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if (has_blocks(get_the_content())) : ?>
+        <div id="page-content" class="page-content">
+            <?php the_content(); ?>
+        </div>
+    <?php endif; ?>
+
+</main>
 
 <?php
-$post_id = get_the_ID();
-//echo "Post ID: " . $post_id . "<br>";
-//echo "Course ID (id_visual_systems): " . get_field('id_visual_systems') . "<br>";
-//echo "SELECT * FROM {$wpdb->prefix}custom_visualsystems_appointments WHERE course_id = '".get_field('id_visual_systems')."' ORDER BY date ASC";
-$appointments = $wpdb->get_results("SELECT appointment_id, start_date, end_date, room, location, places_left FROM {$wpdb->prefix}custom_visualsystems_appointments WHERE course_id = '".get_field('id_visual_systems')."' AND parent_id = 0 ORDER BY start_date ASC", ARRAY_A);
-if($appointments){
-?>
-<main class="single-post" id="main-content">
-	<div style='height: 200px;'></div>
-	<div class='single-body bg-light'>
-		<table>
-			<thead>
-				<tr>
-					<th>
-						Datum
-					</th>
-					<th>
-						Tijd
-					</th>
-					<th>
-						Dag
-					</th>
-					<th>
-						Locatie
-					</th>
-					<th>
-						Vrije plaatsen
-					</th>
-					<th>			
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				foreach($appointments as $a){
-					$sibling_dates = $wpdb->get_results("SELECT start_date FROM {$wpdb->prefix}custom_visualsystems_appointments WHERE parent_id = '{$a['appointment_id']}' ORDER BY start_date ASC", ARRAY_A);
-					$dates = date("d-m-Y", $a['start_date']);
-					foreach($sibling_dates as $sd){
-						$dates .= " en ".date("d-m-Y", $sd['start_date']);
-					}
-					?>
-					<tr>
-						<td width="300">
-		                    <?php echo $dates; ?>
-		                </td>
-		                <td>
-		                    <?php echo date("H:i", $a['start_date'])." - ".date("H:i", $a['end_date']); ?>
-		                </td>
-		                <td>
-		                    <?php echo date_i18n("l", $a['start_date']); ?>
-		                </td>
-		                <td>
-		                    <?php echo ($a['room'] != "") ? $a['room'] : $a['location']; ?>
-		                </td>
-		                <td>
-		                    <?php echo ($a['places_left'] > 0) ? $a['places_left'] : 0; ?>
-		                </td>
-					</tr>                
-					<?php
-				}
-				//print_r($appointments);
-				?>
-			</tbody>
-		</table>
-	</div>
-</main>
-<?php
-}
-?>
-<?php get_footer(); ?>
+endwhile;
+
+get_footer();

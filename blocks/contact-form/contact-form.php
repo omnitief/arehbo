@@ -26,9 +26,17 @@ $author_img_alt = $author_img_id
 
 ?>
 
+<?php $page_title = get_the_title(); ?>
+
 <section <?= $full_id; ?> class="contact-form-block contact-form-block--<?= esc_attr($background); ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="contact-form-block__layout container">
+
+            <nav class="contact-form-block__breadcrumbs" aria-label="Breadcrumb">
+                <a class="contact-form-block__breadcrumbs-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                <span class="contact-form-block__breadcrumbs-sep" aria-hidden="true">/</span>
+                <span class="contact-form-block__breadcrumbs-current" aria-current="page"><?= esc_html($page_title); ?></span>
+            </nav>
 
             <div class="contact-form-block__left">
 

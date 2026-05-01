@@ -1,0 +1,18 @@
+{
+  "name": "acf/button",
+  "title": "Button",
+  "description": "Standard Arehbo button — accent, default, or outline variant.",
+  "category": "design",
+  "icon": "button",
+  "keywords": ["button", "cta", "link"],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "button.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {}
+}

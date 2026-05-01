@@ -97,6 +97,11 @@
     align-items: center;
 }
 
+.reviews-block__star  {
+    width: 24px;
+    height: 24px;
+}
+
 .reviews-block__star path {
     fill: #D9D9D9;
 }

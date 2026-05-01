@@ -11,9 +11,7 @@
             "required": 1,
             "choices": {
                 "hero": "Hero",
-                "formulier": "Formulier",
-                "standard-dienst": "Standard \u2013 Dienst",
-                "standard-cursus": "Standard \u2013 Cursus"
+                "formulier": "Formulier"
             },
             "default_value": "hero",
             "return_format": "value",
