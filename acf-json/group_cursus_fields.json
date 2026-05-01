@@ -55,6 +55,141 @@
             "instructions": "Waar de tweede knop naartoe linkt.",
             "required": 0,
             "return_format": "array"
+        },
+		{
+            "key": "field_cursus_visualsystems_id",
+            "label": "ID Visual Systems",
+            "name": "id_visual_systems",
+            "type": "text",
+            "instructions": "",
+			"default_value": ""
+        },
+		{
+            "key": "field_cursus_visualsystems_code",
+            "label": "Code Visual Systems",
+            "name": "code_visual_systems",
+            "type": "text",
+            "instructions": "",
+			"default_value": ""
+        },
+		{
+            "key": "field_cursus_visualsystems_description",
+            "label": "Naam Visual Systems",
+            "name": "description_visual_systems",
+            "type": "text",
+            "instructions": "",
+			"default_value": ""
+        },
+		{
+            "key": "field_cursus_visualsystems_product_id",
+            "label": "Product ID Visual Systems",
+            "name": "product_id_visual_systems",
+            "type": "text",
+            "instructions": "",
+			"default_value": ""
+        },
+		{
+            "key": "field_cursus_visualsystems_date",
+            "label": "Last update Visual Systems",
+            "name": "date_visual_systems",
+            "type": "date_time_picker",
+            "instructions": "",
+			"display_format": "Y-m-d H:i:s",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 1,
+            "default_to_current_date": 0
+        },
+		{
+            "key": "field_cursus_visualsystems_visible",
+            "label": "Cursus zichtbaar",
+            "name": "visible_visual_systems",
+            "type": "true_false",
+            "instructions": "",
+			"default_value": "0"
+        },
+		{
+            "key": "field_cursus_visualsystems_css",
+            "label": "CSS Visual Systems",
+            "name": "css_visual_systems",
+            "type": "repeater",
+            "instructions": "",
+			"sub_fields": [
+				{
+                    "key": "field_cursus_visualsystems_selector",
+                    "label": "selector",
+                    "name": "selector",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cursus_visualsystems_css"
+                },
+                {
+                    "key": "field_cursus_visualsystems_value",
+                    "label": "value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cursus_visualsystems_css"
+                }
+			]
+        },
+		{
+            "key": "field_cursus_visualsystems_lists",
+            "label": "lijsten Visual Systems",
+            "name": "lists_visual_systems",
+            "type": "repeater",
+            "instructions": "",
+			"sub_fields": [
+				{
+                    "key": "field_cursus_visualsystems_list",
+                    "label": "lijst",
+                    "name": "lijst",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cursus_visualsystems_lists"
+                }
+			]
         }
     ],
     "location": [

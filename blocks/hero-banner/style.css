@@ -63,7 +63,6 @@ body:has(.hero-banner--hero) .site-header {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    min-height: 200px;
     background: rgba(var(--color-white-rgb), 0.08);
     border: 1px solid rgba(var(--color-white-rgb), 0.2);
     border-radius: 30px;
