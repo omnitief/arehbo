@@ -42,6 +42,30 @@
             "append": ""
         },
         {
+            "key": "field_cta_background",
+            "label": "Background",
+            "name": "cta_background",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "light": "Light Blue",
+                "dark": "Dark Blue",
+                "white": "White"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69a35caf255ea",
             "label": "Space",
             "name": "space",

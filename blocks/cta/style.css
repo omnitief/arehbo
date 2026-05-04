@@ -1,3 +1,15 @@
+.cta-section--light {
+    background: var(--bg-light);
+}
+
+.cta-section--dark {
+    background: var(--color-primary);
+}
+
+.cta-section--white {
+    background: var(--color-white);
+}
+
 .cta {
     max-width: 1310px;
     margin-inline: auto;
@@ -77,11 +89,6 @@
     display: flex;
     gap: 16px;
     margin-top: 40px;
-}
-
-.cta__buttons .btn {
-    width: auto;
-    padding: 14px 40px;
 }
 
 .cta__buttons .btn--outline {

@@ -55,6 +55,18 @@
             "instructions": "Waar de tweede knop naartoe linkt.",
             "required": 0,
             "return_format": "array"
+        },
+        {
+            "key": "field_cursus_show_breadcrumbs",
+            "label": "Show breadcrumbs",
+            "name": "show_breadcrumbs",
+            "type": "true_false",
+            "instructions": "Toon broodkruimels in de hero.",
+            "required": 0,
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide"
         }
     ],
     "location": [

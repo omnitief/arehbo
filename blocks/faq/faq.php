@@ -16,6 +16,7 @@ $block_uid = !empty($block['id']) ? $block['id'] : uniqid('faq-');
 <section <?= $full_id; ?> class="faq-block">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
+            <div class="faq-block__inner">
 
         <?php if ($heading) : ?>
             <h2 class="faq-block__heading"><?php echo esc_html($heading); ?></h2>
@@ -59,6 +60,7 @@ $block_uid = !empty($block['id']) ? $block['id'] : uniqid('faq-');
             <?php endforeach; ?>
         </div>
 
+            </div>
         </div>
     </div>
 </section>

@@ -2,6 +2,7 @@
 
 $space       = get_spacing_class(get_field('space'));
 $full_id     = get_full_id(get_field('id'));
+$background  = get_field('cta_background') ?: 'light';
 $image_id    = get_field('image');
 $image_url   = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
 $image_alt   = $image_id ? (get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: '') : '';
@@ -16,56 +17,58 @@ if (empty($title)) {
 
 ?>
 
-<section <?= $full_id; ?> class="cta">
+<section <?= $full_id; ?> class="cta-section cta-section--<?= esc_attr($background); ?>">
     <div class="<?= esc_attr($space); ?>">
-        <div class="container">
-        <div class="cta__grid">
+        <div class="cta">
+            <div class="container">
+                <div class="cta__grid">
 
-            <?php if ($image_url) : ?>
-                <div class="cta__media">
-                    <img
-                        class="cta__image"
-                        src="<?= esc_url($image_url); ?>"
-                        alt="<?= esc_attr($image_alt); ?>"
-                        width="440"
-                        height="362"
-                        loading="lazy"
-                    >
-                    <?php if ($image_label) : ?>
-                        <span class="cta__badge"><?= esc_html($image_label); ?></span>
+                    <?php if ($image_url) : ?>
+                        <div class="cta__media">
+                            <img
+                                class="cta__image"
+                                src="<?= esc_url($image_url); ?>"
+                                alt="<?= esc_attr($image_alt); ?>"
+                                width="440"
+                                height="362"
+                                loading="lazy"
+                            >
+                            <?php if ($image_label) : ?>
+                                <span class="cta__badge"><?= esc_html($image_label); ?></span>
+                            <?php endif; ?>
+                        </div>
                     <?php endif; ?>
-                </div>
-            <?php endif; ?>
 
-            <div class="cta__content">
+                    <div class="cta__content">
 
-                <div class="cta__text">
-                    <h2 class="cta__title"><?= esc_html($title); ?></h2>
-                    <?php if ($description) : ?>
-                        <p class="cta__description"><?= esc_html($description); ?></p>
-                    <?php endif; ?>
-                </div>
+                        <div class="cta__text">
+                            <h2 class="cta__title"><?= esc_html($title); ?></h2>
+                            <?php if ($description) : ?>
+                                <p class="cta__description"><?= esc_html($description); ?></p>
+                            <?php endif; ?>
+                        </div>
 
-                <?php if (!empty($buttons)) : ?>
-                    <div class="cta__buttons">
-                        <?php foreach ($buttons as $i => $btn) :
-                            $label = $btn['label'] ?? '';
-                            $url   = $btn['url']   ?? '';
+                        <?php if (!empty($buttons)) : ?>
+                            <div class="cta__buttons">
+                                <?php foreach ($buttons as $i => $btn) :
+                                    $label = $btn['label'] ?? '';
+                                    $url   = $btn['url']   ?? '';
 
-                            if (empty($label) || empty($url)) continue;
-                        ?>
-                            <?php get_template_part('components/button', '', [
-                                'label'   => $label,
-                                'url'     => $url,
-                                'variant' => $i === 0 ? 'accent' : 'outline',
-                            ]); ?>
-                        <?php endforeach; ?>
+                                    if (empty($label) || empty($url)) continue;
+                                ?>
+                                    <?php get_template_part('components/button', '', [
+                                        'label'   => $label,
+                                        'url'     => $url,
+                                        'variant' => $i === 0 ? 'accent' : 'outline',
+                                    ]); ?>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
-                <?php endif; ?>
 
+                </div>
             </div>
-
-        </div>
         </div>
     </div>
 </section>

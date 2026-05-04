@@ -30,6 +30,18 @@
             "ui_off_text": "Hide"
         },
         {
+            "key": "field_dienst_show_breadcrumbs",
+            "label": "Show breadcrumbs",
+            "name": "dienst_show_breadcrumbs",
+            "type": "true_false",
+            "instructions": "Toon broodkruimels in de hero.",
+            "required": 0,
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide"
+        },
+        {
             "key": "field_dienst_title",
             "label": "Title",
             "name": "dienst_title",
@@ -76,6 +88,147 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all"
+        },
+        {
+            "key": "field_dienst_show_rekentool",
+            "label": "Show rekentool",
+            "name": "dienst_show_rekentool",
+            "type": "true_false",
+            "instructions": "Toon de rekentool (prijs-calculator) onder de hero.",
+            "required": 0,
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide"
+        },
+        {
+            "key": "field_dienst_product_name",
+            "label": "Product name",
+            "name": "dienst_product_name",
+            "type": "text",
+            "instructions": "Shown inside the quantity bar (e.g. brandblussers).",
+            "required": 0,
+            "placeholder": "brandblussers",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dienst_show_rekentool",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_dienst_rekentool_tiers",
+            "label": "Pricing tiers",
+            "name": "rekentool_tiers",
+            "type": "repeater",
+            "instructions": "Define quantity ranges and the price per unit for each range. The last tier's price is shown as the 'vanaf' price.",
+            "required": 0,
+            "layout": "table",
+            "min": 0,
+            "max": 0,
+            "button_label": "Add tier",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dienst_show_rekentool",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_dienst_tier_min",
+                    "label": "Min qty",
+                    "name": "tier_min",
+                    "type": "number",
+                    "required": 1,
+                    "default_value": 1,
+                    "min": 1,
+                    "step": 1,
+                    "parent_repeater": "field_dienst_rekentool_tiers"
+                },
+                {
+                    "key": "field_dienst_tier_max",
+                    "label": "Max qty",
+                    "name": "tier_max",
+                    "type": "number",
+                    "required": 1,
+                    "default_value": 999,
+                    "min": 1,
+                    "step": 1,
+                    "parent_repeater": "field_dienst_rekentool_tiers"
+                },
+                {
+                    "key": "field_dienst_tier_price",
+                    "label": "Price per unit (e.g. 23,50)",
+                    "name": "tier_price",
+                    "type": "text",
+                    "required": 1,
+                    "placeholder": "23,50",
+                    "parent_repeater": "field_dienst_rekentool_tiers"
+                }
+            ]
+        },
+        {
+            "key": "field_dienst_rekentool_button_label",
+            "label": "Button label",
+            "name": "rekentool_button_label",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Bestel nu",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dienst_show_rekentool",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_dienst_rekentool_button_link",
+            "label": "Button link",
+            "name": "rekentool_button_link",
+            "type": "link",
+            "required": 0,
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dienst_show_rekentool",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_dienst_rekentool_button_variant",
+            "label": "Button style",
+            "name": "rekentool_button_variant",
+            "type": "button_group",
+            "required": 0,
+            "choices": {
+                "accent": "Accent",
+                "default": "Outline"
+            },
+            "default_value": "accent",
+            "return_format": "value",
+            "allow_null": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_dienst_show_rekentool",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
         }
     ],
     "location": [

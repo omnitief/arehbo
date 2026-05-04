@@ -93,6 +93,18 @@
             "endpoint": 0
         },
         {
+            "key": "field_cf_show_breadcrumbs",
+            "label": "Show breadcrumbs",
+            "name": "cf_show_breadcrumbs",
+            "type": "true_false",
+            "instructions": "Toon broodkruimels boven het formulier.",
+            "required": 0,
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide"
+        },
+        {
             "key": "field_cf_title",
             "label": "Title",
             "name": "cf_title",

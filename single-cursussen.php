@@ -19,6 +19,12 @@ while (have_posts()) : the_post();
     $el_url      = $el_link['url']    ?? '#';
     $el_target   = $el_link['target'] ?? '_self';
 
+    $show_breadcrumbs = get_field('show_breadcrumbs');
+    if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
+        $show_breadcrumbs = true;
+    }
+    $show_breadcrumbs = (bool) $show_breadcrumbs;
+
     $bg_class = ' cursus-hero-bg--' . esc_attr($background);
 
     if (!$img_id) {
@@ -35,11 +41,13 @@ while (have_posts()) : the_post();
     <div class="cursus-hero-bg<?= $bg_class; ?>">
     <div class="cursus-page__inner container">
 
-        <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
-            <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-            <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
-            <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
-        </nav>
+        <?php if ($show_breadcrumbs) : ?>
+            <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
+                <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
+                <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
+            </nav>
+        <?php endif; ?>
 
         <hr class="cursus-divider">
 
