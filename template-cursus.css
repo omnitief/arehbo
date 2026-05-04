@@ -9,6 +9,40 @@
     }
 }
 
+.cursus-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.cursus-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    transition: opacity 0.2s ease;
+}
+
+.cursus-back:hover {
+    opacity: 0.75;
+}
+
+.cursus-back svg {
+    flex-shrink: 0;
+}
+
+.cursus-hero-bg--dark-blue .cursus-back {
+    color: var(--color-white);
+}
+
 .cursus-breadcrumbs {
     display: flex;
     align-items: center;

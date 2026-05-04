@@ -38,6 +38,9 @@ while (have_posts()) : the_post();
     $rekentool_btn_url     = $rekentool_btn_raw['url']    ?? '';
     $rekentool_btn_target  = $rekentool_btn_raw['target'] ?? '_self';
 
+    $arrow_left   = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M19 12H5M11 18L5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    $diensten_url = home_url('/diensten/');
+
 ?>
 
 <main id="main-content" class="dienst-page">
@@ -45,13 +48,22 @@ while (have_posts()) : the_post();
     <div class="dienst-hero-bg<?= $bg_class; ?>">
     <div class="dienst-page__inner container">
 
-        <?php if ($show_breadcrumbs) : ?>
-            <nav class="dienst-breadcrumbs" aria-label="Breadcrumb">
-                <a class="dienst-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                <span class="dienst-breadcrumbs__sep" aria-hidden="true">/</span>
-                <span class="dienst-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
-            </nav>
-        <?php endif; ?>
+        <div class="dienst-nav">
+
+            <a class="dienst-back" href="<?= esc_url($diensten_url); ?>">
+                <?= $arrow_left; ?>
+                Terug naar alle diensten
+            </a>
+
+            <?php if ($show_breadcrumbs) : ?>
+                <nav class="dienst-breadcrumbs" aria-label="Breadcrumb">
+                    <a class="dienst-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <span class="dienst-breadcrumbs__sep" aria-hidden="true">/</span>
+                    <span class="dienst-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
+                </nav>
+            <?php endif; ?>
+
+        </div>
 
         <hr class="dienst-divider">
 
