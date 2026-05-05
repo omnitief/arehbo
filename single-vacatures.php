@@ -10,6 +10,12 @@ $post_date  = date_i18n('j F Y', get_the_time('U'));
 $uren    = get_field('uren', $post_id);
 $locatie = get_field('locatie', $post_id);
 
+$show_breadcrumbs = get_field('show_breadcrumbs', $post_id);
+if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
+    $show_breadcrumbs = true;
+}
+$show_breadcrumbs = (bool) $show_breadcrumbs;
+
 $crumb_title = mb_strlen($page_title) > 40
     ? mb_substr($page_title, 0, 40) . '...'
     : $page_title;
@@ -37,13 +43,15 @@ $vacatures_url = home_url('/vacatures/');
                     Terug naar alle vacatures
                 </a>
 
-                <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
-                    <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                    <a class="single-hero__crumb-link" href="<?= esc_url($vacatures_url); ?>">Vacatures</a>
-                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                    <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
-                </nav>
+                <?php if ($show_breadcrumbs) : ?>
+                    <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
+                        <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                        <a class="single-hero__crumb-link" href="<?= esc_url($vacatures_url); ?>">Vacatures</a>
+                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                        <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
+                    </nav>
+                <?php endif; ?>
 
             </div>
 

@@ -12,6 +12,37 @@ $video_url = $video_id ? wp_get_attachment_url($video_id)            : '';
 $cards     = array_slice($cards, 0, 3);
 $is_next_section_scroll = ($scroll === 'next-section');
 
+$form_background  = get_field('formulier_background') ?: 'light';
+$form_description = get_field('formulier_description');
+$form_buttons     = get_field('formulier_buttons') ?: [];
+$form_img_id      = get_field('formulier_image');
+$form_id          = get_field('formulier_form_id');
+
+$form_img_url = $form_img_id ? wp_get_attachment_image_url($form_img_id, 'full') : '';
+$form_img_alt = $form_img_id
+    ? (get_post_meta($form_img_id, '_wp_attachment_image_alt', true) ?: $title)
+    : $title;
+
+$form_bg_class = ($form_background === 'dark') ? 'bg-dark' : 'bg-light';
+
+$default_background  = get_field('default_background') ?: 'light-blue';
+$default_description = get_field('default_description');
+$default_btn_text    = get_field('default_button_text');
+$default_btn_link    = get_field('default_button_link') ?: [];
+$default_img_id      = get_field('default_image');
+$default_show_usps   = (bool) get_field('default_show_usps');
+$default_usps        = get_field('default_usp_items') ?: [];
+
+$default_btn_url    = $default_btn_link['url']    ?? '';
+$default_btn_target = $default_btn_link['target'] ?? '_self';
+
+$default_img_url = $default_img_id ? wp_get_attachment_image_url($default_img_id, 'full') : '';
+$default_img_alt = $default_img_id
+    ? (get_post_meta($default_img_id, '_wp_attachment_image_alt', true) ?: $title)
+    : $title;
+
+$default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
+
 ?>
 
 <div class="hero-banner hero-banner--<?= esc_attr($layout); ?>">
@@ -81,6 +112,158 @@ $is_next_section_scroll = ($scroll === 'next-section');
                     </div>
                 <?php endif; ?>
 
+            </div>
+        </section>
+
+        <?php get_template_part('components/colorbar'); ?>
+
+    <?php elseif ($layout === 'default') : ?>
+
+        <div class="hb-default hb-default--<?= esc_attr($default_background); ?>">
+            <div class="hb-default__inner container">
+
+                <div class="hb-default__hero">
+
+                    <div class="hb-default__text">
+
+                        <?php if ($title) : ?>
+                            <h1 class="hb-default__title"><?= esc_html($title); ?></h1>
+                        <?php endif; ?>
+
+                        <?php if ($default_description) : ?>
+                            <div class="hb-default__description">
+                                <?= wp_kses_post($default_description); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($default_btn_text && $default_btn_url) : ?>
+                            <?php get_template_part('components/button', '', [
+                                'label'   => $default_btn_text,
+                                'url'     => $default_btn_url,
+                                'target'  => $default_btn_target,
+                                'variant' => 'accent',
+                                'icon'    => true,
+                            ]); ?>
+                        <?php endif; ?>
+
+                    </div>
+
+                    <?php if ($default_img_url) : ?>
+                        <div class="hb-default__image-wrap">
+                            <img
+                                class="hb-default__image"
+                                src="<?= esc_url($default_img_url); ?>"
+                                alt="<?= esc_attr($default_img_alt); ?>"
+                                width="635"
+                                height="357"
+                                loading="eager"
+                            >
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+
+            </div>
+        </div>
+
+        <?php if ($default_show_usps && !empty($default_usps)) : ?>
+            <section class="usp-list<?= $default_bg_variant === 'dark' ? ' bg-dark' : ' bg-light'; ?>">
+                <div class="container">
+                    <div class="usp-list__wrapper">
+                        <div class="container">
+                            <div class="usp-list__track">
+                                <?php get_template_part('components/usp-items', '', [
+                                    'items'     => $default_usps,
+                                    'show_icon' => true,
+                                ]); ?>
+
+                                <div class="usp-list__clone" aria-hidden="true">
+                                    <?php get_template_part('components/usp-items', '', [
+                                        'items'     => $default_usps,
+                                        'show_icon' => true,
+                                        'label'     => '',
+                                    ]); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <?php get_template_part('components/colorbar'); ?>
+
+    <?php elseif ($layout === 'formulier') : ?>
+
+        <section class="hb-formulier <?= esc_attr($form_bg_class); ?>">
+            <div class="hb-formulier__inner container">
+
+                <div class="hb-formulier__grid">
+
+                    <div class="hb-formulier__left">
+
+                        <?php if ($title) : ?>
+                            <h1 class="hb-formulier__title"><?= esc_html($title); ?></h1>
+                        <?php endif; ?>
+
+                        <?php if ($form_description) : ?>
+                            <div class="hb-formulier__description">
+                                <?= wp_kses_post($form_description); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($form_buttons)) : ?>
+                            <div class="hb-formulier__buttons">
+                                <?php foreach (array_slice($form_buttons, 0, 2) as $btn) :
+                                    $btn_text   = $btn['btn_text']  ?? '';
+                                    $btn_link   = $btn['btn_link']  ?? [];
+                                    $btn_style  = $btn['btn_style'] ?? 'primary';
+                                    $btn_url    = $btn_link['url']    ?? '';
+                                    $btn_target = $btn_link['target'] ?? '_self';
+                                    if (empty($btn_text) || empty($btn_url)) continue;
+                                    $variant = ($btn_style === 'outline') ? 'outline' : 'accent';
+                                ?>
+                                    <?php get_template_part('components/button', '', [
+                                        'label'   => $btn_text,
+                                        'url'     => $btn_url,
+                                        'target'  => $btn_target,
+                                        'variant' => $variant,
+                                        'icon'    => true,
+                                    ]); ?>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($form_img_url) : ?>
+                            <div class="hb-formulier__image-wrap">
+                                <img
+                                    class="hb-formulier__image"
+                                    src="<?= esc_url($form_img_url); ?>"
+                                    alt="<?= esc_attr($form_img_alt); ?>"
+                                    loading="lazy"
+                                >
+                            </div>
+                        <?php endif; ?>
+
+                    </div>
+
+                    <div class="hb-formulier__form-card <?= $form_background === 'dark' ? 'hb-formulier__form-card--dark' : ''; ?>">
+
+                        <?php if ($form_id && class_exists('GFForms')) : ?>
+                            <div class="hb-formulier__form-card-body">
+                                <?php gravity_form((int) $form_id, false, false, false, null, true); ?>
+                            </div>
+                        <?php elseif ($form_id) : ?>
+                            <div class="hb-formulier__form-card-body">
+                                <?= do_shortcode('[gravityforms id="' . intval($form_id) . '" ajax="true"]'); ?>
+                            </div>
+                        <?php else : ?>
+                            <p class="hb-formulier__form-card-empty">No form selected.</p>
+                        <?php endif; ?>
+
+                    </div>
+
+                </div>
             </div>
         </section>
 

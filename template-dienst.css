@@ -16,6 +16,40 @@
 }
 }
 
+.dienst-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.dienst-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    transition: opacity 0.2s ease;
+}
+
+.dienst-back:hover {
+    opacity: 0.75;
+}
+
+.dienst-back svg {
+    flex-shrink: 0;
+}
+
+.dienst-hero-bg--dark-blue .dienst-back {
+    color: var(--color-white);
+}
+
 .dienst-breadcrumbs {
     display: flex;
     align-items: center;

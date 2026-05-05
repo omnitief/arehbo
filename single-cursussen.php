@@ -38,6 +38,11 @@ while (have_posts()) : the_post();
             ARRAY_A
         );
     }
+    $show_breadcrumbs = get_field('show_breadcrumbs');
+    if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
+        $show_breadcrumbs = true;
+    }
+    $show_breadcrumbs = (bool) $show_breadcrumbs;
 
     $bg_class = ' cursus-hero-bg--' . esc_attr($background);
 
@@ -48,6 +53,9 @@ while (have_posts()) : the_post();
     $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
     $img_alt = $img_id ? (get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: $page_title) : '';
 
+    $arrow_left    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M19 12H5M11 18L5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    $cursussen_url = home_url('/cursussen/');
+
 ?>
 
 <main id="main-content" class="cursus-page">
@@ -55,11 +63,22 @@ while (have_posts()) : the_post();
     <div class="cursus-hero-bg<?= $bg_class; ?>">
         <div class="cursus-page__inner container">
 
-            <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
-                <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
-                <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
-            </nav>
+            <div class="cursus-nav">
+
+                <a class="cursus-back" href="<?= esc_url($cursussen_url); ?>">
+                    <?= $arrow_left; ?>
+                    Terug naar alle cursussen
+                </a>
+
+                <?php if ($show_breadcrumbs) : ?>
+                    <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
+                        <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                        <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
+                        <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
+                    </nav>
+                <?php endif; ?>
+
+            </div>
 
             <hr class="cursus-divider">
 

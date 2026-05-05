@@ -27,6 +27,18 @@
             "allow_null": 0
         },
         {
+            "key": "field_blog_show_breadcrumbs",
+            "label": "Show breadcrumbs",
+            "name": "show_breadcrumbs",
+            "type": "true_false",
+            "instructions": "Toon broodkruimels in de hero.",
+            "required": 0,
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide"
+        },
+        {
             "key": "field_blog_tab_auteur",
             "label": "Author",
             "name": "",

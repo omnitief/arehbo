@@ -2,6 +2,11 @@
     background: var(--bg-light);
 }
 
+.faq-block__inner {
+    max-width: 1040px;
+    margin-inline: auto;
+}
+
 .faq-block__heading {
     margin: 0;
     font-family: var(--font-sans);

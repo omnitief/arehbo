@@ -14,6 +14,12 @@ $crumb_title = mb_strlen($blog_title) > 40
 
 $background = get_field('background', $post_id) ?: 'light';
 
+$show_breadcrumbs = get_field('show_breadcrumbs', $post_id);
+if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
+    $show_breadcrumbs = true;
+}
+$show_breadcrumbs = (bool) $show_breadcrumbs;
+
 $author_raw  = get_field('blog_author', $post_id);
 if ($author_raw instanceof WP_Post) {
     $author_post = $author_raw;
@@ -56,13 +62,15 @@ $blogs_url = ($page_for_posts = get_option('page_for_posts'))
                     Terug naar alle blogs
                 </a>
 
-                <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
-                    <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                    <a class="single-hero__crumb-link" href="<?= esc_url($blogs_url); ?>">Blogs</a>
-                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                    <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
-                </nav>
+                <?php if ($show_breadcrumbs) : ?>
+                    <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
+                        <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                        <a class="single-hero__crumb-link" href="<?= esc_url($blogs_url); ?>">Blogs</a>
+                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                        <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
+                    </nav>
+                <?php endif; ?>
 
             </div>
 
