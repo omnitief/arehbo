@@ -18,9 +18,9 @@ if (empty($title)) {
 ?>
 
 <section <?= $full_id; ?> class="cta-section cta-section--<?= esc_attr($background); ?>">
-    <div class="<?= esc_attr($space); ?>">
+    <div class="<?= esc_attr($space); ?> container">
         <div class="cta">
-            <div class="container">
+            <div>
                 <div class="cta__grid">
 
                     <?php if ($image_url) : ?>

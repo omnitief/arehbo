@@ -23,7 +23,7 @@
     grid-template-columns: 440px 1fr;
     gap: 80px;
     align-items: stretch;
-    padding: 0 60px;
+    padding: 60px;
 }
 
 .cta__media {
