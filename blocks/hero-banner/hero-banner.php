@@ -1,5 +1,6 @@
 <?php
 
+$full_id   = get_full_id(get_field('id'));
 $layout    = get_field('layout') ?: 'hero';
 $bg_id     = get_field('background_image');
 $video_id  = get_field('background_video');
@@ -43,9 +44,17 @@ $default_img_alt = $default_img_id
 
 $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
 
+$space_data    = get_field('space') ?: [];
+$space_top     = (!empty($space_data['top'])    && $space_data['top']    !== 'none') ? 'space-top-'    . $space_data['top']    : '';
+$space_bottom  = (!empty($space_data['bottom']) && $space_data['bottom'] !== 'none') ? 'space-bottom-' . $space_data['bottom'] : '';
+
+$has_usp_below = ($layout === 'default' && $default_show_usps && !empty($default_usps));
+$hero_space    = trim($space_top . ($has_usp_below ? '' : ' ' . $space_bottom));
+$usp_space     = $has_usp_below ? $space_bottom : '';
+
 ?>
 
-<div class="hero-banner hero-banner--<?= esc_attr($layout); ?>">
+<div <?= $full_id; ?> class="hero-banner hero-banner--<?= esc_attr($layout); ?>">
 
     <?php if ($layout === 'hero') : ?>
 
@@ -60,6 +69,7 @@ $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
                 </video>
             <?php endif; ?>
 
+            <div class="<?= esc_attr($hero_space); ?>">
             <div class="hb-hero__inner container">
 
                 <?php if ($title) : ?>
@@ -113,6 +123,7 @@ $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
                 <?php endif; ?>
 
             </div>
+            </div>
         </section>
 
         <?php get_template_part('components/colorbar'); ?>
@@ -120,6 +131,7 @@ $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
     <?php elseif ($layout === 'default') : ?>
 
         <div class="hb-default hb-default--<?= esc_attr($default_background); ?>">
+            <div class="<?= esc_attr($hero_space); ?>">
             <div class="hb-default__inner container">
 
                 <div class="hb-default__hero">
@@ -164,29 +176,35 @@ $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
                 </div>
 
             </div>
+            </div>
         </div>
 
         <?php if ($default_show_usps && !empty($default_usps)) : ?>
-            <section class="usp-list<?= $default_bg_variant === 'dark' ? ' bg-dark' : ' bg-light'; ?>">
+            <section class="hb-usps hb-usps--<?= esc_attr($default_bg_variant); ?> <?= esc_attr($usp_space); ?>">
                 <div class="container">
-                    <div class="usp-list__wrapper">
-                        <div class="container">
-                            <div class="usp-list__track">
-                                <?php get_template_part('components/usp-items', '', [
-                                    'items'     => $default_usps,
-                                    'show_icon' => true,
-                                ]); ?>
+                    <ul class="hb-usps__list" aria-label="<?= esc_attr__('Key features', 'arehbo-theme'); ?>">
+                        <?php foreach (array_slice($default_usps, 0, 3) as $usp) :
+                            $usp_text    = $usp['text'] ?? '';
+                            $usp_icon_id = $usp['icon'] ?? null;
+                            if (empty($usp_text)) continue;
 
-                                <div class="usp-list__clone" aria-hidden="true">
-                                    <?php get_template_part('components/usp-items', '', [
-                                        'items'     => $default_usps,
-                                        'show_icon' => true,
-                                        'label'     => '',
-                                    ]); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            $usp_icon_url = $usp_icon_id ? wp_get_attachment_image_url($usp_icon_id, [24, 24]) : '';
+                            $usp_icon_alt = $usp_icon_id ? get_post_meta($usp_icon_id, '_wp_attachment_image_alt', true) : '';
+                        ?>
+                            <li class="hb-usps__item">
+                                <span class="hb-usps__icon" aria-hidden="true">
+                                    <?php if ($usp_icon_url) : ?>
+                                        <img src="<?= esc_url($usp_icon_url); ?>" alt="<?= esc_attr($usp_icon_alt); ?>" width="24" height="24">
+                                    <?php else : ?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                                            <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                        </svg>
+                                    <?php endif; ?>
+                                </span>
+                                <span class="hb-usps__text"><?= esc_html($usp_text); ?></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </section>
         <?php endif; ?>
@@ -196,6 +214,7 @@ $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
     <?php elseif ($layout === 'formulier') : ?>
 
         <section class="hb-formulier <?= esc_attr($form_bg_class); ?>">
+            <div class="<?= esc_attr($hero_space); ?>">
             <div class="hb-formulier__inner container">
 
                 <div class="hb-formulier__grid">
@@ -264,6 +283,7 @@ $default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
                     </div>
 
                 </div>
+            </div>
             </div>
         </section>
 

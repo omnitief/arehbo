@@ -231,8 +231,8 @@
     margin-top: 40px;
 }
 
-.reviews-block--dark .swiper-pagination-progressbar-fill {
-    background-color: var(--color-white);
+.reviews-block--dark .slider-nav__progress .swiper-pagination-progressbar-fill {
+    background-color: #ffffff;
 }
 
 .reviews-block--light .slider-nav__btn {

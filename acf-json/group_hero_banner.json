@@ -3,6 +3,182 @@
     "title": "Hero Banner",
     "fields": [
         {
+            "key": "field_hb_tab_settings",
+            "label": "Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_hb_id",
+            "label": "ID",
+            "name": "id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hb_default_background",
+            "label": "Background",
+            "name": "default_background",
+            "type": "button_group",
+            "instructions": "Background colour for the hero section.",
+            "required": 0,
+            "choices": {
+                "light-blue": "Light Blue",
+                "dark-blue": "Dark Blue"
+            },
+            "default_value": "light-blue",
+            "return_format": "value",
+            "allow_null": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_hb_layout",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_hb_form_background",
+            "label": "Background",
+            "name": "formulier_background",
+            "type": "button_group",
+            "instructions": "Background colour of the formulier section.",
+            "required": 0,
+            "choices": {
+                "light": "Light",
+                "dark": "Dark"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_hb_layout",
+                        "operator": "==",
+                        "value": "formulier"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_hb_space",
+            "label": "Space",
+            "name": "space",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_hb_space_top",
+                    "label": "Top",
+                    "name": "top",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "none",
+                        "small": "small",
+                        "medium": "medium",
+                        "large": "large"
+                    },
+                    "default_value": "none",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_hb_space_bottom",
+                    "label": "Bottom",
+                    "name": "bottom",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "none",
+                        "small": "small",
+                        "medium": "medium",
+                        "large": "large"
+                    },
+                    "default_value": "none",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_hb_tab_content",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_hb_layout",
             "label": "Layout",
             "name": "layout",
@@ -123,30 +299,6 @@
             ]
         },
         {
-            "key": "field_hb_default_background",
-            "label": "Background",
-            "name": "default_background",
-            "type": "button_group",
-            "instructions": "Background colour for the hero section.",
-            "required": 0,
-            "choices": {
-                "light-blue": "Light Blue",
-                "dark-blue": "Dark Blue"
-            },
-            "default_value": "light-blue",
-            "return_format": "value",
-            "allow_null": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hb_layout",
-                        "operator": "==",
-                        "value": "default"
-                    }
-                ]
-            ]
-        },
-        {
             "key": "field_hb_default_description",
             "label": "Description",
             "name": "default_description",
@@ -248,10 +400,10 @@
             "label": "USP items",
             "name": "default_usp_items",
             "type": "repeater",
-            "instructions": "Items displayed in the USP list. Max 5 items.",
+            "instructions": "Items displayed in the USP list. Max 3 items.",
             "required": 0,
             "min": 0,
-            "max": 5,
+            "max": 3,
             "layout": "block",
             "button_label": "Add USP item",
             "conditional_logic": [
@@ -286,30 +438,6 @@
                     "preview_size": "thumbnail",
                     "library": "all"
                 }
-            ]
-        },
-        {
-            "key": "field_hb_form_background",
-            "label": "Background",
-            "name": "formulier_background",
-            "type": "button_group",
-            "instructions": "Background colour of the formulier section.",
-            "required": 0,
-            "choices": {
-                "light": "Light",
-                "dark": "Dark"
-            },
-            "default_value": "light",
-            "return_format": "value",
-            "allow_null": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hb_layout",
-                        "operator": "==",
-                        "value": "formulier"
-                    }
-                ]
             ]
         },
         {

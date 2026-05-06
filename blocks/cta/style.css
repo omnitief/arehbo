@@ -85,6 +85,11 @@
     color: var(--color-white);
 }
 
+.cta__grid .cta__title,
+.cta__grid .cta__description {
+    color: var(--color-white);
+}
+
 .cta__buttons {
     display: flex;
     gap: 16px;

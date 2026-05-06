@@ -184,7 +184,7 @@
 }
 
 .content-archive.bg-dark .swiper-pagination-progressbar-fill {
-    background-color: var(--color-accent);
+    background-color: #ffffff;
 }
 
 .content-archive.bg-light .swiper-pagination-progressbar-fill {
