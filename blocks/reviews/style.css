@@ -336,6 +336,10 @@
 }
 
 @media (max-width: 768px) {
+    .reviews-block {
+        overflow: hidden;
+    }
+
     .reviews-block__header {
         flex-direction: column;
         align-items: flex-start;

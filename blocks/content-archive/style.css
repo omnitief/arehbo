@@ -426,12 +426,16 @@
         max-width: 330px;
     }
 
+    .content-archive--slider {
+        overflow: hidden;
+    }
+
     .content-archive--slider .swiper-slide {
         width: 85vw;
     }
 
     .content-archive__swiper-wrap {
-        padding-left: 20px;
+        padding-left: 0;
     }
 
     .content-archive--slider .content-archive__swiper-wrap,
