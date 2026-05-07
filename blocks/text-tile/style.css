@@ -1,5 +1,7 @@
 .text-tile__description {
     color: var(--color-primary);
+    max-width: 1040px;
+    margin-inline: auto;
 }
 
 .text-tile__description * {
