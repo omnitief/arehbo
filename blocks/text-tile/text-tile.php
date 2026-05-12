@@ -4,12 +4,12 @@ $space       = get_spacing_class(get_field('space'));
 $full_id     = get_full_id(get_field('id'));
 $background  = get_field('background') ?: 'light';
 $description = get_field('description');
-$button      = get_field('button');
+$buttons     = get_field('buttons') ?: [];
 
 $bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
 $bg_class = $bg_map[$background] ?? 'bg-light';
 
-if (empty($description) && empty($button)) {
+if (empty($description) && empty($buttons)) {
     return;
 }
 
@@ -18,24 +18,37 @@ if (empty($description) && empty($button)) {
 <section <?= $full_id; ?> class="text-tile <?= esc_attr($bg_class); ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
+            <div class="text-tile__content">
 
-        <?php if ($description) : ?>
-            <div class="text-tile__description">
-                <?php echo wp_kses_post($description); ?>
+                <?php if ($description) : ?>
+                    <div class="text-tile__description">
+                        <?php echo wp_kses_post($description); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($buttons)) : ?>
+                    <div class="text-tile__buttons">
+                        <?php foreach ($buttons as $i => $btn) :
+                            $link   = $btn['link'] ?? null;
+                            $label  = $link['title'] ?? '';
+                            $url    = $link['url'] ?? '';
+                            $target = $link['target'] ?? '_self';
+                            $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
+
+                            if (empty($label) || empty($url)) continue;
+                        ?>
+                            <?php get_template_part('components/button', '', [
+                                'label'   => $label,
+                                'url'     => $url,
+                                'target'  => $target,
+                                'variant' => $variant,
+                                'icon'    => $variant !== 'outline',
+                            ]); ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
             </div>
-        <?php endif; ?>
-
-        <?php if ($button && !empty($button['url'])) : ?>
-            <div class="text-tile__cta">
-                <?php get_template_part('components/button', '', [
-                    'label'   => $button['title'],
-                    'url'     => $button['url'],
-                    'target'  => $button['target'] ?? '_self',
-                    'variant' => 'default',
-                ]); ?>
-            </div>
-        <?php endif; ?>
-
         </div>
     </div>
 </section>

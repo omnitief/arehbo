@@ -58,7 +58,7 @@
 }
 
 .locations-block__btn-wrap .btn--outline {
-    border-color: rgba(var(--color-white-rgb), 0.3);
+    border-color: var(--color-accent);
     color: var(--color-white);
 }
 

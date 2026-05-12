@@ -15,11 +15,7 @@ while (have_posts()) : the_post();
     $kosten      = get_field('kosten');
     $locatie     = get_field('locatie');
     $duur        = get_field('duur');
-    $inschrijven = get_field('inschrijven_url');
-    $el_label    = get_field('eigen_locatie_label') ?: 'OP EIGEN LOCATIE';
-    $el_link     = get_field('eigen_locatie_link') ?: [];
-    $el_url      = $el_link['url']    ?? '#';
-    $el_target   = $el_link['target'] ?? '_self';
+    $buttons     = get_field('cursus_buttons') ?: [];
 
     $course_id = get_field('id_visual_systems');
 
@@ -38,11 +34,6 @@ while (have_posts()) : the_post();
             ARRAY_A
         );
     }
-    $show_breadcrumbs = get_field('show_breadcrumbs');
-    if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
-        $show_breadcrumbs = true;
-    }
-    $show_breadcrumbs = (bool) $show_breadcrumbs;
 
     $bg_class = ' cursus-hero-bg--' . esc_attr($background);
 
@@ -70,13 +61,11 @@ while (have_posts()) : the_post();
                     Terug naar alle cursussen
                 </a>
 
-                <?php if ($show_breadcrumbs) : ?>
-                    <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
-                        <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                        <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
-                        <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
-                    </nav>
-                <?php endif; ?>
+                <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
+                    <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
+                    <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
+                </nav>
 
             </div>
 
@@ -111,10 +100,10 @@ while (have_posts()) : the_post();
 
             </div><!-- .cursus-hero -->
 
-        </div><!-- .cursus-page__inner -->
+    </div><!-- .cursus-page__inner -->
     </div><!-- .cursus-hero-bg -->
 
-    <?php if ($kosten || $locatie || $duur || $inschrijven) : ?>
+    <?php if ($kosten || $locatie || $duur || !empty($buttons)) : ?>
         <div class="cursus-cards cursus-cards--<?= esc_attr($background); ?><?= $background === 'dark-blue' ? ' cursus-cards--dark' : ''; ?>">
             <div class="container">
 
@@ -146,24 +135,24 @@ while (have_posts()) : the_post();
                     </div>
 
                     <div class="cursus-card__right">
-                        <?php if ($inschrijven) : ?>
-                            <?php get_template_part('components/button', '', [
-                                'label'   => 'DIRECT INSCHRIJVEN',
-                                'url'     => $inschrijven,
-                                'target'  => '_blank',
-                                'variant' => 'accent',
-                                'icon'    => true,
-                            ]); ?>
-                        <?php endif; ?>
+                        <?php if (!empty($buttons)) : ?>
+                            <?php foreach (array_slice($buttons, 0, 3) as $i => $btn) :
+                                $link   = $btn['link'] ?? [];
+                                $label  = $link['title'] ?? '';
+                                $url    = $link['url'] ?? '';
+                                $target = $link['target'] ?? '_self';
+                                $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
 
-                        <?php if ($el_url && $el_url !== '#') : ?>
-                            <?php get_template_part('components/button', '', [
-                                'label'   => $el_label,
-                                'url'     => $el_url,
-                                'target'  => $el_target,
-                                'variant' => 'outline',
-                                'icon'    => false,
-                            ]); ?>
+                                if (empty($label) || empty($url)) continue;
+                            ?>
+                                <?php get_template_part('components/button', '', [
+                                    'label'   => $label,
+                                    'url'     => $url,
+                                    'target'  => $target,
+                                    'variant' => $variant,
+                                    'icon'    => $variant !== 'outline',
+                                ]); ?>
+                            <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
 
@@ -172,6 +161,8 @@ while (have_posts()) : the_post();
             </div>
         </div>
     <?php endif; ?>
+
+    <?php get_template_part('components/colorbar'); ?>
 
     <?php if ($appointments) : ?>
         <div class="cursus-appointments">

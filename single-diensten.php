@@ -8,23 +8,13 @@ while (have_posts()) : the_post();
     $background    = get_field('dienst_background') ?: 'light-blue';
     $show_reviews  = get_field('dienst_show_reviews');
 
-    $show_breadcrumbs = get_field('dienst_show_breadcrumbs');
-    if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
-        $show_breadcrumbs = true;
-    }
-    $show_breadcrumbs = (bool) $show_breadcrumbs;
-
     $hero_title    = get_field('dienst_title');
     $description   = get_field('dienst_description');
-    $btn_text      = get_field('dienst_button_text');
-    $btn_link      = get_field('dienst_button_link') ?: [];
+    $buttons       = get_field('dienst_buttons') ?: [];
     $img_id        = get_field('dienst_image');
 
     $hero_variant = $background === 'dark-blue' ? 'dark' : 'light';
     $bg_class     = ' dienst-hero-bg--' . esc_attr($background);
-
-    $btn_url    = $btn_link['url']    ?? '#';
-    $btn_target = $btn_link['target'] ?? '_self';
 
     $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
     $img_alt = $img_id ? (get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: $page_title) : '';
@@ -55,13 +45,11 @@ while (have_posts()) : the_post();
                 Terug naar alle diensten
             </a>
 
-            <?php if ($show_breadcrumbs) : ?>
-                <nav class="dienst-breadcrumbs" aria-label="Breadcrumb">
-                    <a class="dienst-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                    <span class="dienst-breadcrumbs__sep" aria-hidden="true">/</span>
-                    <span class="dienst-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
-                </nav>
-            <?php endif; ?>
+            <nav class="dienst-breadcrumbs" aria-label="Breadcrumb">
+                <a class="dienst-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                <span class="dienst-breadcrumbs__sep" aria-hidden="true">/</span>
+                <span class="dienst-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
+            </nav>
 
         </div>
 
@@ -85,14 +73,26 @@ while (have_posts()) : the_post();
                     <div class="dienst-hero__description"><?= wp_kses_post($description); ?></div>
                 <?php endif; ?>
 
-                <?php if ($btn_text && $btn_url) : ?>
-                    <?php get_template_part('components/button', '', [
-                        'label'   => $btn_text,
-                        'url'     => $btn_url,
-                        'target'  => $btn_target,
-                        'variant' => 'accent',
-                        'icon'    => true,
-                    ]); ?>
+                <?php if (!empty($buttons)) : ?>
+                    <div class="dienst-hero__buttons">
+                        <?php foreach (array_slice($buttons, 0, 3) as $i => $btn) :
+                            $link   = $btn['link'] ?? [];
+                            $label  = $link['title'] ?? '';
+                            $url    = $link['url'] ?? '';
+                            $target = $link['target'] ?? '_self';
+                            $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
+
+                            if (empty($label) || empty($url)) continue;
+                        ?>
+                            <?php get_template_part('components/button', '', [
+                                'label'   => $label,
+                                'url'     => $url,
+                                'target'  => $target,
+                                'variant' => $variant,
+                                'icon'    => $variant !== 'outline',
+                            ]); ?>
+                        <?php endforeach; ?>
+                    </div>
                 <?php endif; ?>
 
             </div>
@@ -114,6 +114,8 @@ while (have_posts()) : the_post();
 
     </div><!-- .dienst-page__inner -->
     </div><!-- .dienst-hero-bg -->
+
+    <?php get_template_part('components/colorbar'); ?>
 
     <?php if ($show_rekentool) : ?>
         <?php get_template_part('components/rekentool', '', [

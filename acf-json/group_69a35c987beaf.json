@@ -276,10 +276,10 @@
             "sub_fields": [
                 {
                     "key": "field_69a35d77d3fcc",
-                    "label": "Label",
-                    "name": "label",
+                    "label": "Link",
+                    "name": "link",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "link",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -288,20 +288,16 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "maxlength": "",
+                    "return_format": "array",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
                     "parent_repeater": "field_69a35d69d3fcb"
                 },
                 {
-                    "key": "field_69a35d7fd3fcd",
-                    "label": "Url",
-                    "name": "url",
+                    "key": "field_cta_button_variant",
+                    "label": "Variant",
+                    "name": "variant",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "button_group",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -310,12 +306,15 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "maxlength": "",
+                    "choices": {
+                        "accent": "Accent",
+                        "outline": "Outline"
+                    },
+                    "default_value": "accent",
+                    "return_format": "value",
+                    "allow_null": 0,
                     "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
+                    "layout": "horizontal",
                     "parent_repeater": "field_69a35d69d3fcb"
                 }
             ]

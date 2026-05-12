@@ -30,31 +30,38 @@
             "placeholder": "2 dagen"
         },
         {
-            "key": "field_cursus_inschrijven_url",
-            "label": "Inschrijven URL",
-            "name": "inschrijven_url",
-            "type": "url",
-            "instructions": "Link voor de knop 'Direct inschrijven'.",
-            "default_value": "",
-            "placeholder": "https://"
-        },
-        {
-            "key": "field_cursus_eigen_locatie_label",
-            "label": "Op eigen locatie – knoptekst",
-            "name": "eigen_locatie_label",
-            "type": "text",
-            "instructions": "Tekst voor de tweede knop.",
-            "default_value": "OP EIGEN LOCATIE",
-            "placeholder": "OP EIGEN LOCATIE"
-        },
-        {
-            "key": "field_cursus_eigen_locatie_link",
-            "label": "Op eigen locatie – link",
-            "name": "eigen_locatie_link",
-            "type": "link",
-            "instructions": "Waar de tweede knop naartoe linkt.",
+            "key": "field_cursus_buttons",
+            "label": "Buttons",
+            "name": "cursus_buttons",
+            "type": "repeater",
+            "instructions": "Knoppen in de header (link title is de label).",
             "required": 0,
-            "return_format": "array"
+            "layout": "block",
+            "min": 0,
+            "max": 3,
+            "button_label": "Add button",
+            "sub_fields": [
+                {
+                    "key": "field_cursus_buttons_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "required": 0,
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_cursus_buttons_variant",
+                    "label": "Variant",
+                    "name": "variant",
+                    "type": "button_group",
+                    "choices": {
+                        "accent": "Accent",
+                        "outline": "Outline"
+                    },
+                    "default_value": "accent",
+                    "return_format": "value"
+                }
+            ]
         },
 		{
             "key": "field_cursus_visualsystems_id",
@@ -190,18 +197,6 @@
                     "parent_repeater": "field_cursus_visualsystems_lists"
                 }
 			]
-        },
-        {
-            "key": "field_cursus_show_breadcrumbs",
-            "label": "Show breadcrumbs",
-            "name": "show_breadcrumbs",
-            "type": "true_false",
-            "instructions": "Toon broodkruimels in de hero.",
-            "required": 0,
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Show",
-            "ui_off_text": "Hide"
         }
     ],
     "location": [

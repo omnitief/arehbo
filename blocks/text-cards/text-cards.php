@@ -3,11 +3,10 @@
 $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('tc_background') ?: 'dark';
+$tile_type  = get_field('tc_tile_type') ?: 'standard';
 
-$title       = get_field('tc_title');
 $description = get_field('tc_description');
 $button_raw  = get_field('tc_button') ?: [];
-$btn_style   = get_field('tc_button_style') ?: 'default';
 $cards       = get_field('tc_cards') ?: [];
 
 $btn_url    = $button_raw['url']    ?? '';
@@ -16,18 +15,16 @@ $btn_target = $button_raw['target'] ?? '_self';
 
 ?>
 
-<section <?= $full_id; ?> class="text-cards-block text-cards-block--<?= esc_attr($background); ?>">
+<section <?= $full_id; ?> class="text-cards-block text-cards-block--<?= esc_attr($background); ?> text-cards-block--<?= esc_attr($tile_type); ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="text-cards-block__layout container">
 
             <div class="text-cards-block__left">
 
-                <?php if ($title) : ?>
-                    <h2 class="text-cards-block__title"><?= esc_html($title); ?></h2>
-                <?php endif; ?>
-
                 <?php if ($description) : ?>
-                    <p class="text-cards-block__description"><?= nl2br(esc_html($description)); ?></p>
+                    <div class="text-cards-block__description">
+                        <?= wp_kses_post($description); ?>
+                    </div>
                 <?php endif; ?>
 
                 <?php if ($btn_url && $btn_label) : ?>
@@ -36,7 +33,7 @@ $btn_target = $button_raw['target'] ?? '_self';
                             'label'  => $btn_label,
                             'url'    => $btn_url,
                             'target' => $btn_target,
-                            'variant' => $btn_style,
+                            'variant' => 'accent',
                             'icon'   => true,
                         ]); ?>
                     </div>
@@ -53,14 +50,18 @@ $btn_target = $button_raw['target'] ?? '_self';
                         <div class="text-cards-block__card">
 
                             <div class="text-cards-block__card-header">
-                                <span class="text-cards-block__card-icon" aria-hidden="true"></span>
+                                <?php if ($tile_type !== 'checklist') : ?>
+                                    <span class="text-cards-block__card-icon" aria-hidden="true"></span>
+                                <?php endif; ?>
                                 <?php if ($card_title) : ?>
                                     <h3 class="text-cards-block__card-title"><?= esc_html($card_title); ?></h3>
                                 <?php endif; ?>
                             </div>
 
                             <?php if ($card_desc) : ?>
-                                <p class="text-cards-block__card-description"><?= nl2br(esc_html($card_desc)); ?></p>
+                                <div class="text-cards-block__card-description">
+                                    <?= wp_kses_post($card_desc); ?>
+                                </div>
                             <?php endif; ?>
 
                         </div>

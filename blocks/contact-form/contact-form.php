@@ -4,12 +4,6 @@ $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('cf_background') ?: 'dark';
 
-$show_breadcrumbs = get_field('cf_show_breadcrumbs');
-if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
-    $show_breadcrumbs = true;
-}
-$show_breadcrumbs = (bool) $show_breadcrumbs;
-
 $title       = get_field('cf_title');
 $description = get_field('cf_description');
 $author_raw  = get_field('cf_author');
@@ -32,19 +26,9 @@ $author_img_alt = $author_img_id
 
 ?>
 
-<?php $page_title = get_the_title(); ?>
-
 <section <?= $full_id; ?> class="contact-form-block contact-form-block--<?= esc_attr($background); ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="contact-form-block__layout container">
-
-            <?php if ($show_breadcrumbs) : ?>
-                <nav class="contact-form-block__breadcrumbs" aria-label="Breadcrumb">
-                    <a class="contact-form-block__breadcrumbs-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                    <span class="contact-form-block__breadcrumbs-sep" aria-hidden="true">/</span>
-                    <span class="contact-form-block__breadcrumbs-current" aria-current="page"><?= esc_html($page_title); ?></span>
-                </nav>
-            <?php endif; ?>
 
             <div class="contact-form-block__left">
 

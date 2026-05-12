@@ -7,18 +7,6 @@ $title   = get_field('loc_title');
 $desc    = get_field('loc_description');
 $buttons = get_field('loc_buttons') ?: [];
 
-if (empty($buttons)) {
-    $old_text = get_field('loc_button_text');
-    $old_link = get_field('loc_button_link') ?: [];
-    if ($old_text && !empty($old_link['url'])) {
-        $buttons = [[
-            'label'   => $old_text,
-            'link'    => $old_link,
-            'variant' => 'accent',
-        ]];
-    }
-}
-
 $pins    = get_field('loc_pins') ?: [];
 $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
 
@@ -44,14 +32,17 @@ $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
                     <div class="locations-block__btn-wrap">
                         <?php foreach ($buttons as $btn) :
                             $link = $btn['link'] ?? [];
-                            if (empty($btn['label']) || empty($link['url'])) continue;
+                            $label = $link['title'] ?? '';
+                            if (empty($label) || empty($link['url'])) continue;
+
+                            $variant = $btn['variant'] ?? 'accent';
                         ?>
                             <?php get_template_part('components/button', '', [
-                                'label'   => $btn['label'],
+                                'label'   => $label,
                                 'url'     => $link['url'],
                                 'target'  => $link['target'] ?? '_self',
-                                'variant' => $btn['variant'] ?? 'accent',
-                                'icon'    => true,
+                                'variant' => $variant,
+                                'icon'    => $variant !== 'outline',
                             ]); ?>
                         <?php endforeach; ?>
                     </div>

@@ -46,13 +46,16 @@
 
 .archive-hero__divider {
     margin: 40px 0 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 0;
     border: none;
     border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
     opacity: 1;
 }
 
 .archive-hero__title {
-    margin: 60px 0 0;
+    margin: calc(var(--space-3) - 40px) 0 0;
     font-family: var(--font-sans);
     font-size: 60px;
     line-height: 70px;

@@ -1,6 +1,6 @@
 .dienst-page__inner {
     padding-top: calc(var(--header-bottom, 130px) + 45px);
-    padding-bottom: 0;
+    padding-bottom: var(--space-3);
 }
 
 @media (max-width: 990px) {
@@ -85,6 +85,9 @@
 
 .dienst-divider {
     margin: 40px 0 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 0;
     border: none;
     border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
     opacity: 1;
@@ -122,7 +125,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 60px;
-    margin-top: 100px;
+    margin-top: var(--space-3);
     padding-bottom: 0;
 }
 
@@ -183,8 +186,11 @@
     background-position: center;
 }
 
-.dienst-hero__text .btn {
+.dienst-hero__buttons {
     margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .dienst-hero__image-wrap {

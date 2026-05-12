@@ -42,125 +42,6 @@
             "append": ""
         },
         {
-            "key": "field_hb_default_background",
-            "label": "Background",
-            "name": "default_background",
-            "type": "button_group",
-            "instructions": "Background colour for the hero section.",
-            "required": 0,
-            "choices": {
-                "light-blue": "Light Blue",
-                "dark-blue": "Dark Blue"
-            },
-            "default_value": "light-blue",
-            "return_format": "value",
-            "allow_null": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hb_layout",
-                        "operator": "==",
-                        "value": "default"
-                    }
-                ]
-            ]
-        },
-        {
-            "key": "field_hb_form_background",
-            "label": "Background",
-            "name": "formulier_background",
-            "type": "button_group",
-            "instructions": "Background colour of the formulier section.",
-            "required": 0,
-            "choices": {
-                "light": "Light",
-                "dark": "Dark"
-            },
-            "default_value": "light",
-            "return_format": "value",
-            "allow_null": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hb_layout",
-                        "operator": "==",
-                        "value": "formulier"
-                    }
-                ]
-            ]
-        },
-        {
-            "key": "field_hb_space",
-            "label": "Space",
-            "name": "space",
-            "type": "group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_hb_space_top",
-                    "label": "Top",
-                    "name": "top",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "none": "none",
-                        "small": "small",
-                        "medium": "medium",
-                        "large": "large"
-                    },
-                    "default_value": "none",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_hb_space_bottom",
-                    "label": "Bottom",
-                    "name": "bottom",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "none": "none",
-                        "small": "small",
-                        "medium": "medium",
-                        "large": "large"
-                    },
-                    "default_value": "none",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                }
-            ]
-        },
-        {
             "key": "field_hb_tab_content",
             "label": "Content",
             "name": "",
@@ -320,12 +201,18 @@
             ]
         },
         {
-            "key": "field_hb_default_button_text",
-            "label": "Button text",
-            "name": "default_button_text",
-            "type": "text",
-            "instructions": "Label for the CTA button. Leave empty to hide.",
+            "key": "field_hb_default_buttons",
+            "label": "Buttons",
+            "name": "default_buttons",
+            "type": "repeater",
+            "instructions": "Add one or more buttons (link title is used as the label).",
             "required": 0,
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 3,
+            "button_label": "Add button",
+            "rows_per_page": 20,
             "conditional_logic": [
                 [
                     {
@@ -334,24 +221,28 @@
                         "value": "default"
                     }
                 ]
-            ]
-        },
-        {
-            "key": "field_hb_default_button_link",
-            "label": "Button link",
-            "name": "default_button_link",
-            "type": "link",
-            "instructions": "Where the CTA button links to.",
-            "required": 0,
-            "return_format": "array",
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_hb_layout",
-                        "operator": "==",
-                        "value": "default"
-                    }
-                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_hb_default_buttons_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "required": 0,
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_hb_default_buttons_variant",
+                    "label": "Variant",
+                    "name": "variant",
+                    "type": "button_group",
+                    "choices": {
+                        "accent": "Accent",
+                        "outline": "Outline"
+                    },
+                    "default_value": "accent",
+                    "return_format": "value"
+                }
             ]
         },
         {
@@ -467,11 +358,11 @@
             "label": "Buttons",
             "name": "formulier_buttons",
             "type": "repeater",
-            "instructions": "Add up to 2 buttons. A button is only shown when both text and link are filled in.",
+            "instructions": "Add up to 2 buttons (the link title is used as the button label).",
             "required": 0,
             "min": 0,
             "max": 2,
-            "layout": "table",
+            "layout": "block",
             "button_label": "Add button",
             "conditional_logic": [
                 [
@@ -484,31 +375,24 @@
             ],
             "sub_fields": [
                 {
-                    "key": "field_hb_form_btn_text",
-                    "label": "Text",
-                    "name": "btn_text",
-                    "type": "text",
-                    "required": 1
-                },
-                {
                     "key": "field_hb_form_btn_link",
                     "label": "Link",
-                    "name": "btn_link",
+                    "name": "link",
                     "type": "link",
-                    "required": 1,
+                    "required": 0,
                     "return_format": "array"
                 },
                 {
                     "key": "field_hb_form_btn_style",
-                    "label": "Style",
-                    "name": "btn_style",
+                    "label": "Variant",
+                    "name": "variant",
                     "type": "button_group",
                     "required": 0,
                     "choices": {
-                        "primary": "Primary (orange)",
+                        "accent": "Accent",
                         "outline": "Outline"
                     },
-                    "default_value": "primary",
+                    "default_value": "accent",
                     "return_format": "value"
                 }
             ]

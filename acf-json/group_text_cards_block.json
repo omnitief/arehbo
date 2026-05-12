@@ -44,6 +44,29 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_tc_tile_type",
+            "label": "Tile type",
+            "name": "tc_tile_type",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "standard": "Standaard",
+                "checklist": "Checklist"
+            },
+            "default_value": "standard",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_tc_space",
             "label": "Space",
             "name": "space",
@@ -133,30 +156,11 @@
             "endpoint": 0
         },
         {
-            "key": "field_tc_title",
-            "label": "Title",
-            "name": "tc_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_tc_description",
             "label": "Description",
             "name": "tc_description",
             "aria-label": "",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -166,11 +170,11 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
             "allow_in_bindings": 0,
-            "rows": 4,
-            "placeholder": "",
-            "new_lines": ""
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_tc_button",
@@ -187,29 +191,6 @@
                 "id": ""
             },
             "return_format": "array",
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_tc_button_style",
-            "label": "Button style",
-            "name": "tc_button_style",
-            "aria-label": "",
-            "type": "button_group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Outline",
-                "accent": "Accent"
-            },
-            "default_value": "default",
-            "return_format": "value",
-            "allow_null": 0,
             "allow_in_bindings": 0
         },
         {
@@ -259,7 +240,7 @@
                     "label": "Description",
                     "name": "card_description",
                     "aria-label": "",
-                    "type": "textarea",
+                    "type": "wysiwyg",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -269,11 +250,11 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
                     "allow_in_bindings": 0,
-                    "rows": 3,
-                    "placeholder": "",
-                    "new_lines": "",
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
                     "parent_repeater": "field_tc_cards"
                 }
             ]

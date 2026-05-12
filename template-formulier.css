@@ -58,6 +58,9 @@
 
 .formulier-divider {
     margin: 40px 0 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 0;
     border: none;
     border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
 }

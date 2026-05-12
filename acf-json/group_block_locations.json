@@ -100,14 +100,6 @@
             "max": 3,
             "sub_fields": [
                 {
-                    "key": "field_loc_btn_label",
-                    "label": "Label",
-                    "name": "label",
-                    "type": "text",
-                    "required": 1,
-                    "placeholder": "View all locations"
-                },
-                {
                     "key": "field_loc_btn_link",
                     "label": "Link",
                     "name": "link",

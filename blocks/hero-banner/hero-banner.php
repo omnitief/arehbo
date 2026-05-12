@@ -13,7 +13,6 @@ $video_url = $video_id ? wp_get_attachment_url($video_id)            : '';
 $cards     = array_slice($cards, 0, 3);
 $is_next_section_scroll = ($scroll === 'next-section');
 
-$form_background  = get_field('formulier_background') ?: 'light';
 $form_description = get_field('formulier_description');
 $form_buttons     = get_field('formulier_buttons') ?: [];
 $form_img_id      = get_field('formulier_image');
@@ -24,33 +23,21 @@ $form_img_alt = $form_img_id
     ? (get_post_meta($form_img_id, '_wp_attachment_image_alt', true) ?: $title)
     : $title;
 
-$form_bg_class = ($form_background === 'dark') ? 'bg-dark' : 'bg-light';
+$form_bg_class = 'bg-light';
 
-$default_background  = get_field('default_background') ?: 'light-blue';
+$default_background  = 'light-blue';
 $default_description = get_field('default_description');
-$default_btn_text    = get_field('default_button_text');
-$default_btn_link    = get_field('default_button_link') ?: [];
+$default_buttons     = get_field('default_buttons') ?: [];
 $default_img_id      = get_field('default_image');
 $default_show_usps   = (bool) get_field('default_show_usps');
 $default_usps        = get_field('default_usp_items') ?: [];
-
-$default_btn_url    = $default_btn_link['url']    ?? '';
-$default_btn_target = $default_btn_link['target'] ?? '_self';
 
 $default_img_url = $default_img_id ? wp_get_attachment_image_url($default_img_id, 'full') : '';
 $default_img_alt = $default_img_id
     ? (get_post_meta($default_img_id, '_wp_attachment_image_alt', true) ?: $title)
     : $title;
 
-$default_bg_variant = ($default_background === 'dark-blue') ? 'dark' : 'light';
-
-$space_data    = get_field('space') ?: [];
-$space_top     = (!empty($space_data['top'])    && $space_data['top']    !== 'none') ? 'space-top-'    . $space_data['top']    : '';
-$space_bottom  = (!empty($space_data['bottom']) && $space_data['bottom'] !== 'none') ? 'space-bottom-' . $space_data['bottom'] : '';
-
-$has_usp_below = ($layout === 'default' && $default_show_usps && !empty($default_usps));
-$hero_space    = trim($space_top . ($has_usp_below ? '' : ' ' . $space_bottom));
-$usp_space     = $has_usp_below ? $space_bottom : '';
+$default_bg_variant = 'light';
 
 ?>
 
@@ -69,7 +56,6 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
                 </video>
             <?php endif; ?>
 
-            <div class="<?= esc_attr($hero_space); ?>">
             <div class="hb-hero__inner container">
 
                 <?php if ($title) : ?>
@@ -123,7 +109,6 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
                 <?php endif; ?>
 
             </div>
-            </div>
         </section>
 
         <?php get_template_part('components/colorbar'); ?>
@@ -131,8 +116,16 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
     <?php elseif ($layout === 'default') : ?>
 
         <div class="hb-default hb-default--<?= esc_attr($default_background); ?>">
-            <div class="<?= esc_attr($hero_space); ?>">
             <div class="hb-default__inner container">
+
+                <?php $breadcrumb_title = $title ?: get_the_title(); ?>
+                <nav class="archive-breadcrumbs" aria-label="Breadcrumb">
+                    <a class="archive-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <span class="archive-breadcrumbs__sep" aria-hidden="true">/</span>
+                    <span class="archive-breadcrumbs__current" aria-current="page"><?= esc_html($breadcrumb_title); ?></span>
+                </nav>
+
+                <hr class="archive-hero__divider">
 
                 <div class="hb-default__hero">
 
@@ -148,14 +141,26 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
                             </div>
                         <?php endif; ?>
 
-                        <?php if ($default_btn_text && $default_btn_url) : ?>
-                            <?php get_template_part('components/button', '', [
-                                'label'   => $default_btn_text,
-                                'url'     => $default_btn_url,
-                                'target'  => $default_btn_target,
-                                'variant' => 'accent',
-                                'icon'    => true,
-                            ]); ?>
+                        <?php if (!empty($default_buttons)) : ?>
+                            <div class="hb-default__buttons">
+                                <?php foreach (array_slice($default_buttons, 0, 3) as $i => $btn) :
+                                    $link   = $btn['link'] ?? [];
+                                    $label  = $link['title'] ?? '';
+                                    $url    = $link['url'] ?? '';
+                                    $target = $link['target'] ?? '_self';
+                                    $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
+
+                                    if (empty($label) || empty($url)) continue;
+                                ?>
+                                    <?php get_template_part('components/button', '', [
+                                        'label'   => $label,
+                                        'url'     => $url,
+                                        'target'  => $target,
+                                        'variant' => $variant,
+                                        'icon'    => $variant !== 'outline',
+                                    ]); ?>
+                                <?php endforeach; ?>
+                            </div>
                         <?php endif; ?>
 
                     </div>
@@ -176,11 +181,10 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
                 </div>
 
             </div>
-            </div>
         </div>
 
         <?php if ($default_show_usps && !empty($default_usps)) : ?>
-            <section class="hb-usps hb-usps--<?= esc_attr($default_bg_variant); ?> <?= esc_attr($usp_space); ?>">
+            <section class="hb-usps hb-usps--<?= esc_attr($default_bg_variant); ?>">
                 <div class="container">
                     <ul class="hb-usps__list" aria-label="<?= esc_attr__('Key features', 'arehbo-theme'); ?>">
                         <?php foreach (array_slice($default_usps, 0, 3) as $usp) :
@@ -214,8 +218,16 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
     <?php elseif ($layout === 'formulier') : ?>
 
         <section class="hb-formulier <?= esc_attr($form_bg_class); ?>">
-            <div class="<?= esc_attr($hero_space); ?>">
             <div class="hb-formulier__inner container">
+
+                <?php $breadcrumb_title = $title ?: get_the_title(); ?>
+                <nav class="archive-breadcrumbs" aria-label="Breadcrumb">
+                    <a class="archive-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <span class="archive-breadcrumbs__sep" aria-hidden="true">/</span>
+                    <span class="archive-breadcrumbs__current" aria-current="page"><?= esc_html($breadcrumb_title); ?></span>
+                </nav>
+
+                <hr class="archive-hero__divider">
 
                 <div class="hb-formulier__grid">
 
@@ -233,21 +245,21 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
 
                         <?php if (!empty($form_buttons)) : ?>
                             <div class="hb-formulier__buttons">
-                                <?php foreach (array_slice($form_buttons, 0, 2) as $btn) :
-                                    $btn_text   = $btn['btn_text']  ?? '';
-                                    $btn_link   = $btn['btn_link']  ?? [];
-                                    $btn_style  = $btn['btn_style'] ?? 'primary';
-                                    $btn_url    = $btn_link['url']    ?? '';
-                                    $btn_target = $btn_link['target'] ?? '_self';
-                                    if (empty($btn_text) || empty($btn_url)) continue;
-                                    $variant = ($btn_style === 'outline') ? 'outline' : 'accent';
+                                <?php foreach (array_slice($form_buttons, 0, 2) as $i => $btn) :
+                                    $link   = $btn['link'] ?? [];
+                                    $label  = $link['title'] ?? '';
+                                    $url    = $link['url'] ?? '';
+                                    $target = $link['target'] ?? '_self';
+                                    $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
+
+                                    if (empty($label) || empty($url)) continue;
                                 ?>
                                     <?php get_template_part('components/button', '', [
-                                        'label'   => $btn_text,
-                                        'url'     => $btn_url,
-                                        'target'  => $btn_target,
+                                        'label'   => $label,
+                                        'url'     => $url,
+                                        'target'  => $target,
                                         'variant' => $variant,
-                                        'icon'    => true,
+                                        'icon'    => $variant !== 'outline',
                                     ]); ?>
                                 <?php endforeach; ?>
                             </div>
@@ -266,7 +278,7 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
 
                     </div>
 
-                    <div class="hb-formulier__form-card <?= $form_background === 'dark' ? 'hb-formulier__form-card--dark' : ''; ?>">
+                    <div class="hb-formulier__form-card">
 
                         <?php if ($form_id && class_exists('GFForms')) : ?>
                             <div class="hb-formulier__form-card-body">
@@ -283,7 +295,6 @@ $usp_space     = $has_usp_below ? $space_bottom : '';
                     </div>
 
                 </div>
-            </div>
             </div>
         </section>
 

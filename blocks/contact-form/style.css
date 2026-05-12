@@ -11,51 +11,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: start;
-    padding-top: calc(var(--header-bottom, 130px) + 45px);
-}
-
-.contact-form-block__breadcrumbs {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contact-form-block__breadcrumbs-link,
-.contact-form-block__breadcrumbs-sep {
-    font-family: var(--font-base);
-    font-size: 19px;
-    line-height: 30px;
-    font-weight: 400;
-    letter-spacing: 0;
-    opacity: 0.5;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-}
-
-.contact-form-block__breadcrumbs-link:hover {
-    opacity: 0.75;
-}
-
-.contact-form-block__breadcrumbs-current {
-    font-family: var(--font-base);
-    font-size: 19px;
-    line-height: 30px;
-    font-weight: 400;
-    letter-spacing: 0;
-    opacity: 1;
-}
-
-.contact-form-block--dark .contact-form-block__breadcrumbs-link,
-.contact-form-block--dark .contact-form-block__breadcrumbs-sep,
-.contact-form-block--dark .contact-form-block__breadcrumbs-current {
-    color: var(--color-white);
-}
-
-.contact-form-block--light .contact-form-block__breadcrumbs-link,
-.contact-form-block--light .contact-form-block__breadcrumbs-sep,
-.contact-form-block--light .contact-form-block__breadcrumbs-current {
-    color: var(--color-primary);
 }
 
 .contact-form-block__left {
@@ -224,9 +179,6 @@
 }
 
 @media (max-width: 990px) {
-    .contact-form-block__layout {
-        padding-top: calc(var(--header-bottom, 80px) + 20px);
-    }
 }
 
 @media (max-width: 768px) {
