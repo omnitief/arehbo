@@ -88,6 +88,17 @@
     margin-right: 12px;
 }
 
+@media (max-width: 1600px) {
+    .page-tiles__swiper-wrap {
+        margin-top: 90px;
+    }
+
+    .tile-card__btn-label {
+        font-size: 17px;
+        line-height: 28px;
+    }
+}
+
 .tile-card__btn {
     display: inline-flex;
     align-items: center;

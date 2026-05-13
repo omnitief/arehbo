@@ -314,6 +314,35 @@
     color: var(--color-white);
 }
 
+@media (max-width: 1600px) {
+    .footer-section-title {
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    .footer-bottom-nav {
+        margin-top: 80px;
+    }
+
+    .footer-bottom-nav__link,
+    .footer-bottom-nav__sep {
+        font-size: 17px;
+        line-height: 30px;
+    }
+
+    .footer-copyright {
+        margin-top: 80px;
+        padding: 40px 44px;
+        gap: 32px;
+    }
+
+    .footer-copyright__text,
+    .footer-copyright__links a {
+        font-size: 17px;
+        line-height: 24px;
+    }
+}
+
 @media (max-width: 1440px) {
     .footer-nav__list {
         column-gap: 60px;

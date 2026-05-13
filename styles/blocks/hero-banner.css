@@ -407,6 +407,24 @@ body:has(.hero-banner--hero) .site-header {
     object-fit: cover;
 }
 
+@media (max-width: 1600px) {
+    .hb-scroll-row {
+        margin-top: 56px;
+    }
+
+    .hb-card .tile-card__btn-label,
+    .hb-scroll__label,
+    .hb-default .archive-breadcrumbs__link,
+    .hb-default .archive-breadcrumbs__sep,
+    .hb-default .archive-breadcrumbs__current,
+    .hb-formulier .archive-breadcrumbs__link,
+    .hb-formulier .archive-breadcrumbs__sep,
+    .hb-formulier .archive-breadcrumbs__current {
+        font-size: 17px;
+        line-height: 28px;
+    }
+}
+
 @media (max-width: 1500px) {
     .hb-default__image {
         width: 480px;

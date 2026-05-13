@@ -393,6 +393,37 @@
     border-color: rgba(var(--color-primary-rgb), 0.2);
 }
 
+@media (max-width: 1600px) {
+    .content-archive__nav {
+        margin-top: 56px;
+    }
+
+    .archive-grid {
+        margin-top: 80px;
+    }
+
+    .archive-pagination {
+        margin-top: 90px;
+    }
+
+    .archive-card__meta-label,
+    .archive-card__meta-value,
+    .archive-card__btn-label,
+    .archive-filter__label,
+    .archive-page-number,
+    .archive-page-ellipsis {
+        font-size: 17px;
+        line-height: 28px;
+    }
+
+    .archive-page-number,
+    .archive-page-ellipsis {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+    }
+}
+
 @media (min-width: 1920px) {
     .archive-card {
         gap: 45px;

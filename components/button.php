@@ -12,11 +12,17 @@ if (empty($label) || empty($url)) {
 
 $is_external = $target === '_blank';
 $classes     = 'btn btn--' . esc_attr($variant) . ($icon ? ' btn--icon' : '');
+
+$a11y_label = null;
+if (in_array($variant, ['accent', 'outline'], true)) {
+    $a11y_label = 'Navigeren naar: ' . trim(wp_strip_all_tags($label));
+}
 ?>
 
 <a
     href="<?php echo esc_url($url); ?>"
     class="<?php echo $classes; ?>"
+    <?php if ($a11y_label) : ?>aria-label="<?php echo esc_attr($a11y_label); ?>"<?php endif; ?>
     <?php if ($is_external) : ?>target="_blank" rel="noopener noreferrer"<?php endif; ?>
 >
     <?php echo esc_html($label); ?>

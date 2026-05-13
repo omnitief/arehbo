@@ -59,6 +59,15 @@ Version: 1.0
 
 }
 
+@media (max-width: 1600px) and (min-width: 1200px) {
+    :root {
+        --space-1: 32px;
+        --space-2: 64px;
+        --space-3: 120px;
+        --space-4: 160px;
+    }
+}
+
 @media (max-width: 1199px) {
     :root {
         --space-container: 20px;
@@ -102,6 +111,10 @@ Version: 1.0
     :root { --space-container: 6.7rem; }
 }
 
+@media (max-width: 1600px) and (min-width: 1200px) {
+    :root { --space-container: 4rem; }
+}
+
 @media (min-width: 1920px) {
     .container {
      max-width: 1580px;
@@ -133,6 +146,12 @@ body {
     overflow-x: hidden;
 }
 
+@media (max-width: 1600px) {
+    body {
+        font-size: 18px;
+    }
+}
+
 @media (min-width: 1900px) {
     body {
         font-size: 20px;
@@ -141,13 +160,13 @@ body {
 
 @media (max-width: 990px) {
     body {
-        font-size: 19px;
+        font-size: 18px;
     }
 }
 
 @media (max-width: 500px) {
     body {
-        font-size: 19px;
+        font-size: 17px;
     }
 }
 
@@ -180,6 +199,28 @@ h3 {
 h4 {
     font-size: 24px;
     line-height: 34px;
+}
+
+@media (max-width: 1600px) {
+    h1 {
+        font-size: 56px;
+        line-height: 66px;
+    }
+
+    h2 {
+        font-size: 44px;
+        line-height: 54px;
+    }
+
+    h3 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    h4 {
+        font-size: 23px;
+        line-height: 33px;
+    }
 }
 
 h5 {
@@ -331,6 +372,24 @@ h6 {
 .btn--default:hover .btn__icon svg path {
     stroke: var(--color-accent);
 }
+
+@media (max-width: 1600px) {
+    .btn {
+        font-size: 17px;
+        padding: 12px 20px;
+    }
+
+    .btn--icon {
+        padding: 8px 8px 8px 22px;
+        gap: 22px;
+    }
+
+    .btn__icon {
+        width: 30px;
+        height: 30px;
+    }
+}
+
 .btn--default {
     background-color: var(--color-primary);
     color: var(--color-white);

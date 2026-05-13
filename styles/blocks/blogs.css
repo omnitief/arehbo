@@ -144,6 +144,17 @@
     justify-content: flex-end;
 }
 
+@media (max-width: 1600px) {
+    .blogs__footer {
+        margin-top: 56px;
+    }
+
+    .blog-card__reading-time span,
+    .blog-card__btn-label {
+        font-size: 17px;
+        line-height: 28px;
+    }
+}
 
 @media (max-width: 1024px) {
     .blogs__title {

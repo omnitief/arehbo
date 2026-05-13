@@ -5,7 +5,7 @@
     justify-content: center;
 }
 
-.usp-list.bg-dark .container {
+.usp-list.bg-dark .usp-list__wrapper .container {
     border-color: rgba(var(--color-white-rgb), 0.2);
 }
 
@@ -66,7 +66,7 @@
 }
 
 @media (max-width: 1400px) {
-    .usp-list .container {
+    .usp-list .usp-list__wrapper .container {
         overflow: hidden;
         padding-block: 40px;
     }
@@ -100,7 +100,7 @@
 
 @media (max-width: 1600px) and (min-width: 1401px) {
     .usp-list .usp-list__wrapper .container {
-        padding-inline: 40px;
+        padding-inline: 60px;
     }
 }
 
@@ -110,7 +110,7 @@
 }
 
 @media (min-width: 1025px) {
-    .usp-list .container {
+    .usp-list .usp-list__wrapper .container {
         padding-block: 60px;
     }
 }
