@@ -1,0 +1,274 @@
+.formulier-page {
+    min-height: 100vh;
+    background: var(--bg-light);
+}
+
+.formulier-page__inner {
+    padding-top: calc(var(--header-bottom, 130px) + 45px);
+}
+
+@media (max-width: 990px) {
+    .formulier-page__inner {
+        padding-top: calc(var(--header-bottom, 80px) + 20px);
+    }
+}
+
+.formulier-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.formulier-breadcrumbs__link,
+.formulier-breadcrumbs__sep {
+    font-family: var(--font-base);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.formulier-breadcrumbs__link:hover {
+    opacity: 0.75;
+}
+
+.formulier-breadcrumbs__current {
+    font-family: var(--font-base);
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+.formulier-divider {
+    margin: 40px 0 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 0;
+    border: none;
+    border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
+}
+
+.formulier-stack {
+    max-width: 1040px;
+    margin: 100px auto 0;
+}
+
+.formulier-title {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 60px;
+    line-height: 70px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--color-primary);
+}
+
+.formulier-description {
+    margin-top: 30px;
+    font-family: var(--font-sans);
+    line-height: 32px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+}
+
+.formulier-description p:last-child {
+    margin-bottom: 0;
+}
+
+.formulier-description ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 30px 0 0;
+}
+
+.formulier-description ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.formulier-description ul li:last-child {
+    margin-bottom: 0;
+}
+
+.formulier-description ul li::before {
+    content: '';
+    flex-shrink: 0;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius-small);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'%3E%3Cpath fill='%23ffffff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: center;
+}
+
+.formulier-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    margin-top: 55px;
+}
+
+.formulier-form-card {
+    margin-top: var(--space-2);
+    background: var(--bg-surface);
+    border: 1px solid #1516171A;
+    border-radius: 30px;
+    padding: 50px;
+}
+
+.formulier-form-card__title {
+    margin: 0 0 10px;
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.formulier-form-card label.wpforms-field-label,
+.formulier-form-card .wpforms-field-label,
+.formulier-form-card .wpforms-field-sublabel,
+.formulier-form-card .wpforms-field-label-inline {
+    font-family: var(--font-sans) !important;
+    font-size: 19px !important;
+    line-height: 30px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    color: var(--color-primary) !important;
+}
+
+.formulier-form-card .wpforms-submit-container .wpforms-submit,
+.formulier-form-card .wpforms-submit {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 30px !important;
+    padding: 10px 10px 10px 28px !important;
+    background: var(--color-accent) !important;
+    border: none !important;
+    border-radius: 32px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 19px !important;
+    font-weight: 600 !important;
+    color: var(--color-white) !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: auto !important;
+}
+
+.formulier-form-card .wpforms-submit-container .wpforms-submit:hover,
+.formulier-form-card .wpforms-submit:hover {
+    background: var(--color-accent-dark) !important;
+}
+
+.formulier-form-card .wpforms-submit-container .wpforms-submit::after,
+.formulier-form-card .wpforms-submit::after {
+    content: '';
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 33px;
+    height: 33px;
+    border-radius: 17px;
+    background-color: #F5F9F9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' stroke='%23004081' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+}
+
+.formulier-form-card__empty {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    color: var(--color-primary);
+    opacity: 0.5;
+}
+
+@media (max-width: 1500px) {
+    .formulier-title {
+        font-size: 50px;
+        line-height: 60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .formulier-stack {
+        margin-top: 70px;
+    }
+
+    .formulier-title {
+        font-size: 42px;
+        line-height: 52px;
+    }
+
+    .formulier-form-card {
+        padding: 36px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .formulier-form-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .formulier-breadcrumbs__link,
+    .formulier-breadcrumbs__sep,
+    .formulier-breadcrumbs__current {
+        font-size: 19px;
+        line-height: 24px;
+    }
+
+    .formulier-divider {
+        margin-top: 24px;
+    }
+
+    .formulier-stack {
+        margin-top: 40px;
+    }
+
+    .formulier-title {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    .formulier-description {
+        margin-top: 20px;
+        font-size: 19px;
+        line-height: 28px;
+    }
+
+    .formulier-buttons {
+        margin-top: 36px;
+        gap: 14px;
+    }
+
+    .formulier-btn {
+        gap: 20px;
+        padding: 8px 8px 8px 22px;
+    }
+
+    .formulier-form-card {
+        padding: 24px;
+    }
+
+    .formulier-form-card__title {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+}

@@ -57,8 +57,7 @@
             },
             "choices": {
                 "light": "Light Blue",
-                "dark": "Dark Blue",
-                "white": "White"
+                "dark": "Dark Blue"
             },
             "default_value": "light",
             "return_format": "value",
@@ -325,7 +324,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cta"
+                "value": "acf/cta"
             }
         ]
     ],

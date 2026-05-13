@@ -2,7 +2,7 @@
   "name": "acf/button",
   "title": "Button",
   "description": "Standard Arehbo button — accent, default, or outline variant.",
-  "category": "design",
+  "category": "custom_blocks",
   "icon": "button",
   "keywords": ["button", "cta", "link"],
   "acf": {
@@ -13,6 +13,4 @@
     "anchor": false,
     "align": false,
     "customClassName": false
-  },
-  "example": {}
-}
+  }}

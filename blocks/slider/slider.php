@@ -3,6 +3,7 @@
 $space          = get_spacing_class(get_field('space'));
 $full_id        = get_full_id(get_field('id'));
 $layout         = get_field('layout') ?: 'photo';
+$background     = get_field('background') ?: 'dark';
 $title          = get_field('title');
 $photo_slides   = get_field('photo_slides');
 $process_slides = get_field('process_slides');
@@ -75,7 +76,18 @@ if ($layout === 'photo' && !empty($photo_slides)) {
 
 ?>
 
-<section <?= $full_id; ?> class="slider-block slider-block--<?= esc_attr($layout); ?>">
+<?php
+$legacy_map = [
+    'primary'     => 'dark',
+    'dark'        => 'dark',
+    'light'       => 'light',
+    'white'       => 'light',
+    'transparent' => 'light',
+];
+$background = $legacy_map[$background] ?? 'dark';
+?>
+
+<section <?= $full_id; ?> class="slider-block slider-block--<?= esc_attr($layout); ?> <?= $background === 'dark' ? 'bg-dark' : 'bg-light'; ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
 

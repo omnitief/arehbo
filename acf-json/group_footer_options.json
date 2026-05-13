@@ -20,20 +20,6 @@
             "default_value": "AREHBO",
             "placeholder": "AREHBO"
         },
-        {
-            "key": "field_footer_marquee_bg",
-            "label": "Achtergrond marquee",
-            "name": "footer_marquee_bg",
-            "type": "button_group",
-            "instructions": "Achtergrondkleur van de marquee sectie.",
-            "choices": {
-                "light": "Lichtblauw",
-                "dark": "Donkerblauw"
-            },
-            "default_value": "light",
-            "return_format": "value",
-            "allow_null": 0
-        },
 
         {
             "key": "field_footer_tab_logo",

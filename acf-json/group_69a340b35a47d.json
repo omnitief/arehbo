@@ -1,6 +1,6 @@
 {
     "key": "group_69a340b35a47d",
-    "title": "Text Tile",
+    "title": "Text",
     "fields": [
         {
             "key": "field_69a341048041e",
@@ -136,14 +136,14 @@
                 "id": ""
             },
             "choices": {
-                "dark": "Dark Blue",
-                "light": "Light Blue",
-                "white": "White"
+                "dark": "Dark blue",
+                "light": "Light blue"
             },
             "default_value": "light",
             "return_format": "value",
             "allow_null": 0,
-            "allow_in_bindings": 0
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_69a343e88041f",
@@ -257,7 +257,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/text-tile"
+                "value": "acf/text-tile"
             }
         ]
     ],

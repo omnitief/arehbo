@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Inschrijven
+ * Template Name: Cursuskalender
  */
 
 get_header();

@@ -31,7 +31,12 @@
                     "label": "Top",
                     "name": "top",
                     "type": "select",
-                    "choices": { "none": "None", "small": "Small", "medium": "Medium", "large": "Large" },
+                    "choices": {
+                        "none": "None",
+                        "small": "Small",
+                        "medium": "Medium",
+                        "large": "Large"
+                    },
                     "default_value": "medium",
                     "return_format": "value",
                     "allow_null": 0,
@@ -42,7 +47,12 @@
                     "label": "Bottom",
                     "name": "bottom",
                     "type": "select",
-                    "choices": { "none": "None", "small": "Small", "medium": "Medium", "large": "Large" },
+                    "choices": {
+                        "none": "None",
+                        "small": "Small",
+                        "medium": "Medium",
+                        "large": "Large"
+                    },
                     "default_value": "medium",
                     "return_format": "value",
                     "allow_null": 0,
@@ -55,40 +65,74 @@
             "label": "Background",
             "name": "background",
             "type": "button_group",
-            "choices": { "dark": "Dark Blue", "light": "Light Blue", "white": "White" },
+            "choices": {
+                "dark": "Dark blue",
+                "light": "Light blue"
+            },
             "default_value": "light",
             "return_format": "value",
-            "allow_null": 0
+            "allow_null": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_carchive_layout",
             "label": "Layout",
             "name": "layout",
             "type": "button_group",
-            "choices": { "slider": "Slider", "grid": "Grid" },
+            "choices": {
+                "slider": "Slider",
+                "grid": "Grid"
+            },
             "default_value": "slider",
             "return_format": "value",
-            "allow_null": 0
+            "allow_null": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
         },
         {
             "key": "field_carchive_post_type",
             "label": "Content type",
             "name": "post_type",
             "type": "button_group",
-            "choices": { "cursussen": "Cursussen", "diensten": "Diensten", "vacatures": "Vacatures" },
+            "choices": {
+                "cursussen": "Cursussen",
+                "diensten": "Diensten",
+                "vacatures": "Vacatures"
+            },
             "default_value": "cursussen",
             "return_format": "value",
-            "allow_null": 0
+            "allow_null": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
         },
         {
             "key": "field_carchive_display_mode",
             "label": "Display mode",
             "name": "display_mode",
             "type": "button_group",
-            "choices": { "latest": "Latest 6", "category": "By category", "manual": "Manual selection" },
+            "choices": {
+                "latest": "Latest 6",
+                "category": "By category",
+                "manual": "Manual selection"
+            },
             "default_value": "latest",
             "return_format": "value",
-            "allow_null": 0
+            "allow_null": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "slider"
+                    }
+                ]
+            ]
         },
         {
             "key": "field_carchive_posts",
@@ -97,9 +141,24 @@
             "type": "post_object",
             "instructions": "Visible when display mode is Manual selection",
             "conditional_logic": [
-                [{ "field": "field_carchive_display_mode", "operator": "==", "value": "manual" }]
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "slider"
+                    },
+                    {
+                        "field": "field_carchive_display_mode",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ]
             ],
-            "post_type": ["cursussen", "diensten", "vacatures"],
+            "post_type": [
+                "cursussen",
+                "diensten",
+                "vacatures"
+            ],
             "taxonomy": [],
             "return_format": "object",
             "multiple": 1,
@@ -115,8 +174,21 @@
             "instructions": "Visible when display mode is By category",
             "conditional_logic": [
                 [
-                    { "field": "field_carchive_display_mode", "operator": "==", "value": "category" },
-                    { "field": "field_carchive_post_type",    "operator": "==", "value": "cursussen" }
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "slider"
+                    },
+                    {
+                        "field": "field_carchive_display_mode",
+                        "operator": "==",
+                        "value": "category"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "==",
+                        "value": "cursussen"
+                    }
                 ]
             ],
             "taxonomy": "cursus_categorie",
@@ -133,8 +205,21 @@
             "instructions": "Visible when display mode is By category",
             "conditional_logic": [
                 [
-                    { "field": "field_carchive_display_mode", "operator": "==", "value": "category" },
-                    { "field": "field_carchive_post_type",    "operator": "==", "value": "diensten" }
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "slider"
+                    },
+                    {
+                        "field": "field_carchive_display_mode",
+                        "operator": "==",
+                        "value": "category"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "==",
+                        "value": "diensten"
+                    }
                 ]
             ],
             "taxonomy": "dienst_categorie",
@@ -148,9 +233,15 @@
             "label": "Show filters",
             "name": "show_filters",
             "type": "true_false",
-            "instructions": "Show category filter buttons above the grid (grid layout only)",
+            "instructions": "Show category filter buttons above the grid",
             "conditional_logic": [
-                [{ "field": "field_carchive_layout", "operator": "==", "value": "grid" }]
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ]
             ],
             "default_value": 0,
             "ui": 1,
@@ -179,7 +270,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/content-archive"
+                "value": "acf/content-archive"
             }
         ]
     ],

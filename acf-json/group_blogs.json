@@ -66,11 +66,24 @@
             "name": "background",
             "type": "button_group",
             "choices": {
-                "dark": "Dark Blue",
-                "light": "Light Blue",
-                "white": "White"
+                "dark": "Dark blue",
+                "light": "Light blue"
             },
             "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_blogs_display_mode",
+            "label": "Display mode",
+            "name": "display_mode",
+            "type": "button_group",
+            "choices": {
+                "manual": "Manual selection",
+                "latest2": "Latest 2"
+            },
+            "default_value": "manual",
             "return_format": "value",
             "allow_null": 0
         },
@@ -96,12 +109,25 @@
             "name": "posts",
             "type": "relationship",
             "instructions": "Select exactly 2 blog posts to display.",
-            "post_type": ["post"],
+            "post_type": [
+                "post"
+            ],
             "taxonomy": "",
-            "filters": ["search"],
+            "filters": [
+                "search"
+            ],
             "return_format": "object",
             "min": 1,
-            "max": 2
+            "max": 2,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blogs_display_mode",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ]
+            ]
         },
         {
             "key": "field_blogs_cta_button",
@@ -117,7 +143,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/blogs"
+                "value": "acf/blogs"
             }
         ]
     ],

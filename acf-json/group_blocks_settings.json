@@ -1,0 +1,195 @@
+{
+    "key": "group_blocks_settings",
+    "title": "Blokken \u2013 Fallbacks",
+    "fields": [
+        {
+            "key": "field_blocks_fallbacks_tab_reviews",
+            "label": "Reviews",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blocks_reviews_reviews",
+            "label": "Reviews",
+            "name": "blocks_reviews_reviews",
+            "type": "repeater",
+            "instructions": "Wordt gebruikt als fallback wanneer het Reviews block geen reviews heeft ingevuld.",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add review",
+            "sub_fields": [
+                {
+                    "key": "field_blocks_reviews_stars",
+                    "label": "Stars",
+                    "name": "rv_stars",
+                    "type": "button_group",
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5"
+                    },
+                    "default_value": "5",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "parent_repeater": "field_blocks_reviews_reviews"
+                },
+                {
+                    "key": "field_blocks_reviews_text",
+                    "label": "Review text",
+                    "name": "rv_text",
+                    "type": "textarea",
+                    "rows": 4,
+                    "parent_repeater": "field_blocks_reviews_reviews"
+                },
+                {
+                    "key": "field_blocks_reviews_name",
+                    "label": "Reviewer name",
+                    "name": "rv_name",
+                    "type": "text",
+                    "parent_repeater": "field_blocks_reviews_reviews"
+                },
+                {
+                    "key": "field_blocks_reviews_time",
+                    "label": "Time ago",
+                    "name": "rv_time",
+                    "type": "text",
+                    "instructions": "e.g. \"3 maanden\" \u2014 the word \"geleden\" is added automatically",
+                    "placeholder": "3 maanden",
+                    "parent_repeater": "field_blocks_reviews_reviews"
+                },
+                {
+                    "key": "field_blocks_reviews_avatar",
+                    "label": "Avatar",
+                    "name": "rv_avatar",
+                    "type": "image",
+                    "instructions": "Optional. If left empty, the first letter of the reviewer's name is shown.",
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "parent_repeater": "field_blocks_reviews_reviews"
+                }
+            ]
+        },
+        {
+            "key": "field_blocks_fallbacks_tab_logos",
+            "label": "Logo slider",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blocks_marquee_logos",
+            "label": "Logos",
+            "name": "blocks_marquee_logos",
+            "type": "repeater",
+            "instructions": "Wordt gebruikt als fallback wanneer het Logo slider block geen logos heeft ingevuld.",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add logo",
+            "sub_fields": [
+                {
+                    "key": "field_blocks_marquee_logo",
+                    "label": "Logo",
+                    "name": "logo",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "parent_repeater": "field_blocks_marquee_logos"
+                }
+            ]
+        },
+        {
+            "key": "field_blocks_fallbacks_tab_cta",
+            "label": "CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blocks_cta_image",
+            "label": "Image",
+            "name": "blocks_cta_image",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_blocks_cta_image_label",
+            "label": "Image label",
+            "name": "blocks_cta_image_label",
+            "type": "text"
+        },
+        {
+            "key": "field_blocks_cta_title",
+            "label": "Title",
+            "name": "blocks_cta_title",
+            "type": "text"
+        },
+        {
+            "key": "field_blocks_cta_description",
+            "label": "Description",
+            "name": "blocks_cta_description",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_blocks_cta_buttons",
+            "label": "Buttons",
+            "name": "blocks_cta_buttons",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add button",
+            "sub_fields": [
+                {
+                    "key": "field_blocks_cta_buttons_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "return_format": "array",
+                    "parent_repeater": "field_blocks_cta_buttons"
+                },
+                {
+                    "key": "field_blocks_cta_buttons_variant",
+                    "label": "Variant",
+                    "name": "variant",
+                    "type": "button_group",
+                    "choices": {
+                        "accent": "Accent",
+                        "outline": "Outline"
+                    },
+                    "default_value": "accent",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_blocks_cta_buttons"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "blocks-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0
+}

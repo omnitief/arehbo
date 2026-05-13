@@ -4,7 +4,6 @@ $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('cf_background') ?: 'dark';
 
-$title       = get_field('cf_title');
 $description = get_field('cf_description');
 $author_raw  = get_field('cf_author');
 $form_id     = (int) get_field('cf_form_id');
@@ -31,11 +30,6 @@ $author_img_alt = $author_img_id
         <div class="contact-form-block__layout container">
 
             <div class="contact-form-block__left">
-
-                <?php if ($title) : ?>
-                    <h2 class="contact-form-block__title"><?= esc_html($title); ?></h2>
-                <?php endif; ?>
-
                 <?php if ($description) : ?>
                     <div class="contact-form-block__description">
                         <?= wp_kses_post($description); ?>

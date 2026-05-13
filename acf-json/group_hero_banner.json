@@ -42,6 +42,22 @@
             "append": ""
         },
         {
+            "key": "field_hb_layout",
+            "label": "Layout",
+            "name": "layout",
+            "type": "button_group",
+            "instructions": "Choose the hero layout style.",
+            "required": 1,
+            "choices": {
+                "hero": "Hero",
+                "default": "Default",
+                "formulier": "Formulier"
+            },
+            "default_value": "hero",
+            "return_format": "value",
+            "allow_null": 0
+        },
+        {
             "key": "field_hb_tab_content",
             "label": "Content",
             "name": "",
@@ -58,22 +74,6 @@
             "placement": "top",
             "endpoint": 0,
             "selected": 0
-        },
-        {
-            "key": "field_hb_layout",
-            "label": "Layout",
-            "name": "layout",
-            "type": "button_group",
-            "instructions": "Choose the hero layout style.",
-            "required": 1,
-            "choices": {
-                "hero": "Hero",
-                "default": "Default",
-                "formulier": "Formulier"
-            },
-            "default_value": "hero",
-            "return_format": "value",
-            "allow_null": 0
         },
         {
             "key": "field_hb_bg_image",

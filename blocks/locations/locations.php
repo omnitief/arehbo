@@ -18,13 +18,9 @@ $map_url = get_template_directory_uri() . '/blocks/locations/map-nl.svg';
 
             <div class="locations-block__left">
 
-                <?php if ($title) : ?>
-                    <h2 class="locations-block__title"><?= esc_html($title); ?></h2>
-                <?php endif; ?>
-
                 <?php if ($desc) : ?>
                     <div class="locations-block__description">
-                        <?= wp_kses_post($desc); ?>
+                        <?= $desc ?>
                     </div>
                 <?php endif; ?>
 

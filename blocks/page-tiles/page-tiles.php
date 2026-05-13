@@ -4,7 +4,6 @@ $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('background') ?: 'light';
 $layout     = get_field('layout')     ?: 'grid';
-$title      = get_field('title');
 $description = get_field('description');
 $cards      = get_field('cards');
 
@@ -27,11 +26,8 @@ $arrow_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
             <div class="page-tiles__grid">
 
                 <div class="page-tiles__header">
-                    <?php if ($title) : ?>
-                        <h2 class="page-tiles__title"><?= esc_html($title); ?></h2>
-                    <?php endif; ?>
                     <?php if ($description) : ?>
-                        <p class="page-tiles__description"><?= esc_html($description); ?></p>
+                        <div class="page-tiles__description"><?= $description ?></div>
                     <?php endif; ?>
                 </div>
 
@@ -93,13 +89,10 @@ $arrow_icon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
 
-            <?php if ($title || $description) : ?>
+            <?php if ($description) : ?>
                 <div class="page-tiles__header page-tiles__header--centered">
-                    <?php if ($title) : ?>
-                        <h2 class="page-tiles__title"><?= esc_html($title); ?></h2>
-                    <?php endif; ?>
                     <?php if ($description) : ?>
-                        <p class="page-tiles__description"><?= esc_html($description); ?></p>
+                        <div class="page-tiles__description"><?= $description ?></div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

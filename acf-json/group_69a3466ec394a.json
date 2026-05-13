@@ -42,6 +42,30 @@
             "append": ""
         },
         {
+            "key": "field_faq_background",
+            "label": "Background",
+            "name": "background",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark blue",
+                "light": "Light blue"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_69a3467768c62",
             "label": "Space",
             "name": "space",
@@ -234,7 +258,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/faq"
+                "value": "acf/faq"
             }
         ]
     ],

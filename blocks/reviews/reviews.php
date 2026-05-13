@@ -3,11 +3,14 @@
 $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('rv_background') ?: 'dark';
+$layout     = get_field('rv_layout') ?: 'slider';
 
 $title      = get_field('rv_title');
 $btn_raw    = get_field('rv_button') ?: [];
-$btn_style  = get_field('rv_button_style') ?: 'default';
 $reviews    = get_field('rv_reviews') ?: [];
+if (empty($reviews)) {
+    $reviews = get_field('blocks_reviews_reviews', 'option') ?: [];
+}
 
 $btn_url    = $btn_raw['url']    ?? '';
 $btn_label  = $btn_raw['title']  ?? '';
@@ -20,7 +23,11 @@ $arrow_right = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
 
 ?>
 
-<section <?= $full_id; ?> class="reviews-block reviews-block--<?= esc_attr($background); ?>">
+<?php
+$layout = in_array($layout, ['grid', 'slider'], true) ? $layout : 'slider';
+?>
+
+<section <?= $full_id; ?> class="reviews-block reviews-block--<?= esc_attr($background); ?> reviews-block--<?= esc_attr($layout); ?>">
     <div class="<?= esc_attr($space); ?>">
 
         <div class="reviews-block__header container">
@@ -41,7 +48,7 @@ $arrow_right = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
                         'label'   => $btn_label,
                         'url'     => $btn_url,
                         'target'  => $btn_target,
-                        'variant' => $btn_style,
+                        'variant' => 'accent',
                         'icon'    => true,
                     ]); ?>
                 </div>
@@ -50,77 +57,145 @@ $arrow_right = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
         </div>
 
         <?php if ($reviews) : ?>
-            <div class="reviews-block__slider-wrap">
-                <div class="reviews-block__slider-inner container">
+            <?php if ($layout === 'grid') : ?>
+                <div class="reviews-block__grid-wrap">
+                    <div class="container">
+                        <div class="reviews-block__grid">
+                            <?php foreach ($reviews as $index => $review) :
+                                $stars       = intval($review['rv_stars'] ?? 5);
+                                $text        = $review['rv_text'] ?? '';
+                                $name        = $review['rv_name'] ?? '';
+                                $time        = $review['rv_time'] ?? '';
+                                $avatar      = $review['rv_avatar'] ?? null;
+                                $avatar_url  = is_array($avatar) ? ($avatar['url'] ?? '') : '';
+                                $avatar_alt  = is_array($avatar) ? ($avatar['alt'] ?? $name) : $name;
+                                $modal_id    = 'review-modal-' . $index;
 
-                    <div class="slider slider--reviews">
+                                $full_text_plain = trim(wp_strip_all_tags((string) $text));
+                                $excerpt_plain   = wp_trim_words($full_text_plain, 32, '…');
+                                $is_truncated    = ($full_text_plain !== '' && $excerpt_plain !== $full_text_plain);
+                            ?>
+                                <div class="reviews-block__card">
 
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
-                                <?php foreach ($reviews as $index => $review) :
-                                    $stars       = intval($review['rv_stars'] ?? 5);
-                                    $text        = $review['rv_text'] ?? '';
-                                    $name        = $review['rv_name'] ?? '';
-                                    $time        = $review['rv_time'] ?? '';
-                                    $avatar      = $review['rv_avatar'] ?? null;
-                                    $avatar_url  = is_array($avatar) ? ($avatar['url'] ?? '') : '';
-                                    $avatar_alt  = is_array($avatar) ? ($avatar['alt'] ?? $name) : $name;
-                                    $modal_id    = 'review-modal-' . $index;
-                                ?>
-                                    <div class="swiper-slide">
-                                        <div class="reviews-block__card">
+                                    <div class="reviews-block__card-stars" aria-label="<?= esc_attr($stars); ?> out of 5 stars">
+                                        <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                            <svg class="reviews-block__star reviews-block__star--<?= $i <= $stars ? 'filled' : 'empty'; ?>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                            </svg>
+                                        <?php endfor; ?>
+                                    </div>
 
-                                            <div class="reviews-block__card-stars" aria-label="<?= esc_attr($stars); ?> out of 5 stars">
-                                                <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                    <svg class="reviews-block__star reviews-block__star--<?= $i <= $stars ? 'filled' : 'empty'; ?>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                                                    </svg>
-                                                <?php endfor; ?>
-                                            </div>
-
-                                            <?php if ($text) : ?>
-                                                <p class="reviews-block__card-text">"<?= nl2br(esc_html($text)); ?>"</p>
-                                                <button class="reviews-block__read-more" data-modal="<?= esc_attr($modal_id); ?>" aria-expanded="false" hidden>Meer lezen</button>
+                                    <?php if ($full_text_plain) : ?>
+                                        <p class="reviews-block__card-text">
+                                            “<?= esc_html($excerpt_plain); ?>”
+                                            <?php if ($is_truncated) : ?>
+                                                <button class="reviews-block__read-more is-visible" data-modal="<?= esc_attr($modal_id); ?>" aria-expanded="false" type="button">Meer lezen</button>
                                             <?php endif; ?>
+                                        </p>
+                                    <?php endif; ?>
 
-                                            <div class="reviews-block__card-reviewer">
-                                                <?php if ($avatar_url) : ?>
-                                                    <img class="reviews-block__card-avatar" src="<?= esc_url($avatar_url); ?>" alt="<?= esc_attr($avatar_alt); ?>" width="50" height="50" loading="lazy">
-                                                <?php else : ?>
-                                                    <span class="reviews-block__card-avatar reviews-block__card-avatar--fallback" aria-hidden="true"><?= esc_html(mb_substr($name, 0, 1)); ?></span>
-                                                <?php endif; ?>
-                                                <div class="reviews-block__card-reviewer-info">
-                                                    <?php if ($name) : ?>
-                                                        <span class="reviews-block__card-name"><?= esc_html($name); ?></span>
-                                                    <?php endif; ?>
-                                                    <?php if ($time) : ?>
-                                                        <span class="reviews-block__card-time"><?= esc_html($time); ?> geleden</span>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </div>
-
+                                    <div class="reviews-block__card-reviewer">
+                                        <?php if ($avatar_url) : ?>
+                                            <img class="reviews-block__card-avatar" src="<?= esc_url($avatar_url); ?>" alt="<?= esc_attr($avatar_alt); ?>" width="50" height="50" loading="lazy">
+                                        <?php else : ?>
+                                            <span class="reviews-block__card-avatar reviews-block__card-avatar--fallback" aria-hidden="true"><?= esc_html(mb_substr($name, 0, 1)); ?></span>
+                                        <?php endif; ?>
+                                        <div class="reviews-block__card-reviewer-info">
+                                            <?php if ($name) : ?>
+                                                <span class="reviews-block__card-name"><?= esc_html($name); ?></span>
+                                            <?php endif; ?>
+                                            <?php if ($time) : ?>
+                                                <span class="reviews-block__card-time"><?= esc_html($time); ?> geleden</span>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
 
-                        <div class="slider-nav">
-                            <div class="slider-nav__arrows">
-                                <button class="slider-nav__btn slider-nav__btn--prev" aria-label="<?php esc_attr_e('Previous slide', 'arehbo-theme'); ?>">
-                                    <?= $arrow_left; ?>
-                                </button>
-                                <button class="slider-nav__btn slider-nav__btn--next" aria-label="<?php esc_attr_e('Next slide', 'arehbo-theme'); ?>">
-                                    <?= $arrow_right; ?>
-                                </button>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php else : ?>
+                <div class="reviews-block__slider-wrap">
+                    <div class="reviews-block__slider-inner container">
+
+                        <div class="slider slider--reviews">
+
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($reviews as $index => $review) :
+                                        $stars       = intval($review['rv_stars'] ?? 5);
+                                        $text        = $review['rv_text'] ?? '';
+                                        $name        = $review['rv_name'] ?? '';
+                                        $time        = $review['rv_time'] ?? '';
+                                        $avatar      = $review['rv_avatar'] ?? null;
+                                        $avatar_url  = is_array($avatar) ? ($avatar['url'] ?? '') : '';
+                                        $avatar_alt  = is_array($avatar) ? ($avatar['alt'] ?? $name) : $name;
+                                        $modal_id    = 'review-modal-' . $index;
+
+                                        $full_text_plain = trim(wp_strip_all_tags((string) $text));
+                                        $excerpt_plain   = wp_trim_words($full_text_plain, 32, '…');
+                                        $is_truncated    = ($full_text_plain !== '' && $excerpt_plain !== $full_text_plain);
+                                    ?>
+                                        <div class="swiper-slide">
+                                            <div class="reviews-block__card">
+
+                                                <div class="reviews-block__card-stars" aria-label="<?= esc_attr($stars); ?> out of 5 stars">
+                                                    <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                                        <svg class="reviews-block__star reviews-block__star--<?= $i <= $stars ? 'filled' : 'empty'; ?>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                        </svg>
+                                                    <?php endfor; ?>
+                                                </div>
+
+                                                <?php if ($full_text_plain) : ?>
+                                                    <p class="reviews-block__card-text">
+                                                        “<?= esc_html($excerpt_plain); ?>”
+                                                        <?php if ($is_truncated) : ?>
+                                                            <button class="reviews-block__read-more is-visible" data-modal="<?= esc_attr($modal_id); ?>" aria-expanded="false" type="button">Meer lezen</button>
+                                                        <?php endif; ?>
+                                                    </p>
+                                                <?php endif; ?>
+
+                                                <div class="reviews-block__card-reviewer">
+                                                    <?php if ($avatar_url) : ?>
+                                                        <img class="reviews-block__card-avatar" src="<?= esc_url($avatar_url); ?>" alt="<?= esc_attr($avatar_alt); ?>" width="50" height="50" loading="lazy">
+                                                    <?php else : ?>
+                                                        <span class="reviews-block__card-avatar reviews-block__card-avatar--fallback" aria-hidden="true"><?= esc_html(mb_substr($name, 0, 1)); ?></span>
+                                                    <?php endif; ?>
+                                                    <div class="reviews-block__card-reviewer-info">
+                                                        <?php if ($name) : ?>
+                                                            <span class="reviews-block__card-name"><?= esc_html($name); ?></span>
+                                                        <?php endif; ?>
+                                                        <?php if ($time) : ?>
+                                                            <span class="reviews-block__card-time"><?= esc_html($time); ?> geleden</span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                            <div class="slider-nav__progress swiper-pagination"></div>
+
+                            <div class="slider-nav">
+                                <div class="slider-nav__arrows">
+                                    <button class="slider-nav__btn slider-nav__btn--prev" aria-label="<?php esc_attr_e('Previous slide', 'arehbo-theme'); ?>">
+                                        <?= $arrow_left; ?>
+                                    </button>
+                                    <button class="slider-nav__btn slider-nav__btn--next" aria-label="<?php esc_attr_e('Next slide', 'arehbo-theme'); ?>">
+                                        <?= $arrow_right; ?>
+                                    </button>
+                                </div>
+                                <div class="slider-nav__progress swiper-pagination"></div>
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
-            </div>
+            <?php endif; ?>
 
             <?php foreach ($reviews as $index => $review) :
                 $text     = $review['rv_text'] ?? '';

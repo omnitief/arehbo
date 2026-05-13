@@ -2,10 +2,10 @@
   "name": "acf/content-archive",
   "title": "Content Archive",
   "description": "Slider or grid archive of cursussen, diensten or vacatures with optional filters and pagination.",
-  "category": "layout",
+  "category": "custom_blocks",
   "icon": "category",
   "keywords": ["cursussen", "diensten", "vacatures", "archive", "slider", "grid", "filter"],
-  "style": "file:./style.css",
+  "style": "file:../../styles/blocks/content-archive.css",
   "viewScript": "file:./content-archive.js",
   "acf": {
     "mode": "edit",
@@ -15,6 +15,4 @@
     "anchor": false,
     "align": false,
     "customClassName": false
-  },
-  "example": {}
-}
+  }}

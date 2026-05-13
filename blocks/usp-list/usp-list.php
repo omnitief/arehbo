@@ -5,8 +5,8 @@ $full_id    = get_full_id(get_field('id'));
 $background = $args['background'] ?? get_field('background') ?: 'light';
 $items      = get_field('items');
 
-$bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light', 'none' => ''];
-$bg_class = $bg_map[$background] ?? '';
+$bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
+$bg_class = $bg_map[$background] ?? 'bg-light';
 
 if (empty($items)) {
     return;
@@ -14,7 +14,7 @@ if (empty($items)) {
 
 ?>
 
-<section <?= $full_id; ?> class="usp-list<?= $bg_class ? ' ' . esc_attr($bg_class) : ''; ?>">
+<section <?= $full_id; ?> class="usp-list <?= esc_attr($bg_class); ?>">
      <div class="container ">  <div class="usp-list__wrapper <?= esc_attr($space); ?>">
         <div class="container">
             <div class="usp-list__track">

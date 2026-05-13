@@ -1,51 +1,7 @@
 {
     "key": "group_blog_auteur",
-    "title": "Blog \u2013 Settings",
+    "title": "Blog – Settings",
     "fields": [
-        {
-            "key": "field_blog_tab_settings",
-            "label": "Settings",
-            "name": "",
-            "type": "tab",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_blog_background",
-            "label": "Background",
-            "name": "background",
-            "type": "button_group",
-            "instructions": "Background colour of the content area below the hero.",
-            "required": 0,
-            "choices": {
-                "light": "Light Blue",
-                "dark": "Dark Blue",
-                "white": "White"
-            },
-            "default_value": "light",
-            "return_format": "value",
-            "allow_null": 0
-        },
-        {
-            "key": "field_blog_show_breadcrumbs",
-            "label": "Show breadcrumbs",
-            "name": "show_breadcrumbs",
-            "type": "true_false",
-            "instructions": "Toon broodkruimels in de hero.",
-            "required": 0,
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Show",
-            "ui_off_text": "Hide"
-        },
-        {
-            "key": "field_blog_tab_auteur",
-            "label": "Author",
-            "name": "",
-            "type": "tab",
-            "placement": "top",
-            "endpoint": 0
-        },
         {
             "key": "field_blog_auteur_keuze",
             "label": "Written by",
@@ -53,7 +9,9 @@
             "type": "post_object",
             "instructions": "Select the team member who wrote this post.",
             "required": 0,
-            "post_type": ["medewerkers"],
+            "post_type": [
+                "medewerkers"
+            ],
             "taxonomy": "",
             "allow_null": 1,
             "multiple": 0,

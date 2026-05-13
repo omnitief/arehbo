@@ -136,14 +136,14 @@
                 "id": ""
             },
             "choices": {
-                "dark": "Dark Blue",
-                "light": "Light Blue",
-                "white": "White"
+                "dark": "Dark blue",
+                "light": "Light blue"
             },
             "default_value": "light",
             "return_format": "value",
             "allow_null": 0,
-            "allow_in_bindings": 0
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_69a2e42ea35fd",
@@ -215,7 +215,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/usp-list"
+                "value": "acf/usp-list"
             }
         ]
     ],

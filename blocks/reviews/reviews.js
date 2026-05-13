@@ -1,17 +1,5 @@
 (function () {
 
-    function updateReadMoreButtons() {
-        document.querySelectorAll('.reviews-block__card').forEach(function (card) {
-            var text = card.querySelector('.reviews-block__card-text');
-            var button = card.querySelector('.reviews-block__read-more');
-            if (!text || !button) return;
-
-            var isClamped = text.scrollHeight > text.clientHeight + 1;
-            button.classList.toggle('is-visible', isClamped);
-            button.hidden = !isClamped;
-        });
-    }
-
     // ── Swiper ─────────────────────────────────────────────
     if (typeof Swiper !== 'undefined') {
         document.querySelectorAll('.slider--reviews').forEach(function (wrapper) {
@@ -42,10 +30,6 @@
             });
         });
     }
-
-    updateReadMoreButtons();
-    window.addEventListener('load', updateReadMoreButtons);
-    window.addEventListener('resize', updateReadMoreButtons);
 
     // ── Modal ──────────────────────────────────────────────
     function openModal(modal) {

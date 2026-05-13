@@ -4,6 +4,12 @@ $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('tc_background') ?: 'dark';
 $tile_type  = get_field('tc_tile_type') ?: 'standard';
+$tile_title_tag = get_field('tc_tile_title_tag') ?: 'h3';
+
+$allowed_tile_title_tags = ['h2', 'h3', 'h4'];
+if (!in_array($tile_title_tag, $allowed_tile_title_tags, true)) {
+    $tile_title_tag = 'h3';
+}
 
 $description = get_field('tc_description');
 $button_raw  = get_field('tc_button') ?: [];
@@ -54,7 +60,7 @@ $btn_target = $button_raw['target'] ?? '_self';
                                     <span class="text-cards-block__card-icon" aria-hidden="true"></span>
                                 <?php endif; ?>
                                 <?php if ($card_title) : ?>
-                                    <h3 class="text-cards-block__card-title"><?= esc_html($card_title); ?></h3>
+                                    <<?= $tile_title_tag; ?> class="text-cards-block__card-title"><?= esc_html($card_title); ?></<?= $tile_title_tag; ?>>
                                 <?php endif; ?>
                             </div>
 

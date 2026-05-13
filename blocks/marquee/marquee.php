@@ -4,6 +4,9 @@ $space  = get_spacing_class(get_field('space'));
 $full_id = get_full_id(get_field('id'));
 $title  = get_field('title');
 $logos  = get_field('logos');
+if (empty($logos)) {
+    $logos = get_field('blocks_marquee_logos', 'option');
+}
 
 if (empty($title) && empty($logos)) {
     return;

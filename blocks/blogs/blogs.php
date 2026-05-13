@@ -4,13 +4,26 @@ $space      = get_spacing_class(get_field('space'));
 $full_id    = get_full_id(get_field('id'));
 $background = get_field('background') ?: 'light';
 $title      = get_field('title');
-$posts      = get_field('posts');
+$display_mode = get_field('display_mode') ?: 'manual';
+$posts        = [];
 $cta_button = get_field('cta_button');
 
 $bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
 $bg_class = $bg_map[$background] ?? 'bg-light';
 
-if (empty($posts)) {
+if ($display_mode === 'latest2') {
+    $posts = get_posts([
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 2,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ]);
+} else {
+    $posts = get_field('posts');
+}
+
+if (empty($posts) || !is_array($posts)) {
     return;
 }
 
@@ -21,12 +34,13 @@ $arrow_white = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
 <section <?= $full_id; ?> class="blogs<?= $bg_class ? ' ' . esc_attr($bg_class) : ''; ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
+            <div class="blogs__content">
 
-            <?php if ($title) : ?>
-                <h2 class="blogs__title"><?= esc_html($title); ?></h2>
-            <?php endif; ?>
+                <?php if ($title) : ?>
+                    <h2 class="blogs__title"><?= esc_html($title); ?></h2>
+                <?php endif; ?>
 
-            <div class="blogs__grid">
+                <div class="blogs__grid">
 
                 <?php foreach ($posts as $post) :
                     $post_id  = $post->ID;

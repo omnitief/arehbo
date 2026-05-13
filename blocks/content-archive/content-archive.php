@@ -24,7 +24,10 @@ $query_args = [
     'posts_per_page' => -1,
 ];
 
-if ($display_mode === 'manual' && !empty($manual_posts)) {
+if ($layout === 'grid') {
+    $query_args['posts_per_page'] = -1;
+
+} elseif ($display_mode === 'manual' && !empty($manual_posts)) {
     $ids = array_map(fn($p) => is_object($p) ? $p->ID : $p, (array) $manual_posts);
     $query_args['post__in'] = $ids;
     $query_args['orderby']  = 'post__in';

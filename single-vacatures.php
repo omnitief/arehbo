@@ -10,11 +10,21 @@ $post_date  = date_i18n('j F Y', get_the_time('U'));
 $uren    = get_field('uren', $post_id);
 $locatie = get_field('locatie', $post_id);
 
-$show_breadcrumbs = get_field('show_breadcrumbs', $post_id);
-if ($show_breadcrumbs === null || $show_breadcrumbs === '') {
-    $show_breadcrumbs = true;
+$author_raw = get_field('vacature_author', $post_id);
+if ($author_raw instanceof WP_Post) {
+    $author_post = $author_raw;
+} elseif (is_numeric($author_raw) && $author_raw > 0) {
+    $author_post = get_post((int) $author_raw);
+} else {
+    $author_post = null;
 }
-$show_breadcrumbs = (bool) $show_breadcrumbs;
+
+$author_name    = $author_post ? get_the_title($author_post) : '';
+$author_img_id  = $author_post ? (get_field('foto', $author_post->ID) ?: get_post_thumbnail_id($author_post->ID)) : 0;
+$author_img_url = $author_img_id ? wp_get_attachment_image_url($author_img_id, [62, 62]) : '';
+$author_img_alt = $author_img_id
+    ? (get_post_meta($author_img_id, '_wp_attachment_image_alt', true) ?: $author_name)
+    : $author_name;
 
 $crumb_title = mb_strlen($page_title) > 40
     ? mb_substr($page_title, 0, 40) . '...'
@@ -43,31 +53,51 @@ $vacatures_url = home_url('/vacatures/');
                     Terug naar alle vacatures
                 </a>
 
-                <?php if ($show_breadcrumbs) : ?>
-                    <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
-                        <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
-                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                        <a class="single-hero__crumb-link" href="<?= esc_url($vacatures_url); ?>">Vacatures</a>
-                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                        <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
-                    </nav>
-                <?php endif; ?>
+                <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
+                    <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                    <a class="single-hero__crumb-link" href="<?= esc_url($vacatures_url); ?>">Vacatures</a>
+                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                    <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
+                </nav>
 
             </div>
 
             <hr class="single-hero__sep">
 
-            <h1 class="single-hero__title"><?= esc_html($page_title); ?></h1>
+            <div class="blogs__content">
+                <h1 class="single-hero__title"><?= esc_html($page_title); ?></h1>
+            </div>
 
         </div>
     </section>
 
     <div class="single-body bg-<?= esc_attr($background); ?>">
         <div class="container">
-            <div class="single-content">
+            <div class="blogs__content">
+                <div class="single-content">
 
-                <?php if ($uren || $locatie || $post_date) : ?>
+                <?php if ($author_name || $uren || $locatie || $post_date) : ?>
                     <div class="single-author">
+                        <?php if ($author_name) : ?>
+                            <div class="single-author__left">
+                                <?php if ($author_img_url) : ?>
+                                    <img
+                                        class="single-author__avatar"
+                                        src="<?= esc_url($author_img_url); ?>"
+                                        alt="<?= esc_attr($author_img_alt); ?>"
+                                        width="62"
+                                        height="62"
+                                        loading="lazy"
+                                    >
+                                <?php endif; ?>
+                                <div class="single-author__info">
+                                    <span class="single-author__label">Stel je vragen aan:</span>
+                                    <span class="single-author__name"><?= esc_html($author_name); ?></span>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="single-author__right">
                             <?php if ($uren) : ?>
                                 <div class="single-author__meta-item">
@@ -81,10 +111,6 @@ $vacatures_url = home_url('/vacatures/');
                                     <span class="single-author__meta-value"><?= esc_html($locatie); ?></span>
                                 </div>
                             <?php endif; ?>
-                            <div class="single-author__meta-item">
-                                <span class="single-author__meta-label">Geplaatst op:</span>
-                                <span class="single-author__meta-value"><?= esc_html($post_date); ?></span>
-                            </div>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -95,6 +121,7 @@ $vacatures_url = home_url('/vacatures/');
                     <?php endwhile; ?>
                 </div>
 
+                </div>
             </div>
         </div>
     </div>

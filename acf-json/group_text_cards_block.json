@@ -1,6 +1,6 @@
 {
     "key": "group_text_cards_block",
-    "title": "Block \u2013 Text + Cards",
+    "title": "Block – Text + Cards",
     "fields": [
         {
             "key": "field_tc_tab_settings",
@@ -65,6 +65,31 @@
             "return_format": "value",
             "allow_null": 0,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_tc_tile_title_tag",
+            "label": "Tile title tag",
+            "name": "tc_tile_title_tag",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Choose the heading level for card titles. Styling stays the same.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "h2": "H2",
+                "h3": "H3",
+                "h4": "H4"
+            },
+            "default_value": "h3",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_tc_space",
@@ -265,7 +290,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/text-cards"
+                "value": "acf/text-cards"
             }
         ]
     ],

@@ -1,0 +1,55 @@
+.text-tile__content {
+    color: var(--color-primary);
+    max-width: 1040px;
+    margin-inline: 0;
+}
+
+@media (min-width: 991px) {
+    .text-tile__content {
+        margin-inline: auto;
+    }
+}
+
+.text-tile__description {
+    font-family: var(--font-sans);
+    line-height: 32px;
+    letter-spacing: 0;
+}
+
+.text-tile__description > * + * {
+    margin-top: 16px;
+}
+
+.text-tile__description > p + p {
+    margin-top: 0;
+}
+
+.text-tile__description * {
+    color: inherit;
+}
+
+.text-tile__buttons {
+    margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.text-tile.bg-dark .btn--outline {
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.text-tile.bg-dark .btn--outline:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.text-tile.bg-dark .btn--outline .btn__icon {
+    background: var(--color-accent);
+}
+
+.text-tile.bg-dark .btn--outline .btn__icon svg path {
+    stroke: var(--color-white);
+}

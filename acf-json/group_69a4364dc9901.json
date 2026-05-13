@@ -3,33 +3,6 @@
     "title": "Header Options",
     "fields": [
         {
-            "key": "field_header_background",
-            "label": "Background",
-            "name": "header_background",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "bg-light-blue": "Light Blue",
-                "bg-dark-blue": "Dark Blue"
-            },
-            "default_value": "bg-light-blue",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_in_bindings": 0
-        },
-        {
             "key": "field_69a4364eaeab0",
             "label": "Logo",
             "name": "logo",

@@ -1,6 +1,6 @@
 {
     "key": "group_contact_form_block",
-    "title": "Block \u2013 Contact Form",
+    "title": "Block – Contact Form",
     "fields": [
         {
             "key": "field_cf_tab_settings",
@@ -93,21 +93,13 @@
             "endpoint": 0
         },
         {
-            "key": "field_cf_title",
-            "label": "Title",
-            "name": "cf_title",
-            "type": "text",
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
             "key": "field_cf_description",
-            "label": "Description",
+            "label": "Content",
             "name": "cf_description",
             "type": "wysiwyg",
             "default_value": "",
-            "tabs": "visual",
-            "toolbar": "basic",
+            "tabs": "all",
+            "toolbar": "full",
             "media_upload": 0,
             "delay": 0
         },
@@ -118,7 +110,9 @@
             "type": "post_object",
             "instructions": "Select the team member to show in the author box.",
             "required": 0,
-            "post_type": ["medewerkers"],
+            "post_type": [
+                "medewerkers"
+            ],
             "taxonomy": "",
             "allow_null": 1,
             "multiple": 0,
@@ -145,7 +139,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/contact-form"
+                "value": "acf/contact-form"
             }
         ]
     ],

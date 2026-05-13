@@ -44,6 +44,30 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_rv_layout",
+            "label": "Layout",
+            "name": "rv_layout",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid": "Grid",
+                "slider": "Slider"
+            },
+            "default_value": "slider",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_rv_space",
             "label": "Space",
             "name": "space",
@@ -168,29 +192,6 @@
                 "id": ""
             },
             "return_format": "array",
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_rv_button_style",
-            "label": "Button style",
-            "name": "rv_button_style",
-            "aria-label": "",
-            "type": "button_group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Outline",
-                "accent": "Accent"
-            },
-            "default_value": "default",
-            "return_format": "value",
-            "allow_null": 0,
             "allow_in_bindings": 0
         },
         {
@@ -339,7 +340,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/reviews"
+                "value": "acf/reviews"
             }
         ]
     ],

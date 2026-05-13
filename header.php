@@ -22,7 +22,7 @@ $phone_img_alt = $phone_img_id ? (get_post_meta($phone_img_id, '_wp_attachment_i
 
 $cta_button    = get_field('cta_button', 'option');
 $nav_items     = get_field('navigation', 'option') ?: [];
-$header_bg     = get_field('header_background', 'option') ?: 'bg-light';
+$header_bg     = 'bg-light-blue';
 
 $arrow_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 

@@ -11,11 +11,21 @@
 
     function updateBarVars() {
         if (!headerBar) return;
-        document.documentElement.style.setProperty('--bar-height', headerBar.offsetHeight + 'px');
-        document.documentElement.style.setProperty('--header-bottom', headerBar.getBoundingClientRect().bottom + 'px');
+        var rect = headerBar.getBoundingClientRect();
+        document.documentElement.style.setProperty('--bar-height', Math.round(rect.height) + 'px');
+        document.documentElement.style.setProperty('--header-bottom', Math.round(rect.bottom) + 'px');
     }
     updateBarVars();
     window.addEventListener('resize', updateBarVars);
+    window.addEventListener('load', updateBarVars);
+    if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+        document.fonts.ready.then(updateBarVars);
+    }
+    if (typeof ResizeObserver !== 'undefined' && headerBar) {
+        try {
+            new ResizeObserver(updateBarVars).observe(headerBar);
+        } catch (e) {}
+    }
 
     var overlay = document.createElement('div');
     overlay.className = 'mobile-overlay';

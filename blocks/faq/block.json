@@ -2,10 +2,10 @@
   "name": "acf/faq",
   "title": "FAQ",
   "description": "Heading with numbered accordion FAQ items.",
-  "category": "layout",
+  "category": "custom_blocks",
   "icon": "editor-help",
   "keywords": ["faq", "accordion", "questions", "answers"],
-  "style": "file:./style.css",
+  "style": "file:../../styles/blocks/faq.css",
   "viewScript": "file:./faq.js",
   "acf": {
     "mode": "edit",
@@ -15,6 +15,4 @@
     "anchor": false,
     "align": false,
     "customClassName": false
-  },
-  "example": {}
-}
+  }}

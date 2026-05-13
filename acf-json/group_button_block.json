@@ -35,7 +35,6 @@
             },
             "choices": {
                 "accent": "Accent (orange)",
-                "default": "Default (blue)",
                 "outline": "Outline"
             },
             "default_value": "accent",
@@ -46,27 +45,6 @@
             "ajax": 0,
             "placeholder": "",
             "allow_in_bindings": 0
-        },
-        {
-            "key": "field_btn_show_icon",
-            "label": "Show icon",
-            "name": "show_icon",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "allow_in_bindings": 0,
-            "ui": 1,
-            "ui_on_text": "Yes",
-            "ui_off_text": "No"
         }
     ],
     "location": [

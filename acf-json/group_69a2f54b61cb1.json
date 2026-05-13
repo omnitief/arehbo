@@ -42,6 +42,30 @@
             "append": ""
         },
         {
+            "key": "field_pricing_background",
+            "label": "Background",
+            "name": "background",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark blue",
+                "light": "Light blue"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_69a2f5b8a95c5",
             "label": "Space",
             "name": "space",
@@ -210,7 +234,7 @@
                     "label": "Price",
                     "name": "price",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "number",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -223,31 +247,12 @@
                     "maxlength": "",
                     "allow_in_bindings": 0,
                     "placeholder": "",
-                    "prepend": "",
+                    "prepend": "€",
                     "append": "",
-                    "parent_repeater": "field_69a2f65ea95cb"
-                },
-                {
-                    "key": "field_69a2f853fcd57",
-                    "label": "BTW is excluded from price",
-                    "name": "btw_excluded",
-                    "aria-label": "",
-                    "type": "true_false",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "allow_in_bindings": 0,
-                    "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": "",
-                    "parent_repeater": "field_69a2f65ea95cb"
+                    "parent_repeater": "field_69a2f65ea95cb",
+                    "min": "",
+                    "max": "",
+                    "step": "0.05"
                 },
                 {
                     "key": "field_69a2f86bfcd58",
@@ -343,7 +348,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/pricing-packages"
+                "value": "acf/pricing-packages"
             }
         ]
     ],

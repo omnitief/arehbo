@@ -2,10 +2,10 @@
   "name": "acf/usp-list",
   "title": "USP List",
   "description": "Repeatable list of unique selling points with icon and label.",
-  "category": "layout",
-  "icon": "format-list-bulleted",
+  "category": "custom_blocks",
+  "icon": "editor-ul",
   "keywords": ["usp", "features", "benefits", "list", "icons", "checkmarks"],
-  "style": "file:./style.css",
+  "style": "file:../../styles/blocks/usp-list.css",
   "acf": {
     "mode": "edit",
     "renderTemplate": "usp-list.php"
@@ -14,6 +14,4 @@
     "anchor": false,
     "align": false,
     "customClassName": false
-  },
-  "example": {}
-}
+  }}

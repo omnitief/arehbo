@@ -2,10 +2,10 @@
   "name": "acf/hero-banner",
   "title": "Hero Banner",
   "description": "Full-screen hero section with multiple layout options.",
-  "category": "layout",
+  "category": "custom_blocks",
   "icon": "cover-image",
   "keywords": ["hero", "banner", "header", "cover"],
-  "style": "file:./style.css",
+  "style": "file:../../styles/blocks/hero-banner.css",
   "viewScript": "file:./view.js",
   "acf": {
     "mode": "edit",
@@ -15,6 +15,4 @@
     "anchor": false,
     "align": false,
     "customClassName": false
-  },
-  "example": {}
-}
+  }}

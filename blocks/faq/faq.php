@@ -2,6 +2,7 @@
 
 $space   = get_spacing_class(get_field('space'));
 $full_id = get_full_id(get_field('id'));
+$background = get_field('background') ?: 'light';
 $heading = get_field('heading');
 $faqs    = get_field('faqs');
 
@@ -11,9 +12,12 @@ if (empty($faqs)) {
 
 $block_uid = !empty($block['id']) ? $block['id'] : uniqid('faq-');
 
+$bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
+$bg_class = $bg_map[$background] ?? 'bg-light';
+
 ?>
 
-<section <?= $full_id; ?> class="faq-block">
+<section <?= $full_id; ?> class="faq-block <?= esc_attr($bg_class); ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
             <div class="faq-block__inner">

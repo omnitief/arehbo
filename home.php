@@ -35,68 +35,70 @@ $arrow_white = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
 
             <?php if (have_posts()) : ?>
 
-                <div class="blogs__grid">
-                    <?php while (have_posts()) : the_post();
-                        $post_id      = get_the_ID();
-                        $post_url     = get_permalink();
-                        $post_title   = get_the_title();
-                        $post_excerpt = wp_trim_words(
-                            get_the_excerpt() ?: strip_tags(get_the_content()),
-                            30,
-                            '...'
-                        );
+                <div class="blogs__content">
 
-                        $image_id  = get_post_thumbnail_id($post_id);
-                        $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
-                        $image_alt = $image_id ? (get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: esc_attr($post_title)) : '';
+                    <div class="blogs__grid">
+                        <?php while (have_posts()) : the_post();
+                            $post_id      = get_the_ID();
+                            $post_url     = get_permalink();
+                            $post_title   = get_the_title();
+                            $post_excerpt = wp_trim_words(
+                                get_the_excerpt() ?: strip_tags(get_the_content()),
+                                30,
+                                '...'
+                            );
 
-                        $word_count   = str_word_count(strip_tags(get_post_field('post_content', $post_id)));
-                        $reading_mins = max(1, (int) ceil($word_count / 200));
-                    ?>
+                            $image_id  = get_post_thumbnail_id($post_id);
+                            $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
+                            $image_alt = $image_id ? (get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: esc_attr($post_title)) : '';
 
-                        <article class="blog-card">
+                            $word_count   = str_word_count(strip_tags(get_post_field('post_content', $post_id)));
+                            $reading_mins = max(1, (int) ceil($word_count / 200));
+                        ?>
 
-                            <a
-                                class="blog-card__link"
-                                href="<?= esc_url($post_url); ?>"
-                                aria-label="<?= esc_attr($post_title); ?>"
-                            ></a>
+                            <article class="blog-card">
 
-                            <?php if ($image_url) : ?>
-                                <div class="blog-card__image-wrap">
-                                    <img
-                                        class="blog-card__image"
-                                        src="<?= esc_url($image_url); ?>"
-                                        alt="<?= esc_attr($image_alt); ?>"
-                                        width="565"
-                                        height="400"
-                                        loading="lazy"
-                                    >
-                                    <div class="blog-card__reading-time" aria-label="Leestijd">
-                                        <span>Leestijd: <?= $reading_mins; ?> minuten</span>
+                                <a
+                                    class="blog-card__link"
+                                    href="<?= esc_url($post_url); ?>"
+                                    aria-label="<?= esc_attr($post_title); ?>"
+                                ></a>
+
+                                <?php if ($image_url) : ?>
+                                    <div class="blog-card__image-wrap">
+                                        <img
+                                            class="blog-card__image"
+                                            src="<?= esc_url($image_url); ?>"
+                                            alt="<?= esc_attr($image_alt); ?>"
+                                            width="565"
+                                            height="400"
+                                            loading="lazy"
+                                        >
+                                        <div class="blog-card__reading-time" aria-label="Leestijd">
+                                            <span>Leestijd: <?= $reading_mins; ?> minuten</span>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endif; ?>
-
-                            <div class="blog-card__body">
-
-                                <h3 class="blog-card__title"><?= esc_html($post_title); ?></h3>
-
-                                <?php if ($post_excerpt) : ?>
-                                    <p class="blog-card__excerpt"><?= esc_html($post_excerpt); ?></p>
                                 <?php endif; ?>
 
-                                <div class="blog-card__btn-wrap">
-                                    <span class="blog-card__btn-label" aria-hidden="true">LEES VERDER</span>
-                                    <span class="blog-card__btn" aria-hidden="true"><?= $arrow_white; ?></span>
+                                <div class="blog-card__body">
+
+                                    <h3 class="blog-card__title"><?= esc_html($post_title); ?></h3>
+
+                                    <?php if ($post_excerpt) : ?>
+                                        <p class="blog-card__excerpt"><?= esc_html($post_excerpt); ?></p>
+                                    <?php endif; ?>
+
+                                    <div class="blog-card__btn-wrap">
+                                        <span class="blog-card__btn-label" aria-hidden="true">LEES VERDER</span>
+                                        <span class="blog-card__btn" aria-hidden="true"><?= $arrow_white; ?></span>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                            </article>
 
-                        </article>
-
-                    <?php endwhile; ?>
-                </div>
+                        <?php endwhile; ?>
+                    </div>
 
                 <?php
                 $pagination = paginate_links([
@@ -111,6 +113,86 @@ $arrow_white = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
                         <?php endforeach; ?>
                     </nav>
                 <?php endif; ?>
+
+                <?php
+                // CTA (options-only; no per-page overrides on blog overview).
+                $cta_image_id    = (int) (get_field('blocks_cta_image', 'option') ?: get_field('blocks_cta_image', 'options'));
+                $cta_image_url   = $cta_image_id ? wp_get_attachment_image_url($cta_image_id, 'full') : '';
+                $cta_image_alt   = $cta_image_id ? (get_post_meta($cta_image_id, '_wp_attachment_image_alt', true) ?: '') : '';
+                $cta_image_label = get_field('blocks_cta_image_label', 'option') ?: get_field('blocks_cta_image_label', 'options');
+                $cta_title       = get_field('blocks_cta_title', 'option') ?: get_field('blocks_cta_title', 'options');
+                $cta_description = get_field('blocks_cta_description', 'option') ?: get_field('blocks_cta_description', 'options');
+                $cta_buttons_raw = (array) (get_field('blocks_cta_buttons', 'option') ?: get_field('blocks_cta_buttons', 'options'));
+                $cta_buttons     = array_values(array_filter($cta_buttons_raw, function ($row) {
+                    $link = is_array($row) ? ($row['link'] ?? null) : null;
+                    return is_array($link) && !empty($link['url']) && !empty($link['title']);
+                }));
+                $cta_buttons = array_slice($cta_buttons, 0, 2);
+                ?>
+
+                <?php if (!empty($cta_title)) : ?>
+                    <section class="cta-section cta-section--light archive-cta">
+                        <div class="container">
+                            <div class="cta">
+                                <div>
+                                    <div class="cta__grid">
+
+                                        <?php if ($cta_image_url) : ?>
+                                            <div class="cta__media">
+                                                <img
+                                                    class="cta__image"
+                                                    src="<?= esc_url($cta_image_url); ?>"
+                                                    alt="<?= esc_attr($cta_image_alt); ?>"
+                                                    width="440"
+                                                    height="362"
+                                                    loading="lazy"
+                                                >
+                                                <?php if ($cta_image_label) : ?>
+                                                    <span class="cta__badge"><?= esc_html($cta_image_label); ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <div class="cta__content">
+
+                                            <div class="cta__text">
+                                                <h2 class="cta__title"><?= esc_html($cta_title); ?></h2>
+                                                <?php if ($cta_description) : ?>
+                                                    <p class="cta__description"><?= esc_html($cta_description); ?></p>
+                                                <?php endif; ?>
+                                            </div>
+
+                                            <?php if (!empty($cta_buttons)) : ?>
+                                                <div class="cta__buttons">
+                                                    <?php foreach ($cta_buttons as $i => $btn) :
+                                                        $link = $btn['link'] ?? null;
+                                                        $label = $link['title'] ?? '';
+                                                        $url   = $link['url']   ?? '';
+                                                        $target = $link['target'] ?? '_self';
+                                                        $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
+                                                        if (empty($label) || empty($url)) continue;
+                                                    ?>
+                                                        <?php get_template_part('components/button', '', [
+                                                            'label'   => $label,
+                                                            'url'     => $url,
+                                                            'target'  => $target,
+                                                            'variant' => $variant,
+                                                            'icon'    => $variant !== 'outline',
+                                                        ]); ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+                </div><!-- .blogs__content -->
 
             <?php else : ?>
                 <p class="archive-empty">Geen blogs gevonden.</p>

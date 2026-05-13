@@ -2,15 +2,43 @@
 
 $space       = get_spacing_class(get_field('space'));
 $full_id     = get_full_id(get_field('id'));
-$background  = get_field('cta_background') ?: 'light';
+$background  = get_field('cta_background');
 $image_id    = get_field('image');
 $image_url   = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
 $image_alt   = $image_id ? (get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: '') : '';
 $image_label = get_field('image_label');
 $title       = get_field('title');
 $description = get_field('description');
-$buttons     = array_slice((array) get_field('buttons'), 0, 2);
+$buttons_raw = (array) get_field('buttons');
+$buttons     = array_values(array_filter($buttons_raw, function ($row) {
+    $link = is_array($row) ? ($row['link'] ?? null) : null;
+    return is_array($link) && !empty($link['url']) && !empty($link['title']);
+}));
 
+// Fallbacks from "Blokken" options page (blocks-settings).
+if (empty($image_id))    $image_id    = (int) (get_field('blocks_cta_image', 'option') ?: get_field('blocks_cta_image', 'options'));
+if (empty($image_label)) $image_label = get_field('blocks_cta_image_label', 'option') ?: get_field('blocks_cta_image_label', 'options');
+if (empty($title))       $title       = get_field('blocks_cta_title', 'option') ?: get_field('blocks_cta_title', 'options');
+if (empty($description)) $description = get_field('blocks_cta_description', 'option') ?: get_field('blocks_cta_description', 'options');
+if (empty($buttons)) {
+    $fallback_buttons_raw = (array) (get_field('blocks_cta_buttons', 'option') ?: get_field('blocks_cta_buttons', 'options'));
+    $buttons = array_values(array_filter($fallback_buttons_raw, function ($row) {
+        $link = is_array($row) ? ($row['link'] ?? null) : null;
+        return is_array($link) && !empty($link['url']) && !empty($link['title']);
+    }));
+}
+
+$background = $background ?: 'light';
+
+$image_url = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
+$image_alt = $image_id ? (get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: '') : '';
+$buttons   = array_slice($buttons, 0, 2);
+
+if ($background === 'white') {
+    $background = 'light';
+}
+
+// CTA block requires a title; fallback title can be provided via Blokken settings.
 if (empty($title)) {
     return;
 }

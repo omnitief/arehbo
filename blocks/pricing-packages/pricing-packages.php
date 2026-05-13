@@ -2,6 +2,7 @@
 
 $space    = get_spacing_class(get_field('space'));
 $full_id  = get_full_id(get_field('id'));
+$background = get_field('background') ?: 'light';
 $packages = get_field('packages');
 
 if (empty($packages)) {
@@ -11,9 +12,12 @@ if (empty($packages)) {
 $packages = array_slice($packages, 0, 3);
 $total    = count($packages);
 
+$bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
+$bg_class = $bg_map[$background] ?? 'bg-light';
+
 ?>
 
-<section <?= $full_id; ?> class="pricing-packages">
+<section <?= $full_id; ?> class="pricing-packages <?= esc_attr($bg_class); ?>">
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
         <div class="pricing-packages__grid">
@@ -25,7 +29,6 @@ $total    = count($packages);
                 $title        = $package['title']        ?? '';
                 $description  = $package['description']  ?? '';
                 $price        = $package['price']        ?? '';
-                $btw_excluded = $package['btw_excluded'] ?? false;
                 $features       = $package['features']       ?? [];
                 $button         = $package['button']         ?? null;
                 $accent_button  = $package['accent_button']  ?? false;
@@ -41,11 +44,15 @@ $total    = count($packages);
                         <p class="package-card__description"><?php echo esc_html($description); ?></p>
                     <?php endif; ?>
 
-                    <?php if ($price) : ?>
-                        <p class="package-card__price"><?php echo esc_html($price); ?></p>
+                    <?php if ($price !== '' && $price !== null) : ?>
+                        <?php
+                        $price_number = is_numeric($price) ? (float) $price : null;
+                        $price_label  = $price_number === null ? (string) $price : number_format_i18n($price_number, 2);
+                        ?>
+                        <p class="package-card__price"><?php echo esc_html('€ ' . $price_label); ?></p>
                     <?php endif; ?>
 
-                    <?php if ($btw_excluded) : ?>
+                    <?php if ($price !== '' && $price !== null) : ?>
                         <p class="package-card__btw"><?php esc_html_e('Excl. 21% BTW', 'arehbo-theme'); ?></p>
                     <?php endif; ?>
 

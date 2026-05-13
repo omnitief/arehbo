@@ -1,0 +1,166 @@
+/* Gravity Forms 2.5 theme (legacy markup) overrides */
+
+.gform_required_legend,
+.gform_description {
+    display: none;
+}
+
+.gform_wrapper {
+    --arehbo-gf-radius: 10px;
+    --arehbo-gf-border: rgba(var(--color-primary-rgb), 0.25);
+    --arehbo-gf-bg: transparent;
+    --arehbo-gf-color: var(--color-primary);
+}
+
+.bg-dark .gform_wrapper {
+    --arehbo-gf-border: rgba(var(--color-white-rgb), 0.25);
+    --arehbo-gf-color: var(--color-white);
+}
+
+.gform_wrapper .gform_title {
+    margin: 0;
+    padding-bottom: 24px;
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+    color: var(--arehbo-gf-color);
+}
+
+.gform_wrapper .gform_fields,
+.gform_wrapper .gform_body {
+    display: block;
+}
+
+.gform_wrapper .gfield {
+    margin: 0;
+}
+
+.gform_wrapper .gform_footer,
+.gform_wrapper .gform_page_footer {
+    margin-top: 30px;
+}
+
+.gform_wrapper.gravity-theme .gform_footer {
+    margin: 0;
+    padding-bottom: 0 !important;
+}
+
+.gform_wrapper.gravity-theme .gform_footer button {
+    margin-bottom: 0 !important;
+}
+
+.gform_wrapper .gfield_label,
+.gform_wrapper .gform-field-label,
+.gform_wrapper label.gfield_label {
+    font-family: var(--font-sans) !important;
+    font-size: 19px !important;
+    line-height: 30px !important;
+    color: var(--arehbo-gf-color) !important;
+    font-weight: 400 !important;
+}
+
+.gform_wrapper input[type]:not([type="hidden"]):not([type="submit"]):not([type="button"]),
+.gform_wrapper textarea,
+.gform_wrapper select {
+    font-family: var(--font-sans) !important;
+    font-size: 18px !important;
+    line-height: 30px !important;
+    color: var(--arehbo-gf-color) !important;
+    background-color: var(--arehbo-gf-bg) !important;
+    border: 2px solid var(--arehbo-gf-border) !important;
+    border-radius: var(--arehbo-gf-radius) !important;
+    padding: 14px 16px !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.gform_wrapper .ginput_container_select,
+.gform_wrapper .gfield .ginput_container_select {
+    position: relative;
+}
+
+.gform_wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: none !important;
+    padding-right: 48px !important;
+}
+
+.gform_wrapper .ginput_container_select::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%) rotate(90deg);
+    background-color: var(--arehbo-gf-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 4L17 12L9 20' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 4L17 12L9 20' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    pointer-events: none;
+}
+
+.gform_wrapper textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.gform_wrapper input[type]:not([type="hidden"]):not([type="submit"]):not([type="button"]):focus,
+.gform_wrapper textarea:focus,
+.gform_wrapper select:focus {
+    border-color: rgba(var(--color-accent-rgb), 0.8) !important;
+}
+
+.gform_wrapper .gfield_checkbox label,
+.gform_wrapper .gfield_radio label {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--arehbo-gf-color);
+}
+
+.gform_wrapper .ginput_container_consent {
+    align-items: center;
+}
+
+.arehbo-gf-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 30px !important;
+    padding: 10px 10px 10px 28px !important;
+    background-color: var(--color-accent) !important;
+    border: none !important;
+    border-radius: 32px !important;
+    height: 60px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 19px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    color: var(--color-white) !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    width: auto !important;
+    text-decoration: none !important;
+}
+
+.arehbo-gf-btn:hover {
+    background-color: var(--color-accent-dark) !important;
+}
+
+.arehbo-gf-btn__icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    width: 33px !important;
+    height: 33px !important;
+    border-radius: 17px !important;
+    background-color: #F5F9F9 !important;
+}

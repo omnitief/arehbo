@@ -2,8 +2,7 @@
 
 $link    = get_field('link');
 $variant = get_field('variant') ?: 'accent';
-$icon    = get_field('show_icon');
-$icon    = $icon === '' || $icon === null ? true : (bool) $icon;
+$icon    = $variant !== 'outline';
 
 if (empty($link) || empty($link['url'])) {
     return;

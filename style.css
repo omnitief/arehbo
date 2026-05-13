@@ -54,6 +54,8 @@ Version: 1.0
     --header-bg-color: var(--color-white);
     --header-height: 88px;
     --site-header-offset: 50px;
+    --bar-height: var(--header-height);
+    --header-bottom: calc(var(--site-header-offset) + var(--header-height));
 
 }
 
@@ -378,6 +380,14 @@ h6 {
 .bg-light .btn--outline {
     border-color: var(--color-accent);
     color: var(--color-accent);
+}
+
+.bg-light .btn--outline .btn__icon {
+    background: var(--color-accent);
+}
+
+.bg-light .btn--outline .btn__icon svg path {
+    stroke: var(--color-white);
 }
 
 .bg-light .btn--outline:hover {

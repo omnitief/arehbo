@@ -16,7 +16,8 @@ if (empty($image_id) && empty($description)) {
 }
 
 $section_class = 'image-text ' . $bg_class;
-if ($reverse) {
+$is_reverse = ($reverse === 'reverse' || $reverse === 1 || $reverse === true || $reverse === '1');
+if ($is_reverse) {
     $section_class .= ' image-text--reverse';
 }
 

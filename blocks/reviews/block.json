@@ -2,10 +2,10 @@
   "name": "acf/reviews",
   "title": "Reviews",
   "description": "Google reviews section with title, rating widget, a button, and a Swiper slider of review cards.",
-  "category": "layout",
+  "category": "custom_blocks",
   "icon": "star-filled",
   "keywords": ["reviews", "google", "testimonials", "slider"],
-  "style": "file:./style.css",
+  "style": "file:../../styles/blocks/reviews.css",
   "script": "file:./reviews.js",
   "acf": {
     "mode": "edit",
@@ -15,6 +15,4 @@
     "anchor": false,
     "align": false,
     "customClassName": false
-  },
-  "example": {}
-}
+  }}

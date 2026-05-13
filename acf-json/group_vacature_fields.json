@@ -21,16 +21,20 @@
             "placeholder": "Ede"
         },
         {
-            "key": "field_vacature_show_breadcrumbs",
-            "label": "Show breadcrumbs",
-            "name": "show_breadcrumbs",
-            "type": "true_false",
-            "instructions": "Toon broodkruimels in de hero.",
+            "key": "field_vacature_author",
+            "label": "Stel je vragen aan",
+            "name": "vacature_author",
+            "type": "post_object",
+            "instructions": "Selecteer het teamlid voor deze vacature.",
             "required": 0,
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Show",
-            "ui_off_text": "Hide"
+            "post_type": [
+                "medewerkers"
+            ],
+            "taxonomy": "",
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
         }
     ],
     "location": [

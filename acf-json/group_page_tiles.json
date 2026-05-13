@@ -6,31 +6,70 @@
             "key": "field_ptiles_tab_settings",
             "label": "Settings",
             "name": "",
+            "aria-label": "",
             "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_ptiles_id",
             "label": "ID",
             "name": "id",
+            "aria-label": "",
             "type": "text",
             "instructions": "Optional anchor ID for deep links (e.g. #section-name)",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
-            "placeholder": "section-id"
+            "placeholder": "section-id",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_ptiles_space",
             "label": "Space",
             "name": "space",
+            "aria-label": "",
             "type": "group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "sub_fields": [
                 {
                     "key": "field_ptiles_space_top",
                     "label": "Top",
                     "name": "top",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "none": "None",
                         "small": "Small",
@@ -40,13 +79,28 @@
                     "default_value": "medium",
                     "return_format": "value",
                     "allow_null": 0,
-                    "parent_repeater": ""
+                    "parent_repeater": "",
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
                 },
                 {
                     "key": "field_ptiles_space_bottom",
                     "label": "Bottom",
                     "name": "bottom",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "none": "None",
                         "small": "Small",
@@ -56,7 +110,13 @@
                     "default_value": "medium",
                     "return_format": "value",
                     "allow_null": 0,
-                    "parent_repeater": ""
+                    "parent_repeater": "",
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
                 }
             ]
         },
@@ -64,87 +124,169 @@
             "key": "field_ptiles_background",
             "label": "Background",
             "name": "background",
+            "aria-label": "",
             "type": "button_group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "choices": {
-                "dark": "Dark Blue",
-                "light": "Light Blue",
-                "white": "White"
+                "dark": "Dark blue",
+                "light": "Light blue"
             },
             "default_value": "light",
             "return_format": "value",
-            "allow_null": 0
+            "allow_null": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_ptiles_layout",
             "label": "Layout",
             "name": "layout",
+            "aria-label": "",
             "type": "button_group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "choices": {
                 "grid": "Grid",
                 "slider": "Slider"
             },
             "default_value": "grid",
             "return_format": "value",
-            "allow_null": 0
+            "allow_null": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_ptiles_tab_content",
             "label": "Content",
             "name": "",
+            "aria-label": "",
             "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_ptiles_title",
-            "label": "Title",
-            "name": "title",
-            "type": "text",
-            "default_value": "",
-            "placeholder": ""
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_ptiles_description",
             "label": "Description",
             "name": "description",
-            "type": "textarea",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
-            "rows": 3,
-            "new_lines": ""
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_ptiles_cards",
             "label": "Cards",
             "name": "cards",
+            "aria-label": "",
             "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "block",
             "button_label": "Add Card",
             "min": 0,
             "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_ptiles_card_image",
                     "label": "Image",
                     "name": "image",
+                    "aria-label": "",
                     "type": "image",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "return_format": "id",
                     "preview_size": "medium",
-                    "parent_repeater": "field_ptiles_cards"
+                    "parent_repeater": "field_ptiles_cards",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
                 },
                 {
                     "key": "field_ptiles_card_title",
                     "label": "Title",
                     "name": "title",
+                    "aria-label": "",
                     "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "placeholder": "",
-                    "parent_repeater": "field_ptiles_cards"
+                    "parent_repeater": "field_ptiles_cards",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_ptiles_card_button",
                     "label": "Button",
                     "name": "button",
+                    "aria-label": "",
                     "type": "link",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "return_format": "array",
                     "parent_repeater": "field_ptiles_cards"
                 }
@@ -169,5 +311,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741305600
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1778615220
 }

@@ -21,6 +21,27 @@
             "selected": 0
         },
         {
+            "key": "field_69a350fe_id",
+            "label": "ID",
+            "name": "id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_69a35112d9efe",
             "label": "Space",
             "name": "space",
@@ -101,27 +122,6 @@
             ]
         },
         {
-            "key": "field_69a350fe_id",
-            "label": "ID",
-            "name": "id",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_imagetext_background",
             "label": "Background",
             "name": "background",
@@ -136,21 +136,21 @@
                 "id": ""
             },
             "choices": {
-                "dark": "Dark Blue",
-                "light": "Light Blue",
-                "white": "White"
+                "dark": "Dark blue",
+                "light": "Light blue"
             },
             "default_value": "light",
             "return_format": "value",
             "allow_null": 0,
-            "allow_in_bindings": 0
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_69a35147d9f01",
-            "label": "Reverse",
+            "label": "Layout",
             "name": "reverse",
             "aria-label": "",
-            "type": "true_false",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -159,12 +159,18 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Image right, text left",
-            "default_value": 0,
+            "default_value": "normal",
             "allow_in_bindings": 0,
             "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": ""
+            "ui_off_text": "",
+            "choices": {
+                "normal": "Image - Text",
+                "reverse": "Text - Image"
+            },
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_69a35173d9f02",
@@ -254,7 +260,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/image-text"
+                "value": "acf/image-text"
             }
         ]
     ],

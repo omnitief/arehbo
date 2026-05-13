@@ -1,7 +1,7 @@
 <?php
 
 $marquee_text = get_field('footer_marquee_text', 'option') ?: 'AREHBO';
-$marquee_bg   = get_field('footer_marquee_bg', 'option') ?: 'light';
+$marquee_bg   = 'light';
 
 $logo_id    = get_field('footer_logo', 'option');
 

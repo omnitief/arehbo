@@ -38,14 +38,15 @@ $default_img_alt = $default_img_id
     : $title;
 
 $default_bg_variant = 'light';
+$default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-light';
 
 ?>
 
-<div <?= $full_id; ?> class="hero-banner hero-banner--<?= esc_attr($layout); ?>">
+<section <?= $full_id; ?> class="hero-banner hero-banner--<?= esc_attr($layout); ?>">
 
     <?php if ($layout === 'hero') : ?>
 
-        <section class="hb-hero"
+        <div class="hb-hero"
             <?php if ($bg_url && !$video_url) : ?>
                 style="background-image: url('<?= esc_url($bg_url); ?>');"
             <?php endif; ?>>
@@ -109,13 +110,13 @@ $default_bg_variant = 'light';
                 <?php endif; ?>
 
             </div>
-        </section>
+        </div>
 
         <?php get_template_part('components/colorbar'); ?>
 
     <?php elseif ($layout === 'default') : ?>
 
-        <div class="hb-default hb-default--<?= esc_attr($default_background); ?>">
+        <div class="hb-default hb-default--<?= esc_attr($default_background); ?> <?= esc_attr($default_bg_class); ?><?= ($default_show_usps && !empty($default_usps)) ? ' hb-default--has-usps' : ''; ?>">
             <div class="hb-default__inner container">
 
                 <?php $breadcrumb_title = $title ?: get_the_title(); ?>
@@ -217,7 +218,7 @@ $default_bg_variant = 'light';
 
     <?php elseif ($layout === 'formulier') : ?>
 
-        <section class="hb-formulier <?= esc_attr($form_bg_class); ?>">
+        <div class="hb-formulier <?= esc_attr($form_bg_class); ?>">
             <div class="hb-formulier__inner container">
 
                 <?php $breadcrumb_title = $title ?: get_the_title(); ?>
@@ -296,10 +297,10 @@ $default_bg_variant = 'light';
 
                 </div>
             </div>
-        </section>
+        </div>
 
         <?php get_template_part('components/colorbar'); ?>
 
     <?php endif; ?>
 
-</div>
+</section>
