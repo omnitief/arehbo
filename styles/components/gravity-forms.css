@@ -21,7 +21,7 @@
     margin: 0;
     padding-bottom: 24px;
     font-family: var(--font-sans);
-    font-size: 24px;
+    font-size: var(--font-size-large);
     line-height: 34px;
     font-weight: 600;
     color: var(--arehbo-gf-color);
@@ -54,7 +54,7 @@
 .gform_wrapper .gform-field-label,
 .gform_wrapper label.gfield_label {
     font-family: var(--font-sans) !important;
-    font-size: 19px !important;
+    font-size: var(--font-size-standard) !important;
     line-height: 30px !important;
     color: var(--arehbo-gf-color) !important;
     font-weight: 400 !important;
@@ -64,7 +64,7 @@
 .gform_wrapper textarea,
 .gform_wrapper select {
     font-family: var(--font-sans) !important;
-    font-size: 18px !important;
+    font-size: var(--font-size-standard) !important;
     line-height: 30px !important;
     color: var(--arehbo-gf-color) !important;
     background-color: var(--arehbo-gf-bg) !important;
@@ -121,7 +121,7 @@
 .gform_wrapper .gfield_checkbox label,
 .gform_wrapper .gfield_radio label {
     font-family: var(--font-sans);
-    font-size: 18px;
+    font-size: var(--font-size-standard);
     line-height: 28px;
     color: var(--arehbo-gf-color);
 }
@@ -140,7 +140,7 @@
     border-radius: 32px !important;
     height: 60px !important;
     font-family: var(--font-sans) !important;
-    font-size: 19px !important;
+    font-size: var(--font-size-standard) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     color: var(--color-white) !important;

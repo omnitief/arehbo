@@ -6,12 +6,11 @@
 get_header();
 
 $page_title  = get_the_title();
-$background  = get_field('inschr_background') ?: 'light-blue';
 $hero_title  = get_field('inschr_title');
 $description = get_field('inschr_description');
 $img_id      = get_field('inschr_image');
 
-$bg_class = ($background === 'dark-blue') ? ' bg-dark' : ' bg-light';
+$bg_class = ' bg-light';
 $img_url  = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
 $img_alt  = $img_id ? (get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: $page_title) : '';
 
@@ -111,20 +110,23 @@ $demo_cards = [
     </div>
     </div>
 
-    <div class="inschr-filter-wrap container<?= $bg_class; ?>">
-        <div class="inschr-filter">
-            <div class="inschr-filter__left">
-                <span class="inschr-filter__title">Waar bent u naar opzoek?</span>
-                <span class="inschr-filter__desc">Selecteer categorieën</span>
-            </div>
-            <div class="inschr-filter__right">
-                <button class="inschr-filter__btn is-active" type="button">Alle cursussen</button>
-                <button class="inschr-filter__btn" type="button">BHV</button>
+    <div class="inschr-filter-bg<?= $bg_class; ?>">
+        <div class="inschr-filter-wrap container">
+            <div class="inschr-filter">
+                <div class="inschr-filter__left">
+                    <span class="inschr-filter__title">Waar bent u naar opzoek?</span>
+                    <span class="inschr-filter__desc">Selecteer categorieën</span>
+                </div>
+                <div class="inschr-filter__right">
+                    <button class="inschr-filter__btn is-active" type="button">Alle cursussen</button>
+                    <button class="inschr-filter__btn" type="button">BHV</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="inschr-cards container<?= $bg_class; ?>">
+    <div class="inschr-cards-bg<?= $bg_class; ?>">
+    <div class="inschr-cards container">
 
         <?php foreach ($demo_cards as $card_index => $card) :
             $status    = $card['status'];
@@ -238,6 +240,7 @@ $demo_cards = [
 
         <?php endforeach; ?>
 
+    </div>
     </div>
 
 </main>

@@ -1,4 +1,7 @@
 .pricing-packages {
+    --package-price-font-size: 38px;
+    --package-price-line-height: 44px;
+
     background: transparent;
 }
 
@@ -25,8 +28,8 @@
 .pricing-packages .package-card__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 34px;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
     font-weight: 600;
     color: var(--color-primary);
 }
@@ -44,8 +47,8 @@
     margin: 0;
     margin-top: 25px;
     font-family: var(--font-sans);
-    font-size: 38px;
-    line-height: 44px;
+    font-size: var(--package-price-font-size);
+    line-height: var(--package-price-line-height);
     font-weight: 700;
     color: var(--color-primary);
 }
@@ -54,7 +57,6 @@
     margin: 0;
     margin-top: 10px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 26px;
     font-weight: 400;
     color: rgba(var(--color-primary-rgb), 0.65);

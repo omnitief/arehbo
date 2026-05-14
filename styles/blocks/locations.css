@@ -25,8 +25,8 @@
     margin: 0;
     max-width: 340px;
     font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 42px;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
     font-weight: 600;
     letter-spacing: 0;
     color: var(--color-white);
@@ -117,7 +117,7 @@
 .locations-pin__label {
     margin-top: 6px;
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: var(--font-size-micro);
     font-weight: 600;
     line-height: 1;
     letter-spacing: 0.02em;
@@ -150,8 +150,8 @@
     }
 
     .locations-block__title {
-        font-size: 28px;
-        line-height: 38px;
+        font-size: var(--font-size-h3);
+        line-height: var(--line-height-h3);
     }
 }
 
@@ -233,7 +233,7 @@
     }
 
     .locations-block__title {
-        font-size: 24px;
+        font-size: var(--font-size-large);
         line-height: 34px;
     }
 

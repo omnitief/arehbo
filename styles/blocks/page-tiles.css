@@ -69,7 +69,6 @@
 
 .tile-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 28px;
     font-weight: bold;
     color: var(--color-accent);
@@ -94,7 +93,7 @@
     }
 
     .tile-card__btn-label {
-        font-size: 17px;
+        font-size: var(--font-size-small);
         line-height: 28px;
     }
 }

@@ -28,7 +28,6 @@
 .archive-breadcrumbs__link,
 .archive-breadcrumbs__sep {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     color: var(--color-primary);
@@ -43,7 +42,6 @@
 
 .archive-breadcrumbs__current {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     color: var(--color-primary);
@@ -63,8 +61,8 @@
 .archive-hero__title {
     margin: calc(var(--space-3) - 40px) 0 0;
     font-family: var(--font-sans);
-    font-size: 60px;
-    line-height: 70px;
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
     font-weight: 600;
     color: var(--color-primary);
     text-align: center;
@@ -165,8 +163,8 @@
 
 @media (max-width: 1200px) {
     .archive-hero__title {
-        font-size: 50px;
-        line-height: 60px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 }
 
@@ -176,8 +174,8 @@
     }
 
     .archive-hero__title {
-        font-size: 36px;
-        line-height: 46px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
         margin-top: 40px;
     }
 
@@ -192,6 +190,5 @@
     .archive-breadcrumbs__link,
     .archive-breadcrumbs__sep,
     .archive-breadcrumbs__current {
-        font-size: 19px;
     }
 }

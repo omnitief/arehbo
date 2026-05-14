@@ -79,7 +79,6 @@
 
 .archive-card__meta-label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     font-weight: normal;
     color: var(--color-white);
@@ -89,7 +88,6 @@
 
 .archive-card__meta-value {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     font-weight: bold;
     color: var(--color-white);
@@ -120,7 +118,6 @@
 
 .archive-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 24px;
     font-weight: bold;
     color: var(--color-accent);
@@ -217,6 +214,7 @@
     display: inline-flex;
     align-items: center;
     gap: 20px;
+    font-size: var(--font-size-standard);
     padding: 12px 20px;
     border: 1px solid rgba(var(--color-white-rgb), 0.40);
     border-radius: 32px;
@@ -271,7 +269,6 @@
 
 .archive-filter__label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 28px;
     font-weight: normal;
     color: var(--color-white);
@@ -338,7 +335,7 @@
     height: 52px;
     min-width: 52px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 28px;
     font-weight: 600;
     color: var(--color-white);
@@ -379,7 +376,6 @@
     height: 52px;
     min-width: 52px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 28px;
     font-weight: 600;
     color: var(--color-white);
@@ -412,7 +408,7 @@
     .archive-filter__label,
     .archive-page-number,
     .archive-page-ellipsis {
-        font-size: 17px;
+        font-size: var(--font-size-small);
         line-height: 28px;
     }
 

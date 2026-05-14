@@ -38,18 +38,51 @@ Version: 1.0
     --font-base: 'Blinker', sans-serif;
     --font-sans: 'Blinker', sans-serif;
 
-    --heading-hero-size: 60px;
-    --heading-hero-line: 70px;
-    --heading-section-size: 50px;
-    --heading-section-line: 60px;
+    --font-size-micro: 11px;
+    --font-size-tiny: 13px;
+    --font-size-label: 14px;
+    --font-size-small: 17px;
+    --font-size-standard: 19px;
+    --font-size-large: 24px;
+
+    --line-height-small: 1.45;
+    --line-height-standard: 1.6;
+    --line-height-large: 1.42;
+
+    --font-size-h1: 60px;
+    --line-height-h1: 70px;
+    --font-size-h2: 50px;
+    --line-height-h2: 60px;
+    --font-size-h3: 32px;
+    --line-height-h3: 42px;
+    --font-size-h4: 24px;
+    --line-height-h4: 34px;
+    --font-size-h5: var(--font-size-standard);
+    --line-height-h5: 30px;
+    --font-size-h6: var(--font-size-standard);
+    --line-height-h6: 28px;
+
+    --heading-hero-size: var(--font-size-h1);
+    --heading-hero-line: var(--line-height-h1);
+    --heading-section-size: var(--font-size-h2);
+    --heading-section-line: var(--line-height-h2);
     --heading-section-compact-size: 40px;
     --heading-section-compact-line: 50px;
-    --heading-card-size: 32px;
-    --heading-card-line: 42px;
+    --heading-card-size: var(--font-size-h3);
+    --heading-card-line: var(--line-height-h3);
     --heading-card-compact-size: 26px;
     --heading-card-compact-line: 34px;
-    --heading-card-small-size: 24px;
-    --heading-card-small-line: 34px;
+    --heading-card-small-size: var(--font-size-h4);
+    --heading-card-small-line: var(--line-height-h4);
+
+    --font-size-content-h2: 36px;
+    --line-height-content-h2: 46px;
+    --font-size-content-h3: 28px;
+    --line-height-content-h3: 38px;
+    --font-size-content-h4: 22px;
+    --line-height-content-h4: 32px;
+    --font-size-quote: 21px;
+    --line-height-quote: 34px;
 
     --header-bg-color: var(--color-white);
     --header-height: 88px;
@@ -65,6 +98,16 @@ Version: 1.0
         --space-2: 64px;
         --space-3: 120px;
         --space-4: 160px;
+        --font-size-standard: 18px;
+        --font-size-large: 23px;
+        --font-size-h1: 50px;
+        --line-height-h1: 60px;
+        --font-size-h2: 40px;
+        --line-height-h2: 50px;
+        --font-size-h3: 30px;
+        --line-height-h3: 40px;
+        --font-size-h4: 23px;
+        --line-height-h4: 33px;
     }
 }
 
@@ -75,35 +118,62 @@ Version: 1.0
         --space-2: 40px;
         --space-3: 80px;
         --space-4: 100px;
-        --heading-hero-size: 50px;
-        --heading-hero-line: 60px;
-        --heading-section-size: 40px;
-        --heading-section-line: 50px;
+        --font-size-standard: 18px;
+        --font-size-large: 22px;
+        --font-size-h1: 42px;
+        --line-height-h1: 52px;
+        --font-size-h2: 40px;
+        --line-height-h2: 50px;
+        --font-size-h3: 28px;
+        --line-height-h3: 38px;
+        --font-size-h4: 22px;
+        --line-height-h4: 30px;
         --heading-section-compact-size: 40px;
         --heading-section-compact-line: 50px;
-        --heading-card-size: 28px;
-        --heading-card-line: 38px;
         --heading-card-compact-size: 22px;
         --heading-card-compact-line: 30px;
-        --heading-card-small-size: 22px;
-        --heading-card-small-line: 30px;
     }
 }
 
 @media (max-width: 768px) {
     :root {
-        --heading-hero-size: 36px;
-        --heading-hero-line: 46px;
-        --heading-section-size: 30px;
-        --heading-section-line: 40px;
-        --heading-section-compact-size: 30px;
-        --heading-section-compact-line: 40px;
-        --heading-card-size: 23px;
-        --heading-card-line: 32px;
-        --heading-card-compact-size: 18px;
-        --heading-card-compact-line: 26px;
-        --heading-card-small-size: 18px;
-        --heading-card-small-line: 26px;
+        --font-size-large: 20px;
+        --font-size-h1: 40px;
+        --line-height-h1: 50px;
+        --font-size-h2: 32px;
+        --line-height-h2: 42px;
+        --font-size-h3: 24px;
+        --line-height-h3: 34px;
+        --font-size-h4: 20px;
+        --line-height-h4: 28px;
+        --line-height-h5: 28px;
+        --heading-section-compact-size: var(--font-size-h2);
+        --heading-section-compact-line: var(--line-height-h2);
+        --heading-card-compact-size: 20px;
+        --heading-card-compact-line: 28px;
+        --font-size-content-h2: 26px;
+        --line-height-content-h2: 36px;
+        --font-size-content-h3: 22px;
+        --line-height-content-h3: 32px;
+        --font-size-content-h4: var(--font-size-standard);
+        --line-height-content-h4: 28px;
+        --font-size-quote: var(--font-size-standard);
+        --line-height-quote: 30px;
+    }
+}
+
+@media (min-width: 1900px) {
+    :root {
+        --font-size-small: 18px;
+        --font-size-standard: 20px;
+        --font-size-large: 26px;
+    }
+}
+
+@media (max-width: 500px) {
+    :root {
+        --font-size-small: 16px;
+        --font-size-standard: 17px;
     }
 }
 
@@ -141,33 +211,13 @@ html {
 
 body {
     font-family: var(--font-base);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     margin: 0;
     overflow-x: hidden;
 }
 
-@media (max-width: 1600px) {
-    body {
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 1900px) {
-    body {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 990px) {
-    body {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 500px) {
-    body {
-        font-size: 17px;
-    }
+a {
+    color: inherit;
 }
 
 h1,
@@ -182,82 +232,33 @@ h6 {
 }
 
 h1 {
-    font-size: 60px;
-    line-height: 70px;
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
 }
 
 h2 {
-    font-size: 50px;
-    line-height: 60px;
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
 }
 
 h3 {
-    font-size: 32px;
-    line-height: 42px;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
 }
 
 h4 {
-    font-size: 24px;
-    line-height: 34px;
-}
-
-@media (max-width: 1600px) {
-    h1 {
-        font-size: 56px;
-        line-height: 66px;
-    }
-
-    h2 {
-        font-size: 44px;
-        line-height: 54px;
-    }
-
-    h3 {
-        font-size: 30px;
-        line-height: 40px;
-    }
-
-    h4 {
-        font-size: 23px;
-        line-height: 33px;
-    }
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
 }
 
 h5 {
-    font-size: 19px;
-    line-height: 30px;
+    font-size: var(--font-size-h5);
+    line-height: var(--line-height-h5);
 }
 
 h6 {
-    font-size: 19px;
-    line-height: 28px;
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 36px;
-        line-height: 46px;
-    }
-
-    h2 {
-        font-size: 30px;
-        line-height: 40px;
-    }
-
-    h3 {
-        font-size: 23px;
-        line-height: 32px;
-    }
-
-    h4 {
-        font-size: 20px;
-        line-height: 30px;
-    }
-
-    h5 {
-        font-size: 19px;
-        line-height: 28px;
-    }
+    font-size: var(--font-size-h6);
+    line-height: var(--line-height-h6);
 }
 
 .space-top-none   { padding-top: 0; }
@@ -336,7 +337,7 @@ h6 {
     border: 1px solid transparent;
     border-radius: 32px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     font-weight: 600;
     text-transform: uppercase;
     text-decoration: none;
@@ -375,7 +376,7 @@ h6 {
 
 @media (max-width: 1600px) {
     .btn {
-        font-size: 17px;
+        font-size: var(--font-size-small);
         padding: 12px 20px;
     }
 
@@ -509,7 +510,7 @@ h6 {
     align-items: center;
     gap: 5px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 1;
 }
 

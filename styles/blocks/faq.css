@@ -20,8 +20,8 @@
 .faq-block__heading {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 50px;
-    line-height: 60px;
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
     font-weight: 600;
     color: var(--color-primary);
 }
@@ -53,7 +53,7 @@
 .faq-item__number,
 .faq-item__title {
     font-family: var(--font-sans);
-    font-size: 24px;
+    font-size: var(--font-size-large);
     line-height: 34px;
     font-weight: 400;
     color: var(--color-primary);
@@ -131,4 +131,12 @@
 .faq-block .faq-item__answer,
 .faq-block .faq-item__answer * {
     color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .faq-item__number,
+    .faq-item__title {
+        font-size: var(--font-size-large);
+        line-height: var(--line-height-large);
+    }
 }

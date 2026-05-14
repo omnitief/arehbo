@@ -5,7 +5,6 @@
 .marquee-block__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 28px;
     font-weight: 600;
     color: var(--color-primary);

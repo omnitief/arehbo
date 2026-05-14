@@ -3,21 +3,6 @@
     "title": "Inschrijven \u2013 Hero",
     "fields": [
         {
-            "key": "field_inschr_background",
-            "label": "Background",
-            "name": "inschr_background",
-            "type": "button_group",
-            "instructions": "Background colour for the hero section.",
-            "required": 0,
-            "choices": {
-                "light-blue": "Light Blue",
-                "dark-blue": "Dark Blue"
-            },
-            "default_value": "light-blue",
-            "return_format": "value",
-            "allow_null": 0
-        },
-        {
             "key": "field_inschr_title",
             "label": "Title",
             "name": "inschr_title",

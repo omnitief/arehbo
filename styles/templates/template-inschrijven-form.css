@@ -26,7 +26,6 @@
     align-items: center;
     gap: 8px;
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 600;
     color: var(--color-primary);
@@ -51,7 +50,6 @@
 .inschr-form-breadcrumbs__link,
 .inschr-form-breadcrumbs__sep {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     letter-spacing: 0;
@@ -67,7 +65,6 @@
 
 .inschr-form-breadcrumbs__current {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     letter-spacing: 0;
@@ -105,8 +102,8 @@
 .inschr-form-hero__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 60px;
-    line-height: 70px;
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
     font-weight: 600;
     letter-spacing: 0;
     color: var(--color-primary);
@@ -156,7 +153,6 @@
 
 .inschr-form-card__empty {
     font-family: var(--font-sans);
-    font-size: 19px;
     color: var(--color-primary);
     opacity: 0.5;
 }
@@ -177,7 +173,7 @@
 .inschr-form-info-box__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 24px;
+    font-size: var(--font-size-large);
     line-height: 34px;
     font-weight: 600;
     letter-spacing: 0;
@@ -187,7 +183,6 @@
 .inschr-form-info-box__course {
     margin: 15px 0 0;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 25px;
     font-weight: 400;
     color: var(--color-white)!important;
@@ -205,7 +200,6 @@
     align-items: center;
     gap: 12px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 25px;
     font-weight: 400;
     color: var(--color-white);
@@ -225,7 +219,7 @@
 .inschr-form-days-box__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 24px;
+    font-size: var(--font-size-large);
     line-height: 34px;
     font-weight: 600;
     letter-spacing: 0;
@@ -249,7 +243,6 @@
 
 .inschr-form-days-box__date {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     letter-spacing: 0;
@@ -259,7 +252,6 @@
 
 .inschr-form-days-box__time {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 700;
     letter-spacing: 0;
@@ -272,8 +264,8 @@
     }
 
     .inschr-form-hero__title {
-        font-size: 50px;
-        line-height: 60px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 }
 
@@ -294,8 +286,8 @@
     }
 
     .inschr-form-hero__title {
-        font-size: 42px;
-        line-height: 52px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 }
 
@@ -309,7 +301,6 @@
     .inschr-form-breadcrumbs__link,
     .inschr-form-breadcrumbs__sep,
     .inschr-form-breadcrumbs__current {
-        font-size: 19px;
         line-height: 24px;
     }
 
@@ -323,8 +314,8 @@
     }
 
     .inschr-form-hero__title {
-        font-size: 32px;
-        line-height: 42px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 
     .inschr-form-card {

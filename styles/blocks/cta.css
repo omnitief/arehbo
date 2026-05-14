@@ -50,7 +50,6 @@
     -webkit-backdrop-filter: blur(20px);
     padding: 8px 16px;
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     color: var(--color-white);
@@ -72,8 +71,8 @@
 .cta__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 42px;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
     font-weight: 600;
     color: var(--color-white);
 }

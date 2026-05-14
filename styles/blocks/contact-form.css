@@ -20,8 +20,8 @@
 
 .contact-form-block__title {
     font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 42px;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
     font-weight: 600;
     margin: 0;
 }
@@ -43,8 +43,8 @@
 .contact-form-block__description h3,
 .contact-form-block__description h4 {
     font-family: var(--font-sans);
-    font-size: 32px;
-    line-height: 42px;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
     font-weight: 600;
     margin: 0 0 30px;
     letter-spacing: 0;
@@ -136,7 +136,6 @@
 
 .contact-form-block__author-label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 32px;
     font-weight: 400;
     letter-spacing: 0;
@@ -153,7 +152,7 @@
 
 .contact-form-block__author-name {
     font-family: var(--font-sans);
-    font-size: 24px;
+    font-size: var(--font-size-large);
     line-height: 34px;
     font-weight: 400;
     letter-spacing: 0;
@@ -194,8 +193,8 @@
     }
 
     .contact-form-block__title {
-        font-size: 26px;
-        line-height: 36px;
+        font-size: var(--font-size-h3);
+        line-height: var(--line-height-h3);
     }
 
     .contact-form-block__author {
@@ -206,8 +205,8 @@
     }
 
     .contact-form-block__author-name {
-        font-size: 20px;
-        line-height: 30px;
+        font-size: var(--font-size-large);
+        line-height: var(--line-height-large);
     }
 
     .contact-form-block__form-wrap {

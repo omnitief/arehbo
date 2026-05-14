@@ -70,7 +70,7 @@
     color: var(--color-primary);
     font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 20px;
+    font-size: var(--font-size-standard);
 }
 .site-header__logo img {
     display: block;
@@ -105,7 +105,7 @@
     min-height: 63px;
     padding: 8px 0;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 28px;
     font-weight: 400;
     letter-spacing: 0;
@@ -178,7 +178,7 @@
 
 .site-nav__dropdown-link {
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     font-weight: 400;
     color: var(--color-primary);
     text-decoration: none;
@@ -262,7 +262,7 @@
 
 .header-phone__number {
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     font-weight: 600;
     color: var(--color-primary);
 }
@@ -271,7 +271,7 @@
     width: auto;
     min-height: 63px;
     padding: 12px 24px;
-    font-size: 19px;
+    font-size: var(--font-size-standard);
 }
 
 .hamburger {
@@ -350,7 +350,7 @@
     }
 
     .site-nav__link {
-        font-size: 17px;
+        font-size: var(--font-size-small);
         line-height: 24px;
         min-height: 56px;
     }
@@ -361,17 +361,17 @@
     }
 
     .site-nav__dropdown-link {
-        font-size: 17px;
+        font-size: var(--font-size-small);
     }
 
     .header-phone__number {
-        font-size: 17px;
+        font-size: var(--font-size-small);
     }
 
     .site-header__cta {
         min-height: 56px;
         padding: 10px 20px;
-        font-size: 17px;
+        font-size: var(--font-size-small);
     }
 
     .mega-menu__columns {
@@ -382,7 +382,7 @@
     .mega-menu__col-title,
     .mega-menu__link,
     .mega-menu__view-all {
-        font-size: 17px;
+        font-size: var(--font-size-small);
     }
 
     .mega-menu__col-title {
@@ -445,7 +445,7 @@
     display: block;
     padding: 20px 0;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     font-weight: 600;
     color: var(--color-primary);
     text-decoration: none;
@@ -514,7 +514,7 @@ a.mobile-nav__link:hover {
     display: block;
     padding: 10px 16px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     font-weight: 400;
     color: var(--color-primary);
     text-decoration: none;
@@ -610,7 +610,7 @@ a.mobile-nav__link:hover {
 
 .mega-menu__col-title {
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 28px;
     font-weight: 600;
     letter-spacing: 0;
@@ -629,7 +629,7 @@ a.mobile-nav__link:hover {
 
 .mega-menu__link {
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 35px;
     font-weight: 400;
     letter-spacing: 0;
@@ -648,7 +648,7 @@ a.mobile-nav__link:hover {
     gap: 10px;
     margin-top: 15px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 30px;
     font-weight: 600;
     letter-spacing: 0;
@@ -700,7 +700,7 @@ a.mobile-nav__link:hover {
 
 .mega-menu__cta-intro {
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 35px;
     font-weight: 400;
     color: var(--color-white);
@@ -716,7 +716,7 @@ a.mobile-nav__link:hover {
     align-items: center;
     gap: 8px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 35px;
     font-weight: 600;
     color: var(--color-white);
@@ -788,7 +788,7 @@ a.mobile-nav__link:hover {
     border: none;
     cursor: pointer;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 27px;
     font-weight: 400;
     color: var(--color-primary);
@@ -831,7 +831,7 @@ a.mobile-nav__link:hover {
 
 .mobile-mega__col-title {
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 24px;
     font-weight: 600;
     color: var(--color-primary);
@@ -860,7 +860,7 @@ a.mobile-nav__link:hover {
     display: block;
     padding: 14px 0 10px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 28px;
     font-weight: 400;
     color: var(--color-primary);
@@ -881,7 +881,7 @@ a.mobile-nav__link:hover {
     gap: 8px;
     padding: 14px 0 10px;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: var(--font-size-standard);
     line-height: 30px;
     font-weight: 600;
     color: var(--color-accent);

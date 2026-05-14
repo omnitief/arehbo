@@ -1,4 +1,7 @@
 .slider-block {
+    --process-date-font-size: 51px;
+    --process-date-line-height: 67px;
+
     overflow: hidden;
 }
 
@@ -81,8 +84,8 @@
 
 .process-card__date {
     font-family: var(--font-sans);
-    font-size: 51px;
-    line-height: 67px;
+    font-size: var(--process-date-font-size);
+    line-height: var(--process-date-line-height);
     font-weight: 600;
     color: var(--color-primary);
     flex-shrink: 0;
@@ -157,8 +160,8 @@
     }
 
     .process-card__date {
-        font-size: 36px;
-        line-height: 48px;
+        --process-date-font-size: 36px;
+        --process-date-line-height: 48px;
     }
 
     .process-card__text {

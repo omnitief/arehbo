@@ -81,8 +81,8 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-card__title {
     font-family: var(--font-sans);
-    font-size: 26px;
-    line-height: 34px;
+    font-size: var(--heading-card-compact-size);
+    line-height: var(--heading-card-compact-line);
     font-weight: 600;
     color: var(--color-white);
 }
@@ -96,7 +96,6 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-card .tile-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 28px;
     font-weight: 700;
     color: var(--color-accent);
@@ -146,7 +145,6 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-scroll__label {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     color: var(--color-white);
@@ -210,7 +208,6 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-card__title {
-        font-size: 19px;
         line-height: 26px;
     }
 
@@ -272,8 +269,8 @@ body:has(.hero-banner--hero) .site-header {
 .hb-default__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 60px;
-    line-height: 70px;
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
     font-weight: 600;
     letter-spacing: 0;
     color: var(--color-primary);
@@ -346,7 +343,6 @@ body:has(.hero-banner--hero) .site-header {
 .hb-formulier .archive-breadcrumbs__link,
 .hb-formulier .archive-breadcrumbs__sep {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     color: var(--color-primary);
@@ -363,7 +359,6 @@ body:has(.hero-banner--hero) .site-header {
 .hb-default .archive-breadcrumbs__current,
 .hb-formulier .archive-breadcrumbs__current {
     font-family: var(--font-base);
-    font-size: 19px;
     line-height: 30px;
     font-weight: 400;
     color: var(--color-primary);
@@ -420,7 +415,7 @@ body:has(.hero-banner--hero) .site-header {
     .hb-formulier .archive-breadcrumbs__link,
     .hb-formulier .archive-breadcrumbs__sep,
     .hb-formulier .archive-breadcrumbs__current {
-        font-size: 17px;
+        font-size: var(--font-size-small);
         line-height: 28px;
     }
 }
@@ -432,8 +427,8 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-default__title {
-        font-size: 50px;
-        line-height: 60px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 }
 
@@ -448,8 +443,8 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-default__title {
-        font-size: 42px;
-        line-height: 52px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 }
 
@@ -483,8 +478,8 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-default__title {
-        font-size: 32px;
-        line-height: 42px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 
     .hb-default__description {
@@ -531,8 +526,8 @@ body:has(.hero-banner--hero) .site-header {
 .hb-formulier__title {
     margin: 0;
     font-family: var(--font-sans);
-    font-size: 60px;
-    line-height: 70px;
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
     font-weight: 600;
     letter-spacing: 0;
     color: var(--color-primary);
@@ -618,7 +613,6 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-formulier__form-card-empty {
     font-family: var(--font-sans);
-    font-size: 19px;
     color: var(--color-primary);
     opacity: 0.5;
 }
@@ -639,8 +633,8 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-formulier__title {
-        font-size: 50px;
-        line-height: 60px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 }
 
@@ -650,8 +644,8 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-formulier__title {
-        font-size: 42px;
-        line-height: 52px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 
     .hb-formulier__form-card {
@@ -682,13 +676,12 @@ body:has(.hero-banner--hero) .site-header {
     }
 
     .hb-formulier__title {
-        font-size: 32px;
-        line-height: 42px;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-h1);
     }
 
     .hb-formulier__description {
         margin-top: 20px;
-        font-size: 19px;
         line-height: 28px;
     }
 

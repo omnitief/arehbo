@@ -58,7 +58,6 @@
 
 .blog-card__reading-time span {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 30px;
     font-weight: normal;
     color: var(--color-white);
@@ -99,7 +98,6 @@
 
 .blog-card__btn-label {
     font-family: var(--font-sans);
-    font-size: 19px;
     line-height: 28px;
     font-weight: bold;
     color: var(--color-accent);
@@ -151,7 +149,7 @@
 
     .blog-card__reading-time span,
     .blog-card__btn-label {
-        font-size: 17px;
+        font-size: var(--font-size-small);
         line-height: 28px;
     }
 }
