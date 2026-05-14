@@ -57,7 +57,7 @@ $copyright_links_right = get_field('footer_copyright_links_right', 'option') ?: 
             <div class="footer-contact">
 
                 <?php if ($contact_title) : ?>
-                    <h2 class="footer-section-title"><?= esc_html($contact_title); ?></h2>
+                    <h6 class="footer-section-title"><?= esc_html($contact_title); ?></h6>
                 <?php endif; ?>
 
                 <?php if ($contact_address) : ?>
@@ -89,7 +89,7 @@ $copyright_links_right = get_field('footer_copyright_links_right', 'option') ?: 
                 <div class="footer-social">
 
                     <?php if ($social_title) : ?>
-                        <h2 class="footer-section-title"><?= esc_html($social_title); ?></h2>
+                        <h6 class="footer-section-title"><?= esc_html($social_title); ?></h6>
                     <?php endif; ?>
 
                     <ul class="footer-social__list">
@@ -113,7 +113,7 @@ $copyright_links_right = get_field('footer_copyright_links_right', 'option') ?: 
             <?php if (!empty($nav_links)) : ?>
                 <nav class="footer-nav" aria-label="Footer navigatie">
                     <?php if ($nav_title) : ?>
-                        <h2 class="footer-section-title"><?= esc_html($nav_title); ?></h2>
+                        <h6 class="footer-section-title"><?= esc_html($nav_title); ?></h6>
                     <?php endif; ?>
                     <ul class="footer-nav__list">
                         <?php foreach ($nav_links as $item) :

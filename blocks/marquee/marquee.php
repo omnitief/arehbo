@@ -20,7 +20,7 @@ $title_clean = trim(preg_replace('/<\/?p[^>]*>/', '', $title));
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
             <?php if ($title_clean) : ?>
-                <h2 class="marquee-block__title"><?= wp_kses_post($title_clean); ?></h2>
+                <h6 class="marquee-block__title"><?= wp_kses_post($title_clean); ?></h6>
             <?php endif; ?>
 
             <hr class="marquee-block__divider">
