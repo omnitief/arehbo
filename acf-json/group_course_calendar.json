@@ -1,0 +1,100 @@
+{
+    "key": "group_course_calendar",
+    "title": "Course Calendar",
+    "fields": [
+        {
+            "key": "field_cc_tab_settings",
+            "label": "Settings",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_cc_id",
+            "label": "ID",
+            "name": "id",
+            "type": "text",
+            "instructions": "Optional anchor ID for deep links (e.g. section-name)",
+            "default_value": "",
+            "placeholder": "section-id"
+        },
+        {
+            "key": "field_cc_space",
+            "label": "Space",
+            "name": "space",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_cc_space_top",
+                    "label": "Top",
+                    "name": "top",
+                    "type": "select",
+                    "choices": {
+                        "none": "None",
+                        "small": "Small",
+                        "medium": "Medium",
+                        "large": "Large"
+                    },
+                    "default_value": "medium",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "parent_repeater": ""
+                },
+                {
+                    "key": "field_cc_space_bottom",
+                    "label": "Bottom",
+                    "name": "bottom",
+                    "type": "select",
+                    "choices": {
+                        "none": "None",
+                        "small": "Small",
+                        "medium": "Medium",
+                        "large": "Large"
+                    },
+                    "default_value": "medium",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "parent_repeater": ""
+                }
+            ]
+        },
+        {
+            "key": "field_cc_tab_content",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_cc_title",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "Optional heading shown above the calendar (rendered as H2).",
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/course-calendar"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1773801600
+}

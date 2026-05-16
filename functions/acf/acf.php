@@ -85,7 +85,13 @@ add_filter('allowed_block_types_all', function ($allowed_block_types, $editor_co
     }
 
     // Other post types: only custom blocks, no core blocks, and exclude the button block.
-    $custom = array_values(array_diff(arehbo_get_custom_block_names(), ['acf/button']));
+    // course-calendar is only allowed on cursussen post type.
+    $excluded = ['acf/button'];
+    if ($post_type !== 'cursussen') {
+        $excluded[] = 'acf/course-calendar';
+    }
+
+    $custom = array_values(array_diff(arehbo_get_custom_block_names(), $excluded));
     return $custom;
 }, 10, 2);
 
