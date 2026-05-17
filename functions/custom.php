@@ -28,3 +28,30 @@ function get_full_id($id) {
     return 'id="' . esc_attr($id) . '"';
 }
 
+function arehbo_format_nl_date($timestamp) {
+    if (empty($timestamp)) return '';
+
+    $days_short = [
+        'Monday'    => 'Ma.',
+        'Tuesday'   => 'Di.',
+        'Wednesday' => 'Wo.',
+        'Thursday'  => 'Do.',
+        'Friday'    => 'Vr.',
+        'Saturday'  => 'Za.',
+        'Sunday'    => 'Zo.',
+    ];
+
+    $months = [
+        1  => 'januari', 2  => 'februari', 3  => 'maart',     4  => 'april',
+        5  => 'mei',     6  => 'juni',     7  => 'juli',      8  => 'augustus',
+        9  => 'september', 10 => 'oktober', 11 => 'november', 12 => 'december',
+    ];
+
+    $dow   = $days_short[date('l', $timestamp)] ?? '';
+    $day   = (int) date('j', $timestamp);
+    $month = $months[(int) date('n', $timestamp)] ?? '';
+    $year  = date('Y', $timestamp);
+
+    return trim("{$dow} {$day} {$month} {$year}");
+}
+

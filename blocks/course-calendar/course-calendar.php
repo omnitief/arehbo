@@ -95,6 +95,7 @@ foreach ($appointments as $appointment) {
         'days_count'  => count($all_dates),
         'location'    => $course_loc,
         'days'        => $days,
+        'dates_ts'    => array_map(fn($d) => $d['start_date'], $all_dates),
         'appointment' => $appointment_id,
     ];
 }
@@ -134,12 +135,11 @@ foreach ($appointments as $appointment) {
                 <div class="course-calendar__cards">
 
                     <?php foreach ($cards as $card) :
-                        $status    = $card['status'];
-                        $avail     = $card['available'];
-                        $days      = $card['days'];
-                        $first3    = array_slice($days, 0, 3);
-                        $extra     = array_slice($days, 3);
-                        $has_extra = !empty($extra);
+                        $status   = $card['status'];
+                        $avail    = $card['available'];
+                        $days     = $card['days'];
+                        $dates_ts = $card['dates_ts'];
+                        $first_ts = $dates_ts[0] ?? null;
 
                         $badge_url = '';
                         if ($status !== 'vol' && $form_page_url) {
@@ -157,90 +157,61 @@ foreach ($appointments as $appointment) {
 
                     <article class="course-card course-card--<?= esc_attr($status); ?>">
 
-                        <div class="course-card__upper">
-                            <div class="course-card__info">
-                                <h3 class="course-card__name"><?= esc_html($card['name']); ?></h3>
-                                <ul class="course-card__meta">
+                        <aside class="course-card__dates">
+                            <?php if ($first_ts) : ?>
+                                <div class="course-card__date-big"><?= esc_html(arehbo_format_nl_date($first_ts)); ?></div>
+                                <hr class="course-card__dates-sep">
+                            <?php endif; ?>
+                            <ul class="course-card__dates-meta">
+                                <?php if ($card['location']) : ?>
                                     <li class="course-card__meta-item">
-                                        <?= $icon_user; ?>
-                                        <span><?= esc_html($avail); ?> beschikbaar</span>
+                                        <?= $icon_location; ?>
+                                        <span><?= esc_html($card['location']); ?></span>
                                     </li>
-                                    <li class="course-card__meta-item">
-                                        <?= $icon_calendar; ?>
-                                        <span><?= esc_html($card['days_count']); ?> <?= $card['days_count'] === 1 ? 'dag' : 'dagen'; ?></span>
+                                <?php endif; ?>
+                                <li class="course-card__meta-item">
+                                    <?= $icon_calendar; ?>
+                                    <span><?= esc_html($card['days_count']); ?> <?= $card['days_count'] === 1 ? 'lesdag' : 'lesdagen'; ?></span>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <div class="course-card__main">
+                            <h3 class="course-card__name"><?= esc_html($card['name']); ?></h3>
+                            <hr class="course-card__main-sep">
+                            <ul class="course-card__lesdagen">
+                                <?php foreach ($days as $i => $dag) : ?>
+                                    <li class="course-card__lesdag">
+                                        <span class="course-card__lesdag-label">Lesdag <?= esc_html($i + 1); ?></span>
+                                        <span class="course-card__lesdag-date">
+                                            <?= $icon_calendar; ?>
+                                            <span><?= esc_html(arehbo_format_nl_date($dates_ts[$i] ?? null)); ?></span>
+                                        </span>
+                                        <span class="course-card__lesdag-time">
+                                            <?= $icon_clock; ?>
+                                            <span><?= esc_html($dag['time']); ?></span>
+                                        </span>
                                     </li>
-                                    <?php if ($card['location']) : ?>
-                                        <li class="course-card__meta-item">
-                                            <?= $icon_location; ?>
-                                            <span><?= esc_html($card['location']); ?></span>
-                                        </li>
-                                    <?php endif; ?>
-                                </ul>
-                            </div>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
 
-                        <<?= $badge_tag; ?> class="course-card__badge"<?= $badge_attrs; ?>>
-                            <?php if ($status === 'vol') : ?>
-                                <span class="course-card__badge-text">VOL</span>
-                                <span class="course-card__badge-icon course-card__badge-icon--x">
-                                    <?= $icon_close; ?>
-                                </span>
-
-                            <?php elseif ($status === 'bijna-vol') : ?>
-                                <div class="course-card__badge-content">
-                                    <span class="course-card__badge-text">INSCHRIJVEN</span>
-                                    <span class="course-card__badge-sub">Nog <?= esc_html($avail); ?> beschikbaar</span>
-                                </div>
-                                <span class="course-card__badge-icon course-card__badge-icon--arrow">
-                                    <?= $icon_arrow; ?>
-                                </span>
-
-                            <?php else : ?>
-                                <span class="course-card__badge-text">INSCHRIJVEN</span>
-                                <span class="course-card__badge-icon course-card__badge-icon--arrow">
-                                    <?= $icon_arrow; ?>
-                                </span>
-                            <?php endif; ?>
-                        </<?= $badge_tag; ?>>
-
-                        <hr class="course-card__sep">
-
-                        <div class="course-card__dagdelen">
-
-                            <div class="course-card__dag-grid">
-                                <?php foreach ($first3 as $dag) : ?>
-                                    <div class="course-card__dag">
-                                        <span class="course-card__dag-label"><?= esc_html($dag['label']); ?>:</span>
-                                        <div class="course-card__dag-timing">
-                                            <span class="course-card__dag-date"><?= esc_html($dag['date']); ?></span>
-                                            <span class="course-card__dag-time"><?= $icon_clock; ?><?= esc_html($dag['time']); ?></span>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-
-                            <?php if ($has_extra) : ?>
-                                <div class="course-card__dag-extra" aria-hidden="true">
-                                    <div class="course-card__dag-grid">
-                                        <?php foreach ($extra as $dag) : ?>
-                                            <div class="course-card__dag">
-                                                <span class="course-card__dag-label"><?= esc_html($dag['label']); ?>:</span>
-                                                <div class="course-card__dag-timing">
-                                                    <span class="course-card__dag-date"><?= esc_html($dag['date']); ?></span>
-                                                    <span class="course-card__dag-time"><?= $icon_clock; ?><?= esc_html($dag['time']); ?></span>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                <button class="course-card__meer-btn" type="button" aria-expanded="false">
-                                    <span class="course-card__meer-text">Meer dagdelen weergeven</span>
-                                    <div class="course-card__chevron-wrap">
-                                        <?= $icon_chevron; ?>
-                                    </div>
-                                </button>
-                            <?php endif; ?>
-
+                        <div class="course-card__action">
+                            <<?= $badge_tag; ?> class="course-card__badge"<?= $badge_attrs; ?>>
+                                <span class="course-card__badge-text"><?= $status === 'vol' ? 'VOLGEBOEKT' : 'INSCHRIJVEN'; ?></span>
+                                <?php if ($status !== 'vol') : ?>
+                                    <span class="course-card__badge-icon">
+                                        <?= $icon_arrow; ?>
+                                    </span>
+                                <?php endif; ?>
+                            </<?= $badge_tag; ?>>
+                            <span class="course-card__plekken">
+                                <?php if ($status === 'vol') : ?>
+                                    Geen plekken beschikbaar
+                                <?php else : ?>
+                                    <?= esc_html($avail); ?> <?= $avail === 1 ? 'plek' : 'plekken'; ?> beschikbaar
+                                <?php endif; ?>
+                            </span>
                         </div>
 
                     </article>
@@ -248,23 +219,6 @@ foreach ($appointments as $appointment) {
                     <?php endforeach; ?>
 
                 </div>
-
-                <script>
-                (function () {
-                    document.querySelectorAll('.course-calendar .course-card__meer-btn').forEach(function (btn) {
-                        if (btn.dataset.bound) return;
-                        btn.dataset.bound = '1';
-                        btn.addEventListener('click', function () {
-                            var card  = btn.closest('.course-card');
-                            var extra = card.querySelector('.course-card__dag-extra');
-                            var open  = btn.classList.toggle('is-open');
-                            extra.classList.toggle('is-open', open);
-                            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-                            extra.setAttribute('aria-hidden', open ? 'false' : 'true');
-                        });
-                    });
-                }());
-                </script>
 
             <?php endif; ?>
 

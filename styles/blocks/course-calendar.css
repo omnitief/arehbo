@@ -39,21 +39,51 @@
 
 .course-calendar .course-card {
     background: var(--bg-surface);
-    border-radius: 37px;
-    overflow: hidden;
+    border-radius: 30px;
+    padding: 20px;
     display: grid;
-    grid-template-columns: 1fr 340px;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 320px 1fr auto;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.course-calendar .course-card__dates {
+    background: rgba(196, 223, 223, 0.4);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-calendar .course-card__date-big {
+    font-family: 'Blinker', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 42px;
+    letter-spacing: 0;
+    color: #004081;
+}
+
+.course-calendar .course-card__dates-sep {
+    margin: 18px 0;
+    border: none;
+    border-top: 1px solid rgba(0, 64, 129, 0.18);
+}
+
+.course-calendar .course-card__dates-meta {
+    list-style: none;
+    margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.course-calendar .course-card__upper {
-    grid-column: 1;
-    grid-row: 1;
-    padding: 40px 40px 0 40px;
-}
-
-.course-calendar .course-card__info {
+.course-calendar .course-card__main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 20px 10px;
     min-width: 0;
 }
 
@@ -66,320 +96,262 @@
     color: var(--color-primary);
 }
 
-.course-calendar .course-card__meta {
-    list-style: none;
-    padding: 0;
-    margin: 14px 0 0;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px 24px;
+.course-calendar .course-card__main-sep {
+    margin: 18px 0;
+    border: none;
+    border-top: 1px solid rgba(var(--color-primary-rgb), 0.12);
 }
 
-.course-calendar .course-card__meta-item {
+.course-calendar .course-card__lesdagen {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.course-calendar .course-card__lesdag {
     display: flex;
     align-items: center;
-    gap: 7px;
-    font-family: var(--font-sans);
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.course-calendar .course-card__lesdag-label {
+    min-width: 100px;
+    margin-right: 230px;
+    flex-shrink: 0;
+}
+
+.course-calendar .course-card__lesdag-date {
+    min-width: 220px;
+    flex-shrink: 0;
+}
+
+.course-calendar .course-card__lesdag-label {
+    font-family: 'Blinker', sans-serif;
+    font-style: normal;
     font-weight: 400;
-    color: var(--color-primary);
-    opacity: 0.75;
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: 0.16px;
+    color: #004081;
+    opacity: 0.65;
+}
+
+.course-calendar .course-card__lesdag-date,
+.course-calendar .course-card__lesdag-time {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-warning);
+}
+
+.course-calendar .course-card__lesdag-date span,
+.course-calendar .course-card__lesdag-time span {
+    font-family: 'Blinker', sans-serif;
+    font-style: normal;
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: 0;
+    color: #004081;
+}
+
+.course-calendar .course-card__lesdag-date svg,
+.course-calendar .course-card__lesdag-time svg {
+    flex-shrink: 0;
+    color: var(--color-warning);
+    opacity: 1;
+}
+
+.course-calendar .course-card__meta-item,
+.course-calendar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Blinker', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: 0;
+    color: #004081;
+    opacity: 1;
 }
 
 .course-calendar .course-card__meta-item svg {
     flex-shrink: 0;
-    opacity: 0.65;
+    color: var(--color-warning);
+}
+
+.course-calendar .course-card__action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 10px;
 }
 
 .course-calendar .course-card__badge {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
-    border-radius: 0 37px 0 0;
-    padding: 40px 50px;
-    cursor: pointer;
+    gap: 30px;
+    border-radius: 99px;
+    padding: 18px 15px 18px 45px;
     text-decoration: none;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.course-calendar .course-card__badge-content {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+    cursor: pointer;
+    min-width: 280px;
+    height: 96px;
+    max-height: 96px;
+    transition: opacity 0.2s ease, background 0.2s ease;
 }
 
 .course-calendar .course-card__badge-text {
-    font-family: var(--font-base);
-    font-weight: 700;
-    line-height: 1.2;
-    transition: color 0.2s ease;
-}
-
-.course-calendar .course-card__badge-sub {
-    font-family: var(--font-base);
-    font-size: var(--font-size-tiny);
-    font-weight: 400;
-    line-height: 1.3;
-    transition: color 0.2s ease;
+    font-family: 'Blinker', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+    color: #FFFFFF;
 }
 
 .course-calendar .course-card__badge-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
+    color: #FFFFFF;
     flex-shrink: 0;
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .course-calendar .course-card--vol .course-card__badge {
-    background: rgba(var(--color-danger-rgb), 0.15);
+    background: var(--color-danger);
     cursor: not-allowed;
     pointer-events: none;
-}
-
-.course-calendar .course-card--vol .course-card__badge-text {
-    color: var(--color-danger);
-}
-
-.course-calendar .course-card--vol .course-card__badge-icon--x {
-    width: 75px;
-    height: 75px;
-    border: 2px solid var(--color-danger);
-    color: var(--color-white);
-    background: var(--color-danger);
+    opacity: 0.85;
+    justify-content: center;
+    padding: 0 45px;
+    max-height: 96px;
+    height: 96px;
 }
 
 .course-calendar .course-card--bijna-vol .course-card__badge {
-    background: rgba(240, 156, 0, 0.15);
-}
-
-.course-calendar .course-card--bijna-vol .course-card__badge-text {
-    color: var(--color-warning);
-}
-
-.course-calendar .course-card--bijna-vol .course-card__badge-sub {
-    color: var(--color-warning);
-    opacity: 0.8;
-}
-
-.course-calendar .course-card--bijna-vol .course-card__badge-icon--arrow {
     background: var(--color-warning);
-    color: var(--color-white);
 }
 
 .course-calendar .course-card--beschikbaar .course-card__badge {
-    background: rgba(var(--color-green-rgb), 0.15);
-}
-
-.course-calendar .course-card--beschikbaar .course-card__badge-text {
-    color: var(--color-green);
-}
-
-.course-calendar .course-card--beschikbaar .course-card__badge-icon--arrow {
     background: var(--color-green);
-    color: var(--color-white);
 }
 
-.course-calendar .course-card--bijna-vol .course-card__badge:hover {
-    background: var(--color-warning);
+.course-calendar .course-card__badge:hover {
+    opacity: 0.9;
 }
 
-.course-calendar .course-card--bijna-vol .course-card__badge:hover .course-card__badge-text,
-.course-calendar .course-card--bijna-vol .course-card__badge:hover .course-card__badge-sub {
-    color: var(--color-white);
-    opacity: 1;
+.course-calendar .course-card__plekken {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: 0.14px;
+    color: #00A13B;
+    text-align: center;
 }
 
-.course-calendar .course-card--bijna-vol .course-card__badge:hover .course-card__badge-icon--arrow {
-    background: var(--color-white);
+.course-calendar .course-card--vol .course-card__plekken {
+    color: var(--color-danger);
+}
+
+.course-calendar .course-card--bijna-vol .course-card__plekken {
     color: var(--color-warning);
 }
 
-.course-calendar .course-card--beschikbaar .course-card__badge:hover {
-    background: var(--color-green);
-}
-
-.course-calendar .course-card--beschikbaar .course-card__badge:hover .course-card__badge-text {
-    color: var(--color-white);
-}
-
-.course-calendar .course-card--beschikbaar .course-card__badge:hover .course-card__badge-icon--arrow {
-    background: var(--color-white);
+.course-calendar .course-card--beschikbaar .course-card__plekken {
     color: var(--color-green);
 }
 
-.course-calendar .course-card__sep {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    margin: 50px 0 0;
-    border: none;
-    border-top: 1px solid rgba(var(--color-primary-rgb), 0.12);
-}
+@media (max-width: 1200px) {
+    .course-calendar .course-card {
+        grid-template-columns: 280px 1fr auto;
+        gap: 20px;
+    }
 
-.course-calendar .course-card__dagdelen {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 28px 40px 40px;
-}
+    .course-calendar .course-card__lesdag {
+        gap: 16px;
+    }
 
-.course-calendar .course-card__dag-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 24px;
-}
+    .course-calendar .course-card__lesdag-label {
+        margin-right: 150px;
+    }
 
-.course-calendar .course-card__dag {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.course-calendar .course-card__dag-label {
-    font-family: var(--font-sans);
-    line-height: 25px;
-    font-weight: 400;
-    color: var(--color-primary);
-    opacity: 0.65;
-}
-
-.course-calendar .course-card__dag-timing {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-}
-
-.course-calendar .course-card__dag-date {
-    font-family: var(--font-sans);
-    line-height: 25px;
-    font-weight: 400;
-    color: var(--color-primary);
-}
-
-.course-calendar .course-card__dag-time {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-family: var(--font-sans);
-    line-height: 25px;
-    font-weight: 400;
-    color: var(--color-primary);
-    opacity: 0.65;
-}
-
-.course-calendar .course-card__dag-extra {
-    max-height: 0;
-    overflow: hidden;
-    margin-top: 0;
-    transition: max-height 0.3s ease, margin-top 0.3s ease;
-}
-
-.course-calendar .course-card__dag-extra.is-open {
-    max-height: 600px;
-    margin-top: 40px;
-}
-
-.course-calendar .course-card__meer-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: var(--font-size-standard);
-    font-weight: 600;
-    color: var(--color-primary);
-    align-self: flex-start;
-    margin-top: 20px;
-}
-
-.course-calendar .course-card__chevron-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border: 1px solid rgba(var(--color-primary-rgb), 0.3);
-    border-radius: 50%;
-    flex-shrink: 0;
-    transition: border-color 0.2s ease;
-}
-
-.course-calendar .course-card__meer-btn:hover .course-card__chevron-wrap {
-    border-color: rgba(var(--color-primary-rgb), 0.6);
-}
-
-.course-calendar .course-card__chevron {
-    transition: transform 0.25s ease;
-}
-
-.course-calendar .course-card__meer-btn.is-open .course-card__chevron {
-    transform: rotate(180deg);
+    .course-calendar .course-card__badge {
+        min-width: 240px;
+        padding: 18px 12px 18px 36px;
+    }
 }
 
 @media (max-width: 1024px) {
-    .course-calendar .course-card__dag-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .course-calendar .course-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .course-calendar .course-card__main {
+        padding: 0;
+    }
+
+    .course-calendar .course-card__action {
+        align-items: stretch;
+    }
+
+    .course-calendar .course-card__badge {
+        width: 100%;
+        min-width: 0;
     }
 }
 
 @media (max-width: 768px) {
     .course-calendar .course-card {
-        grid-template-columns: 1fr auto;
         border-radius: 24px;
+        padding: 16px;
     }
 
-    .course-calendar .course-card__upper {
-        grid-column: 1;
-        grid-row: 1;
-        padding: 28px 0 0 24px;
+    .course-calendar .course-card__date-big {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .course-calendar .course-card__lesdag {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .course-calendar .course-card__lesdag-label {
+        margin-right: 0;
     }
 
     .course-calendar .course-card__badge {
-        grid-column: 2;
-        grid-row: 1 / 3;
-        border-radius: 0 24px 0 0;
-        padding: 20px 24px;
-        min-width: 0;
+        padding: 22px 14px 22px 28px;
+        gap: 20px;
+        height: auto;
+        max-height: 96px;
     }
 
-    .course-calendar .course-card__sep {
-        grid-column: 1;
-        grid-row: 2;
-        margin: 20px 24px 0;
-    }
-
-    .course-calendar .course-card__dagdelen {
-        grid-column: 1 / -1;
-        grid-row: 3;
-        padding: 20px 24px 28px;
+    .course-calendar .course-card__badge-text {
+        font-size: 18px;
+        line-height: 24px;
     }
 
     .course-calendar .course-card__badge-icon {
-        width: 56px;
-        height: 56px;
-    }
-
-    .course-calendar .course-card__name {
-        line-height: 26px;
-    }
-
-    .course-calendar .course-card__dag-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .course-calendar .course-card__dag-timing {
-        flex-wrap: wrap;
-        gap: 8px;
+        width: 52px;
+        height: 52px;
     }
 }
