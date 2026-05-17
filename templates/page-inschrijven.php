@@ -39,13 +39,6 @@ if (is_wp_error($categories)) {
     $categories = [];
 }
 
-if (empty($categories)) {
-    $categories = [
-        (object) ['slug' => 'bhv',         'name' => 'BHV'],
-        (object) ['slug' => 'reanimatie',  'name' => 'Reanimatie'],
-    ];
-}
-
 $cursussen_posts = get_posts([
     'post_type'      => 'cursussen',
     'posts_per_page' => -1,
@@ -146,76 +139,6 @@ foreach ($cursussen_posts as $cursus_post) {
 usort($cards, function ($a, $b) {
     return ($a['dates_ts'][0] ?? 0) <=> ($b['dates_ts'][0] ?? 0);
 });
-
-if (empty($cards)) {
-    $cards = [
-        [
-            'status'      => 'vol',
-            'name'        => 'BHV cursus',
-            'available'   => 0,
-            'days_count'  => 3,
-            'location'    => 'Amsterdam',
-            'category'    => 'bhv',
-            'course_id'   => 1,
-            'appointment' => 101,
-            'prijs'       => '533,- per cursist',
-            'days' => [
-                ['label' => 'Dagdeel 1 (maandag)',  'date' => '11-05-2026', 'time' => '08:30 tot 16:30'],
-                ['label' => 'Dagdeel 2 (dinsdag)',  'date' => '12-05-2026', 'time' => '08:30 tot 16:30'],
-                ['label' => 'Dagdeel 3 (woensdag)', 'date' => '13-05-2026', 'time' => '08:30 tot 16:30'],
-            ],
-            'dates_ts' => [
-                mktime(8, 30, 0, 5, 11, 2026),
-                mktime(8, 30, 0, 5, 12, 2026),
-                mktime(8, 30, 0, 5, 13, 2026),
-            ],
-        ],
-        [
-            'status'      => 'bijna-vol',
-            'name'        => 'BHV cursus',
-            'available'   => 2,
-            'days_count'  => 5,
-            'location'    => 'Rotterdam',
-            'category'    => 'bhv',
-            'course_id'   => 1,
-            'appointment' => 102,
-            'prijs'       => '533,- per cursist',
-            'days' => [
-                ['label' => 'Dagdeel 1 (maandag)',   'date' => '18-05-2026', 'time' => '08:30 tot 16:30'],
-                ['label' => 'Dagdeel 2 (dinsdag)',   'date' => '19-05-2026', 'time' => '08:30 tot 16:30'],
-                ['label' => 'Dagdeel 3 (woensdag)',  'date' => '20-05-2026', 'time' => '08:30 tot 16:30'],
-                ['label' => 'Dagdeel 4 (donderdag)', 'date' => '21-05-2026', 'time' => '08:30 tot 16:30'],
-                ['label' => 'Dagdeel 5 (vrijdag)',   'date' => '22-05-2026', 'time' => '08:30 tot 16:30'],
-            ],
-            'dates_ts' => [
-                mktime(8, 30, 0, 5, 18, 2026),
-                mktime(8, 30, 0, 5, 19, 2026),
-                mktime(8, 30, 0, 5, 20, 2026),
-                mktime(8, 30, 0, 5, 21, 2026),
-                mktime(8, 30, 0, 5, 22, 2026),
-            ],
-        ],
-        [
-            'status'      => 'beschikbaar',
-            'name'        => 'Reanimatiecursus',
-            'available'   => 12,
-            'days_count'  => 2,
-            'location'    => 'Ede',
-            'category'    => 'reanimatie',
-            'course_id'   => 2,
-            'appointment' => 103,
-            'prijs'       => '180,- per cursist',
-            'days' => [
-                ['label' => 'Dagdeel 1 (donderdag)', 'date' => '28-05-2026', 'time' => '09:00 tot 17:00'],
-                ['label' => 'Dagdeel 2 (vrijdag)',   'date' => '29-05-2026', 'time' => '09:00 tot 17:00'],
-            ],
-            'dates_ts' => [
-                mktime(9, 0, 0, 5, 28, 2026),
-                mktime(9, 0, 0, 5, 29, 2026),
-            ],
-        ],
-    ];
-}
 
 ?>
 
