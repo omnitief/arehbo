@@ -10,6 +10,7 @@ $course_post_id = $post ? $post->ID : get_the_ID();
 $course_id      = $course_post_id ? get_field('id_visual_systems', $course_post_id) : '';
 $course_name    = $course_post_id ? get_the_title($course_post_id) : '';
 $course_loc     = $course_post_id ? get_field('locatie', $course_post_id) : '';
+$course_kosten  = $course_post_id ? get_field('kosten', $course_post_id) : '';
 
 $appointments = [];
 if ($course_id) {
@@ -148,6 +149,7 @@ foreach ($appointments as $appointment) {
                                 'course'      => $card['name'],
                                 'locatie'     => $card['location'],
                                 'beschikbaar' => $card['available'],
+                                'prijs'       => $course_kosten,
                                 'dagdelen'    => base64_encode(wp_json_encode($card['days'])),
                             ], $form_page_url);
                         }
@@ -206,11 +208,7 @@ foreach ($appointments as $appointment) {
                                 <?php endif; ?>
                             </<?= $badge_tag; ?>>
                             <span class="course-card__plekken">
-                                <?php if ($status === 'vol') : ?>
-                                    Geen plekken beschikbaar
-                                <?php else : ?>
-                                    <?= esc_html($avail); ?> <?= $avail === 1 ? 'plek' : 'plekken'; ?> beschikbaar
-                                <?php endif; ?>
+                                <?= esc_html($avail); ?> <?= $avail === 1 ? 'plek' : 'plekken'; ?> beschikbaar
                             </span>
                         </div>
 

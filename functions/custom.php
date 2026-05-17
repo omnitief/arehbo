@@ -28,6 +28,41 @@ function get_full_id($id) {
     return 'id="' . esc_attr($id) . '"';
 }
 
+function arehbo_today_hours($schedule) {
+    if (empty($schedule) || !is_array($schedule)) return null;
+    $now_day = (int) current_time('N');
+    foreach ($schedule as $row) {
+        if ((int) ($row['day'] ?? 0) === $now_day) {
+            return $row;
+        }
+    }
+    return null;
+}
+
+function arehbo_is_open_now($schedule) {
+    if (empty($schedule) || !is_array($schedule)) {
+        return false;
+    }
+
+    $now_day  = (int) current_time('N');
+    $now_time = current_time('H:i');
+
+    foreach ($schedule as $row) {
+        $day = (int) ($row['day'] ?? 0);
+        if ($day !== $now_day) continue;
+
+        if (!empty($row['closed'])) return false;
+
+        $open  = $row['open']  ?? '';
+        $close = $row['close'] ?? '';
+        if (!$open || !$close) return false;
+
+        return ($now_time >= $open && $now_time < $close);
+    }
+
+    return false;
+}
+
 function arehbo_format_nl_date($timestamp) {
     if (empty($timestamp)) return '';
 

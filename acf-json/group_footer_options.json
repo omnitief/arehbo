@@ -118,6 +118,90 @@
         },
 
         {
+            "key": "field_footer_tab_openingstijden",
+            "label": "Openingstijden",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_footer_openingstijden",
+            "label": "Openingstijden",
+            "name": "openingstijden",
+            "type": "repeater",
+            "instructions": "Open- en sluittijden per dag. Gebruikt voor de \"Bereikbaar van X tot Y\" indicator op de cursuskalender.",
+            "required": 0,
+            "min": 0,
+            "max": 7,
+            "layout": "table",
+            "button_label": "Dag toevoegen",
+            "sub_fields": [
+                {
+                    "key": "field_footer_oh_day",
+                    "label": "Dag",
+                    "name": "day",
+                    "type": "select",
+                    "choices": {
+                        "1": "Maandag",
+                        "2": "Dinsdag",
+                        "3": "Woensdag",
+                        "4": "Donderdag",
+                        "5": "Vrijdag",
+                        "6": "Zaterdag",
+                        "7": "Zondag"
+                    },
+                    "default_value": "1",
+                    "return_format": "value",
+                    "allow_null": 0
+                },
+                {
+                    "key": "field_footer_oh_closed",
+                    "label": "Gesloten",
+                    "name": "closed",
+                    "type": "true_false",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "Ja",
+                    "ui_off_text": "Nee"
+                },
+                {
+                    "key": "field_footer_oh_open",
+                    "label": "Open",
+                    "name": "open",
+                    "type": "text",
+                    "placeholder": "09:00",
+                    "default_value": "09:00",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_footer_oh_closed",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_footer_oh_close",
+                    "label": "Sluit",
+                    "name": "close",
+                    "type": "text",
+                    "placeholder": "17:00",
+                    "default_value": "17:00",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_footer_oh_closed",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
             "key": "field_footer_tab_nav",
             "label": "Navigatie",
             "name": "",

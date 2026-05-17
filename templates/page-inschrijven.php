@@ -9,6 +9,7 @@ $page_title  = get_the_title();
 $hero_title  = get_field('inschr_title');
 $description = get_field('inschr_description');
 $img_id      = get_field('inschr_image');
+$usps        = get_field('inschr_usps');
 
 $bg_class = ' bg-light';
 $img_url  = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
@@ -21,6 +22,36 @@ $icon_clock    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" wi
 $icon_arrow    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 $icon_close    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
 $icon_chevron  = '<svg class="course-card__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false" fill="none"><path d="M4 9L12 17L20 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$icon_phone    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg>';
+$icon_email    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>';
+
+$phone     = get_field('footer_contact_phone', 'option');
+$email     = get_field('footer_contact_email', 'option');
+$schedule  = get_field('openingstijden', 'option');
+$is_open   = arehbo_is_open_now($schedule);
+$today     = arehbo_today_hours($schedule);
+
+$categories = get_terms([
+    'taxonomy'   => 'cursus_categorie',
+    'hide_empty' => false,
+]);
+if (is_wp_error($categories)) {
+    $categories = [];
+}
+
+if (empty($categories)) {
+    $categories = [
+        (object) ['slug' => 'bhv',         'name' => 'BHV'],
+        (object) ['slug' => 'reanimatie',  'name' => 'Reanimatie'],
+    ];
+}
+
+$cursussen_posts = get_posts([
+    'post_type'      => 'cursussen',
+    'posts_per_page' => -1,
+    'orderby'        => 'title',
+    'order'          => 'ASC',
+]);
 
 $form_page_posts = get_posts([
     'post_type'      => 'page',
@@ -31,63 +62,160 @@ $form_page_posts = get_posts([
 ]);
 $form_page_url = !empty($form_page_posts) ? get_permalink($form_page_posts[0]) : '';
 
-$demo_cards = [
-    [
-        'status'    => 'vol',
-        'name'      => 'BHV cursus',
-        'available' => 0,
-        'days_count'=> 3,
-        'location'  => 'Amsterdam',
-        'days' => [
-            ['label' => 'Dagdeel 1 (maandag)',  'date' => '11-05-2026', 'time' => '08:30 tot 16:30'],
-            ['label' => 'Dagdeel 2 (dinsdag)',  'date' => '12-05-2026', 'time' => '08:30 tot 16:30'],
-            ['label' => 'Dagdeel 3 (woensdag)', 'date' => '13-05-2026', 'time' => '08:30 tot 16:30'],
+global $wpdb;
+
+$cards = [];
+
+foreach ($cursussen_posts as $cursus_post) {
+    $cursus_id_vs = get_field('id_visual_systems', $cursus_post->ID);
+    if (!$cursus_id_vs) continue;
+
+    $cursus_name   = $cursus_post->post_title;
+    $cursus_loc    = get_field('locatie', $cursus_post->ID) ?: '';
+    $cursus_kosten = get_field('kosten', $cursus_post->ID) ?: '';
+    $cursus_terms  = wp_get_object_terms($cursus_post->ID, 'cursus_categorie', ['fields' => 'slugs']);
+    $cursus_cat    = (!is_wp_error($cursus_terms) && !empty($cursus_terms)) ? implode(',', $cursus_terms) : '';
+
+    $appointments = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT appointment_id, start_date, end_date, room, location, places_left
+            FROM {$wpdb->prefix}custom_visualsystems_appointments
+            WHERE course_id = %s
+            AND parent_id = 0
+            ORDER BY start_date ASC",
+            $cursus_id_vs
+        ),
+        ARRAY_A
+    );
+
+    foreach ($appointments as $appointment) {
+        $appointment_id = (int) $appointment['appointment_id'];
+        $places_left    = max(0, (int) $appointment['places_left']);
+
+        $sibling_dates = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT start_date, end_date
+                FROM {$wpdb->prefix}custom_visualsystems_appointments
+                WHERE parent_id = %d
+                ORDER BY start_date ASC",
+                $appointment_id
+            ),
+            ARRAY_A
+        );
+
+        $all_dates = array_merge(
+            [['start_date' => $appointment['start_date'], 'end_date' => $appointment['end_date']]],
+            $sibling_dates
+        );
+
+        $time_label = date_i18n('H:i', $appointment['start_date']) . ' tot ' . date_i18n('H:i', $appointment['end_date']);
+
+        $days = [];
+        foreach ($all_dates as $i => $date_row) {
+            $days[] = [
+                'label' => 'Dagdeel ' . ($i + 1) . ' (' . date_i18n('l', $date_row['start_date']) . ')',
+                'date'  => date_i18n('d-m-Y', $date_row['start_date']),
+                'time'  => $time_label,
+            ];
+        }
+
+        if ($places_left === 0) {
+            $status = 'vol';
+        } elseif ($places_left < 4) {
+            $status = 'bijna-vol';
+        } else {
+            $status = 'beschikbaar';
+        }
+
+        $cards[] = [
+            'status'      => $status,
+            'name'        => $cursus_name,
+            'available'   => $places_left,
+            'days_count'  => count($all_dates),
+            'location'    => $cursus_loc,
+            'prijs'       => $cursus_kosten,
+            'days'        => $days,
+            'dates_ts'    => array_map(fn($d) => $d['start_date'], $all_dates),
+            'category'    => $cursus_cat,
+            'course_id'   => $cursus_post->ID,
+            'appointment' => $appointment_id,
+        ];
+    }
+}
+
+usort($cards, function ($a, $b) {
+    return ($a['dates_ts'][0] ?? 0) <=> ($b['dates_ts'][0] ?? 0);
+});
+
+if (empty($cards)) {
+    $cards = [
+        [
+            'status'      => 'vol',
+            'name'        => 'BHV cursus',
+            'available'   => 0,
+            'days_count'  => 3,
+            'location'    => 'Amsterdam',
+            'category'    => 'bhv',
+            'course_id'   => 1,
+            'appointment' => 101,
+            'prijs'       => '533,- per cursist',
+            'days' => [
+                ['label' => 'Dagdeel 1 (maandag)',  'date' => '11-05-2026', 'time' => '08:30 tot 16:30'],
+                ['label' => 'Dagdeel 2 (dinsdag)',  'date' => '12-05-2026', 'time' => '08:30 tot 16:30'],
+                ['label' => 'Dagdeel 3 (woensdag)', 'date' => '13-05-2026', 'time' => '08:30 tot 16:30'],
+            ],
+            'dates_ts' => [
+                mktime(8, 30, 0, 5, 11, 2026),
+                mktime(8, 30, 0, 5, 12, 2026),
+                mktime(8, 30, 0, 5, 13, 2026),
+            ],
         ],
-        'dates_ts' => [
-            mktime(0, 0, 0, 5, 11, 2026),
-            mktime(0, 0, 0, 5, 12, 2026),
-            mktime(0, 0, 0, 5, 13, 2026),
+        [
+            'status'      => 'bijna-vol',
+            'name'        => 'BHV cursus',
+            'available'   => 2,
+            'days_count'  => 5,
+            'location'    => 'Rotterdam',
+            'category'    => 'bhv',
+            'course_id'   => 1,
+            'appointment' => 102,
+            'prijs'       => '533,- per cursist',
+            'days' => [
+                ['label' => 'Dagdeel 1 (maandag)',   'date' => '18-05-2026', 'time' => '08:30 tot 16:30'],
+                ['label' => 'Dagdeel 2 (dinsdag)',   'date' => '19-05-2026', 'time' => '08:30 tot 16:30'],
+                ['label' => 'Dagdeel 3 (woensdag)',  'date' => '20-05-2026', 'time' => '08:30 tot 16:30'],
+                ['label' => 'Dagdeel 4 (donderdag)', 'date' => '21-05-2026', 'time' => '08:30 tot 16:30'],
+                ['label' => 'Dagdeel 5 (vrijdag)',   'date' => '22-05-2026', 'time' => '08:30 tot 16:30'],
+            ],
+            'dates_ts' => [
+                mktime(8, 30, 0, 5, 18, 2026),
+                mktime(8, 30, 0, 5, 19, 2026),
+                mktime(8, 30, 0, 5, 20, 2026),
+                mktime(8, 30, 0, 5, 21, 2026),
+                mktime(8, 30, 0, 5, 22, 2026),
+            ],
         ],
-    ],
-    [
-        'status'    => 'bijna-vol',
-        'name'      => 'BHV cursus',
-        'available' => 2,
-        'days_count'=> 5,
-        'location'  => 'Rotterdam',
-        'prijs'     => '533,- per cursist',
-        'days' => [
-            ['label' => 'Dagdeel 1 (maandag)',   'date' => '18-05-2026', 'time' => '08:30 tot 16:30'],
-            ['label' => 'Dagdeel 2 (dinsdag)',   'date' => '19-05-2026', 'time' => '08:30 tot 16:30'],
-            ['label' => 'Dagdeel 3 (woensdag)',  'date' => '20-05-2026', 'time' => '08:30 tot 16:30'],
-            ['label' => 'Dagdeel 4 (donderdag)', 'date' => '21-05-2026', 'time' => '08:30 tot 16:30'],
-            ['label' => 'Dagdeel 5 (vrijdag)',   'date' => '22-05-2026', 'time' => '08:30 tot 16:30'],
+        [
+            'status'      => 'beschikbaar',
+            'name'        => 'Reanimatiecursus',
+            'available'   => 12,
+            'days_count'  => 2,
+            'location'    => 'Ede',
+            'category'    => 'reanimatie',
+            'course_id'   => 2,
+            'appointment' => 103,
+            'prijs'       => '180,- per cursist',
+            'days' => [
+                ['label' => 'Dagdeel 1 (donderdag)', 'date' => '28-05-2026', 'time' => '09:00 tot 17:00'],
+                ['label' => 'Dagdeel 2 (vrijdag)',   'date' => '29-05-2026', 'time' => '09:00 tot 17:00'],
+            ],
+            'dates_ts' => [
+                mktime(9, 0, 0, 5, 28, 2026),
+                mktime(9, 0, 0, 5, 29, 2026),
+            ],
         ],
-        'dates_ts' => [
-            mktime(0, 0, 0, 5, 18, 2026),
-            mktime(0, 0, 0, 5, 19, 2026),
-            mktime(0, 0, 0, 5, 20, 2026),
-            mktime(0, 0, 0, 5, 21, 2026),
-            mktime(0, 0, 0, 5, 22, 2026),
-        ],
-    ],
-    [
-        'status'    => 'beschikbaar',
-        'name'      => 'Reanimatiecursus',
-        'available' => 12,
-        'days_count'=> 2,
-        'location'  => 'Ede',
-        'prijs'     => '533,- per cursist',
-        'days' => [
-            ['label' => 'Dagdeel 1 (donderdag)', 'date' => '28-05-2026', 'time' => '09:00 tot 17:00'],
-            ['label' => 'Dagdeel 2 (vrijdag)',   'date' => '29-05-2026', 'time' => '09:00 tot 17:00'],
-        ],
-        'dates_ts' => [
-            mktime(0, 0, 0, 5, 28, 2026),
-            mktime(0, 0, 0, 5, 29, 2026),
-        ],
-    ],
-];
+    ];
+}
 
 ?>
 
@@ -104,7 +232,7 @@ $demo_cards = [
 
         <hr class="inschr-divider">
 
-        <div class="inschr-hero">
+        <div class="inschr-hero<?= !$img_url ? ' inschr-hero--no-image' : ''; ?>">
 
             <div class="inschr-hero__text">
                 <?php if ($hero_title) : ?>
@@ -123,20 +251,89 @@ $demo_cards = [
 
         </div>
 
+        <?php if (!empty($usps)) : ?>
+            <div class="inschr-usps">
+                <?php get_template_part('components/usp-items', '', [
+                    'items'     => $usps,
+                    'show_icon' => true,
+                ]); ?>
+            </div>
+        <?php endif; ?>
+
     </div>
     </div>
 
     <div class="inschr-filter-bg<?= $bg_class; ?>">
         <div class="inschr-filter-wrap container">
-            <div class="inschr-filter">
-                <div class="inschr-filter__left">
-                    <span class="inschr-filter__title">Waar bent u naar opzoek?</span>
-                    <span class="inschr-filter__desc">Selecteer categorieën</span>
+            <div class="inschr-filter-card">
+
+                <div class="inschr-filter">
+                    <div class="inschr-filter__left">
+                        <span class="inschr-filter__title">Waar bent u naar opzoek?</span>
+                        <span class="inschr-filter__desc">Selecteer categorieën</span>
+                    </div>
+                    <div class="inschr-filter__selects">
+                        <div class="inschr-filter__select-wrap">
+                            <select class="inschr-filter__select" id="inschr-filter-cat" data-role="categorie">
+                                <option value="">Selecteer een categorie</option>
+                                <?php foreach ($categories as $cat) : ?>
+                                    <option value="<?= esc_attr($cat->slug); ?>"><?= esc_html($cat->name); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="inschr-filter__select-wrap">
+                            <select class="inschr-filter__select" id="inschr-filter-cursus" data-role="cursus" disabled>
+                                <option value="">Alle cursussen</option>
+                                <?php foreach ($cursussen_posts as $cursus_post) : ?>
+                                    <option value="<?= esc_attr($cursus_post->ID); ?>"
+                                            data-categorie="<?= esc_attr(implode(',', wp_get_object_terms($cursus_post->ID, 'cursus_categorie', ['fields' => 'slugs']))); ?>">
+                                        <?= esc_html($cursus_post->post_title); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="inschr-filter__right">
-                    <button class="inschr-filter__btn is-active" type="button">Alle cursussen</button>
-                    <button class="inschr-filter__btn" type="button">BHV</button>
-                </div>
+
+                <?php if ($phone || $email || !empty($schedule)) : ?>
+                    <div class="inschr-contactbar">
+                        <span class="inschr-contactbar__intro">Vragen? Neem gerust contact op</span>
+
+                        <div class="inschr-contactbar__group">
+                            <?php if (!empty($schedule)) :
+                                $today_closed = $today ? !empty($today['closed']) : true;
+                                $today_open   = $today['open']  ?? '';
+                                $today_close  = $today['close'] ?? '';
+                            ?>
+                                <span class="inschr-contactbar__status inschr-contactbar__status--<?= $is_open ? 'open' : 'closed'; ?>">
+                                    <span class="inschr-contactbar__dot" aria-hidden="true"></span>
+                                    <span>
+                                        <?php if ($is_open) : ?>
+                                            Bereikbaar van <?= esc_html($today_open); ?> tot <?= esc_html($today_close); ?>
+                                        <?php elseif ($today && !$today_closed && $today_open && $today_close) : ?>
+                                            Op dit moment gesloten
+                                        <?php else : ?>
+                                            Vandaag gesloten
+                                        <?php endif; ?>
+                                    </span>
+                                </span>
+                            <?php endif; ?>
+
+                            <?php if ($phone) : ?>
+                                <a class="inschr-contactbar__item" href="tel:<?= esc_attr(preg_replace('/\s+/', '', $phone)); ?>">
+                                    <?= esc_html($phone); ?>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if ($email) : ?>
+                                <a class="inschr-contactbar__item" href="mailto:<?= esc_attr($email); ?>">
+                                    <?= esc_html($email); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
@@ -144,7 +341,7 @@ $demo_cards = [
     <div class="inschr-cards-bg<?= $bg_class; ?>">
     <div class="inschr-cards container">
 
-        <?php foreach ($demo_cards as $card_index => $card) :
+        <?php foreach ($cards as $card_index => $card) :
             $status   = $card['status'];
             $avail    = $card['available'];
             $days     = $card['days'];
@@ -154,6 +351,7 @@ $demo_cards = [
             $badge_url = '';
             if ($status !== 'vol' && $form_page_url) {
                 $badge_url = add_query_arg([
+                    'appointment' => $card['appointment'],
                     'course'      => $card['name'],
                     'locatie'     => $card['location'],
                     'beschikbaar' => $card['available'],
@@ -165,7 +363,9 @@ $demo_cards = [
             $badge_attrs = $badge_url ? ' href="' . esc_url($badge_url) . '"' : '';
         ?>
 
-        <article class="course-card course-card--<?= esc_attr($status); ?>">
+        <article class="course-card course-card--<?= esc_attr($status); ?>"
+                 data-categorie="<?= esc_attr($card['category'] ?? ''); ?>"
+                 data-course="<?= esc_attr($card['course_id'] ?? ''); ?>">
 
             <aside class="course-card__dates">
                 <?php if ($first_ts) : ?>
@@ -216,11 +416,7 @@ $demo_cards = [
                     <?php endif; ?>
                 </<?= $badge_tag; ?>>
                 <span class="course-card__plekken">
-                    <?php if ($status === 'vol') : ?>
-                        Geen plekken beschikbaar
-                    <?php else : ?>
-                        <?= esc_html($avail); ?> <?= $avail === 1 ? 'plek' : 'plekken'; ?> beschikbaar
-                    <?php endif; ?>
+                    <?= esc_html($avail); ?> <?= $avail === 1 ? 'plek' : 'plekken'; ?> beschikbaar
                 </span>
             </div>
 
@@ -232,5 +428,57 @@ $demo_cards = [
     </div>
 
 </main>
+
+<script>
+(function () {
+    var cat    = document.getElementById('inschr-filter-cat');
+    var cursus = document.getElementById('inschr-filter-cursus');
+    var cards  = document.querySelectorAll('.inschr-cards .course-card');
+
+    if (!cat || !cursus) return;
+
+    function filterCursusOptions() {
+        var catVal = cat.value;
+        Array.prototype.forEach.call(cursus.options, function (opt) {
+            if (!opt.value) return;
+            var optCats = (opt.dataset.categorie || '').split(',');
+            opt.hidden = !!(catVal && optCats.indexOf(catVal) === -1);
+        });
+    }
+
+    function applyFilter() {
+        var catVal    = cat.value;
+        var courseVal = cursus.value;
+
+        cards.forEach(function (card) {
+            if (!catVal) {
+                card.style.display = 'none';
+                return;
+            }
+            var cardCat    = card.dataset.categorie || '';
+            var cardCourse = card.dataset.course || '';
+            var catMatch    = (cardCat === catVal);
+            var courseMatch = !courseVal || (cardCourse === courseVal);
+            card.style.display = (catMatch && courseMatch) ? '' : 'none';
+        });
+    }
+
+    cat.addEventListener('change', function () {
+        if (cat.value) {
+            cursus.removeAttribute('disabled');
+        } else {
+            cursus.setAttribute('disabled', 'disabled');
+        }
+        cursus.value = '';
+        filterCursusOptions();
+        applyFilter();
+    });
+
+    cursus.addEventListener('change', applyFilter);
+
+    filterCursusOptions();
+    applyFilter();
+})();
+</script>
 
 <?php get_footer(); ?>

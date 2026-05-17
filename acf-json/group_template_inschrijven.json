@@ -32,6 +32,38 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all"
+        },
+        {
+            "key": "field_inschr_usps",
+            "label": "USP's",
+            "name": "inschr_usps",
+            "type": "repeater",
+            "instructions": "Korte voordelen die boven de filter worden getoond.",
+            "required": 0,
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "USP toevoegen",
+            "sub_fields": [
+                {
+                    "key": "field_inschr_usp_text",
+                    "label": "Tekst",
+                    "name": "text",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_inschr_usp_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "type": "image",
+                    "instructions": "Optioneel. Standaard wordt een check icon gebruikt.",
+                    "required": 0,
+                    "return_format": "id",
+                    "preview_size": "thumbnail",
+                    "library": "all"
+                }
+            ]
         }
     ],
     "location": [
