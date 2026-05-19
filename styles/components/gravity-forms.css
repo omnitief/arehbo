@@ -14,20 +14,21 @@
     margin: 0 !important;
 }
 
-.gform_wrapper .gfield_radio .gfield-choice-input,
-.gform_wrapper.gravity-theme .gfield_radio .gfield-choice-input,
-.gform_wrapper .gfield_radio input[type="radio"],
-.gform_wrapper.gravity-theme .gfield_radio input[type="radio"] {
-    appearance: none !important;
+html body .gform_wrapper input[type="radio"],
+html body .gform_wrapper .gfield-choice-input[type="radio"],
+html body .gform_wrapper input.gfield-choice-input {
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
+    appearance: none !important;
     width: 27px !important;
     height: 27px !important;
     min-width: 27px !important;
     min-height: 27px !important;
+    max-width: 27px !important;
+    max-height: 27px !important;
     border: 2px solid #004081 !important;
     border-radius: 50% !important;
-    background-color: #fff !important;
+    background: #fff !important;
     background-image: none !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -37,16 +38,20 @@
     box-shadow: none !important;
     outline: none !important;
     flex-shrink: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
     transition: background-color 0.2s ease, border-color 0.2s ease !important;
 }
 
-.gform_wrapper .gfield_radio .gfield-choice-input:checked,
-.gform_wrapper.gravity-theme .gfield_radio .gfield-choice-input:checked,
-.gform_wrapper .gfield_radio input[type="radio"]:checked,
-.gform_wrapper.gravity-theme .gfield_radio input[type="radio"]:checked {
+html body .gform_wrapper input[type="radio"]:checked,
+html body .gform_wrapper .gfield-choice-input[type="radio"]:checked,
+html body .gform_wrapper input.gfield-choice-input:checked {
+    background: #004081 !important;
     background-color: #004081 !important;
     border-color: #004081 !important;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none'%3E%3Cpath d='M5 12l5 5L20 7' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
 }
 
 .gform_wrapper .gfield_label,
@@ -121,7 +126,7 @@
     font-weight: 400 !important;
 }
 
-.gform_wrapper input[type]:not([type="hidden"]):not([type="submit"]):not([type="button"]),
+.gform_wrapper input[type]:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]),
 .gform_wrapper textarea,
 .gform_wrapper select {
     font-family: var(--font-sans) !important;
@@ -173,7 +178,7 @@
     resize: vertical;
 }
 
-.gform_wrapper input[type]:not([type="hidden"]):not([type="submit"]):not([type="button"]):focus,
+.gform_wrapper input[type]:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):focus,
 .gform_wrapper textarea:focus,
 .gform_wrapper select:focus {
     border-color: rgba(var(--color-accent-rgb), 0.8) !important;
