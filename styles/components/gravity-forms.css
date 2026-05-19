@@ -1,5 +1,66 @@
 /* Gravity Forms 2.5 theme (legacy markup) overrides */
 
+.gform_wrapper .gfield_radio,
+.gform_wrapper.gravity-theme .gfield_radio {
+    display: flex !important;
+    gap: 30px !important;
+}
+
+.gform_wrapper .gfield_radio .gchoice,
+.gform_wrapper.gravity-theme .gfield_radio .gchoice {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+}
+
+.gform_wrapper .gfield_radio .gfield-choice-input,
+.gform_wrapper.gravity-theme .gfield_radio .gfield-choice-input,
+.gform_wrapper .gfield_radio input[type="radio"],
+.gform_wrapper.gravity-theme .gfield_radio input[type="radio"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    width: 27px !important;
+    height: 27px !important;
+    min-width: 27px !important;
+    min-height: 27px !important;
+    border: 2px solid #004081 !important;
+    border-radius: 50% !important;
+    background-color: #fff !important;
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    flex-shrink: 0 !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.gform_wrapper .gfield_radio .gfield-choice-input:checked,
+.gform_wrapper.gravity-theme .gfield_radio .gfield-choice-input:checked,
+.gform_wrapper .gfield_radio input[type="radio"]:checked,
+.gform_wrapper.gravity-theme .gfield_radio input[type="radio"]:checked {
+    background-color: #004081 !important;
+    border-color: #004081 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none'%3E%3Cpath d='M5 12l5 5L20 7' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+.gform_wrapper .gfield_label,
+.gform_wrapper.gravity-theme .gfield_label {
+    font-family: 'Blinker', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 19px !important;
+    line-height: 30px !important;
+    letter-spacing: 0 !important;
+    color: #004081 !important;
+}
+
+
 .gform_required_legend,
 .gform_description {
     display: none;
