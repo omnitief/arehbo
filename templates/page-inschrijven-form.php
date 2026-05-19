@@ -49,10 +49,6 @@ $icon_location = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" wi
     <div class="inschr-form-page__inner container">
 
         <div class="inschr-form-nav">
-            <a class="inschr-form-nav__back" href="<?= esc_url($inschrijven_url); ?>">
-                <?= $icon_back; ?>
-                <span>Ga terug</span>
-            </a>
             <nav class="inschr-form-breadcrumbs" aria-label="Breadcrumb">
                 <a class="inschr-form-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
                 <span class="inschr-form-breadcrumbs__sep" aria-hidden="true">/</span>
