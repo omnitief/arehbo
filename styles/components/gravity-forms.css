@@ -54,6 +54,17 @@ html body .gform_wrapper input.gfield-choice-input:checked {
     background-position: center !important;
 }
 
+html body .gform_wrapper .gfield_checkbox .gfield-choice-input,
+html body .gform_wrapper .gfield_checkbox input.gfield-choice-input,
+html body .gform_wrapper .gfield_checkbox input[type="checkbox"] {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+    min-height: 13px !important;
+    max-width: 13px !important;
+    max-height: 13px !important;
+}
+
 .gform_wrapper .gfield_label,
 .gform_wrapper.gravity-theme .gfield_label {
     font-family: 'Blinker', sans-serif !important;
@@ -201,13 +212,12 @@ html body .gform_wrapper input.gfield-choice-input:checked {
     display: none !important;
 }
 
-.gform_wrapper .gform_next_button,
-.gform_wrapper .gform_next_button.gform-theme-button.button,
-.gform_wrapper [data-submission-type="next"] {
+.gform_wrapper .gform_next_button:not([value="Cursisten toevoegen" i]),
+.gform_wrapper [data-submission-type="next"]:not([value="Cursisten toevoegen" i]) {
     display: inline-flex !important;
     align-items: center !important;
     gap: 14px !important;
-    padding: 10px 10px 10px 28px !important;
+    padding: 10px 10px 10px 30px !important;
     background-color: var(--color-accent) !important;
     border: none !important;
     border-radius: 32px !important;
@@ -223,13 +233,13 @@ html body .gform_wrapper input.gfield-choice-input:checked {
     text-decoration: none !important;
 }
 
-.gform_wrapper .gform_next_button:hover,
-.gform_wrapper [data-submission-type="next"]:hover {
+.gform_wrapper .gform_next_button:not([value="Cursisten toevoegen" i]):hover,
+.gform_wrapper [data-submission-type="next"]:not([value="Cursisten toevoegen" i]):hover {
     background-color: var(--color-accent-dark) !important;
 }
 
-.gform_wrapper .gform_next_button::after,
-.gform_wrapper [data-submission-type="next"]::after {
+.gform_wrapper .gform_next_button:not([value="Cursisten toevoegen" i])::after,
+.gform_wrapper [data-submission-type="next"]:not([value="Cursisten toevoegen" i])::after {
     content: '';
     display: inline-flex;
     width: 33px;
@@ -242,14 +252,11 @@ html body .gform_wrapper input.gfield-choice-input:checked {
     flex-shrink: 0;
 }
 
-.gform_wrapper .gform_button,
-.gform_wrapper button.gform_button,
-.gform_wrapper input.gform_button,
-.gform_wrapper [data-submission-type="submit"] {
+.gform_wrapper [value="Cursisten toevoegen" i] {
     display: inline-flex !important;
     align-items: center !important;
     gap: 14px !important;
-    padding: 10px 10px 10px 28px !important;
+    padding: 10px 30px !important;
     background-color: var(--color-accent) !important;
     border: none !important;
     border-radius: 32px !important;
@@ -265,14 +272,11 @@ html body .gform_wrapper input.gfield-choice-input:checked {
     text-decoration: none !important;
 }
 
-.gform_wrapper .gform_button:hover,
-.gform_wrapper [data-submission-type="submit"]:hover {
+.gform_wrapper [value="Cursisten toevoegen" i]:hover {
     background-color: var(--color-accent-dark) !important;
 }
 
-.gform_wrapper .gform_button::after,
-.gform_wrapper button.gform_button::after,
-.gform_wrapper [data-submission-type="submit"]::after {
+.gform_wrapper [value="Cursisten toevoegen" i]::after {
     content: '';
     display: inline-flex;
     width: 33px;
@@ -344,7 +348,7 @@ html body .gform_wrapper input.gfield-choice-input:checked {
     display: inline-flex !important;
     align-items: center !important;
     gap: 30px !important;
-    padding: 10px 10px 10px 28px !important;
+    padding: 10px 10px 10px 30px !important;
     background-color: var(--color-accent) !important;
     border: none !important;
     border-radius: 32px !important;
