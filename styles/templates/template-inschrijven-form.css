@@ -74,10 +74,7 @@
 }
 
 .inschr-form-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
+    display: none;
 }
 
 .inschr-form-nav__back {
@@ -138,13 +135,7 @@
 }
 
 .inschr-form-divider {
-    margin: 40px 0 0;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-bottom: 0;
-    border: none;
-    border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
-    opacity: 1;
+    display: none;
 }
 
 .bg-dark .inschr-form-divider {
@@ -155,7 +146,8 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding-block: 100px;
+    padding-top: 30px;
+    padding-bottom: 64px;
 }
 
 .inschr-form-hero__title {
