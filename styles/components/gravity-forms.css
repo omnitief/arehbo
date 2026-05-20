@@ -217,8 +217,11 @@ html body .gform_wrapper .gfield_checkbox input[type="checkbox"] {
     display: inline-flex !important;
     align-items: center !important;
     gap: 14px !important;
-    padding: 10px 10px 10px 30px !important;
+    padding: 10px 55px 10px 30px !important;
     background-color: var(--color-accent) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 33 33'%3E%3Ccircle cx='16.5' cy='16.5' r='16.5' fill='%23F5F9F9'/%3E%3Cpath d='M11 16.5h11M17 11l5 5.5-5 5.5' stroke='%23004081' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
     border: none !important;
     border-radius: 32px !important;
     height: 60px !important;
@@ -240,24 +243,18 @@ html body .gform_wrapper .gfield_checkbox input[type="checkbox"] {
 
 .gform_wrapper .gform_next_button:not([value="Cursisten toevoegen" i])::after,
 .gform_wrapper [data-submission-type="next"]:not([value="Cursisten toevoegen" i])::after {
-    content: '';
-    display: inline-flex;
-    width: 33px;
-    height: 33px;
-    border-radius: 17px;
-    background-color: #F5F9F9;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' stroke='%23004081' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    flex-shrink: 0;
+    display: none !important;
 }
 
 .gform_wrapper [value="Cursisten toevoegen" i] {
     display: inline-flex !important;
     align-items: center !important;
     gap: 14px !important;
-    padding: 10px 30px !important;
+    padding: 10px 55px 10px 30px !important;
     background-color: var(--color-accent) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 33 33'%3E%3Ccircle cx='16.5' cy='16.5' r='16.5' fill='%23F5F9F9'/%3E%3Cpath d='M11 16.5h11M17 11l5 5.5-5 5.5' stroke='%23004081' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
     border: none !important;
     border-radius: 32px !important;
     height: 60px !important;
@@ -277,16 +274,7 @@ html body .gform_wrapper .gfield_checkbox input[type="checkbox"] {
 }
 
 .gform_wrapper [value="Cursisten toevoegen" i]::after {
-    content: '';
-    display: inline-flex;
-    width: 33px;
-    height: 33px;
-    border-radius: 17px;
-    background-color: #F5F9F9;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' stroke='%23004081' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    flex-shrink: 0;
+    display: none !important;
 }
 
 .gform_wrapper .ginput_container_select,
