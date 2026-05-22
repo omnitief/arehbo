@@ -60,7 +60,7 @@ $icon_location = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" wi
 
         <hr class="inschr-form-divider">
 
-        <div class="inschr-form-hero container">
+        <div class="inschr-form-hero">
             <?php if ($title) : ?>
                 <h1 class="inschr-form-hero__title"><?= esc_html($title); ?></h1>
             <?php endif; ?>

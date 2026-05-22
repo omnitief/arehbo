@@ -165,11 +165,7 @@
     opacity: 1;
 }
 
-.course-calendar .course-card__meta-item,
 .course-calendar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     font-family: 'Blinker', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -178,6 +174,12 @@
     letter-spacing: 0;
     color: #004081;
     opacity: 1;
+}
+
+.course-calendar .course-card__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .course-calendar .course-card__meta-item svg {

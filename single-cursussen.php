@@ -4,8 +4,6 @@ get_header();
 
 while (have_posts()) : the_post();
 
-    global $wpdb;
-
     $page_title  = get_the_title();
     $background  = get_field('cursus_background') ?: 'light-blue';
     $hero_title  = get_field('cursus_title') ?: $page_title;
@@ -16,24 +14,6 @@ while (have_posts()) : the_post();
     $locatie     = get_field('locatie');
     $duur        = get_field('duur');
     $buttons     = get_field('cursus_buttons') ?: [];
-
-    $course_id = get_field('id_visual_systems');
-
-    $appointments = [];
-
-    if ($course_id) {
-        $appointments = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT appointment_id, start_date, end_date, room, location, places_left
-                FROM {$wpdb->prefix}custom_visualsystems_appointments
-                WHERE course_id = %s
-                AND parent_id = 0
-                ORDER BY start_date ASC",
-                $course_id
-            ),
-            ARRAY_A
-        );
-    }
 
     $bg_class = ' cursus-hero-bg--' . esc_attr($background);
 
@@ -163,61 +143,6 @@ while (have_posts()) : the_post();
     <?php endif; ?>
 
     <?php get_template_part('components/colorbar'); ?>
-
-    <?php if ($appointments) : ?>
-        <div class="cursus-appointments">
-            <div class="container">
-
-                <table class="cursus-appointments__table">
-                    <thead>
-                        <tr>
-                            <th>Datum</th>
-                            <th>Tijd</th>
-                            <th>Dag</th>
-                            <th>Locatie</th>
-                            <th>Vrije plaatsen</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($appointments as $appointment) : ?>
-
-                            <?php
-                            $sibling_dates = $wpdb->get_results(
-                                $wpdb->prepare(
-                                    "SELECT start_date
-                                    FROM {$wpdb->prefix}custom_visualsystems_appointments
-                                    WHERE parent_id = %d
-                                    ORDER BY start_date ASC",
-                                    $appointment['appointment_id']
-                                ),
-                                ARRAY_A
-                            );
-
-                            $dates = date_i18n('d-m-Y', $appointment['start_date']);
-
-                            foreach ($sibling_dates as $sibling_date) {
-                                $dates .= ' en ' . date_i18n('d-m-Y', $sibling_date['start_date']);
-                            }
-
-                            $appointment_location = $appointment['room'] !== '' ? $appointment['room'] : $appointment['location'];
-                            $places_left = $appointment['places_left'] > 0 ? $appointment['places_left'] : 0;
-                            ?>
-
-                            <tr>
-                                <td><?= esc_html($dates); ?></td>
-                                <td><?= esc_html(date_i18n('H:i', $appointment['start_date']) . ' - ' . date_i18n('H:i', $appointment['end_date'])); ?></td>
-                                <td><?= esc_html(date_i18n('l', $appointment['start_date'])); ?></td>
-                                <td><?= esc_html($appointment_location); ?></td>
-                                <td><?= esc_html($places_left); ?></td>
-                            </tr>
-
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-    <?php endif; ?>
 
     <?php if (has_blocks(get_the_content())) : ?>
         <div id="page-content" class="page-content">
