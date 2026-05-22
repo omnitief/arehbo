@@ -1,0 +1,58 @@
+.slider-nav {
+    display: flex;
+    align-items: center;
+    gap: 65px;
+    margin-top: 70px;
+}
+
+.slider-nav__arrows {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.slider-nav__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(var(--color-white-rgb), 0.1);
+    border: 1px solid rgba(var(--color-white-rgb), 0.25);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--color-white);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.slider-nav__btn:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.slider-nav__btn.is-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.slider-nav__progress {
+    flex: 1 1 570px;
+    width: 100%;
+    max-width: 570px;
+    height: 4px;
+    background: rgba(var(--color-white-rgb), 0.25);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-nav__progress .swiper-pagination-progressbar-fill {
+    background: var(--color-primary);
+    border-radius: 2px;
+}
+
+.bg-dark .slider-nav__progress .swiper-pagination-progressbar-fill {
+    background: #ffffff;
+}
+

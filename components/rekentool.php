@@ -35,7 +35,7 @@ foreach ($tiers as $t) {
         <div class="rekentool__wrapper">
             <div class="container">
 
-                <div class="rekentool__bar">
+                <div class="rekentool__bar" data-tiers="<?= esc_attr(wp_json_encode($js_tiers)); ?>">
 
                     <div class="rekentool__left">
                         <span class="rekentool__title">Bereken uw prijs:</span>
@@ -86,41 +86,3 @@ foreach ($tiers as $t) {
         </div>
     </div>
 </section>
-
-<script>
-(function () {
-    var tiers = <?= json_encode($js_tiers); ?>;
-
-    function getUnitPrice(qty) {
-        for (var i = 0; i < tiers.length; i++) {
-            if (qty >= tiers[i].min && qty <= tiers[i].max) return tiers[i].price;
-        }
-        return tiers.length ? tiers[tiers.length - 1].price : 0;
-    }
-
-    function fmt(n) {
-        var s = n.toFixed(2).replace('.', ',');
-        return '\u20ac' + s;
-    }
-
-    document.querySelectorAll('.rekentool__bar').forEach(function (bar) {
-        var qty          = 1;
-        var countEl      = bar.querySelector('.rekentool__count');
-        var currentPrice = bar.querySelector('.rekentool__current-price');
-        var btnDec       = bar.querySelector('.rekentool__btn--decrease');
-        var btnInc       = bar.querySelector('.rekentool__btn--increase');
-
-        function render() {
-            var price = getUnitPrice(qty);
-            countEl.textContent = qty;
-            if (currentPrice) currentPrice.textContent = fmt(price);
-            btnDec.disabled = qty <= 1;
-        }
-
-        btnDec.addEventListener('click', function () { if (qty > 1)   { qty--; render(); } });
-        btnInc.addEventListener('click', function () { if (qty < 999) { qty++; render(); } });
-
-        render();
-    });
-}());
-</script>

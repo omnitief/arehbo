@@ -1,0 +1,20 @@
+.text-content__title {
+    color: var(--color-primary);
+}
+
+.text-content__description {
+    margin-top: 20px;
+    font-family: var(--font-sans);
+    line-height: 32px;
+    font-weight: 400;
+    color: var(--color-primary);
+}
+
+.text-content__description * {
+    color: inherit;
+}
+
+.text-content__cta {
+    margin-top: 40px;
+}
+

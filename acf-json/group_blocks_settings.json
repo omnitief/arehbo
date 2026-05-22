@@ -172,6 +172,31 @@
                     "parent_repeater": "field_blocks_cta_buttons"
                 }
             ]
+        },
+        {
+            "key": "field_blocks_fallbacks_tab_404",
+            "label": "404",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blocks_404_content",
+            "label": "Content",
+            "name": "blocks_404_content",
+            "type": "wysiwyg",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_blocks_404_button",
+            "label": "Button",
+            "name": "blocks_404_button",
+            "type": "link",
+            "return_format": "array"
         }
     ],
     "location": [

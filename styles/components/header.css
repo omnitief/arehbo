@@ -255,7 +255,7 @@
     display: block;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
+    border-radius: var(--radius-small);
     object-fit: cover;
     flex-shrink: 0;
 }

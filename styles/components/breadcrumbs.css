@@ -1,0 +1,73 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.breadcrumbs__link,
+.breadcrumbs__sep {
+    font-family: var(--font-base);
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.breadcrumbs__link:hover {
+    opacity: 0.75;
+}
+
+.breadcrumbs__current {
+    font-family: var(--font-base);
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+/* Rank Math outputs its own HTML; normalize it to match our breadcrumb styling */
+.breadcrumbs--rankmath .rank-math-breadcrumb,
+.breadcrumbs--rankmath .rank-math-breadcrumb p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs--rankmath .rank-math-breadcrumb a {
+    font-family: var(--font-base);
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.breadcrumbs--rankmath .rank-math-breadcrumb a:hover {
+    opacity: 0.75;
+}
+
+.breadcrumbs--rankmath .rank-math-breadcrumb .separator {
+    font-family: var(--font-base);
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 0.5;
+}
+
+.breadcrumbs--rankmath .rank-math-breadcrumb .last {
+    font-family: var(--font-base);
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-primary);
+    opacity: 1;
+}

@@ -17,7 +17,7 @@ function arehbo_enqueue_styles() {
 
     wp_enqueue_style(
         'arehbo-theme',
-        get_stylesheet_uri(),
+        get_template_directory_uri() . '/styles/theme.css',
         ['blinker', 'swiper'],
         wp_get_theme()->get('Version')
     );
@@ -26,6 +26,48 @@ function arehbo_enqueue_styles() {
         'arehbo-header',
         get_template_directory_uri() . '/styles/components/header.css',
         ['arehbo-theme'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'arehbo-utilities',
+        get_template_directory_uri() . '/styles/components/utilities.css',
+        ['arehbo-theme'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'arehbo-button',
+        get_template_directory_uri() . '/styles/components/button.css',
+        ['arehbo-utilities'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'arehbo-google-reviews',
+        get_template_directory_uri() . '/styles/components/google-reviews.css',
+        ['arehbo-utilities'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'arehbo-breadcrumbs',
+        get_template_directory_uri() . '/styles/components/breadcrumbs.css',
+        ['arehbo-utilities'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'arehbo-text-content',
+        get_template_directory_uri() . '/styles/components/text-content.css',
+        ['arehbo-utilities'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'arehbo-slider-nav',
+        get_template_directory_uri() . '/styles/components/slider-nav.css',
+        ['arehbo-utilities', 'swiper'],
         wp_get_theme()->get('Version')
     );
 
@@ -118,6 +160,15 @@ function arehbo_enqueue_styles() {
         );
     }
 
+    if (is_404()) {
+        wp_enqueue_style(
+            'arehbo-404',
+            get_template_directory_uri() . '/styles/pages/404.css',
+            ['arehbo-theme'],
+            wp_get_theme()->get('Version')
+        );
+    }
+
     if (is_page_template('templates/page-inschrijven.php')) {
         wp_enqueue_style(
             'arehbo-template-inschrijven',
@@ -155,11 +206,47 @@ function arehbo_enqueue_styles() {
 
     wp_enqueue_script(
         'arehbo-header',
-        get_template_directory_uri() . '/header.js',
+        get_template_directory_uri() . '/scripts/components/header.js',
         [],
         wp_get_theme()->get('Version'),
         true
     );
+
+    wp_enqueue_script(
+        'arehbo-footer',
+        get_template_directory_uri() . '/scripts/components/footer.js',
+        [],
+        wp_get_theme()->get('Version'),
+        true
+    );
+
+    wp_enqueue_script(
+        'arehbo-rekentool',
+        get_template_directory_uri() . '/scripts/components/rekentool.js',
+        [],
+        wp_get_theme()->get('Version'),
+        true
+    );
+
+    if (is_page_template('templates/page-inschrijven.php')) {
+        wp_enqueue_script(
+            'arehbo-page-inschrijven',
+            get_template_directory_uri() . '/scripts/pages/inschrijven.js',
+            [],
+            wp_get_theme()->get('Version'),
+            true
+        );
+    }
+
+    if (is_page_template('templates/page-inschrijven-form.php')) {
+        wp_enqueue_script(
+            'arehbo-page-inschrijven-form',
+            get_template_directory_uri() . '/scripts/pages/inschrijven-form.js',
+            ['jquery'],
+            wp_get_theme()->get('Version'),
+            true
+        );
+    }
 }
 
 add_action('wp_enqueue_scripts', 'arehbo_enqueue_styles');

@@ -1,0 +1,58 @@
+.google-reviews {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 22px;
+    text-decoration: none;
+}
+
+.google-reviews--light {
+    background: rgba(var(--color-primary-rgb), 0.03);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.35);
+}
+
+.google-reviews--dark {
+    background: rgba(var(--color-white-rgb), 0.08);
+    border: 1px solid rgba(var(--color-white-rgb), 0.35);
+}
+
+.google-reviews--bare {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.google-reviews--bare .google-reviews__text {
+    color: var(--color-primary);
+}
+
+.google-reviews__logo {
+    flex-shrink: 0;
+}
+
+.google-reviews__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-standard);
+    line-height: 1;
+}
+
+.google-reviews--light .google-reviews__text {
+    color: var(--color-primary);
+}
+
+.google-reviews--dark .google-reviews__text {
+    color: var(--color-white);
+}
+
+.google-reviews__rating {
+    font-weight: 700;
+}
+
+.google-reviews__label {
+    font-weight: 400;
+}
+
