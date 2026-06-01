@@ -14,7 +14,7 @@ function arehbo_register_post_types() {
         'has_archive'  => false,
         'show_in_rest' => true,
         'supports'     => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'rewrite'      => ['slug' => 'cursussen', 'with_front' => false],
+        'rewrite'      => false,
         'menu_icon'    => 'dashicons-welcome-learn-more',
     ]);
 
@@ -31,7 +31,7 @@ function arehbo_register_post_types() {
         'has_archive'  => false,
         'show_in_rest' => true,
         'supports'     => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'rewrite'      => ['slug' => 'diensten', 'with_front' => false],
+        'rewrite'      => false,
         'menu_icon'    => 'dashicons-hammer',
     ]);
 
@@ -75,4 +75,3 @@ function arehbo_register_post_types() {
 }
 
 add_action('init', 'arehbo_register_post_types');
-

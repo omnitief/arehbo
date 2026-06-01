@@ -56,9 +56,26 @@ $chevron_right_svg = '<svg class="site-nav__chevron" xmlns="http://www.w3.org/20
                         ?>
                             <li class="site-nav__item <?= $is_mega ? 'site-nav__item--has-mega' : ($has_dropdown ? 'site-nav__item--has-dropdown' : ''); ?>">
 
-                                <?php if ($is_mega || $has_dropdown) : ?>
-                                    <button class="site-nav__link site-nav__trigger" type="button" aria-expanded="false">
-                                        <?= esc_html($label); ?>
+                                <?php if ($is_mega) : ?>
+                                    <?php if ($link) : ?>
+                                        <a class="site-nav__link" href="<?= esc_url($link['url']); ?>" <?= $link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
+                                            <?= esc_html($label); ?>
+                                        </a>
+                                    <?php else : ?>
+                                        <span class="site-nav__link"><?= esc_html($label); ?></span>
+                                    <?php endif; ?>
+                                    <button class="site-nav__mega-toggle" type="button" aria-expanded="false" aria-label="<?= esc_attr($label); ?> menu openen">
+                                        <?= $chevron_right_svg; ?>
+                                    </button>
+                                <?php elseif ($has_dropdown) : ?>
+                                    <?php if ($link) : ?>
+                                        <a class="site-nav__link" href="<?= esc_url($link['url']); ?>" <?= $link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
+                                            <?= esc_html($label); ?>
+                                        </a>
+                                    <?php else : ?>
+                                        <span class="site-nav__link"><?= esc_html($label); ?></span>
+                                    <?php endif; ?>
+                                    <button class="site-nav__dropdown-toggle" type="button" aria-expanded="false" aria-label="<?= esc_attr($label); ?> menu openen">
                                         <?= $chevron_right_svg; ?>
                                     </button>
                                 <?php elseif ($link) : ?>

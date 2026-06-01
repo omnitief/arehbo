@@ -7,6 +7,9 @@ while (have_posts()) : the_post();
     $page_title    = get_the_title();
     $background    = get_field('dienst_background') ?: 'light-blue';
     $show_reviews  = get_field('dienst_show_reviews');
+    $overview_link = arehbo_post_overview_link_data(get_the_ID(), 'dienst_categorie', 'diensten_overview_page');
+    $overview_url  = $overview_link['url'] ?? '';
+    $overview_label = $overview_link['label'] ?? '';
 
     $hero_title    = get_field('dienst_title');
     $description   = get_field('dienst_description');
@@ -29,7 +32,6 @@ while (have_posts()) : the_post();
     $rekentool_btn_target  = $rekentool_btn_raw['target'] ?? '_self';
 
     $arrow_left   = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M19 12H5M11 18L5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    $diensten_url = home_url('/diensten/');
 
 ?>
 
@@ -40,13 +42,19 @@ while (have_posts()) : the_post();
 
         <div class="dienst-nav">
 
-            <a class="dienst-back" href="<?= esc_url($diensten_url); ?>">
-                <?= $arrow_left; ?>
-                Terug naar alle diensten
-            </a>
+            <?php if ($overview_url) : ?>
+                <a class="dienst-back" href="<?= esc_url($overview_url); ?>">
+                    <?= $arrow_left; ?>
+                    Terug naar overzicht
+                </a>
+            <?php endif; ?>
 
             <nav class="dienst-breadcrumbs" aria-label="Breadcrumb">
                 <a class="dienst-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                <?php if ($overview_url && $overview_label) : ?>
+                    <span class="dienst-breadcrumbs__sep" aria-hidden="true">/</span>
+                    <a class="dienst-breadcrumbs__link" href="<?= esc_url($overview_url); ?>"><?= esc_html($overview_label); ?></a>
+                <?php endif; ?>
                 <span class="dienst-breadcrumbs__sep" aria-hidden="true">/</span>
                 <span class="dienst-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
             </nav>
@@ -115,8 +123,6 @@ while (have_posts()) : the_post();
     </div><!-- .dienst-page__inner -->
     </div><!-- .dienst-hero-bg -->
 
-    <?php get_template_part('components/colorbar'); ?>
-
     <?php if ($show_rekentool) : ?>
         <?php get_template_part('components/rekentool', '', [
             'product_name'   => $product_name,
@@ -128,6 +134,8 @@ while (have_posts()) : the_post();
             'button_variant' => $rekentool_btn_variant,
         ]); ?>
     <?php endif; ?>
+
+    <?php get_template_part('components/colorbar'); ?>
 
     <?php if (has_blocks(get_the_content())) : ?>
         <div id="page-content" class="page-content">

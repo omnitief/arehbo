@@ -26,15 +26,14 @@ $author_img_alt = $author_img_id
     ? (get_post_meta($author_img_id, '_wp_attachment_image_alt', true) ?: $author_name)
     : $author_name;
 
-$crumb_title = mb_strlen($page_title) > 40
-    ? mb_substr($page_title, 0, 40) . '...'
-    : $page_title;
+$overview_link = arehbo_option_page_link_post('vacatures_overview_page');
+$overview_url  = $overview_link ? get_permalink($overview_link) : '';
+$overview_label = $overview_link ? get_the_title($overview_link) : '';
 
 $background = 'light';
 
 $arrow_left = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M19 12H5M11 18L5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-$vacatures_url = home_url('/vacatures/');
 ?>
 
 <main class="single-post" id="main-content">
@@ -48,17 +47,21 @@ $vacatures_url = home_url('/vacatures/');
 
             <div class="single-hero__nav">
 
-                <a class="single-hero__back" href="<?= esc_url($vacatures_url); ?>">
-                    <?= $arrow_left; ?>
-                    Terug naar alle vacatures
-                </a>
+                <?php if ($overview_url) : ?>
+                    <a class="single-hero__back" href="<?= esc_url($overview_url); ?>">
+                        <?= $arrow_left; ?>
+                        Terug naar overzicht
+                    </a>
+                <?php endif; ?>
 
                 <nav class="single-hero__breadcrumbs" aria-label="Breadcrumb">
                     <a class="single-hero__crumb-link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <?php if ($overview_url && $overview_label) : ?>
+                        <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
+                        <a class="single-hero__crumb-link" href="<?= esc_url($overview_url); ?>"><?= esc_html($overview_label); ?></a>
+                    <?php endif; ?>
                     <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                    <a class="single-hero__crumb-link" href="<?= esc_url($vacatures_url); ?>">Vacatures</a>
-                    <span class="single-hero__crumb-sep" aria-hidden="true">/</span>
-                    <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($crumb_title); ?></span>
+                    <span class="single-hero__crumb-current" aria-current="page"><?= esc_html($page_title); ?></span>
                 </nav>
 
             </div>

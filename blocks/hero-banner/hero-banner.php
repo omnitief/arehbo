@@ -7,6 +7,7 @@ $video_id  = get_field('background_video');
 $title     = get_field('title');
 $cards     = get_field('cards') ?: [];
 $scroll    = get_field('scroll_target');
+$hero_title = $title ?: get_the_title();
 
 $bg_url    = $bg_id    ? wp_get_attachment_image_url($bg_id, 'full') : '';
 $video_url = $video_id ? wp_get_attachment_url($video_id)            : '';
@@ -59,9 +60,7 @@ $default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-li
 
             <div class="hb-hero__inner container">
 
-                <?php if ($title) : ?>
-                    <h1 class="hb-hero__title"><?= esc_html($title); ?></h1>
-                <?php endif; ?>
+                <h1 class="hb-hero__title"><?= esc_html($hero_title); ?></h1>
 
                 <?php if (!empty($cards)) : ?>
                     <div class="hb-hero__cards">
@@ -119,7 +118,7 @@ $default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-li
         <div class="hb-default hb-default--<?= esc_attr($default_background); ?> <?= esc_attr($default_bg_class); ?><?= ($default_show_usps && !empty($default_usps)) ? ' hb-default--has-usps' : ''; ?>">
             <div class="hb-default__inner container">
 
-                <?php $breadcrumb_title = $title ?: get_the_title(); ?>
+                <?php $breadcrumb_title = get_the_title(); ?>
                 <nav class="archive-breadcrumbs" aria-label="Breadcrumb">
                     <a class="archive-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
                     <span class="archive-breadcrumbs__sep" aria-hidden="true">/</span>
@@ -132,9 +131,7 @@ $default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-li
 
                     <div class="hb-default__text">
 
-                        <?php if ($title) : ?>
-                            <h1 class="hb-default__title"><?= esc_html($title); ?></h1>
-                        <?php endif; ?>
+                        <h1 class="hb-default__title"><?= esc_html($hero_title); ?></h1>
 
                         <?php if ($default_description) : ?>
                             <div class="hb-default__description">
@@ -221,7 +218,7 @@ $default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-li
         <div class="hb-formulier <?= esc_attr($form_bg_class); ?>">
             <div class="hb-formulier__inner container">
 
-                <?php $breadcrumb_title = $title ?: get_the_title(); ?>
+                <?php $breadcrumb_title = get_the_title(); ?>
                 <nav class="archive-breadcrumbs" aria-label="Breadcrumb">
                     <a class="archive-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
                     <span class="archive-breadcrumbs__sep" aria-hidden="true">/</span>
@@ -234,9 +231,7 @@ $default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-li
 
                     <div class="hb-formulier__left">
 
-                        <?php if ($title) : ?>
-                            <h1 class="hb-formulier__title"><?= esc_html($title); ?></h1>
-                        <?php endif; ?>
+                        <h1 class="hb-formulier__title"><?= esc_html($hero_title); ?></h1>
 
                         <?php if ($form_description) : ?>
                             <div class="hb-formulier__description">

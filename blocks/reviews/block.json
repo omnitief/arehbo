@@ -7,6 +7,7 @@
   "keywords": ["reviews", "google", "testimonials", "slider"],
   "style": "file:../../styles/blocks/reviews.css",
   "script": "file:./reviews.js",
+  "apiVersion": 2,
   "acf": {
     "mode": "edit",
     "renderTemplate": "reviews.php"
@@ -14,5 +15,7 @@
   "supports": {
     "anchor": false,
     "align": false,
-    "customClassName": false
-  }}
+    "customClassName": false,
+    "mode": false
+  }
+}

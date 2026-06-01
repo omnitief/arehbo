@@ -6,6 +6,7 @@
   "icon": "admin-post",
   "keywords": ["blogs", "posts", "news", "articles", "grid"],
   "style": "file:../../styles/blocks/blogs.css",
+  "apiVersion": 2,
   "acf": {
     "mode": "edit",
     "renderTemplate": "blogs.php"
@@ -13,5 +14,7 @@
   "supports": {
     "anchor": false,
     "align": false,
-    "customClassName": false
-  }}
+    "customClassName": false,
+    "mode": false
+  }
+}

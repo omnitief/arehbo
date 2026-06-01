@@ -1,0 +1,49 @@
+{
+    "key": "group_term_page_links",
+    "title": "Term page links",
+    "fields": [
+        {
+            "key": "field_term_page_link",
+            "label": "Pagina link",
+            "name": "term_page_link",
+            "type": "post_object",
+            "instructions": "Kies de overzichtspagina voor deze term.",
+            "required": 0,
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "cursus_categorie"
+            }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "dienst_categorie"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1748772000
+}

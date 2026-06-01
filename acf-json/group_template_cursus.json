@@ -3,21 +3,6 @@
     "title": "Cursus – Hero",
     "fields": [
         {
-            "key": "field_cursus_background",
-            "label": "Background",
-            "name": "cursus_background",
-            "type": "button_group",
-            "instructions": "Background colour for the hero section.",
-            "required": 0,
-            "choices": {
-                "light-blue": "Light Blue",
-                "dark-blue": "Dark Blue"
-            },
-            "default_value": "light-blue",
-            "return_format": "value",
-            "allow_null": 0
-        },
-        {
             "key": "field_cursus_hero_title",
             "label": "Title",
             "name": "cursus_title",
@@ -36,6 +21,40 @@
             "toolbar": "basic",
             "media_upload": 0,
             "delay": 0
+        },
+        {
+            "key": "field_cursus_buttons",
+            "label": "Buttons",
+            "name": "cursus_buttons",
+            "type": "repeater",
+            "instructions": "Knoppen in de header (link title is de label).",
+            "required": 0,
+            "layout": "block",
+            "min": 0,
+            "max": 3,
+            "button_label": "Add button",
+            "sub_fields": [
+                {
+                    "key": "field_cursus_buttons_link",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "link",
+                    "required": 0,
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_cursus_buttons_variant",
+                    "label": "Variant",
+                    "name": "variant",
+                    "type": "button_group",
+                    "choices": {
+                        "accent": "Accent",
+                        "outline": "Outline"
+                    },
+                    "default_value": "accent",
+                    "return_format": "value"
+                }
+            ]
         },
         {
             "key": "field_cursus_hero_image",

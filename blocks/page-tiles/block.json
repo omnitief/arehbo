@@ -7,6 +7,7 @@
   "keywords": ["tiles", "cards", "grid", "slider", "pagina", "tegels"],
   "style": "file:../../styles/blocks/page-tiles.css",
   "viewScript": "file:./page-tiles.js",
+  "apiVersion": 2,
   "acf": {
     "mode": "edit",
     "renderTemplate": "page-tiles.php"
@@ -14,5 +15,7 @@
   "supports": {
     "anchor": false,
     "align": false,
-    "customClassName": false
-  }}
+    "customClassName": false,
+    "mode": false
+  }
+}

@@ -6,6 +6,7 @@
   "icon": "calendar-alt",
   "keywords": ["cursus", "kalender", "calendar", "agenda", "data", "appointments"],
   "style": "file:../../styles/blocks/course-calendar.css",
+  "apiVersion": 2,
   "acf": {
     "mode": "edit",
     "renderTemplate": "course-calendar.php"
@@ -13,6 +14,7 @@
   "supports": {
     "anchor": false,
     "align": false,
-    "customClassName": false
+    "customClassName": false,
+    "mode": false
   }
 }

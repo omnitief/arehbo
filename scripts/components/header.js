@@ -143,6 +143,7 @@
     document.querySelectorAll('.site-nav__item--has-mega').forEach(function (item) {
         var closeTimer = null;
         var mega = item._megaPanel || null;
+        var megaToggle = item.querySelector('.site-nav__mega-toggle');
 
         function openMega() {
             clearTimeout(closeTimer);
@@ -150,51 +151,117 @@
                 if (other !== item) {
                     other.classList.remove('is-mega-open');
                     if (other._megaPanel) other._megaPanel.classList.remove('is-mega-open');
+                    var otherToggle = other.querySelector('.site-nav__mega-toggle');
+                    if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
                 }
             });
             item.classList.add('is-mega-open');
             if (mega) mega.classList.add('is-mega-open');
+            if (megaToggle) megaToggle.setAttribute('aria-expanded', 'true');
         }
 
         function scheduledClose() {
             closeTimer = setTimeout(function () {
                 item.classList.remove('is-mega-open');
                 if (mega) mega.classList.remove('is-mega-open');
+                if (megaToggle) megaToggle.setAttribute('aria-expanded', 'false');
             }, 200);
         }
 
         item.addEventListener('mouseenter', openMega);
         item.addEventListener('mouseleave', scheduledClose);
+        item.addEventListener('focusin', openMega);
+        item.addEventListener('focusout', function (e) {
+            if (item.contains(e.relatedTarget)) return;
+            scheduledClose();
+        });
 
         if (mega) {
             mega.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
             mega.addEventListener('mouseleave', scheduledClose);
         }
+
+        if (megaToggle) {
+            megaToggle.addEventListener('click', function () {
+                var isOpen = item.classList.contains('is-mega-open');
+                if (isOpen) {
+                    item.classList.remove('is-mega-open');
+                    if (mega) mega.classList.remove('is-mega-open');
+                    megaToggle.setAttribute('aria-expanded', 'false');
+                } else {
+                    openMega();
+                }
+            });
+        }
     });
 
-    document.querySelectorAll('.site-nav__item--has-dropdown .site-nav__trigger').forEach(function (trigger) {
-        trigger.addEventListener('click', function () {
-            var expanded = trigger.getAttribute('aria-expanded') === 'true';
-            document.querySelectorAll('.site-nav__trigger').forEach(function (other) {
-                if (other !== trigger) other.setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.site-nav__item--has-dropdown').forEach(function (item) {
+        var closeTimer = null;
+        var dropdown = item.querySelector('.site-nav__dropdown');
+        var dropdownToggle = item.querySelector('.site-nav__dropdown-toggle');
+
+        function openDropdown() {
+            clearTimeout(closeTimer);
+            document.querySelectorAll('.site-nav__item--has-dropdown').forEach(function (other) {
+                if (other !== item) {
+                    other.classList.remove('is-dropdown-open');
+                    var otherToggle = other.querySelector('.site-nav__dropdown-toggle');
+                    if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                }
             });
-            trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            item.classList.add('is-dropdown-open');
+            if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        function scheduledClose() {
+            closeTimer = setTimeout(function () {
+                item.classList.remove('is-dropdown-open');
+                if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'false');
+            }, 200);
+        }
+
+        item.addEventListener('mouseenter', openDropdown);
+        item.addEventListener('mouseleave', scheduledClose);
+        item.addEventListener('focusin', openDropdown);
+        item.addEventListener('focusout', function (e) {
+            if (item.contains(e.relatedTarget)) return;
+            scheduledClose();
         });
+
+        if (dropdown) {
+            dropdown.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+            dropdown.addEventListener('mouseleave', scheduledClose);
+        }
+
+        if (dropdownToggle) {
+            dropdownToggle.addEventListener('click', function () {
+                var isOpen = item.classList.contains('is-dropdown-open');
+                if (isOpen) {
+                    item.classList.remove('is-dropdown-open');
+                    if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'false');
+                } else {
+                    openDropdown();
+                }
+            });
+        }
     });
 
     document.addEventListener('click', function (e) {
         if (!e.target.closest('.site-nav__item--has-dropdown') &&
             !e.target.closest('.site-nav__item--has-mega') &&
             !e.target.closest('.mega-menu')) {
-            document.querySelectorAll('.site-nav__trigger').forEach(function (trigger) {
-                trigger.setAttribute('aria-expanded', 'false');
-            });
             document.querySelectorAll('.site-nav__item--has-mega').forEach(function (item) {
                 item.classList.remove('is-mega-open');
                 if (item._megaPanel) item._megaPanel.classList.remove('is-mega-open');
+                var toggle = item.querySelector('.site-nav__mega-toggle');
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            });
+            document.querySelectorAll('.site-nav__item--has-dropdown').forEach(function (item) {
+                item.classList.remove('is-dropdown-open');
+                var toggle = item.querySelector('.site-nav__dropdown-toggle');
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
             });
         }
     });
 
 }());
-

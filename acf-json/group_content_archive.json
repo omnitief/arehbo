@@ -112,9 +112,9 @@
             }
         },
         {
-            "key": "field_carchive_display_mode",
+            "key": "field_carchive_display_mode_slider",
             "label": "Display mode",
-            "name": "display_mode",
+            "name": "display_mode_slider",
             "type": "button_group",
             "choices": {
                 "latest": "Latest 6",
@@ -130,6 +130,65 @@
                         "field": "field_carchive_layout",
                         "operator": "==",
                         "value": "slider"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "!=",
+                        "value": "vacatures"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_carchive_display_mode_slider_vacatures",
+            "label": "Display mode",
+            "name": "display_mode_slider_vacatures",
+            "type": "button_group",
+            "choices": {
+                "latest": "Latest 6",
+                "manual": "Manual selection"
+            },
+            "default_value": "latest",
+            "return_format": "value",
+            "allow_null": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "slider"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "==",
+                        "value": "vacatures"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_carchive_display_mode_grid",
+            "label": "Display mode",
+            "name": "display_mode_grid",
+            "type": "button_group",
+            "choices": {
+                "all": "All items",
+                "category": "By category"
+            },
+            "default_value": "all",
+            "return_format": "value",
+            "allow_null": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "grid"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "!=",
+                        "value": "vacatures"
                     }
                 ]
             ]
@@ -148,7 +207,19 @@
                         "value": "slider"
                     },
                     {
-                        "field": "field_carchive_display_mode",
+                        "field": "field_carchive_display_mode_slider",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "slider"
+                    },
+                    {
+                        "field": "field_carchive_display_mode_slider_vacatures",
                         "operator": "==",
                         "value": "manual"
                     }
@@ -180,7 +251,24 @@
                         "value": "slider"
                     },
                     {
-                        "field": "field_carchive_display_mode",
+                        "field": "field_carchive_display_mode_slider",
+                        "operator": "==",
+                        "value": "category"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "==",
+                        "value": "cursussen"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "grid"
+                    },
+                    {
+                        "field": "field_carchive_display_mode_grid",
                         "operator": "==",
                         "value": "category"
                     },
@@ -211,7 +299,24 @@
                         "value": "slider"
                     },
                     {
-                        "field": "field_carchive_display_mode",
+                        "field": "field_carchive_display_mode_slider",
+                        "operator": "==",
+                        "value": "category"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "==",
+                        "value": "diensten"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_carchive_layout",
+                        "operator": "==",
+                        "value": "grid"
+                    },
+                    {
+                        "field": "field_carchive_display_mode_grid",
                         "operator": "==",
                         "value": "category"
                     },
@@ -240,6 +345,11 @@
                         "field": "field_carchive_layout",
                         "operator": "==",
                         "value": "grid"
+                    },
+                    {
+                        "field": "field_carchive_post_type",
+                        "operator": "!=",
+                        "value": "vacatures"
                     }
                 ]
             ],

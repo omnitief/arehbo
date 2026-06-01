@@ -1,0 +1,76 @@
+{
+    "key": "group_header_overview_links",
+    "title": "Header Overview Links",
+    "fields": [
+        {
+            "key": "field_header_overview_link_cursussen",
+            "label": "Cursussen overzichtspagina",
+            "name": "cursussen_overview_page",
+            "type": "post_object",
+            "instructions": "Selecteer de pagina die gebruikt wordt voor cursussen terug naar overzicht en breadcrumbs.",
+            "required": 0,
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_header_overview_link_diensten",
+            "label": "Diensten overzichtspagina",
+            "name": "diensten_overview_page",
+            "type": "post_object",
+            "instructions": "Selecteer de pagina die gebruikt wordt voor diensten terug naar overzicht en breadcrumbs.",
+            "required": 0,
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_header_overview_link_vacatures",
+            "label": "Vacatures overzichtspagina",
+            "name": "vacatures_overview_page",
+            "type": "post_object",
+            "instructions": "Selecteer de pagina die gebruikt wordt voor vacatures terug naar overzicht en breadcrumbs.",
+            "required": 0,
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "header-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1748772600
+}

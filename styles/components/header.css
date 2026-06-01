@@ -96,6 +96,9 @@
 
 .site-nav__item {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .site-nav__link {
@@ -119,6 +122,62 @@
     white-space: nowrap;
 }
 
+.site-nav__mega-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.site-header.bg-dark-blue .site-nav__mega-toggle {
+    color: var(--color-white);
+}
+
+.site-nav__mega-toggle:hover,
+.site-nav__mega-toggle:focus-visible {
+    outline: none;
+    text-shadow: 0 0 0.5px var(--color-primary), 0 0 0.5px var(--color-primary);
+}
+
+.site-header.bg-dark-blue .site-nav__mega-toggle:hover,
+.site-header.bg-dark-blue .site-nav__mega-toggle:focus-visible {
+    text-shadow: 0 0 0.5px var(--color-white), 0 0 0.5px var(--color-white);
+}
+
+.site-nav__dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.site-header.bg-dark-blue .site-nav__dropdown-toggle {
+    color: var(--color-white);
+}
+
+.site-nav__dropdown-toggle:hover,
+.site-nav__dropdown-toggle:focus-visible {
+    outline: none;
+    text-shadow: 0 0 0.5px var(--color-primary), 0 0 0.5px var(--color-primary);
+}
+
+.site-header.bg-dark-blue .site-nav__dropdown-toggle:hover,
+.site-header.bg-dark-blue .site-nav__dropdown-toggle:focus-visible {
+    text-shadow: 0 0 0.5px var(--color-white), 0 0 0.5px var(--color-white);
+}
+
 .site-nav__link:hover,
 .site-nav__link:focus-visible {
     text-shadow: 0 0 0.5px var(--color-primary), 0 0 0.5px var(--color-primary);
@@ -132,7 +191,7 @@
 }
 
 .site-nav__item--has-dropdown:hover .site-nav__chevron,
-.site-nav__trigger[aria-expanded="true"] .site-nav__chevron {
+.site-nav__item--has-dropdown.is-dropdown-open .site-nav__dropdown-toggle .site-nav__chevron {
     transform: rotate(-90deg);
 }
 
@@ -161,7 +220,7 @@
 }
 
 .site-nav__item--has-dropdown:hover .site-nav__dropdown,
-.site-nav__trigger[aria-expanded="true"] ~ .site-nav__dropdown {
+.site-nav__item--has-dropdown.is-dropdown-open .site-nav__dropdown {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
@@ -733,7 +792,7 @@ a.mobile-nav__link:hover {
 }
 
 .site-nav__item--has-mega.is-mega-open .site-nav__chevron,
-.site-nav__item--has-mega .site-nav__trigger[aria-expanded="true"] .site-nav__chevron {
+.site-nav__item--has-mega .site-nav__mega-toggle[aria-expanded="true"] .site-nav__chevron {
     transform: rotate(-90deg);
 }
 

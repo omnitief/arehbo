@@ -1,7 +1,7 @@
 (function () {
-    if (typeof Swiper === 'undefined') return;
-
     document.querySelectorAll('.content-archive--slider').forEach(function (block) {
+        if (typeof Swiper === 'undefined') return;
+
         var swiperEl = block.querySelector('.swiper');
         if (!swiperEl) return;
 
@@ -41,20 +41,35 @@
         var pageNumsEl  = block.querySelector('.archive-page-numbers');
         var prevBtn     = block.querySelector('.archive-page-btn--prev');
         var nextBtn     = block.querySelector('.archive-page-btn--next');
+        var defaultTerms = (block.dataset.defaultTerms || '').split(',').filter(Boolean);
 
         var CARDS_PER_PAGE = 10;
         var currentPage    = 1;
 
         var allBtn      = block.querySelector('.archive-filter[data-term="all"]');
         var categoryBtns = filterBtns.filter(function (f) { return f.dataset.term !== 'all'; });
+        var hasFiltering = defaultTerms.length > 0 || filterBtns.length > 0;
 
-        var activeTerms = new Set(['all']);
+        var activeTerms = new Set(defaultTerms.length ? defaultTerms : ['all']);
+
+        function syncFilterButtonStates() {
+            if (!filterBtns.length) return;
+
+            filterBtns.forEach(function (btn) {
+                var term = btn.dataset.term;
+                btn.classList.toggle('is-active', activeTerms.has(term));
+            });
+
+            if (allBtn) {
+                allBtn.classList.toggle('is-active', activeTerms.has('all'));
+            }
+        }
 
         function getVisibleCards() {
-            if (!filterBtns.length || activeTerms.has('all')) return allCards;
+            if (!hasFiltering || activeTerms.has('all')) return allCards;
             return allCards.filter(function (card) {
                 var terms = (card.dataset.terms || '').split(',').filter(Boolean);
-                if (!terms.length) return true;
+                if (!terms.length) return false;
                 return terms.some(function (t) { return activeTerms.has(t); });
             });
         }
@@ -155,6 +170,7 @@
                     }
                 }
 
+                syncFilterButtonStates();
                 currentPage = 1;
                 renderPage();
             });
@@ -182,6 +198,7 @@
             });
         }
 
+        syncFilterButtonStates();
         renderPage();
     });
 }());

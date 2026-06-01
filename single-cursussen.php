@@ -5,17 +5,17 @@ get_header();
 while (have_posts()) : the_post();
 
     $page_title  = get_the_title();
-    $background  = get_field('cursus_background') ?: 'light-blue';
     $hero_title  = get_field('cursus_title') ?: $page_title;
     $description = get_field('cursus_description');
     $img_id      = get_field('cursus_image');
+    $overview_link = arehbo_post_overview_link_data(get_the_ID(), 'cursus_categorie', 'cursussen_overview_page');
+    $overview_url  = $overview_link['url'] ?? '';
+    $overview_label = $overview_link['label'] ?? '';
 
     $kosten      = get_field('kosten');
     $locatie     = get_field('locatie');
     $duur        = get_field('duur');
     $buttons     = get_field('cursus_buttons') ?: [];
-
-    $bg_class = ' cursus-hero-bg--' . esc_attr($background);
 
     if (!$img_id) {
         $img_id = get_post_thumbnail_id();
@@ -25,24 +25,29 @@ while (have_posts()) : the_post();
     $img_alt = $img_id ? (get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: $page_title) : '';
 
     $arrow_left    = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M19 12H5M11 18L5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    $cursussen_url = home_url('/cursussen/');
 
 ?>
 
 <main id="main-content" class="cursus-page">
 
-    <div class="cursus-hero-bg<?= $bg_class; ?>">
+    <div class="cursus-hero-bg cursus-hero-bg--light-blue">
         <div class="cursus-page__inner container">
 
             <div class="cursus-nav">
 
-                <a class="cursus-back" href="<?= esc_url($cursussen_url); ?>">
-                    <?= $arrow_left; ?>
-                    Terug naar alle cursussen
-                </a>
+                <?php if ($overview_url) : ?>
+                    <a class="cursus-back" href="<?= esc_url($overview_url); ?>">
+                        <?= $arrow_left; ?>
+                        Terug naar overzicht
+                    </a>
+                <?php endif; ?>
 
                 <nav class="cursus-breadcrumbs" aria-label="Breadcrumb">
                     <a class="cursus-breadcrumbs__link" href="<?= esc_url(home_url('/')); ?>">Home</a>
+                    <?php if ($overview_url && $overview_label) : ?>
+                        <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
+                        <a class="cursus-breadcrumbs__link" href="<?= esc_url($overview_url); ?>"><?= esc_html($overview_label); ?></a>
+                    <?php endif; ?>
                     <span class="cursus-breadcrumbs__sep" aria-hidden="true">/</span>
                     <span class="cursus-breadcrumbs__current" aria-current="page"><?= esc_html($page_title); ?></span>
                 </nav>
@@ -84,7 +89,7 @@ while (have_posts()) : the_post();
     </div><!-- .cursus-hero-bg -->
 
     <?php if ($kosten || $locatie || $duur || !empty($buttons)) : ?>
-        <div class="cursus-cards cursus-cards--<?= esc_attr($background); ?><?= $background === 'dark-blue' ? ' cursus-cards--dark' : ''; ?>">
+        <div class="cursus-cards cursus-cards--light-blue">
             <div class="container">
 
                 <article class="cursus-card">

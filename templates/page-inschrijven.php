@@ -44,6 +44,13 @@ $cursussen_posts = get_posts([
     'posts_per_page' => -1,
     'orderby'        => 'title',
     'order'          => 'ASC',
+    'meta_query'     => [
+        [
+            'key'     => 'visible_visual_systems',
+            'value'   => '1',
+            'compare' => '=',
+        ],
+    ],
 ]);
 
 $form_page_posts = get_posts([

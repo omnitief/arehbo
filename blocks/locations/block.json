@@ -6,6 +6,7 @@
   "icon": "location-alt",
   "keywords": ["locations", "map", "pins", "netherlands", "offices"],
   "style": "file:../../styles/blocks/locations.css",
+  "apiVersion": 2,
   "acf": {
     "mode": "edit",
     "renderTemplate": "locations.php"
@@ -13,5 +14,7 @@
   "supports": {
     "anchor": false,
     "align": false,
-    "customClassName": false
-  }}
+    "customClassName": false,
+    "mode": false
+  }
+}

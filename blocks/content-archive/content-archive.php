@@ -5,13 +5,20 @@ $full_id      = get_full_id(get_field('id'));
 $background   = get_field('background')    ?: 'light';
 $layout       = get_field('layout')        ?: 'slider';
 $post_type    = get_field('post_type')     ?: 'cursussen';
-$display_mode = get_field('display_mode')  ?: 'latest';
+$display_mode_slider = get_field('display_mode_slider') ?: get_field('display_mode') ?: 'latest';
+$display_mode_slider_vacatures = get_field('display_mode_slider_vacatures') ?: get_field('display_mode') ?: 'latest';
+$display_mode_grid   = get_field('display_mode_grid') ?: get_field('display_mode') ?: 'all';
+$display_mode = $layout === 'grid'
+    ? $display_mode_grid
+    : ($post_type === 'vacatures' ? $display_mode_slider_vacatures : $display_mode_slider);
 $manual_posts = get_field('posts')         ?: [];
 $show_filters = get_field('show_filters');
 $title        = get_field('title');
 
 $taxonomy = arehbo_taxonomy_for_post_type($post_type);
 $term     = $taxonomy ? get_field('term_' . $post_type) : null;
+$grid_default_terms = [];
+$grid_active_term   = 'all';
 
 $bg_map   = ['dark' => 'bg-dark', 'light' => 'bg-light'];
 $bg_class = $bg_map[$background] ?? 'bg-light';
@@ -26,6 +33,13 @@ $query_args = [
 
 if ($layout === 'grid') {
     $query_args['posts_per_page'] = -1;
+
+    if ($display_mode === 'category' && $taxonomy) {
+        if (is_object($term) && !empty($term->slug)) {
+            $grid_active_term = $term->slug;
+            $grid_default_terms[] = $term->slug;
+        }
+    }
 
 } elseif ($display_mode === 'manual' && !empty($manual_posts)) {
     $ids = array_map(fn($p) => is_object($p) ? $p->ID : $p, (array) $manual_posts);
@@ -42,6 +56,10 @@ if ($layout === 'grid') {
 
 } else {
     $query_args['posts_per_page'] = 6;
+}
+
+if ($post_type === 'cursussen' && function_exists('arehbo_visible_coursussen_query_args')) {
+    $query_args = arehbo_visible_coursussen_query_args($query_args);
 }
 
 $archive_query = new WP_Query($query_args);
@@ -66,6 +84,9 @@ if ($layout === 'grid' && $show_filters && $taxonomy) {
 
 $arrow_right = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 $arrow_left  = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$default_terms_attr = !empty($grid_default_terms)
+    ? ' data-default-terms="' . esc_attr(implode(',', $grid_default_terms)) . '"'
+    : '';
 
 if (!function_exists('build_archive_card')) :
 function build_archive_card($post, $post_type, $btn_label, $arrow_right, $terms_map_active = false) {
@@ -212,7 +233,7 @@ endif;
 
 <?php elseif ($layout === 'grid') : ?>
 
-<section <?= $full_id; ?> class="content-archive content-archive--grid <?= esc_attr($bg_class); ?>">
+<section <?= $full_id; ?> class="content-archive content-archive--grid <?= esc_attr($bg_class); ?>"<?= $default_terms_attr; ?>>
     <div class="<?= esc_attr($space); ?>">
         <div class="container">
 
@@ -225,12 +246,12 @@ endif;
                 $all_label  = $all_labels[$post_type] ?? 'Alles';
             ?>
                 <div class="archive-filters">
-                    <button class="archive-filter is-active" data-term="all" type="button">
+                    <button class="archive-filter<?= $grid_active_term === 'all' ? ' is-active' : ''; ?>" data-term="all" type="button">
                         <span class="archive-filter__check" aria-hidden="true"></span>
                         <span class="archive-filter__label"><?= esc_html($all_label); ?></span>
                     </button>
                     <?php foreach ($terms_map as $slug => $name) : ?>
-                        <button class="archive-filter" data-term="<?= esc_attr($slug); ?>" type="button">
+                        <button class="archive-filter<?= $grid_active_term === $slug ? ' is-active' : ''; ?>" data-term="<?= esc_attr($slug); ?>" type="button">
                             <span class="archive-filter__check" aria-hidden="true"></span>
                             <span class="archive-filter__label"><?= esc_html($name); ?></span>
                         </button>

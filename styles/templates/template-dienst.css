@@ -7,13 +7,10 @@
     .dienst-page__inner {
         padding-top: calc(var(--header-bottom, 80px) + 20px);
     }
-    .rekentool {
-    padding-block: 50px 60px;
-}
-.rekentool__bar {
-    flex-direction: column;
-    justify-content: center;
-}
+    .rekentool__bar {
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 .dienst-nav {
@@ -481,5 +478,5 @@
     }
 }
 .rekentool {
-    padding-block: 100px 120px;
+    padding-bottom: var(--space-3);
 }
