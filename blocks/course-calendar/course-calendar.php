@@ -27,6 +27,12 @@ if ($course_id) {
     );
 }
 
+// Hide appointments that start before today.
+$today_start = strtotime('today', current_time('timestamp'));
+$appointments = array_values(array_filter($appointments, function ($appointment) use ($today_start) {
+    return ((int) ($appointment['start_date'] ?? 0)) >= $today_start;
+}));
+
 $phone = get_field('footer_contact_phone', 'option');
 $email = get_field('footer_contact_email', 'option');
 
@@ -69,36 +75,80 @@ foreach ($appointments as $appointment) {
         $sibling_dates
     );
 
-    $time_label = date_i18n('H:i', $appointment['start_date']) . ' tot ' . date_i18n('H:i', $appointment['end_date']);
-
-    $days = [];
-    foreach ($all_dates as $i => $date_row) {
-        $weekday = date_i18n('l', $date_row['start_date']);
-        $days[] = [
-            'label' => 'Dagdeel ' . ($i + 1) . ' (' . $weekday . ')',
-            'date'  => date_i18n('d-m-Y', $date_row['start_date']),
-            'time'  => $time_label,
-        ];
+    // Defensive: prevent duplicate lesson days (the data source can sometimes return
+    // a child row that mirrors the parent, or multiple rows for the same day).
+    $unique_dates = [];
+    foreach ($all_dates as $date_row) {
+        $start = (int) ($date_row['start_date'] ?? 0);
+        $end   = (int) ($date_row['end_date'] ?? 0);
+        if (!$start) {
+            continue;
+        }
+        // De-dup on start_date (same day+time). Keep the earliest end_date we see.
+        if (!isset($unique_dates[$start]) || ($end && $end < ($unique_dates[$start]['end_date'] ?? PHP_INT_MAX))) {
+            $unique_dates[$start] = ['start_date' => $start, 'end_date' => $end];
+        }
     }
+	    $all_dates = array_values($unique_dates);
+	    usort($all_dates, fn($a, $b) => ($a['start_date'] ?? 0) <=> ($b['start_date'] ?? 0));
 
-    if ($places_left === 0) {
-        $status = 'vol';
-    } elseif ($places_left < 4) {
+	    // Merge multiple onderdelen on the same date into a single lesdag,
+	    // with start time of the first onderdeel and end time of the last onderdeel.
+	    $merged_days = [];
+	    foreach ($all_dates as $date_row) {
+	        $start_ts = (int) ($date_row['start_date'] ?? 0);
+	        $end_ts   = (int) ($date_row['end_date'] ?? 0);
+	        if (!$start_ts) {
+	            continue;
+	        }
+	        $date_key = date_i18n('Y-m-d', $start_ts);
+
+	        if (!isset($merged_days[$date_key])) {
+	            $merged_days[$date_key] = [
+	                'start_date' => $start_ts,
+	                'end_date'   => $end_ts,
+	            ];
+	            continue;
+	        }
+
+	        $merged_days[$date_key]['start_date'] = min($merged_days[$date_key]['start_date'], $start_ts);
+	        if ($end_ts) {
+	            $merged_days[$date_key]['end_date'] = max($merged_days[$date_key]['end_date'] ?? 0, $end_ts);
+	        }
+	    }
+
+	    $merged_days = array_values($merged_days);
+	    usort($merged_days, fn($a, $b) => ($a['start_date'] ?? 0) <=> ($b['start_date'] ?? 0));
+
+	    $days = [];
+	    foreach ($merged_days as $i => $date_row) {
+	        $weekday = date_i18n('l', $date_row['start_date']);
+	        $days[] = [
+	            'label' => 'Lesdag ' . ($i + 1) . ' (' . $weekday . ')',
+	            'date'  => date_i18n('d-m-Y', $date_row['start_date']),
+	            'time'  => date_i18n('H:i', $date_row['start_date']) . ' tot ' . date_i18n('H:i', $date_row['end_date']),
+	        ];
+	    }
+
+	    if ($places_left === 0) {
+	        $status = 'vol';
+	    } elseif ($places_left < 4) {
         $status = 'bijna-vol';
     } else {
         $status = 'beschikbaar';
     }
 
-    $cards[] = [
-        'status'      => $status,
-        'name'        => $course_name,
-        'available'   => $places_left,
-        'days_count'  => count($all_dates),
-        'location'    => $course_loc,
-        'days'        => $days,
-        'dates_ts'    => array_map(fn($d) => $d['start_date'], $all_dates),
-        'appointment' => $appointment_id,
-    ];
+	    $cards[] = [
+	        'status'      => $status,
+	        'name'        => $course_name,
+	        'available'   => $places_left,
+	        'days_count'  => count($merged_days),
+	        'location'    => $course_loc,
+	        'days'        => $days,
+	        'dates_ts'    => array_map(fn($d) => $d['start_date'], $merged_days),
+	        'appointment' => $appointment_id,
+	    ];
+
 }
 
 ?>
@@ -181,14 +231,14 @@ foreach ($appointments as $appointment) {
                         <div class="course-card__main">
                             <h3 class="course-card__name"><?= esc_html($card['name']); ?></h3>
                             <hr class="course-card__main-sep">
-                            <ul class="course-card__lesdagen">
-                                <?php foreach ($days as $i => $dag) : ?>
-                                    <li class="course-card__lesdag">
-                                        <span class="course-card__lesdag-label">Lesdag <?= esc_html($i + 1); ?></span>
-                                        <span class="course-card__lesdag-date">
-                                            <?= $icon_calendar; ?>
-                                            <span><?= esc_html(arehbo_format_nl_date($dates_ts[$i] ?? null)); ?></span>
-                                        </span>
+	                                <ul class="course-card__lesdagen">
+	                                <?php foreach ($days as $i => $dag) : ?>
+	                                    <li class="course-card__lesdag">
+	                                        <span class="course-card__lesdag-label">Lesdag <?= esc_html($i + 1); ?></span>
+	                                        <span class="course-card__lesdag-date">
+	                                            <?= $icon_calendar; ?>
+	                                            <span><?= esc_html(arehbo_format_nl_date($dates_ts[$i] ?? null)); ?></span>
+	                                        </span>
                                         <span class="course-card__lesdag-time">
                                             <?= $icon_clock; ?>
                                             <span><?= esc_html($dag['time']); ?></span>
