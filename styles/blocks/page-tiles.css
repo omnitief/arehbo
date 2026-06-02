@@ -89,7 +89,7 @@
 
 @media (max-width: 1600px) {
     .page-tiles__swiper-wrap {
-        margin-top: 90px;
+        margin-top: var(--space-2);
     }
 
     .tile-card__btn-label {
@@ -141,7 +141,7 @@
 }
 
 .page-tiles__swiper-wrap {
-    margin-top: 120px;
+    margin-top: var(--space-2);
     margin-right: calc(-1 * var(--space-container));
     overflow: visible;
 }
@@ -241,6 +241,6 @@ a.tile-slide__overlay {
     }
 
     .page-tiles__swiper-wrap {
-        margin-top: 60px;
+        margin-top: var(--space-2);
     }
 }

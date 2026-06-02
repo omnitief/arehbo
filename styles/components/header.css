@@ -453,14 +453,20 @@
     }
 }
 
-@media (max-width: 1600px) and (min-width: 1501px) {
+@media (max-width: 1600px) {
+    .site-header__inner {
+        padding-block: 8px;
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 1401px) {
     .header-phone__btn {
         width: 58px;
         height: 58px;
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1400px) {
     .site-header__logo img {
         width: 200px;
     }

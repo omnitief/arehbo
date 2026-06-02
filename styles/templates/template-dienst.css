@@ -1,6 +1,12 @@
 .dienst-page__inner {
-    padding-top: calc(var(--header-bottom, 130px) + 45px);
-    padding-bottom: var(--space-3);
+    padding-top: calc(var(--header-bottom, 130px) + 30px);
+    padding-bottom: var(--space-2);
+}
+
+@media (max-width: 1600px) and (min-width: 991px) {
+    .dienst-page__inner {
+        padding-top: calc(var(--header-bottom, 130px) + 30px);
+    }
 }
 
 @media (max-width: 990px) {
@@ -78,7 +84,7 @@
 }
 
 .dienst-divider {
-    margin: 40px 0 0;
+    margin: 30px 0 0;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-bottom: 0;
@@ -119,7 +125,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 60px;
-    margin-top: var(--space-3);
+    margin-top: var(--space-2);
     padding-bottom: 0;
 }
 
@@ -181,7 +187,7 @@
 }
 
 .dienst-hero__buttons {
-    margin-top: 55px;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -233,7 +239,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 48px;
-        margin-top: 60px;
+        margin-top: var(--space-2);
     }
 
     .dienst-hero__text {
@@ -292,7 +298,13 @@
     }
 
     .dienst-usp {
-        margin-top: 60px;
+        margin-top: var(--space-2);
+    }
+}
+
+@media (max-width: 990px) {
+    .dienst-divider {
+        margin-top: 20px;
     }
 }
 
@@ -478,5 +490,5 @@
     }
 }
 .rekentool {
-    padding-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
 }

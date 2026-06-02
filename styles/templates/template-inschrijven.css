@@ -1,6 +1,12 @@
 .inschr-page__inner {
-    padding-top: calc(var(--header-bottom, 130px) + 45px);
+    padding-top: calc(var(--header-bottom, 130px) + 30px);
     padding-bottom: 0;
+}
+
+@media (max-width: 1600px) and (min-width: 991px) {
+    .inschr-page__inner {
+        padding-top: calc(var(--header-bottom, 130px) + 30px);
+    }
 }
 
 @media (max-width: 990px) {
@@ -41,7 +47,7 @@
 }
 
 .inschr-divider {
-    margin: 40px 0 0;
+    margin: 30px 0 0;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-bottom: 0;
@@ -74,7 +80,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 60px;
-    margin-top: 100px;
+    margin-top: var(--space-2);
     padding-bottom: 80px;
 }
 
@@ -190,7 +196,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 48px;
-        margin-top: 60px;
+        margin-top: var(--space-2);
     }
 
     .inschr-hero__text {
@@ -239,6 +245,12 @@
     }
 }
 
+@media (max-width: 990px) {
+    .inschr-divider {
+        margin-top: 20px;
+    }
+}
+
 .inschr-usps {
     margin-top: 40px;
 }
@@ -279,7 +291,7 @@
 }
 
 .inschr-filter-wrap {
-    padding-top: 60px;
+    padding-top: var(--space-2);
 }
 
 .inschr-filter-card {

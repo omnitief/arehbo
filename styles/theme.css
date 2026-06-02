@@ -22,7 +22,7 @@
     --card-border: rgba(var(--color-white-rgb), 0.10);
 
     --space-1: 40px;
-    --space-2: 80px;
+    --space-2: 95px;
     --space-3: 150px;
     --space-4: 200px;
 
@@ -89,9 +89,10 @@
 @media (max-width: 1600px) and (min-width: 1200px) {
     :root {
         --space-1: 32px;
-        --space-2: 64px;
-        --space-3: 120px;
+        --space-2: 79px;
+        --space-3: 100px;
         --space-4: 160px;
+        --site-header-offset: 30px;
         --font-size-standard: 18px;
         --font-size-large: 23px;
         --font-size-h1: 50px;
@@ -105,11 +106,18 @@
     }
 }
 
+@media (max-width: 1600px) {
+    :root {
+        --site-header-offset: 30px;
+        --space-3: 100px;
+    }
+}
+
 @media (max-width: 1199px) {
     :root {
         --space-container: 20px;
         --space-1: 20px;
-        --space-2: 40px;
+        --space-2: 55px;
         --space-3: 80px;
         --space-4: 100px;
         --font-size-standard: 18px;
@@ -254,4 +262,3 @@ h6 {
     font-size: var(--font-size-h6);
     line-height: var(--line-height-h6);
 }
-

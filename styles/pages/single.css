@@ -39,8 +39,14 @@ body:has(.single-hero) .site-header {
 .single-hero__inner {
     position: relative;
     z-index: 1;
-    padding-top: calc(var(--header-bottom, 130px) + 45px);
+    padding-top: calc(var(--header-bottom, 130px) + 30px);
     padding-bottom: 120px;
+}
+
+@media (max-width: 1600px) and (min-width: 991px) {
+    .single-hero__inner {
+        padding-top: calc(var(--header-bottom, 130px) + 30px);
+    }
 }
 
 .single-hero__nav {
@@ -107,7 +113,7 @@ body:has(.single-hero) .site-header {
 
 .single-hero__sep {
     width: 100vw;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 0;
     margin-left: calc(50% - 50vw);
     border: none;
@@ -223,7 +229,7 @@ body:has(.single-hero) .site-header {
 }
 
 .single-entry {
-    margin-top: 100px;
+    margin-top: var(--space-3);
 }
 
 .single-entry h2,
@@ -485,5 +491,11 @@ body:has(.single-hero) .site-header {
 @media (max-width: 768px) {
     .single-post .single-entry section {
         margin: 0 -28px;
+    }
+}
+
+@media (max-width: 990px) {
+    .single-hero__sep {
+        margin-top: 20px;
     }
 }

@@ -4,7 +4,7 @@
 }
 
 .blogs__title {
-    margin: 0 0 70px;
+    margin: 0 0 var(--space-2);
     color: var(--color-primary);
 }
 
@@ -137,14 +137,14 @@
 }
 
 .blogs__footer {
-    margin-top: 70px;
+    margin-top: var(--space-2);
     display: flex;
     justify-content: flex-end;
 }
 
 @media (max-width: 1600px) {
     .blogs__footer {
-        margin-top: 56px;
+        margin-top: var(--space-2);
     }
 
     .blog-card__reading-time span,

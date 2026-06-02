@@ -40,7 +40,7 @@ body:has(.hero-banner--hero) .site-header {
     flex-direction: column;
     justify-content: center;
     padding-top: calc(var(--header-bottom) + var(--space-3));
-    padding-bottom: 70px;
+    padding-bottom: calc(var(--space-2) - 20px);
 }
 
 .hb-hero__title {
@@ -55,7 +55,7 @@ body:has(.hero-banner--hero) .site-header {
     gap: 40px;
     width: 100%;
     margin-top: auto;
-    padding-top: 70px;
+    padding-top: var(--space-2);
 }
 
 .hb-card {
@@ -134,7 +134,7 @@ body:has(.hero-banner--hero) .site-header {
 .hb-scroll-row {
     display: flex;
     justify-content: flex-end;
-    margin-top: 70px;
+    margin-top: calc(var(--space-2) - 20px);
 }
 
 .hb-scroll {
@@ -238,11 +238,17 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-default__inner {
     padding-top: calc(var(--header-bottom, 130px) + 45px);
-    padding-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
 }
 
 .hb-default--has-usps .hb-default__inner {
     padding-bottom: 0;
+}
+
+@media (max-width: 1600px) and (min-width: 991px) {
+    .hb-default__inner {
+        padding-top: calc(var(--header-bottom, 130px) + 30px);
+    }
 }
 
 @media (max-width: 990px) {
@@ -256,7 +262,7 @@ body:has(.hero-banner--hero) .site-header {
     align-items: center;
     justify-content: space-between;
     gap: 60px;
-    margin-top: var(--space-3);
+    margin-top: var(--space-2);
     padding-bottom: 0;
 }
 
@@ -325,7 +331,7 @@ body:has(.hero-banner--hero) .site-header {
 }
 
 .hb-default__buttons {
-    margin-top: 55px;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -368,7 +374,7 @@ body:has(.hero-banner--hero) .site-header {
 .hb-default .archive-hero__divider,
 .hb-formulier .archive-hero__divider {
     width: 100vw;
-    margin-top: 40px;
+    margin-top: 30px;
     border: none;
     border-top: 1px solid rgba(var(--color-primary-rgb), 0.20);
     margin-bottom: 0;
@@ -404,7 +410,12 @@ body:has(.hero-banner--hero) .site-header {
 
 @media (max-width: 1600px) {
     .hb-scroll-row {
-        margin-top: 56px;
+        margin-top: calc(var(--space-2) - 20px);
+    }
+
+    .hb-scroll__btn {
+        width: 65px;
+        height: 65px;
     }
 
     .hb-card .tile-card__btn-label,
@@ -453,7 +464,7 @@ body:has(.hero-banner--hero) .site-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 48px;
-        margin-top: 60px;
+        margin-top: var(--space-2);
     }
 
     .hb-default__text {
@@ -491,6 +502,13 @@ body:has(.hero-banner--hero) .site-header {
     }
 }
 
+@media (max-width: 990px) {
+    .hb-default .archive-hero__divider,
+    .hb-formulier .archive-hero__divider {
+        margin-top: 20px;
+    }
+}
+
 
 /* ---------- Formulier layout ---------- */
 
@@ -500,7 +518,13 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-formulier__inner {
     padding-top: calc(var(--header-bottom, 130px) + 45px);
-    padding-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+}
+
+@media (max-width: 1600px) and (min-width: 991px) {
+    .hb-formulier__inner {
+        padding-top: calc(var(--header-bottom, 130px) + 30px);
+    }
 }
 
 @media (max-width: 990px) {
@@ -513,7 +537,7 @@ body:has(.hero-banner--hero) .site-header {
     display: flex;
     align-items: stretch;
     gap: 80px;
-    margin-top: var(--space-3);
+    margin-top: var(--space-2);
 }
 
 .hb-formulier__left {
@@ -567,7 +591,7 @@ body:has(.hero-banner--hero) .site-header {
     flex-wrap: wrap;
     align-items: center;
     gap: 16px;
-    margin-top: 55px;
+    margin-top: 50px;
 }
 
 .hb-formulier.bg-dark .hb-formulier__buttons .btn--outline {
@@ -587,7 +611,7 @@ body:has(.hero-banner--hero) .site-header {
 
 .hb-formulier__image-wrap {
     margin-top: auto;
-    padding-top: 60px;
+    padding-top: var(--space-2);
 }
 
 .hb-formulier__image {
@@ -657,7 +681,7 @@ body:has(.hero-banner--hero) .site-header {
     .hb-formulier__grid {
         flex-direction: column;
         gap: 48px;
-        margin-top: 60px;
+        margin-top: var(--space-2);
     }
 
     .hb-formulier__left {
@@ -702,8 +726,8 @@ body:has(.hero-banner--hero) .site-header {
 /* ---------- Hero banner USP bar ---------- */
 
 .hb-usps {
-    padding-top: var(--space-3);
-    padding-bottom: var(--space-3);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
 }
 
 .hb-usps--light {
@@ -766,7 +790,7 @@ body:has(.hero-banner--hero) .site-header {
 
 @media (max-width: 990px) {
     .hb-usps {
-        padding-top: var(--space-3);
+        padding-top: var(--space-2);
     }
 
     .hb-usps__list {

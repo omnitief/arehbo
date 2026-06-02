@@ -65,11 +65,10 @@
     color: var(--color-primary);
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1400px) {
     .desktop-only { display: none !important; }
 }
 
-@media (min-width: 1501px) {
+@media (min-width: 1401px) {
     .mobile-only { display: none !important; }
 }
-
