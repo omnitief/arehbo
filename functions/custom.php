@@ -63,6 +63,40 @@ function arehbo_is_open_now($schedule) {
     return false;
 }
 
+function arehbo_next_open_hours($schedule) {
+    if (empty($schedule) || !is_array($schedule)) return null;
+
+    try {
+        $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
+    } catch (Exception $e) {
+        return null;
+    }
+
+    $now_day  = (int) $now->format('N');
+    $now_time = $now->format('H:i');
+
+    $by_day = [];
+    foreach ($schedule as $row) {
+        $by_day[(int) ($row['day'] ?? 0)] = $row;
+    }
+
+    for ($offset = 0; $offset <= 7; $offset++) {
+        $day = (($now_day - 1 + $offset) % 7) + 1;
+        $row = $by_day[$day] ?? null;
+        if (!$row || !empty($row['closed'])) continue;
+
+        $open  = $row['open']  ?? '';
+        $close = $row['close'] ?? '';
+        if (!$open || !$close) continue;
+
+        if ($offset === 0 && $now_time >= $open) continue;
+
+        return ['offset' => $offset, 'day' => $day, 'open' => $open, 'close' => $close];
+    }
+
+    return null;
+}
+
 function arehbo_format_nl_date($timestamp) {
     if (empty($timestamp)) return '';
 

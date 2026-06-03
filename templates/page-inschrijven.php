@@ -30,6 +30,7 @@ $email     = get_field('footer_contact_email', 'option');
 $schedule  = get_field('openingstijden', 'option');
 $is_open   = arehbo_is_open_now($schedule);
 $today     = arehbo_today_hours($schedule);
+$next_open = arehbo_next_open_hours($schedule);
 
 $categories = get_terms([
     'taxonomy'   => 'cursus_categorie',
@@ -280,19 +281,31 @@ usort($cards, function ($a, $b) {
 
                         <div class="inschr-contactbar__group">
                             <?php if (!empty($schedule)) :
-                                $today_closed = $today ? !empty($today['closed']) : true;
-                                $today_open   = $today['open']  ?? '';
-                                $today_close  = $today['close'] ?? '';
+                                $today_open  = $today['open']  ?? '';
+                                $today_close = $today['close'] ?? '';
+
+                                $nl_days = [1 => 'Maandag', 2 => 'Dinsdag', 3 => 'Woensdag', 4 => 'Donderdag', 5 => 'Vrijdag', 6 => 'Zaterdag', 7 => 'Zondag'];
+
+                                if (!$is_open && $next_open) {
+                                    $offset = (int) $next_open['offset'];
+                                    if ($offset === 0) {
+                                        $next_label = 'Vandaag';
+                                    } elseif ($offset === 1) {
+                                        $next_label = 'Morgen';
+                                    } else {
+                                        $next_label = $nl_days[$next_open['day']] ?? '';
+                                    }
+                                }
                             ?>
                                 <span class="inschr-contactbar__status inschr-contactbar__status--<?= $is_open ? 'open' : 'closed'; ?>">
                                     <span class="inschr-contactbar__dot" aria-hidden="true"></span>
                                     <span>
                                         <?php if ($is_open) : ?>
                                             Bereikbaar van <?= esc_html($today_open); ?> tot <?= esc_html($today_close); ?>
-                                        <?php elseif ($today && !$today_closed && $today_open && $today_close) : ?>
-                                            Op dit moment gesloten
+                                        <?php elseif ($next_open) : ?>
+                                            <?= esc_html($next_label); ?> bereikbaar van <?= esc_html($next_open['open']); ?> tot <?= esc_html($next_open['close']); ?>
                                         <?php else : ?>
-                                            Vandaag gesloten
+                                            Op dit moment gesloten
                                         <?php endif; ?>
                                     </span>
                                 </span>
