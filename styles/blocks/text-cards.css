@@ -97,6 +97,10 @@
     line-height: 30px;
 }
 
+.text-cards-block__card-description p:last-child {
+    margin-bottom: 0;
+}
+
 .text-cards-block--dark .text-cards-block__card-description {
     color: var(--color-white);
 }

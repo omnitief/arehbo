@@ -1,5 +1,9 @@
 /* Gravity Forms 2.5 theme (legacy markup) overrides */
 
+.gform_wrapper {
+    color: #004081 !important;
+}
+
 .gform_wrapper .gfield_radio,
 .gform_wrapper.gravity-theme .gfield_radio {
     display: flex !important;
@@ -16,9 +20,18 @@
 
 .gform_wrapper .gfield_checkbox .gchoice,
 .gform_wrapper.gravity-theme .gfield_checkbox .gchoice {
-    display: inline-flex !important;
-    align-items: center !important;
+    display: flex !important;
+    width: 100% !important;
+    align-items: flex-start !important;
     gap: 12px !important;
+    margin: 0 0 12px !important;
+}
+
+.gform_wrapper .gfield_checkbox,
+.gform_wrapper.gravity-theme .gfield_checkbox {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
 }
 
 html body .gform_wrapper input[type="radio"],
