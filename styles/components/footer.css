@@ -166,7 +166,7 @@
 .footer-nav__list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 112px;
+    column-gap: 30px;
     row-gap: 0;
     list-style: none;
     padding: 0;

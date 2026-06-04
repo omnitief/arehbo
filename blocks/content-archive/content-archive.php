@@ -126,14 +126,16 @@ function build_archive_card($post, $post_type, $btn_label, $arrow_right, $terms_
         ></a>
 
         <?php if ($image_url) : ?>
-            <img
-                class="archive-card__image"
-                src="<?= esc_url($image_url); ?>"
-                alt="<?= esc_attr($image_alt); ?>"
-                width="305"
-                height="215"
-                loading="lazy"
-            >
+            <div class="archive-card__media">
+                <img
+                    class="archive-card__image"
+                    src="<?= esc_url($image_url); ?>"
+                    alt="<?= esc_attr($image_alt); ?>"
+                    width="305"
+                    height="215"
+                    loading="lazy"
+                >
+            </div>
         <?php endif; ?>
 
         <div class="archive-card__body">

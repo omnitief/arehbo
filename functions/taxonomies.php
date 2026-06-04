@@ -291,3 +291,45 @@ function arehbo_register_term_permalink_rules() {
 }
 
 add_action('init', 'arehbo_register_term_permalink_rules', 20);
+
+function arehbo_flush_term_permalink_rules() {
+    flush_rewrite_rules(false);
+}
+
+add_action('created_cursus_categorie', 'arehbo_flush_term_permalink_rules', 10, 3);
+add_action('edited_cursus_categorie', 'arehbo_flush_term_permalink_rules', 10, 3);
+add_action('delete_cursus_categorie', 'arehbo_flush_term_permalink_rules', 10, 3);
+add_action('created_dienst_categorie', 'arehbo_flush_term_permalink_rules', 10, 3);
+add_action('edited_dienst_categorie', 'arehbo_flush_term_permalink_rules', 10, 3);
+add_action('delete_dienst_categorie', 'arehbo_flush_term_permalink_rules', 10, 3);
+
+function arehbo_maybe_flush_cursus_permalink_rules_on_save($post_id, $post, $update) {
+    if (!$post instanceof WP_Post || $post->post_type !== 'cursussen') {
+        return;
+    }
+
+    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    $taxonomy      = 'cursus_categorie';
+    $current_slug   = arehbo_post_taxonomy_slug($post_id, $taxonomy);
+    $stored_slug    = (string) get_post_meta($post_id, '_arehbo_cursus_permalink_term_slug', true);
+    $has_stored_slug = $stored_slug !== '';
+
+    if ($current_slug === $stored_slug) {
+        return;
+    }
+
+    update_post_meta($post_id, '_arehbo_cursus_permalink_term_slug', $current_slug);
+
+    if ($has_stored_slug) {
+        flush_rewrite_rules(false);
+    }
+}
+
+add_action('save_post_cursussen', 'arehbo_maybe_flush_cursus_permalink_rules_on_save', 20, 3);

@@ -40,163 +40,6 @@ if (is_wp_error($categories)) {
     $categories = [];
 }
 
-$cursussen_posts = get_posts([
-    'post_type'      => 'cursussen',
-    'posts_per_page' => -1,
-    'orderby'        => 'title',
-    'order'          => 'ASC',
-    'meta_query'     => [
-        [
-            'key'     => 'visible_visual_systems',
-            'value'   => '1',
-            'compare' => '=',
-        ],
-    ],
-]);
-
-$form_page_posts = get_posts([
-    'post_type'      => 'page',
-    'meta_key'       => '_wp_page_template',
-    'meta_value'     => 'templates/page-inschrijven-form.php',
-    'posts_per_page' => 1,
-    'fields'         => 'ids',
-]);
-$form_page_url = !empty($form_page_posts) ? get_permalink($form_page_posts[0]) : '';
-
-global $wpdb;
-
-$cards = [];
-$today_start = strtotime('today', current_time('timestamp'));
-
-foreach ($cursussen_posts as $cursus_post) {
-    $cursus_id_vs = get_field('id_visual_systems', $cursus_post->ID);
-    if (!$cursus_id_vs) continue;
-
-    $cursus_name   = $cursus_post->post_title;
-    $cursus_loc    = get_field('locatie', $cursus_post->ID) ?: '';
-    $cursus_kosten = get_field('kosten', $cursus_post->ID) ?: '';
-    $cursus_terms  = wp_get_object_terms($cursus_post->ID, 'cursus_categorie', ['fields' => 'slugs']);
-    $cursus_cat    = (!is_wp_error($cursus_terms) && !empty($cursus_terms)) ? implode(',', $cursus_terms) : '';
-
-    $appointments = $wpdb->get_results(
-        $wpdb->prepare(
-            "SELECT appointment_id, start_date, end_date, room, location, places_left
-            FROM {$wpdb->prefix}custom_visualsystems_appointments
-            WHERE course_id = %s
-            AND parent_id = 0
-            ORDER BY start_date ASC",
-            $cursus_id_vs
-        ),
-        ARRAY_A
-    );
-
-    // Hide appointments that start before today.
-    $appointments = array_values(array_filter($appointments, function ($appointment) use ($today_start) {
-        return ((int) ($appointment['start_date'] ?? 0)) >= $today_start;
-    }));
-
-    foreach ($appointments as $appointment) {
-        $appointment_id = (int) $appointment['appointment_id'];
-        $places_left    = max(0, (int) $appointment['places_left']);
-
-        $sibling_dates = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT start_date, end_date
-                FROM {$wpdb->prefix}custom_visualsystems_appointments
-                WHERE parent_id = %d
-                ORDER BY start_date ASC",
-                $appointment_id
-            ),
-            ARRAY_A
-        );
-
-        $all_dates = array_merge(
-            [['start_date' => $appointment['start_date'], 'end_date' => $appointment['end_date']]],
-            $sibling_dates
-        );
-
-        // Defensive: prevent duplicate lesson days (the data source can sometimes return
-        // a child row that mirrors the parent, or multiple rows for the same day).
-        $unique_dates = [];
-        foreach ($all_dates as $date_row) {
-            $start = (int) ($date_row['start_date'] ?? 0);
-            $end   = (int) ($date_row['end_date'] ?? 0);
-            if (!$start) {
-                continue;
-            }
-            // De-dup on start_date (same day+time). Keep the earliest end_date we see.
-            if (!isset($unique_dates[$start]) || ($end && $end < ($unique_dates[$start]['end_date'] ?? PHP_INT_MAX))) {
-                $unique_dates[$start] = ['start_date' => $start, 'end_date' => $end];
-            }
-        }
-	        $all_dates = array_values($unique_dates);
-	        usort($all_dates, fn($a, $b) => ($a['start_date'] ?? 0) <=> ($b['start_date'] ?? 0));
-
-	        // Merge multiple onderdelen on the same date into a single lesdag,
-	        // with start time of the first onderdeel and end time of the last onderdeel.
-	        $merged_days = [];
-	        foreach ($all_dates as $date_row) {
-	            $start_ts = (int) ($date_row['start_date'] ?? 0);
-	            $end_ts   = (int) ($date_row['end_date'] ?? 0);
-	            if (!$start_ts) {
-	                continue;
-	            }
-	            $date_key = date_i18n('Y-m-d', $start_ts);
-
-	            if (!isset($merged_days[$date_key])) {
-	                $merged_days[$date_key] = [
-	                    'start_date' => $start_ts,
-	                    'end_date'   => $end_ts,
-	                ];
-	                continue;
-	            }
-
-	            $merged_days[$date_key]['start_date'] = min($merged_days[$date_key]['start_date'], $start_ts);
-	            if ($end_ts) {
-	                $merged_days[$date_key]['end_date'] = max($merged_days[$date_key]['end_date'] ?? 0, $end_ts);
-	            }
-	        }
-
-	        $merged_days = array_values($merged_days);
-	        usort($merged_days, fn($a, $b) => ($a['start_date'] ?? 0) <=> ($b['start_date'] ?? 0));
-
-	        $days = [];
-	        foreach ($merged_days as $i => $date_row) {
-	            $days[] = [
-	                'label' => 'Lesdag ' . ($i + 1) . ' (' . date_i18n('l', $date_row['start_date']) . ')',
-	                'date'  => date_i18n('d-m-Y', $date_row['start_date']),
-	                'time'  => date_i18n('H:i', $date_row['start_date']) . ' tot ' . date_i18n('H:i', $date_row['end_date']),
-	            ];
-	        }
-
-	        if ($places_left === 0) {
-	            $status = 'vol';
-	        } elseif ($places_left < 4) {
-            $status = 'bijna-vol';
-        } else {
-            $status = 'beschikbaar';
-        }
-
-	        $cards[] = [
-	            'status'      => $status,
-	            'name'        => $cursus_name,
-	            'available'   => $places_left,
-	            'days_count'  => count($merged_days),
-	            'location'    => $cursus_loc,
-	            'prijs'       => $cursus_kosten,
-	            'days'        => $days,
-	            'dates_ts'    => array_map(fn($d) => $d['start_date'], $merged_days),
-	            'category'    => $cursus_cat,
-	            'course_id'   => $cursus_post->ID,
-	            'appointment' => $appointment_id,
-	        ];
-    }
-}
-
-usort($cards, function ($a, $b) {
-    return ($a['dates_ts'][0] ?? 0) <=> ($b['dates_ts'][0] ?? 0);
-});
-
 ?>
 
 <main id="main-content" class="inschr-page">
@@ -221,6 +64,14 @@ usort($cards, function ($a, $b) {
                 <?php if ($description) : ?>
                     <div class="inschr-hero__description"><?= wp_kses_post($description); ?></div>
                 <?php endif; ?>
+                <?php if (!empty($usps)) : ?>
+                    <div class="inschr-usps">
+                        <?php get_template_part('components/usp-items', '', [
+                            'items'     => $usps,
+                            'show_icon' => true,
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <?php if ($img_url) : ?>
@@ -230,15 +81,6 @@ usort($cards, function ($a, $b) {
             <?php endif; ?>
 
         </div>
-
-        <?php if (!empty($usps)) : ?>
-            <div class="inschr-usps">
-                <?php get_template_part('components/usp-items', '', [
-                    'items'     => $usps,
-                    'show_icon' => true,
-                ]); ?>
-            </div>
-        <?php endif; ?>
 
     </div>
     </div>
@@ -263,13 +105,7 @@ usort($cards, function ($a, $b) {
                         </div>
                         <div class="inschr-filter__select-wrap">
                             <select class="inschr-filter__select" id="inschr-filter-cursus" data-role="cursus" disabled>
-                                <option value="">Alle cursussen</option>
-                                <?php foreach ($cursussen_posts as $cursus_post) : ?>
-                                    <option value="<?= esc_attr($cursus_post->ID); ?>"
-                                            data-categorie="<?= esc_attr(implode(',', wp_get_object_terms($cursus_post->ID, 'cursus_categorie', ['fields' => 'slugs']))); ?>">
-                                        <?= esc_html($cursus_post->post_title); ?>
-                                    </option>
-                                <?php endforeach; ?>
+                                <option value="">Selecteer eerst een categorie</option>
                             </select>
                         </div>
                     </div>
@@ -281,9 +117,8 @@ usort($cards, function ($a, $b) {
 
                         <div class="inschr-contactbar__group">
                             <?php if (!empty($schedule)) :
-                                $today_open  = $today['open']  ?? '';
+                                $today_open  = $today['open'] ?? '';
                                 $today_close = $today['close'] ?? '';
-
                                 $nl_days = [1 => 'Maandag', 2 => 'Dinsdag', 3 => 'Woensdag', 4 => 'Donderdag', 5 => 'Vrijdag', 6 => 'Zaterdag', 7 => 'Zondag'];
 
                                 if (!$is_open && $next_open) {
@@ -304,8 +139,6 @@ usort($cards, function ($a, $b) {
                                             Bereikbaar van <?= esc_html($today_open); ?> tot <?= esc_html($today_close); ?>
                                         <?php elseif ($next_open) : ?>
                                             <?= esc_html($next_label); ?> bereikbaar van <?= esc_html($next_open['open']); ?> tot <?= esc_html($next_open['close']); ?>
-                                        <?php else : ?>
-                                            Op dit moment gesloten
                                         <?php endif; ?>
                                     </span>
                                 </span>
@@ -331,90 +164,30 @@ usort($cards, function ($a, $b) {
     </div>
 
     <div class="inschr-cards-bg<?= $bg_class; ?>">
-    <div class="inschr-cards container">
+    <div class="inschr-cards-wrap container">
 
-        <?php foreach ($cards as $card_index => $card) :
-            $status   = $card['status'];
-            $avail    = $card['available'];
-            $days     = $card['days'];
-            $dates_ts = $card['dates_ts'];
-            $first_ts = $dates_ts[0] ?? null;
+        <div class="inschr-cards__placeholder" data-inschr-placeholder>
+            <h3 class="inschr-cards__empty-title">Selecteer een categorie</h3>
+            <p>Na uw eerste filterselectie laten we de beschikbare cursussen zien.</p>
+        </div>
 
-            $badge_url = '';
-            if ($status !== 'vol' && $form_page_url) {
-                $badge_url = add_query_arg([
-                    'appointment' => $card['appointment'],
-                    'course'      => $card['name'],
-                    'locatie'     => $card['location'],
-                    'beschikbaar' => $card['available'],
-                    'prijs'       => $card['prijs'] ?? '',
-                    'dagdelen'    => base64_encode(wp_json_encode($card['days'])),
-                ], $form_page_url);
-            }
-            $badge_tag   = $badge_url ? 'a' : 'div';
-            $badge_attrs = $badge_url ? ' href="' . esc_url($badge_url) . '"' : '';
-        ?>
-
-        <article class="course-card course-card--<?= esc_attr($status); ?>"
-                 data-categorie="<?= esc_attr($card['category'] ?? ''); ?>"
-                 data-course="<?= esc_attr($card['course_id'] ?? ''); ?>">
-
-            <aside class="course-card__dates">
-                <?php if ($first_ts) : ?>
-                    <div class="course-card__date-big"><?= esc_html(arehbo_format_nl_date($first_ts)); ?></div>
-                    <hr class="course-card__dates-sep">
+        <div class="inschr-cards__empty" hidden data-inschr-empty-state>
+            <h3 class="inschr-cards__empty-title">Geen cursussen gevonden</h3>
+            <p>
+                Er zijn geen cursussen gevonden voor deze filter.
+                Probeer een andere selectie of neem contact op
+                <?php if ($email) : ?>
+                    via <a href="mailto:<?= esc_attr($email); ?>"><?= esc_html($email); ?></a>
+                <?php else : ?>
+                    met ons
                 <?php endif; ?>
-                <ul class="course-card__dates-meta">
-                    <?php if ($card['location']) : ?>
-                        <li class="course-card__meta-item">
-                            <?= $icon_location; ?>
-                            <span><?= esc_html($card['location']); ?></span>
-                        </li>
-                    <?php endif; ?>
-                    <li class="course-card__meta-item">
-                        <?= $icon_calendar; ?>
-                        <span><?= esc_html($card['days_count']); ?> <?= $card['days_count'] === 1 ? 'lesdag' : 'lesdagen'; ?></span>
-                    </li>
-                </ul>
-            </aside>
+                <?php if ($phone) : ?>
+                    of bel <a href="tel:<?= esc_attr(preg_replace('/\s+/', '', $phone)); ?>"><?= esc_html($phone); ?></a>
+                <?php endif; ?>.
+            </p>
+        </div>
 
-                    <div class="course-card__main">
-                <h3 class="course-card__name"><?= esc_html($card['name']); ?></h3>
-                <hr class="course-card__main-sep">
-                    <ul class="course-card__lesdagen">
-                        <?php foreach ($days as $i => $dag) : ?>
-                        <li class="course-card__lesdag">
-                            <span class="course-card__lesdag-label">Lesdag <?= esc_html($i + 1); ?></span>
-                            <span class="course-card__lesdag-date">
-                                <?= $icon_calendar; ?>
-                                <span><?= esc_html(arehbo_format_nl_date($dates_ts[$i] ?? null)); ?></span>
-                            </span>
-                            <span class="course-card__lesdag-time">
-                                <?= $icon_clock; ?>
-                                <span><?= esc_html($dag['time']); ?></span>
-                            </span>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-            <div class="course-card__action">
-                <<?= $badge_tag; ?> class="course-card__badge"<?= $badge_attrs; ?>>
-                    <span class="course-card__badge-text"><?= $status === 'vol' ? 'VOLGEBOEKT' : 'INSCHRIJVEN'; ?></span>
-                    <?php if ($status !== 'vol') : ?>
-                        <span class="course-card__badge-icon">
-                            <?= $icon_arrow; ?>
-                        </span>
-                    <?php endif; ?>
-                </<?= $badge_tag; ?>>
-                <span class="course-card__plekken">
-                    <?= esc_html($avail); ?> <?= $avail === 1 ? 'plek' : 'plekken'; ?> beschikbaar
-                </span>
-            </div>
-
-        </article>
-
-        <?php endforeach; ?>
+        <div class="inschr-cards" data-inschr-cards></div>
 
     </div>
     </div>

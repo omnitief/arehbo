@@ -37,6 +37,13 @@ function arehbo_enqueue_styles() {
     );
 
     wp_enqueue_style(
+        'arehbo-usp-list',
+        get_template_directory_uri() . '/styles/blocks/usp-list.css',
+        ['arehbo-theme', 'arehbo-utilities'],
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
         'arehbo-button',
         get_template_directory_uri() . '/styles/components/button.css',
         ['arehbo-utilities'],
@@ -132,12 +139,6 @@ function arehbo_enqueue_styles() {
             'arehbo-template-dienst',
             get_template_directory_uri() . '/styles/templates/template-dienst.css',
             ['arehbo-theme'],
-            wp_get_theme()->get('Version')
-        );
-        wp_enqueue_style(
-            'acf-block-usp-list',
-            get_template_directory_uri() . '/styles/blocks/usp-list.css',
-            [],
             wp_get_theme()->get('Version')
         );
     }
@@ -236,6 +237,11 @@ function arehbo_enqueue_styles() {
             wp_get_theme()->get('Version'),
             true
         );
+
+        wp_localize_script('arehbo-page-inschrijven', 'arehboInschrijven', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('arehbo_inschrijven_courses'),
+        ]);
     }
 
     if (is_page_template('templates/page-inschrijven-form.php')) {

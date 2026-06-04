@@ -39,17 +39,6 @@
     line-height: 32px;
 }
 
-.contact-form-block__description h2,
-.contact-form-block__description h3,
-.contact-form-block__description h4 {
-    font-family: var(--font-sans);
-    font-size: var(--font-size-h3);
-    line-height: var(--line-height-h3);
-    font-weight: 600;
-    margin: 0 0 30px;
-    letter-spacing: 0;
-}
-
 .contact-form-block__description > *:first-child {
     margin-top: 0;
 }

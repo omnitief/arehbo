@@ -46,7 +46,7 @@
 
 .locations-block__btn-wrap {
     margin-top: auto;
-    padding-top: 55px;
+    padding-top: 45px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -77,9 +77,8 @@
 
 .locations-block__map-wrap {
     position: absolute;
-    top: 50%;
     right: 0;
-    transform: translateY(-50%);
+    bottom:0;
     width: clamp(500px, 63vw, 1210px);
 }
 

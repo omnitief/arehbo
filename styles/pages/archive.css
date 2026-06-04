@@ -4,7 +4,7 @@
 
 .archive-hero__inner {
     padding-top: calc(var(--header-bottom, 130px) + 30px);
-    padding-bottom: 70px;
+    padding-bottom: var(--space-2);
 }
 
 @media (max-width: 1600px) and (min-width: 991px) {
@@ -75,7 +75,7 @@
 }
 
 .archive-hero__desc {
-    margin: 20px 0 0;
+    margin: 30px 0 0;
     font-family: var(--font-sans);
     line-height: 32px;
     font-weight: 400;
@@ -84,13 +84,10 @@
 }
 
 .archive-posts {
-    padding-top: var(--space-2);
+    padding-top: 0;
 }
 
 @media (max-width: 1600px) {
-    .archive-posts {
-        padding-top: 50px;
-    }
 }
 
 .archive-cta {

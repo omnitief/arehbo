@@ -27,8 +27,8 @@ if ($course_id) {
     );
 }
 
-// Hide appointments that start before today.
-$today_start = strtotime('today', current_time('timestamp'));
+// Hide appointments that start today or earlier.
+$today_start = strtotime('tomorrow', current_time('timestamp'));
 $appointments = array_values(array_filter($appointments, function ($appointment) use ($today_start) {
     return ((int) ($appointment['start_date'] ?? 0)) >= $today_start;
 }));

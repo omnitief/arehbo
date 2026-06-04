@@ -182,31 +182,26 @@ $default_bg_class   = ($default_background === 'dark-blue') ? 'bg-dark' : 'bg-li
         </div>
 
         <?php if ($default_show_usps && !empty($default_usps)) : ?>
-            <section class="hb-usps hb-usps--<?= esc_attr($default_bg_variant); ?>">
+            <section class="hb-usps usp-list <?= esc_attr($default_bg_class); ?>">
                 <div class="container">
-                    <ul class="hb-usps__list" aria-label="<?= esc_attr__('Key features', 'arehbo-theme'); ?>">
-                        <?php foreach (array_slice($default_usps, 0, 3) as $usp) :
-                            $usp_text    = $usp['text'] ?? '';
-                            $usp_icon_id = $usp['icon'] ?? null;
-                            if (empty($usp_text)) continue;
+                    <div class="usp-list__wrapper">
+                        <div class="container">
+                            <div class="usp-list__track">
+                                <?php get_template_part('components/usp-items', '', [
+                                    'items'     => array_slice($default_usps, 0, 3),
+                                    'show_icon' => true,
+                                ]); ?>
 
-                            $usp_icon_url = $usp_icon_id ? wp_get_attachment_image_url($usp_icon_id, [24, 24]) : '';
-                            $usp_icon_alt = $usp_icon_id ? get_post_meta($usp_icon_id, '_wp_attachment_image_alt', true) : '';
-                        ?>
-                            <li class="hb-usps__item">
-                                <span class="hb-usps__icon" aria-hidden="true">
-                                    <?php if ($usp_icon_url) : ?>
-                                        <img src="<?= esc_url($usp_icon_url); ?>" alt="<?= esc_attr($usp_icon_alt); ?>" width="24" height="24">
-                                    <?php else : ?>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-                                            <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                        </svg>
-                                    <?php endif; ?>
-                                </span>
-                                <span class="hb-usps__text"><?= esc_html($usp_text); ?></span>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                                <div class="usp-list__clone" aria-hidden="true">
+                                    <?php get_template_part('components/usp-items', '', [
+                                        'items'     => array_slice($default_usps, 0, 3),
+                                        'show_icon' => true,
+                                        'label'     => '',
+                                    ]); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         <?php endif; ?>

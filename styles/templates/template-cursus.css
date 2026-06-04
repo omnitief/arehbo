@@ -118,7 +118,7 @@
 
 .cursus-hero {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     gap: 60px;
     margin-top: var(--space-2);
@@ -179,25 +179,30 @@
 }
 
 .cursus-hero__text .btn {
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 .cursus-hero__image-wrap {
+    position: relative;
+    align-self: stretch;
     flex-shrink: 0;
+    width: 635px;
+    min-height: 300px;
 }
 
 .cursus-hero__image {
+    position: absolute;
+    inset: 0;
     display: block;
-    width: 635px;
-    height: 357px;
+    width: 100%;
+    height: 100%;
     border-radius: 30px;
     object-fit: cover;
 }
 
 @media (max-width: 1500px) {
-    .cursus-hero__image {
+    .cursus-hero__image-wrap {
         width: 480px;
-        height: 270px;
     }
 
     .cursus-hero__title {
@@ -209,11 +214,6 @@
 @media (max-width: 1200px) {
     .cursus-hero {
         gap: 40px;
-    }
-
-    .cursus-hero__image {
-        width: 380px;
-        height: 214px;
     }
 
     .cursus-hero__title {
@@ -235,14 +235,16 @@
         width: 100%;
     }
 
-    .cursus-hero__image {
+    .cursus-hero__image-wrap {
         width: 100%;
         height: auto;
+        min-height: 0;
         aspect-ratio: 635 / 357;
     }
 
-    .cursus-hero__image-wrap {
+    .cursus-hero__image {
         width: 100%;
+        height: 100%;
     }
 }
 

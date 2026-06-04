@@ -81,7 +81,6 @@
     justify-content: space-between;
     gap: 60px;
     margin-top: var(--space-2);
-    padding-bottom: 80px;
 }
 
 .inschr-hero__text {
@@ -216,11 +215,6 @@
 }
 
 @media (max-width: 768px) {
-    .inschr-hero {
-        margin-top: 40px;
-        padding-bottom: 50px;
-    }
-
     .inschr-breadcrumbs {
         gap: 8px;
     }
@@ -262,6 +256,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px 40px;
+    justify-content: center;
 }
 
 .inschr-usps .usp-item {
@@ -269,7 +264,6 @@
     align-items: center;
     gap: 12px;
     font-family: var(--font-sans);
-    font-weight: 600;
     color: var(--color-primary);
 }
 
@@ -490,14 +484,64 @@
         gap: 14px;
         padding: 20px 24px;
     }
+
+    .inschr-cards-wrap {
+        padding-top: 28px;
+        padding-bottom: 72px;
+    }
+
+    .inschr-cards__placeholder,
+    .inschr-cards__empty {
+        border-radius: 24px;
+        padding: 24px;
+    }
+
+    .inschr-cards__placeholder p,
+    .inschr-cards__empty p {
+        line-height: 28px;
+    }
+}
+
+.inschr-cards-wrap {
+    padding-top: 40px;
 }
 
 .inschr-cards {
-    padding-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-bottom: 100px;
+}
+
+.inschr-cards__placeholder,
+.inschr-cards__empty {
+    border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+    border-radius: 30px;
+    padding: 32px 40px;
+    background: var(--bg-surface);
+}
+
+.inschr-cards__empty-title {
+    margin: 0 0 12px;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.inschr-cards__placeholder p,
+.inschr-cards__empty p {
+    margin: 0;
+    font-family: var(--font-sans);
+    line-height: 32px;
+    color: var(--color-primary);
+}
+
+.inschr-cards__placeholder a,
+.inschr-cards__empty a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .course-card {
@@ -548,6 +592,7 @@
     flex-direction: column;
     padding: 20px 0 20px 10px;
     min-width: 0;
+    max-width: 40em;
 }
 
 .course-card__name {
@@ -577,18 +622,24 @@
 .course-card__lesdag {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 24px;
     flex-wrap: wrap;
 }
 
 .course-card__lesdag-label {
     min-width: 100px;
-    margin-right: 230px;
     flex-shrink: 0;
 }
 
+.course-card__lesdag-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px 35px;
+    flex-wrap: wrap;
+}
+
 .course-card__lesdag-date {
-    min-width: 220px;
     flex-shrink: 0;
 }
 
@@ -754,10 +805,6 @@
         gap: 16px;
     }
 
-    .course-card__lesdag-label {
-        margin-right: 150px;
-    }
-
     .course-card__badge {
         min-width: 240px;
         padding: 18px 12px 18px 36px;
@@ -799,10 +846,6 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
-    }
-
-    .course-card__lesdag-label {
-        margin-right: 0;
     }
 
     .course-card__badge {

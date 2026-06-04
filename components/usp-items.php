@@ -6,8 +6,10 @@ $label     = $args['label']     ?? __('Key features', 'arehbo-theme');
 
 if (empty($items)) return;
 
+$aria_label = trim((string) $label);
+
 ?>
-<ul class="usp-list__items" aria-label="<?= esc_attr($label); ?>">
+<ul class="usp-list__items"<?php if ($aria_label !== '') : ?> aria-label="<?= esc_attr($aria_label); ?>"<?php endif; ?>>
     <?php foreach ($items as $item) :
         $text    = $item['text'] ?? '';
         $icon_id = $show_icon ? ($item['icon'] ?? null) : null;
