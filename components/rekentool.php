@@ -3,17 +3,21 @@
 $product_name   = $args['product_name']   ?? '';
 $background     = $args['background']     ?? 'light';
 $tiers          = $args['tiers']          ?? [];
-$button_label   = $args['button_label']   ?? '';
-$button_url     = $args['button_url']     ?? '';
-$button_target  = $args['button_target']  ?? '_self';
-$button_variant = $args['button_variant'] ?? 'accent';
+$buttons        = $args['buttons']        ?? [];
 
 $is_dark = $background === 'dark';
 
 $lowest_price_fmt = '';
 if (!empty($tiers)) {
+    usort($tiers, static function ($a, $b) {
+        $step_a = isset($a['stap']) ? (int) $a['stap'] : (isset($a['tier_min']) ? (int) $a['tier_min'] : 0);
+        $step_b = isset($b['stap']) ? (int) $b['stap'] : (isset($b['tier_min']) ? (int) $b['tier_min'] : 0);
+
+        return $step_a <=> $step_b;
+    });
+
     $last = end($tiers);
-    $val  = floatval(str_replace(',', '.', $last['tier_price'] ?? '0'));
+    $val  = floatval(str_replace(',', '.', $last['prijs_per_stuk'] ?? ($last['tier_price'] ?? '0')));
     $lowest_price_fmt = ($val == floor($val))
         ? '€' . number_format($val, 0, ',', '.') . ',-'
         : '€' . number_format($val, 2, ',', '.');
@@ -21,10 +25,16 @@ if (!empty($tiers)) {
 
 $js_tiers = [];
 foreach ($tiers as $t) {
+    $step = isset($t['stap']) ? intval($t['stap']) : intval($t['tier_min'] ?? 0);
+    $price = $t['prijs_per_stuk'] ?? ($t['tier_price'] ?? '0');
+
+    if ($step < 1) {
+        continue;
+    }
+
     $js_tiers[] = [
-        'min'   => intval($t['tier_min']   ?? 1),
-        'max'   => intval($t['tier_max']   ?? 999),
-        'price' => floatval(str_replace(',', '.', $t['tier_price'] ?? '0')),
+        'step'  => $step,
+        'price' => floatval(str_replace(',', '.', $price)),
     ];
 }
 
@@ -68,15 +78,26 @@ foreach ($tiers as $t) {
                         <span class="rekentool__per-stuk">per stuk</span>
                     </div>
 
-                    <?php if ($button_label && $button_url) : ?>
+                    <?php if (!empty($buttons)) : ?>
                         <div class="rekentool__btn-wrap">
-                            <?php get_template_part('components/button', '', [
-                                'label'   => $button_label,
-                                'url'     => $button_url,
-                                'target'  => $button_target,
-                                'variant' => $button_variant,
-                                'icon'    => true,
-                            ]); ?>
+                            <?php foreach (array_slice($buttons, 0, 3) as $i => $btn) :
+                                $link = $btn['link'] ?? [];
+                                $label = $link['title'] ?? '';
+                                $url = $link['url'] ?? '';
+                                $target = $link['target'] ?? '_self';
+                                $variant = $btn['variant'] ?? ($i === 0 ? 'accent' : 'outline');
+
+                                if (empty($label) || empty($url)) {
+                                    continue;
+                                }
+                                get_template_part('components/button', '', [
+                                    'label'   => $label,
+                                    'url'     => $url,
+                                    'target'  => $target,
+                                    'variant' => $variant,
+                                    'icon'    => true,
+                                ]);
+                            endforeach; ?>
                         </div>
                     <?php endif; ?>
 

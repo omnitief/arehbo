@@ -125,117 +125,6 @@
                     }
                 ]
             ]
-        },
-        {
-            "key": "field_dienst_rekentool_tiers",
-            "label": "Pricing tiers",
-            "name": "rekentool_tiers",
-            "type": "repeater",
-            "instructions": "Define quantity ranges and the price per unit for each range. The last tier's price is shown as the 'vanaf' price.",
-            "required": 0,
-            "layout": "table",
-            "min": 0,
-            "max": 0,
-            "button_label": "Add tier",
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_dienst_show_rekentool",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "sub_fields": [
-                {
-                    "key": "field_dienst_tier_min",
-                    "label": "Min qty",
-                    "name": "tier_min",
-                    "type": "number",
-                    "required": 1,
-                    "default_value": 1,
-                    "min": 1,
-                    "step": 1,
-                    "parent_repeater": "field_dienst_rekentool_tiers"
-                },
-                {
-                    "key": "field_dienst_tier_max",
-                    "label": "Max qty",
-                    "name": "tier_max",
-                    "type": "number",
-                    "required": 1,
-                    "default_value": 999,
-                    "min": 1,
-                    "step": 1,
-                    "parent_repeater": "field_dienst_rekentool_tiers"
-                },
-                {
-                    "key": "field_dienst_tier_price",
-                    "label": "Price per unit (e.g. 23,50)",
-                    "name": "tier_price",
-                    "type": "text",
-                    "required": 1,
-                    "placeholder": "23,50",
-                    "parent_repeater": "field_dienst_rekentool_tiers"
-                }
-            ]
-        },
-        {
-            "key": "field_dienst_rekentool_button_label",
-            "label": "Button label",
-            "name": "rekentool_button_label",
-            "type": "text",
-            "required": 0,
-            "placeholder": "Bestel nu",
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_dienst_show_rekentool",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ]
-        },
-        {
-            "key": "field_dienst_rekentool_button_link",
-            "label": "Button link",
-            "name": "rekentool_button_link",
-            "type": "link",
-            "required": 0,
-            "return_format": "array",
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_dienst_show_rekentool",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ]
-        },
-        {
-            "key": "field_dienst_rekentool_button_variant",
-            "label": "Button style",
-            "name": "rekentool_button_variant",
-            "type": "button_group",
-            "required": 0,
-            "choices": {
-                "accent": "Accent",
-                "default": "Outline"
-            },
-            "default_value": "accent",
-            "return_format": "value",
-            "allow_null": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_dienst_show_rekentool",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ]
         }
     ],
     "location": [
@@ -256,5 +145,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1761696100
+    "modified": 1780611758
 }

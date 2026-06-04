@@ -125,6 +125,12 @@ function arehbo_format_nl_date($timestamp) {
 }
 
 function arehbo_get_inschrijven_form_page_url() {
+    $selected_page = arehbo_option_page_link_post('inschrijven_form_page');
+
+    if ($selected_page) {
+        return get_permalink($selected_page);
+    }
+
     $form_page_posts = get_posts([
         'post_type'      => 'page',
         'meta_key'       => '_wp_page_template',

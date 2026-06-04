@@ -13,8 +13,14 @@ $logo_id   = get_field('logo', 'option');
 $logo_url  = $logo_id ? wp_get_attachment_image_url($logo_id, 'full') : '';
 $logo_alt  = $logo_id ? (get_post_meta($logo_id, '_wp_attachment_image_alt', true) ?: get_bloginfo('name')) : get_bloginfo('name');
 
-$inschrijven_page = get_page_by_path('inschrijven');
-$back_url         = $inschrijven_page ? get_permalink($inschrijven_page) : home_url('/');
+$cursuskalender_page = function_exists('arehbo_option_page_link_post') ? arehbo_option_page_link_post('cursuskalender_page') : null;
+
+if ($cursuskalender_page) {
+    $back_url = get_permalink($cursuskalender_page);
+} else {
+    $inschrijven_page = get_page_by_path('inschrijven');
+    $back_url         = $inschrijven_page ? get_permalink($inschrijven_page) : home_url('/');
+}
 
 $icon_arrow_left = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M19 12H5M5 12L11 18M5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 ?>

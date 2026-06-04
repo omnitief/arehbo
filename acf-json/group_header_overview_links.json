@@ -52,6 +52,40 @@
             "allow_null": 1,
             "allow_in_bindings": 0,
             "ui": 1
+        },
+        {
+            "key": "field_header_overview_link_inschrijven_form",
+            "label": "Cursus inschrijfformulier pagina",
+            "name": "inschrijven_form_page",
+            "type": "post_object",
+            "instructions": "Selecteer de pagina die gebruikt wordt als cursus-inschrijfformulier. Op die pagina stel je via het template en het Form-veld het juiste Gravity Form in.",
+            "required": 0,
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_header_overview_link_cursuskalender",
+            "label": "Cursuskalender pagina",
+            "name": "cursuskalender_page",
+            "type": "post_object",
+            "instructions": "Selecteer de pagina waar de terugknop en breadcrumbs van het cursus-inschrijfformulier naartoe moeten linken.",
+            "required": 0,
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
         }
     ],
     "location": [
@@ -72,5 +106,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748772600
+    "modified": 1780614400
 }

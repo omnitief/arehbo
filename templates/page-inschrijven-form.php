@@ -30,9 +30,16 @@ if (!empty($_GET['dagdelen'])) {
     }
 }
 
-$inschrijven_page = get_page_by_path('inschrijven');
-$inschrijven_url  = $inschrijven_page ? get_permalink($inschrijven_page) : home_url('/');
-$inschrijven_name = $inschrijven_page ? get_the_title($inschrijven_page) : 'Inschrijven';
+$cursuskalender_page = function_exists('arehbo_option_page_link_post') ? arehbo_option_page_link_post('cursuskalender_page') : null;
+
+if ($cursuskalender_page) {
+    $inschrijven_url = get_permalink($cursuskalender_page);
+    $inschrijven_name = get_the_title($cursuskalender_page);
+} else {
+    $inschrijven_page = get_page_by_path('inschrijven');
+    $inschrijven_url  = $inschrijven_page ? get_permalink($inschrijven_page) : home_url('/');
+    $inschrijven_name = $inschrijven_page ? get_the_title($inschrijven_page) : 'Inschrijven';
+}
 
 $phone = get_field('footer_contact_phone', 'option');
 $email = get_field('footer_contact_email', 'option');

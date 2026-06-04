@@ -174,6 +174,45 @@
             ]
         },
         {
+            "key": "field_blocks_fallbacks_tab_pricecalc",
+            "label": "Prijscalculator",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blocks_pricecalc_prices",
+            "label": "Prijzen",
+            "name": "prijzen",
+            "type": "repeater",
+            "instructions": "Gebruik hetzelfde staffelmodel als in het oude formulier: vanaf deze stap geldt deze prijs per stuk.",
+            "layout": "table",
+            "button_label": "Voeg prijsstaffel toe",
+            "sub_fields": [
+                {
+                    "key": "field_blocks_pricecalc_step",
+                    "label": "Stap",
+                    "name": "stap",
+                    "type": "number",
+                    "required": 1,
+                    "default_value": 1,
+                    "min": 1,
+                    "step": 1,
+                    "parent_repeater": "field_blocks_pricecalc_prices"
+                },
+                {
+                    "key": "field_blocks_pricecalc_amount",
+                    "label": "Prijs per stuk",
+                    "name": "prijs_per_stuk",
+                    "type": "text",
+                    "required": 1,
+                    "placeholder": "23,50",
+                    "parent_repeater": "field_blocks_pricecalc_prices"
+                }
+            ]
+        },
+        {
             "key": "field_blocks_fallbacks_tab_404",
             "label": "404",
             "name": "",
@@ -216,5 +255,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_rest": 0
+    "show_in_rest": 0,
+    "modified": 1780611339
 }

@@ -12,10 +12,22 @@
     }
 
     function getUnitPrice(tiers, qty) {
+        var currentPrice = null;
+
         for (var i = 0; i < tiers.length; i++) {
-            if (qty >= tiers[i].min && qty <= tiers[i].max) return tiers[i].price;
+            var step = parseInt(tiers[i].step, 10);
+            if (step > qty) {
+                break;
+            }
+
+            currentPrice = tiers[i].price;
         }
-        return tiers.length ? tiers[tiers.length - 1].price : 0;
+
+        if (currentPrice === null && tiers.length) {
+            currentPrice = tiers[tiers.length - 1].price;
+        }
+
+        return currentPrice || 0;
     }
 
     function fmt(n) {
@@ -46,4 +58,3 @@
         render();
     });
 }());
-

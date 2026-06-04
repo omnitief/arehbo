@@ -150,7 +150,7 @@
     }
 }
 
-@media (max-width: 1600px) and (min-width: 991px) {
+@media (min-width: 991px) {
     .cta__content {
         padding-block: 30px;
     }

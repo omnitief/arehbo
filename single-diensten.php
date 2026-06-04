@@ -4,6 +4,46 @@ get_header();
 
 while (have_posts()) : the_post();
 
+    $option_get = static function (string $name, $default = null) {
+        $value = get_field($name, 'option');
+        if ($value === null || $value === false || $value === '') {
+            $value = get_field($name, 'options');
+        }
+
+        return ($value === null || $value === false || $value === '') ? $default : $value;
+    };
+
+    $normalize_price_rows = static function ($rows): array {
+        if (!is_array($rows)) {
+            return [];
+        }
+
+        $normalized = [];
+        foreach ($rows as $row) {
+            if (!is_array($row)) {
+                continue;
+            }
+
+            $step = isset($row['stap']) ? (int) $row['stap'] : (isset($row['tier_min']) ? (int) $row['tier_min'] : 0);
+            $price = $row['prijs_per_stuk'] ?? ($row['tier_price'] ?? '');
+
+            if ($step < 1 || $price === '') {
+                continue;
+            }
+
+            $normalized[] = [
+                'stap' => $step,
+                'prijs_per_stuk' => $price,
+            ];
+        }
+
+        usort($normalized, static function ($a, $b) {
+            return ((int) $a['stap']) <=> ((int) $b['stap']);
+        });
+
+        return $normalized;
+    };
+
     $page_title    = get_the_title();
     $background    = get_field('dienst_background') ?: 'light-blue';
     $show_reviews  = get_field('dienst_show_reviews');
@@ -23,13 +63,8 @@ while (have_posts()) : the_post();
     $img_alt = $img_id ? (get_post_meta($img_id, '_wp_attachment_image_alt', true) ?: $page_title) : '';
 
     $show_rekentool        = (bool) get_field('dienst_show_rekentool');
-    $product_name          = get_field('dienst_product_name')       ?: '';
-    $rekentool_tiers       = get_field('rekentool_tiers')           ?: [];
-    $rekentool_btn_raw     = get_field('rekentool_button_link')     ?: [];
-    $rekentool_btn_label   = get_field('rekentool_button_label')    ?: '';
-    $rekentool_btn_variant = get_field('rekentool_button_variant')  ?: 'accent';
-    $rekentool_btn_url     = $rekentool_btn_raw['url']    ?? '';
-    $rekentool_btn_target  = $rekentool_btn_raw['target'] ?? '_self';
+    $product_name          = get_field('dienst_product_name') ?: '';
+    $rekentool_tiers       = $normalize_price_rows($option_get('prijzen', []));
 
     $arrow_left   = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false" fill="none"><path d="M19 12H5M11 18L5 12L11 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
@@ -81,7 +116,7 @@ while (have_posts()) : the_post();
                     <div class="dienst-hero__description"><?= wp_kses_post($description); ?></div>
                 <?php endif; ?>
 
-                <?php if (!empty($buttons)) : ?>
+                <?php if (!empty($buttons) && !$show_rekentool) : ?>
                     <div class="dienst-hero__buttons">
                         <?php foreach (array_slice($buttons, 0, 3) as $i => $btn) :
                             $link   = $btn['link'] ?? [];
@@ -128,10 +163,7 @@ while (have_posts()) : the_post();
             'product_name'   => $product_name,
             'background'     => $hero_variant,
             'tiers'          => $rekentool_tiers,
-            'button_label'   => $rekentool_btn_label,
-            'button_url'     => $rekentool_btn_url,
-            'button_target'  => $rekentool_btn_target,
-            'button_variant' => $rekentool_btn_variant,
+            'buttons'        => $buttons,
         ]); ?>
     <?php endif; ?>
 
