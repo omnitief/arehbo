@@ -366,8 +366,8 @@ html body .gform_wrapper .ginput_container_consent input[type="checkbox"] {
 }
 
 .gfield_repeater_buttons .add_repeater_item {
-    font: normal normal 600 19px / 28px Blinker;
+    font: normal normal 600 19px / 28px Blinker!important;
     letter-spacing: 0px;
-    color: #004081;
+    color: #004081!important;
     text-transform: uppercase;
 }
