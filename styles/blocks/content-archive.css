@@ -1,9 +1,14 @@
+.content-archive__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
 .content-archive__title {
     max-width: 620px;
 }
 
-.content-archive--grid .content-archive__title {
-}
 
 .archive-card {
     position: relative;
@@ -468,6 +473,12 @@
 }
 
 @media (max-width: 768px) {
+    .content-archive__head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
     .content-archive__title {
         max-width: 330px;
     }
