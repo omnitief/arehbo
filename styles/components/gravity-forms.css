@@ -349,9 +349,11 @@ html body .gform_wrapper .ginput_container_consent input[type="checkbox"] {
 }
 
 .gfield_repeater_item .gfield_repeater_buttons .remove_repeater_item {
-    margin-left: 0;
+    min-width: auto!important;
 }
-
+.ginput_container input {
+    width: 100%!important;
+}
 .gfield_repeater_item .gfield_repeater_buttons button .arehbo-icon.arehbo-icon--delete {
     width: 45px;
     height: 45px;
