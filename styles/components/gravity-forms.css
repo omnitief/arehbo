@@ -357,7 +357,9 @@ html body .gform_wrapper .ginput_container_consent input[type="checkbox"] {
     height: 45px;
     background-color: #c4dfdf!important;
 }
-
+.gfield_repeater_item .gfield_repeater_buttons button .arehbo-icon.arehbo-icon--delete path {
+    color: #306499!important;
+}
 .gfield_repeater_buttons:has(.remove_repeater_item) {
     margin-bottom: 0;
 }
