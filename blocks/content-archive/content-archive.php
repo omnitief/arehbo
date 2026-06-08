@@ -198,7 +198,10 @@ endif;
 
         <?php if ($title) : ?>
             <div class="container">
-                <h2 class="content-archive__title"><?= esc_html($title); ?></h2>
+                <div class="content-archive__head">
+                    <h2 class="content-archive__title"><?= esc_html($title); ?></h2>
+                    <?php get_template_part('components/google-reviews', '', ['variant' => $background === 'dark' ? 'dark' : 'light']); ?>
+                </div>
             </div>
         <?php endif; ?>
 
